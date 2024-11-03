@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.mt-100 {
+    margin-top: 100px !important;
+}
+
+/* section First */
+.firstSection {
+    width: 100%;
+    height: max-content;
+    background: url(/assets/main/login/first-section-1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.topContent .topContentText h4 {
+    margin-top: 200px;
+}
+
+.topContentBtn {
+    width: 100px;
+    height: 50px;
+    background: linear-gradient(135deg, #11b4dc, #94c5f2);
+    margin-top: 50px;
+    padding: 15px;
+    color: #111;
+    text-decoration: none;
+}
+
+/* section First End*/
+/* Second Section */
+.secondSectionText {
+    font-weight: bold;
+}
+
+.secondSectionText .firstP {
+    margin-top: 250px;
+}
+
+.secondSectionText span {
+    font-weight: 400;
+}
+
+.secondSectionİmg img {
+    margin-top: 150px;
+}
+
+.position-images {
+    position: relative;
+    top: 100px;
+    z-index: 2;
+}
+
+/* Second Section End*/
+/* Agencies Section */
+.agencies {
+    width: 100%;
+    height: max-content;
+    background: url(/assets/main/login/agencies-bg.svg);
+}
+
+.agencies p {
+    padding-top: 100px !important;
+    text-align: center;
+}
+
+.agencies .p2 {
+    padding-top: 20px !important;
+}
+
+/* Agencies Section End */
+/* Steps Section */
+.steps {
+    margin-top: 100px;
+    height: max-content;
+}
+
+.steps h6 {
+    font-weight: bold;
+}
+
+.stepsEndText {
+    margin-top: 100px;
+}
+
+/* Steps Section End*/
+/* section end */
+.end {
+    width: 100%;
+    height: max-content;
+    background: url(/assets/main/login/end-section-images.svg);
+    background-size: cover;
+}
+
+.endsp1 {
+    text-align: center;
+    padding-top: 70px;
+}
+
+.endsp2 {
+    text-align: center;
+}
+
+.iconBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.iconBox h5 {
+    font-size: 1.1rem;
+}
+
+.accountRight {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.accountRight a {
+    text-decoration: none;
+    background: linear-gradient(135deg, #11b4dc, #94c5f2);
+    padding: 15px 100px;
+    color: #00008B;
+}
+
+/* section end final */
+/* Footer */
+footer {
+    padding-bottom: 100px;
+}
+
+footer ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer ul li a {
+    color: #111;
+    text-decoration: none;
+    line-height: 25px;
+    font-weight: 300;
+}
+
+.fs-bold {
+    font-weight: bold;
+}
+
+.fs-small {
+    font-size: 0.8rem;
+}
+
+/* Footer End*/
+/* Responsive Css */
+
+@media screen and (max-width:768px) {
+    .secondSectionText .firstP {
+        margin-top: 0 !important;
+    }
+
+    .secondSectionText {
+        margin-bottom: 50px !important;
+    }
+
+    .iconBox {
+        margin-bottom: 20px;
+    }
+
+    .accountRight {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .accountLeft {
+        text-align: center;
+    }
+
+    footer {
+        text-align: center;
+    }
+}
+/* Responsive Css Styling */
+
+@media screen and (max-width:500px) {
+    .navbar-brand img {
+        width: 150px !important;
+    }
+    .navbar-toggler {
+        font-size: 1rem !important;
+    }
+}
+
+
+/**********************/
+
+
+
+@media screen and (min-width:768px) {
+    .nav-link {
+        font-size: 1.3rem !important;
+    }
+    .topContent .topContentText h4 {
+        margin-top: 200px;
+        font-size: 2.1rem;
+        width: 100%;
+    }
+    .topContent .topContentText p {
+        font-size: 1.2rem;
+    }
+    .secondSectionText .firstP {
+        font-size: 2rem;
+    }
+    .secondP {
+        font-size: 1.7rem;
+    }
+    .secondSectionText span {
+        font-size: 1.3rem;
+    }
+    .client h4 {
+        font-size: 2rem;
+    }
+    .client p {
+        font-size: 1.2rem;
+    }
+    .agencies p {
+        font-size: 1.4rem;
+    }
+    .steps h6 {
+        font-size: 1.8rem;
+    }
+    .steps p {
+        font-size: 1.3rem;
+    }
+    .endsp1 {
+        font-size: 1.5rem;
+    }
+    .endsp2 {
+        font-size: 1.2rem;
+    }
+    .AccountLeft p {
+        font-size: 1.5rem;
+    }
+    .AccountLeft span {
+        font-size: 1.3rem;
+    }
+    footer h6 {
+        font-size: 1.7rem;
+    }
+    .fs-small{
+        font-size: 1.1rem;
+    }
+    footer ul li {
+        font-size: 1.1rem;
+    }
+}

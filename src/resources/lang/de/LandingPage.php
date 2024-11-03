@@ -1,0 +1,46 @@
+<?php
+ 
+return [
+    'Login' => 'Anmelden',
+    'SignUp' => 'Registrieren',
+    'Title' => 'Agentur | Medescare',
+    'h4-1' => 'Kundenmanagement für Agenturen leicht gemacht',
+    'p1' => 'Wir halten uns an europäische Standards und bieten rechtzeitige Diagnosen, Expertenberatung, spezialisierte Operationen und Notfallmedizin.',
+    'GetStarted' => 'Loslegen',
+    'p2' => 'Einfach, aber leistungsstark',
+    'p3' => 'Terminplanung',
+    'span1' => 'Alles ist ordentlich in Sass organisiert und wurde stark auf Leistungsfähigkeit ausgerichtet.',
+    'p4' => 'Agenturportal',
+    'span2' => 'Agenturen können die Termine, Zahlungen und andere Informationen ihrer Kunden leicht verfolgen.',
+    'h6-1' => 'Kundenmanagement auf Knopfdruck',
+    'p5' => 'Die Vorteile einer Partnerschaft mit {AppName} liegen in der Benutzerfreundlichkeit der Plattform, den finanziellen Belohnungen und der Möglichkeit, anderen bei der Erreichung ihrer Gesundheitsziele zu helfen.',
+    'p6' => 'Über 4.000 Agenturen und mehr',
+    'p7' => 'Tausende der erfolgreichsten Unternehmen verlassen sich auf unseren Service.',
+    'h6-2' => '5-Minuten-Einrichtung',
+    'p8' => 'Ihre Anmeldung wird sofort erstellt und Sie können mit der Terminvereinbarung beginnen.',
+    'Step1' => 'Schritt 1',
+    'h5-1' => 'Agentur bewerben',
+    'p9' => 'Registrieren Sie sich auf unserer Kundenmanagementplattform und verwalten Sie Ihr Geschäft einfacher und effizienter!"',
+    'Step2' => 'Schritt 2',
+    'h5-2' => 'Genehmigung erhalten',
+    'p10' => 'Nach Prüfung und Genehmigung Ihrer Bewerbung senden wir Ihnen die Anmeldeinformationen für die Agenturplattform.',
+    'Step3' => 'Schritt 3',
+    'h5-3' => 'Anweisungen',
+    'p11' => 'Lernen Sie unsere Kundenmanagement-Plattform leicht mit kurzen Anweisungen und Tutorials kennen.',
+    'Step4' => 'Schritt 4',
+    'h5-4' => 'Fertig!',
+    'p12' => 'Verfolgen Sie Kunden, Termine und Ihren Gewinn mühelos. Holen Sie sich rund um die Uhr an 7 Tagen in der Woche Unterstützung.',
+    'p13' => 'Wenn Sie Hilfe benötigen, vereinbaren Sie unbedingt eine Demo Präsentation.',
+    'p14' => 'Steigern Sie Ihr Geschäft auf die richtige Art und Weise.',
+    'p15' => 'Unsere Tools sind mit großartigen Funktionen ausgestattet. So können Sie sich auf Ihre wichtigsten Aufgaben konzentrieren.',
+    'ClientManagement' => 'Kundenmanagement',
+    'AppointmentSchedule' => 'Terminplanung',
+    'ProfitTracking' => 'Gewinnverfolgung',
+    'WorkDone' => 'Erledigte Arbeit!',
+    'CreateAnAccount' => 'Konto erstellen',
+    'ReadyToStart'=>'Bereit zum Start?',
+    'CarryUrBusiness'=>'Bringen Sie Ihr Unternehmen noch heute auf ein neues Niveau.'
+];
+
+
+

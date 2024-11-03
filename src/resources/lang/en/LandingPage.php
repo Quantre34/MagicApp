@@ -1,0 +1,46 @@
+<?php
+ 
+return [
+    'Login' => 'Login',
+    'SignUp' => 'Sign Up',
+    'Title' => 'Agency | Medescare',
+    'h4-1' => 'Client Management for Agency at Ease',
+    'p1' => 'Committed to European standards, we offer timely diagnoses, expert consultations, specialized surgeries, and emergency medical services.',
+    'GetStarted'=>'Get Started',
+    'p2'=>'Simple Yet Powerful',
+    'p3'=>'Scheduling',
+    'span1'=>'Everything is neatly organized in Sass and has been heavily focused on performances.',
+    'p4'=>'Agency Portal',
+    'span2'=>'Agencies can easily track their clients’ appointments, payments, and other information.',
+    'h6-1'=>'Client Management at Fingertips',
+    'p5'=>'The benefits of partnering with {AppName} ; focusing on the ease of use of the platform, the financial rewards, and the opportunity to help others achieve their health goals.',
+    'p6'=>'Over 4,000 Agencies And Counting',
+    'p7'=>'Thousands of the most successful companies rely on our service.',
+    'h6-2'=>'5-Minute Setup',
+    'p8'=>'Your registration will be created immediately and you can start making appointments.',
+    'Step1'=>'Step 1',
+    'h5-1'=>'Apply for Agency',
+    'p9'=>'Register to our client management platform and manage your business more easily and efficiently!"',
+    'Step2'=>'Step 2',
+    'h5-2'=>'Get approval',
+    'p10'=>'After reviewing and approving your application, we will send you agency platform login information.',
+    'Step3'=>'Step 3',
+    'h5-3'=>'Instructions',
+    'p11'=>'Learn our client management panel easily with short instructions and tutorials.',
+    'Step4'=>'Step 4',
+    'h5-4'=>'Done !',
+    'p12'=>'Track clients, appointments & your profit with ease. Get support 24 hours and 7 days a week.',
+    'p13'=>'If you nedd any help, make sure to book a demo',
+    'p14'=>'Grow your business the right way.',
+    'p15'=>'Our tools are packed with epic features. So you can focus on your most important work.',
+    'ClientManagement'=>'Client Management',
+    'AppointmentSchedule'=>'Appointment Schedule',
+    'ProfitTracking'=>'Profit Tracking',
+    'WorkDone'=>'Work Done!',
+    'CreateAnAccount'=>'Create An Account',
+    'ReadyToStart'=>'Ready to get started?',
+    'CarryUrBusiness'=>'Carry your business to a new level today.'
+];
+
+
+
