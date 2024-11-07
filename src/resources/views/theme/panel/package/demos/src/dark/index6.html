@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="dark" data-color-theme="Blue_Theme" data-layout="vertical">
+
+<head>
+    @@include("partials/head.html")
+    <title>Monster Bootstrap Admin</title>
+</head>
+
+<body>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+        <img src="@@webRoot/assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+    </div>
+    <div id="main-wrapper">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar with-vertical">
+            @@include("partials/sidebar.html", { "page": "dashboard", })
+        </aside>
+        <!--  Sidebar End -->
+        <div class="page-wrapper">
+            <!--  Header Start -->
+            <header class="topbar">
+                <div class="with-vertical">@@include("partials/header.html")</div>
+                <div class="app-header with-horizontal">
+                    @@include("partials/horizontal-header.html")
+                </div>
+            </header>
+            <!--  Header End -->
+
+            <aside class="left-sidebar with-horizontal">
+                @@include("partials/horizontal-sidebar.html", { "page": "dashboard",
+                })
+            </aside>
+
+            <div class="body-wrapper">
+                <div class="container-fluid">
+                    @@include("partials/breadcrumb.html", {"title": "Dashboard",
+                    "subtitle": 'Home'})
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Android Vs iOS</h4>
+                                            <p class="card-subtitle mb-0">
+                                                check the difference of OS
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 border-end align-self-center">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-8 p-0 align-self-center">
+                                                    <h3 class="mb-0">31568</h3>
+                                                    <h5 class="text-muted fw-normal mb-0">Growth</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div
+                                                        class="round rounded-circle text-white hstack justify-content-center text-bg-success">
+                                                        <i class="ti ti-brand-angular fs-6"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 align-self-center">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-8 p-0 align-self-center">
+                                                    <h3 class="mb-0">15478</h3>
+                                                    <h5 class="text-muted fw-normal mb-0">Loss</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div
+                                                        class="round rounded-circle text-white hstack justify-content-center text-bg-dark">
+                                                        <i class="ti ti-brand-apple fs-6"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="android-vs-ios" class="pt-5 border-top"></div>
+                            </div>
+                        </div>
+                        <!-- column -->
+                        <!-- Column -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card text-bg-primary">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="me-3 align-self-center">
+                                            <h1 class="text-white">
+                                                <i class="ti ti-chart-pie"></i>
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-white">Bandwidth usage</h3>
+                                            <h6 class="text-white">March 2023</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5 col-xl-7 align-self-center">
+                                            <h4 class="fs-8 text-white text-truncate">50 GB</h4>
+                                        </div>
+                                        <div class="col-7 col-xl-5 align-self-center">
+                                            <div id="bandwidth-usage"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card text-bg-danger">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="me-3 align-self-center">
+                                            <h1 class="text-white">
+                                                <i class="ti ti-cloud-download"></i>
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-white">Download count</h3>
+                                            <h6 class="text-white">March 2023</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5 col-xl-7 align-self-center">
+                                            <h4 class="fs-8 text-white text-truncate">35487</h4>
+                                        </div>
+                                        <div class="col-7 col-xl-5 text-end">
+                                            <div id="download-count"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="col-lg-6">
+                            <div class="card w-100">
+                                <div class="card-body border-bottom">
+                                    <h4 class="card-title mb-0">Notification</h4>
+                                </div>
+                                <div class="message-box position-relative">
+                                    <div class="message-widget contact-widget position-relative">
+                                        <a href="javascript:void(0)"
+                                            class="p-3 d-flex align-items-center gap-3 border-bottom">
+                                            <span
+                                                class="flex-shrink-0 bg-danger-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-danger">
+                                                <iconify-icon icon="solar:widget-3-linear"></iconify-icon>
+                                            </span>
+                                            <div class="w-100 d-inline-block v-middle">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <h6 class="mb-1 lh-base">Luanch Admin</h6>
+                                                    <span class="fs-2 text-nowrap d-block text-body-color">9:30
+                                                        AM</span>
+                                                </div>
+                                                <span class="fs-2 d-block text-truncate text-body-color">Just see the my
+                                                    new admin!</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                            class="p-3 d-flex align-items-center gap-3 border-bottom">
+                                            <span
+                                                class="flex-shrink-0 bg-success-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-success">
+                                                <iconify-icon icon="solar:calendar-mark-linear"></iconify-icon>
+                                            </span>
+                                            <div class="w-100 d-inline-block v-middle">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <h6 class="mb-1 lh-base">Event today</h6>
+                                                    <span class="fs-2 text-nowrap d-block text-body-color">9:10
+                                                        AM</span>
+                                                </div>
+                                                <span class="fs-2 d-block text-truncate text-body-color">Just a reminder
+                                                    that you have event</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                            class="p-3 d-flex align-items-center gap-3 border-bottom">
+                                            <span
+                                                class="flex-shrink-0 bg-primary-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-primary">
+                                                <iconify-icon icon="solar:settings-minimalistic-linear"></iconify-icon>
+                                            </span>
+                                            <div class="w-100 d-inline-block v-middle">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <h6 class="mb-1 lh-base">Settings</h6>
+                                                    <span class="fs-2 text-nowrap d-block text-body-color">9:08
+                                                        AM</span>
+                                                </div>
+                                                <span class="fs-2 d-block text-truncate text-body-color">You can
+                                                    customize this template as you want</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                            class="p-3 d-flex align-items-center gap-3 border-bottom">
+                                            <span
+                                                class="flex-shrink-0 bg-warning-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-warning">
+                                                <iconify-icon icon="solar:link-circle-linear"></iconify-icon>
+                                            </span>
+                                            <div class="w-100 d-inline-block v-middle">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <h6 class="mb-1 lh-base">Luanch Admin</h6>
+                                                    <span class="fs-2 text-nowrap d-block text-body-color">9:30
+                                                        AM</span>
+                                                </div>
+                                                <span class="fs-2 d-block text-truncate text-body-color">Just see the my
+                                                    new admin!</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                            class="p-3 d-flex align-items-center gap-3 border-bottom">
+                                            <span
+                                                class="flex-shrink-0 bg-success-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-success">
+                                                <iconify-icon icon="solar:calendar-mark-linear"></iconify-icon>
+                                            </span>
+                                            <div class="w-100 d-inline-block v-middle">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <h6 class="mb-1 lh-base">Event today</h6>
+                                                    <span class="fs-2 text-nowrap d-block text-body-color">9:10
+                                                        AM</span>
+                                                </div>
+                                                <span class="fs-2 d-block text-truncate text-body-color">Just a reminder
+                                                    that you have event</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-lg-6">
+                            <div class="card w-100">
+                                <div class="card-body">
+                                    <div class="d-md-flex no-block mb-5">
+                                        <h4 class="card-title">Visit source</h4>
+                                        <div class="ms-auto">
+                                            <select class="form-select">
+                                                <option selected="">January</option>
+                                                <option value="1">February</option>
+                                                <option value="2">March</option>
+                                                <option value="3">April</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="visit-source"></div>
+                                    <div class="text-center mt-5">
+                                        <ul class="list-inline mb-8">
+                                            <li class="list-inline-item">
+                                                <h6 class="text-muted fw-medium">
+                                                    <i class="fa fa-circle me-1 text-primary"></i>Desktop
+                                                </h6>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <h6 class="text-muted fw-medium">
+                                                    <i class="fa fa-circle me-1 text-danger"></i>Tablet
+                                                </h6>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <h6 class="text-muted fw-medium">
+                                                    <i class="fa fa-circle me-1 text-megna"></i>Mobile
+                                                </h6>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <h6 class="text-muted fw-medium">
+                                                    <i class="fa fa-circle me-1 text-muted"></i>Other
+                                                </h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- column -->
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-md-flex align-items-center">
+                                        <div>
+                                            <h4 class="card-title">Download Count</h4>
+                                            <p class="card-subtitle">you can check the count</p>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <h6 class="text-muted fw-normal">
+                                                        <i class="fa fa-circle me-1 text-success"></i>Free
+                                                    </h6>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <h6 class="text-muted fw-normal">
+                                                        <i class="fa fa-circle me-1 text-primary"></i>Premium
+                                                    </h6>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="download-count-2" class="mx-n2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- column -->
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="row">
+                                    <!-- Column -->
+                                    <div class="col-lg-5 col-md-6">
+                                        <div class="card-body">
+                                            <h4 class="card-title mb-4">Reviews</h4>
+                                            <span class="mt-5 display-6">31560</span>
+                                            <p class="card-subtitle mb-4">
+                                                April the product got 234 reviews
+                                            </p>
+                                            <a href="javascript:void(0)" class="me-3" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Sophia"><img
+                                                    src="@@webRoot/assets/images/profile/user-5.jpg" alt="user"
+                                                    class="rounded-circle" width="50" /></a>
+                                            <a href="javascript:void(0)" class="me-3" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Emma"><img
+                                                    src="@@webRoot/assets/images/profile/user-2.jpg" alt="user"
+                                                    class="rounded-circle" width="50" /></a>
+                                            <a href="javascript:void(0)" class="me-3" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Isabella"><img
+                                                    src="@@webRoot/assets/images/profile/user-3.jpg" alt="user"
+                                                    class="rounded-circle" width="50" /></a>
+                                            <a href="javascript:void(0)" class="me-3" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Olivia"><img
+                                                    src="@@webRoot/assets/images/profile/user-4.jpg" alt="user"
+                                                    class="rounded-circle mt-3 mt-md-0" width="50" /></a>
+                                            <div class="clearfix"></div>
+                                            <button type="button" class="btn btn-success mt-5">
+                                                Read reviews
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Column -->
+                                    <div class="col-lg-7 col-md-6 border-start pl-0">
+                                        <ul class="product-review list-inline p-4">
+                                            <li class="py-3">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="text-muted display-5"><i
+                                                            class="ti ti-mood-smile-beam"></i></span>
+                                                    <div class="dl ms-2">
+                                                        <h4 class="card-title">Positive Reviews</h4>
+                                                        <p class="card-subtitle">25547 Reviews</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar text-bg-success" role="progressbar"
+                                                        style="width: 65%; height: 6px" aria-valuenow="25"
+                                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </li>
+                                            <li class="py-3">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="text-muted display-5"><i
+                                                            class="ti ti-mood-sad"></i></span>
+                                                    <div class="dl ms-2">
+                                                        <h4 class="card-title text-nowrap">
+                                                            Negative Reviews
+                                                        </h4>
+                                                        <p class="card-subtitle">5478 Reviews</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar text-bg-danger" role="progressbar"
+                                                        style="width: 15%; height: 6px" aria-valuenow="25"
+                                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </li>
+                                            <li class="py-3">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="text-muted display-5"><i
+                                                            class="ti ti-mood-empty"></i></span>
+                                                    <div class="dl ms-2">
+                                                        <h4 class="card-title">Neutral Reviews</h4>
+                                                        <p class="card-subtitle">457 Reviews</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar text-bg-primary" role="progressbar"
+                                                        style="width: 35%; height: 6px" aria-valuenow="25"
+                                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Column -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- column -->
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-md-flex align-items-center">
+                                        <div>
+                                            <h4 class="card-title">Products Availability</h4>
+                                            <p class="card-subtitle">March 2024</p>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <select class="form-select">
+                                                <option selected="">Electronics</option>
+                                                <option value="1">Kitchen</option>
+                                                <option value="2">Crocory</option>
+                                                <option value="3">Wooden</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table stylish-table no-wrap v-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th class="fw-normal text-muted border-0 border-bottom w90">
+                                                        Product
+                                                    </th>
+                                                    <th class="fw-normal text-muted border-0 border-bottom">
+                                                        Description
+                                                    </th>
+                                                    <th class="fw-normal text-muted border-0 border-bottom">
+                                                        Quantity
+                                                    </th>
+                                                    <th class="fw-normal text-muted border-0 border-bottom">
+                                                        Price
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span
+                                                            class="round rounded-circle hstack justify-content-center text-bg-info"><i
+                                                                class="ti ti-shopping-cart fs-6"></i></span>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-medium mb-0 nowrap">
+                                                            <a href="javascript:void(0)" class="link">Apple iPhone 6
+                                                                Space Grey, 16 GB</a>
+                                                        </h6>
+                                                        <small class="text-muted no-wrap">Product id : MI5457
+                                                        </small>
+                                                    </td>
+                                                    <td>
+                                                        <h5>357</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>$435</h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span
+                                                            class="round rounded-circle hstack justify-content-center text-bg-success"><i
+                                                                class="ti ti-shopping-cart fs-6"></i></span>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-medium mb-0 nowrap">
+                                                            <a href="javascript:void(0)" class="link">Fossil Marshall
+                                                                For Men Black Smartwatch</a>
+                                                        </h6>
+                                                        <small class="text-muted no-wrap">Product id : MI5457
+                                                        </small>
+                                                    </td>
+                                                    <td>
+                                                        <h5>357</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>$435</h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span
+                                                            class="round rounded-circle hstack justify-content-center text-bg-danger"><i
+                                                                class="ti ti-shopping-cart fs-6"></i></span>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-medium mb-0 nowrap">
+                                                            <a href="javascript:void(0)" class="link">Sony Bravia 80cm -
+                                                                32 HD Ready LED TV</a>
+                                                        </h6>
+                                                        <small class="text-muted no-wrap">Product id : MI5457
+                                                        </small>
+                                                    </td>
+                                                    <td>
+                                                        <h5>357</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>$435</h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span
+                                                            class="round rounded-circle hstack justify-content-center text-bg-primary"><i
+                                                                class="ti ti-shopping-cart fs-6"></i></span>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-medium mb-0 nowrap">
+                                                            <a href="javascript:void(0)" class="link">Panasonic P75
+                                                                Champagne Gold, 8 GB</a>
+                                                        </h6>
+                                                        <small class="text-muted no-wrap">Product id : MI5457
+                                                        </small>
+                                                    </td>
+                                                    <td>
+                                                        <h5>357</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>$435</h5>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- column -->
+                        <!-- Column -->
+                        <div class="col-md-12 col-lg-4">
+                            <div class="card profile-card">
+                                <img class="card-img profile-img" src="@@webRoot/assets/images/backgrounds/socialbg.jpg"
+                                    alt="Card image" />
+                                <div class="card-img-overlay card-inverse social-profile text-center d-flex">
+                                    <div class="align-self-center">
+                                        <img src="@@webRoot/assets/images/profile/user-1.jpg" alt="user"
+                                            class="rounded-circle" width="100" />
+                                        <h4 class="card-title text-white mt-4 mb-1">
+                                            Markarn Doe
+                                        </h4>
+                                        <p class="card-subtitle text-white opacity-50">
+                                            @jamesandre
+                                        </p>
+                                        <p class="text-white mt-3">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit, sed do eiusmod tempor incididunt
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-md-12 col-lg-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Experiences</h4>
+                                    <div class="table-responsive">
+                                        <table class="table mb-0 mt-5 table-borderless no-wrap">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="w90">
+                                                        <img src="@@webRoot/assets/images/browser/photoshop.jpg"
+                                                            alt="photoshop" />
+                                                    </td>
+                                                    <td class="w200">
+                                                        <h4 class="card-title">Photoshop</h4>
+                                                        <p class="card-subtitle">
+                                                            This is a sample text
+                                                        </p>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <div class="progress">
+                                                            <div class="progress-bar text-bg-success" role="progressbar"
+                                                                style="width: 65%; height: 6px" aria-valuenow="25"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="w90">
+                                                        <img src="@@webRoot/assets/images/browser/sketch.jpg"
+                                                            alt="sketch" />
+                                                    </td>
+                                                    <td class="w200">
+                                                        <h4 class="card-title">Sketch</h4>
+                                                        <p class="card-subtitle">
+                                                            This is a sample text
+                                                        </p>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <div class="progress">
+                                                            <div class="progress-bar text-bg-success" role="progressbar"
+                                                                style="width: 45%; height: 6px" aria-valuenow="25"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <div class="row">
+                                        <div class="col-6 col-md-4 text-center">
+                                            <h2>5486</h2>
+                                            <h6 class="text-muted fw-normal">Projects</h6>
+                                        </div>
+                                        <div class="col-6 col-md-4 text-center">
+                                            <h2>987</h2>
+                                            <h6 class="text-muted text-truncate fw-normal">
+                                                Winning Entries
+                                            </h6>
+                                        </div>
+                                        <div class="col-md-4 align-self-center text-center">
+                                            <button type="button" class="btn btn-success d-block w-100">
+                                                Hire me
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- column -->
+                        <!-- Column -->
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="mt-4 text-center">
+                                        <img src="@@webRoot/assets/images/profile/user-10.jpg" alt="user"
+                                            class="rounded-circle" width="150" />
+                                        <h4 class="card-title mt-2">Hanna Gover</h4>
+                                        <p class="card-subtitle my-2">
+                                            Accoubts Manager Amix corp
+                                        </p>
+                                        <div class="row text-center justify-content-md-center">
+                                            <div class="col-4">
+                                                <a href="javascript:void(0)" class="text-dark link-primary"><i
+                                                        class="ti ti-users"></i>
+                                                    <span class="fw-medium">254</span></a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0)" class="text-dark link-primary"><i
+                                                        class="ti ti-photo"></i>
+                                                    <span class="fw-medium">54</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <hr />
+                                </div>
+                                <div class="card-body">
+                                    <small class="text-muted">Email address </small>
+                                    <h6 class="mb-4">hannagover@gmail.com</h6>
+                                    <small class="text-muted db">Phone</small>
+                                    <h6 class="mb-4">+91 654 784 547</h6>
+                                    <small class="text-muted db">Address</small>
+                                    <h6 class="mb-4">
+                                        71 Pilgrim Avenue Chevy Chase, MD 20815
+                                    </h6>
+                                    <div class="map-box mb-4">
+                                        <iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470029.1604841957!2d72.29955005258641!3d23.019996818380896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C+Gujarat!5e0!3m2!1sen!2sin!4v1493204785508"
+                                            class="w-100" height="150" style="border: 0" allowfullscreen></iframe>
+                                    </div>
+                                    <small class="text-muted db mb-2 d-block">Social Profile</small>
+                                    <button class="btn rounded-circle round btn-primary">
+                                        <i class="fab fa-facebook"></i>
+                                    </button>
+                                    <button class="btn rounded-circle round btn-primary">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="btn rounded-circle round btn-primary">
+                                        <i class="fab fa-youtube"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs profile-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
+                                            <span class="d-block d-md-none">
+                                                <i class="ti-calendar"></i>
+                                            </span>
+                                            <span class="d-none d-md-block fw-normal">Timeline</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">
+                                            <span class="d-block d-md-none">
+                                                <i class="ti-user"></i>
+                                            </span>
+                                            <span class="d-none d-md-block fw-normal">Profile</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab">
+                                            <span class="d-block d-md-none">
+                                                <i class="ti-settings"></i>
+                                            </span>
+                                            <span class="d-none d-md-block fw-normal">Settings</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="home" role="tabpanel">
+                                        <div class="card-body">
+                                            <div class="profiletimeline position-relative">
+                                                <div class="sl-item mt-2 mb-3">
+                                                    <div class="sl-left float-left me-3">
+                                                        <img src="@@webRoot/assets/images/profile/user-5.jpg" alt="user"
+                                                            class="rounded-circle" />
+                                                    </div>
+                                                    <div class="sl-right">
+                                                        <div>
+                                                            <div class="d-md-flex align-items-center">
+                                                                <h5 class="mb-0 fw-normal">
+                                                                    <a href="javascript:void(0)" class="link">John
+                                                                        Doe</a>
+                                                                </h5>
+                                                                <span class="sl-date text-muted ms-1">5 minutes
+                                                                    ago</span>
+                                                            </div>
+
+                                                            <p>
+                                                                assign a new task
+                                                                <a href="javascript:void(0)"> Design weblayout</a>
+                                                            </p>
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-md-6 mb-3">
+                                                                    <img src="@@webRoot/assets/images/big/img1.jpg"
+                                                                        alt="user" class="img-fluid rounded-3" />
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-6 mb-3">
+                                                                    <img src="@@webRoot/assets/images/big/img2.jpg"
+                                                                        alt="user" class="img-fluid rounded-3" />
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-6 mb-3">
+                                                                    <img src="@@webRoot/assets/images/big/img3.jpg"
+                                                                        alt="user" class="img-fluid rounded-3" />
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-6 mb-3">
+                                                                    <img src="@@webRoot/assets/images/big/img4.jpg"
+                                                                        alt="user" class="img-fluid rounded-3" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex align-items-center gap-6">
+                                                                <a href="javascript:void(0)"
+                                                                    class="link gap-2 fw-normal d-flex align-items-center">
+                                                                    <iconify-icon icon="solar:chat-line-line-duotone"
+                                                                        class="fs-5 text-primary"></iconify-icon>
+                                                                    Comments</a>
+                                                                <a href="javascript:void(0)"
+                                                                    class="link gap-2 fw-normal d-flex align-items-center">
+                                                                    <iconify-icon icon="solar:heart-angle-line-duotone"
+                                                                        class="fs-5 text-danger"></iconify-icon>
+                                                                    5 Likes</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sl-item my-4 border-top pt-4">
+                                                    <div class="sl-left float-left me-3">
+                                                        <img src="@@webRoot/assets/images/profile/user-6.jpg" alt="user"
+                                                            class="rounded-circle" />
+                                                    </div>
+                                                    <div class="sl-right">
+                                                        <div>
+                                                            <div class="d-md-flex align-items-center">
+                                                                <h5 class="mb-0 fw-normal">
+                                                                    <a href="javascript:void(0)" class="link">James
+                                                                        Smith</a>
+                                                                </h5>
+                                                                <span class="sl-date text-muted ms-1">5 minutes
+                                                                    ago</span>
+                                                            </div>
+                                                            <div class="mt-3 row">
+                                                                <div class="col-md-3 col-xs-12">
+                                                                    <img src="@@webRoot/assets/images/big/img1.jpg"
+                                                                        alt="user" class="img-fluid rounded-3" />
+                                                                </div>
+                                                                <div class="col-md-9 mt-3 mt-md-0">
+                                                                    <p>
+                                                                        Lorem ipsum dolor sit amet, consectetur
+                                                                        adipiscing elit. Integer nec odio.
+                                                                        Praesent libero. Sed cursus ante dapibus
+                                                                        diam.
+                                                                    </p>
+                                                                    <a href="javascript:void(0)"
+                                                                        class="btn btn-success">
+                                                                        Design weblayout</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex align-items-center gap-6 mt-3">
+                                                                <a href="javascript:void(0)"
+                                                                    class="link gap-2 fw-normal d-flex align-items-center">
+                                                                    <iconify-icon icon="solar:chat-line-line-duotone"
+                                                                        class="fs-5 text-primary"></iconify-icon>
+                                                                    Comments</a>
+                                                                <a href="javascript:void(0)"
+                                                                    class="link gap-2 fw-normal d-flex align-items-center">
+                                                                    <iconify-icon icon="solar:heart-angle-line-duotone"
+                                                                        class="fs-5 text-danger"></iconify-icon>
+                                                                    5 Likes</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sl-item my-4 border-top pt-4">
+                                                    <div class="sl-left float-left me-3">
+                                                        <img src="@@webRoot/assets/images/profile/user-3.jpg" alt="user"
+                                                            class="rounded-circle" />
+                                                    </div>
+                                                    <div class="sl-right">
+                                                        <div>
+                                                            <div class="d-md-flex align-items-center">
+                                                                <h5 class="mb-0 fw-normal">
+                                                                    <a href="javascript:void(0)" class="link">Maria
+                                                                        Hernandez</a>
+                                                                </h5>
+                                                                <span class="sl-date text-muted ms-1">5 minutes
+                                                                    ago</span>
+                                                            </div>
+                                                            <p class="mt-2">
+                                                                Lorem ipsum dolor sit amet, consectetur
+                                                                adipiscing elit. Integer nec odio. Praesent
+                                                                libero. Sed cursus ante dapibus diam. Sed
+                                                                nisi. Nulla quis sem at nibh elementum
+                                                                imperdiet. Duis sagittis ipsum. Praesent
+                                                                mauris. Fusce nec tellus sed augue semper
+                                                            </p>
+                                                        </div>
+                                                        <div class="d-flex align-items-center gap-6 mt-3">
+                                                            <a href="javascript:void(0)"
+                                                                class="link gap-2 fw-normal d-flex align-items-center">
+                                                                <iconify-icon icon="solar:chat-line-line-duotone"
+                                                                    class="fs-5 text-primary"></iconify-icon>
+                                                                Comments</a>
+                                                            <a href="javascript:void(0)"
+                                                                class="link gap-2 fw-normal d-flex align-items-center">
+                                                                <iconify-icon icon="solar:heart-angle-line-duotone"
+                                                                    class="fs-5 text-danger"></iconify-icon>
+                                                                5 Likes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sl-item my-4 border-top pt-4">
+                                                    <div class="sl-left float-left me-3">
+                                                        <img src="@@webRoot/assets/images/profile/user-4.jpg" alt="user"
+                                                            class="rounded-circle" />
+                                                    </div>
+                                                    <div class="sl-right">
+                                                        <div>
+                                                            <div class="d-md-flex align-items-center">
+                                                                <h5 class="mb-0 fw-normal">
+                                                                    <a href="javascript:void(0)" class="link">John
+                                                                        Doe</a>
+                                                                </h5>
+                                                                <span class="sl-date text-muted ms-1">5 minutes
+                                                                    ago</span>
+                                                            </div>
+                                                            <blockquote class="mt-2">
+                                                                Lorem ipsum dolor sit amet, consectetur
+                                                                adipisicing elit, sed do eiusmod tempor
+                                                                incididunt
+                                                            </blockquote>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--second tab-->
+                                    <div class="tab-pane" id="profile" role="tabpanel">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3 col-xs-6 border-end">
+                                                    <h5 class="mb-1">Full Name</h5>
+                                                    <p class="text-muted">Johnathan Deo</p>
+                                                </div>
+                                                <div class="col-md-3 col-xs-6 border-end">
+                                                    <h5 class="mb-1">Mobile</h5>
+                                                    <p class="text-muted">(123) 456 7890</p>
+                                                </div>
+                                                <div class="col-md-3 col-xs-6 border-end">
+                                                    <h5 class="mb-1">Email</h5>
+                                                    <p class="text-muted">johnathan@admin.com</p>
+                                                </div>
+                                                <div class="col-md-3 col-xs-6">
+                                                    <h5 class="mb-1">Location</h5>
+                                                    <p class="text-muted">London</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <p class="mt-4">
+                                                Donec pede justo, fringilla vel, aliquet nec,
+                                                vulputate eget, arcu. In enim justo, rhoncus ut,
+                                                imperdiet a, venenatis vitae, justo. Nullam dictum
+                                                felis eu pede mollis pretium. Integer tincidunt.Cras
+                                                dapibus. Vivamus elementum semper nisi. Aenean
+                                                vulputate eleifend tellus. Aenean leo ligula,
+                                                porttitor eu, consequat vitae, eleifend ac, enim.
+                                            </p>
+                                            <p>
+                                                Lorem Ipsum is simply dummy text of the printing and
+                                                typesetting industry. Lorem Ipsum has been the
+                                                industry's standard dummy text ever since the 1500s,
+                                                when an unknown printer took a galley of type and
+                                                scrambled it to make a type specimen book. It has
+                                                survived not only five centuries
+                                            </p>
+                                            <p>
+                                                It was popularised in the 1960s with the release of
+                                                Letraset sheets containing Lorem Ipsum passages, and
+                                                more recently with desktop publishing software like
+                                                Aldus PageMaker including versions of Lorem Ipsum.
+                                            </p>
+                                            <h4 class="fw-medium mt-4">Skill Set</h4>
+                                            <hr />
+                                            <h5 class="mt-4 d-flex align-items-center">
+                                                Wordpress <span class="ms-auto">80%</span>
+                                            </h5>
+                                            <div class="progress">
+                                                <div class="progress-bar text-bg-success" role="progressbar"
+                                                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 80%; height: 6px">
+                                                    <span class="sr-only">50% Complete</span>
+                                                </div>
+                                            </div>
+                                            <h5 class="mt-4 d-flex align-items-center">
+                                                HTML 5 <span class="ms-auto">90%</span>
+                                            </h5>
+                                            <div class="progress">
+                                                <div class="progress-bar text-bg-info" role="progressbar"
+                                                    aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 90%; height: 6px">
+                                                    <span class="sr-only">50% Complete</span>
+                                                </div>
+                                            </div>
+                                            <h5 class="mt-4 d-flex align-items-center">
+                                                jQuery <span class="ms-auto">50%</span>
+                                            </h5>
+                                            <div class="progress">
+                                                <div class="progress-bar text-bg-danger" role="progressbar"
+                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 50%; height: 6px">
+                                                    <span class="sr-only">50% Complete</span>
+                                                </div>
+                                            </div>
+                                            <h5 class="mt-4 d-flex align-items-center">
+                                                Photoshop <span class="ms-auto">70%</span>
+                                            </h5>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                    aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 70%; height: 6px">
+                                                    <span class="sr-only">50% Complete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="settings" role="tabpanel">
+                                        <div class="card-body">
+                                            <form class="form-horizontal form-material">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Full Name</label>
+                                                    <div>
+                                                        <input type="text" placeholder="Johnathan Doe"
+                                                            class="form-control form-control-line" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="example-email" class="form-label">Email</label>
+                                                    <div>
+                                                        <input type="email" placeholder="johnathan@admin.com"
+                                                            class="form-control form-control-line" name="example-email"
+                                                            id="example-email" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <div>
+                                                        <input type="password" value="password"
+                                                            class="form-control form-control-line" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Phone No</label>
+                                                    <div>
+                                                        <input type="text" placeholder="123 456 7890"
+                                                            class="form-control form-control-line" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Message</label>
+                                                    <div>
+                                                        <textarea rows="5"
+                                                            class="form-control form-control-line"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Select Country</label>
+                                                    <div>
+                                                        <select class="form-select">
+                                                            <option>London</option>
+                                                            <option>India</option>
+                                                            <option>Usa</option>
+                                                            <option>Canada</option>
+                                                            <option>Thailand</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <div class="col-sm-12">
+                                                        <button class="btn btn-success">
+                                                            Update Profile
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                    </div>
+                </div>
+            </div>
+            @@include("partials/customizer.html")
+        </div>
+
+        @@include("partials/header-components/dd-searchbar.html")
+    </div>
+    <div class="dark-transparent sidebartoggler"></div>
+    @@include("partials/scripts.html")
+    <script src="@@webRoot/node_modules/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="@@webRoot/assets/js/dashboards/dashboard6.js"></script>
+</body>
+
+</html>

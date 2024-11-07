@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
+
+<head>
+  @@include("partials/head.html")
+  <title>Monster Bootstrap Admin</title>
+</head>
+
+<body>
+  
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="@@webRoot/assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+  </div>
+  <div id="main-wrapper">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar with-vertical">
+      @@include("partials/sidebar.html", { "page": "dashboard", })
+    </aside>
+    <!--  Sidebar End -->
+    <div class="page-wrapper">
+      <!--  Header Start -->
+      <header class="topbar">
+        <div class="with-vertical">@@include("partials/header.html")</div>
+        <div class="app-header with-horizontal">
+          @@include("partials/horizontal-header.html")
+        </div>
+      </header>
+      <!--  Header End -->
+
+      <aside class="left-sidebar with-horizontal">
+        @@include("partials/horizontal-sidebar.html", { "page": "dashboard",
+        })
+      </aside>
+
+      <div class="body-wrapper">
+        <div class="container-fluid">
+          @@include("partials/breadcrumb.html", {"title": "Dashboard",
+          "subtitle": 'Home'})
+
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h4 class="text-center">Unique Visit</h4>
+                  <div id="unique-visit"></div>
+                </div>
+                <div class="p-2 text-center border-top">
+                  <h4 class="fw-medium mb-0">
+                    <i class="ti ti-chevron-up text-success"></i> 12456
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h4 class="text-center">Total Visit</h4>
+                  <div id="total_visit"></div>
+                </div>
+                <div class="p-2 text-center border-top">
+                  <h4 class="fw-medium mb-0">
+                    <i class="ti ti-chevron-down text-danger"></i> 456
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h4 class="text-center">Bounce rate</h4>
+                  <div id="bounce-rate"></div>
+                </div>
+                <div class="p-2 text-center border-top">
+                  <h4 class="fw-medium mb-0">
+                    <i class="ti ti-chevron-up text-success"></i> 12456
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h4 class="text-center">Page Views</h4>
+                  <div id="page_views"></div>
+                </div>
+                <div class="p-2 text-center border-top">
+                  <h4 class="fw-medium mb-0">
+                    <i class="ti ti-chevron-down text-danger"></i> 456
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-8">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-md-flex align-items-center">
+                    <h4 class="card-title">Total Revenue</h4>
+                    <div class="ms-auto">
+                      <ul class="list-inline">
+                        <li class="list-inline-item">
+                          <h6 class="text-muted">
+                            <i class="fa fa-circle me-1" style="color: #51bdff"></i>2022
+                          </h6>
+                        </li>
+                        <li class="list-inline-item">
+                          <h6 class="text-muted">
+                            <i class="fa fa-circle me-1" style="color: #11a0f8"></i>2023
+                          </h6>
+                        </li>
+                        <li class="list-inline-item">
+                          <h6 class="text-muted">
+                            <i class="fa fa-circle me-1 text-info"></i>2024
+                          </h6>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div id="total-revenue" class="mx-n2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col-6 col-lg-6 col-xl-7">
+                          <h4 class="card-title mb-5">Sales Prediction</h4>
+                          <div>
+                            <h2 class="fs-9 fw-light">$3,528</h2>
+                            <h6 class="text-muted fw-normal mb-0">(150-165 Sales)</h6>
+                          </div>
+                        </div>
+                        <div class="col-6 col-lg-6 col-xl-5">
+                          <div id="sales-prediction"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col-6 col-lg-6 col-xl-7">
+                          <h4 class="card-title mb-5">Sales Difference</h4>
+                          <div>
+                            <h2 class="fs-9 fw-light">$4316</h2>
+                            <h6 class="text-muted fw-normal">(150-165 Sales)</h6>
+                          </div>
+                        </div>
+                        <div class="col-6 col-lg-6 col-xl-5">
+                          <div id="sales-difference"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-8">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Total Visits</h4>
+                  <div id="visitfromworld" class="h-340 w-100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title mb-4">Browser Stats</h4>
+                  <ul class="list-unstyled mb-0">
+                    <li class="hstack justify-content-between mb-7">
+                      <div class="hstack gap-6">
+                        <img src="@@webRoot/assets/images/browser/chrome-logo.png"
+                          class="img-fluid rounded-circle flex-shrink-0" alt="" width="30" height="30">
+                        <h5 class="mb-0 fw-medium">Google Chrome</h5>
+                      </div>
+                      <span class="badge bg-primary-subtle text-primary rounded-pill">23%</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-7">
+                      <div class="hstack gap-6">
+                        <img src="@@webRoot/assets/images/browser/firefox-logo.png"
+                          class="img-fluid rounded-circle flex-shrink-0" alt="" width="30" height="30">
+                        <h5 class="mb-0 fw-medium">Mozila Firefox</h5>
+                      </div>
+                      <span class="badge bg-success-subtle text-success rounded-pill">15%</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-7">
+                      <div class="hstack gap-6">
+                        <img src="@@webRoot/assets/images/browser/safari-logo.png"
+                          class="img-fluid rounded-circle flex-shrink-0" alt="" width="30" height="30">
+                        <h5 class="mb-0 fw-medium">Apple Safari</h5>
+                      </div>
+                      <span class="badge bg-secondary-subtle text-secondary rounded-pill">07%</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-7">
+                      <div class="hstack gap-6">
+                        <img src="@@webRoot/assets/images/browser/internet-logo.png"
+                          class="img-fluid rounded-circle flex-shrink-0" alt="" width="30" height="30">
+                        <h5 class="mb-0 fw-medium">Internet Explorer</h5>
+                      </div>
+                      <span class="badge bg-warning-subtle text-warning rounded-pill">09%</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-7">
+                      <div class="hstack gap-6">
+                        <img src="@@webRoot/assets/images/browser/opera-logo.png"
+                          class="img-fluid rounded-circle flex-shrink-0" alt="" width="30" height="30">
+                        <h5 class="mb-0 fw-medium">Opera mini</h5>
+                      </div>
+                      <span class="badge bg-danger-subtle text-danger rounded-pill">23%</span>
+                    </li>
+                    <li class="hstack justify-content-between">
+                      <div class="hstack gap-6">
+                        <img src="@@webRoot/assets/images/browser/internet-logo.png"
+                          class="img-fluid rounded-circle flex-shrink-0" alt="" width="30" height="30">
+                        <h5 class="mb-0 fw-medium">Microsoft edge </h5>
+                      </div>
+                      <span class="badge bg-primary-subtle text-primary rounded-pill">09%</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="h-600" data-simplebar>
+                    <div class="p-4 calender-sidebar app-calendar">
+                      <div id="calendar"></div>
+                    </div>
+                  </div>
+                  <!-- BEGIN MODAL -->
+                  <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="eventModalLabel">
+                            Add / Edit Event
+                          </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div>
+                                <label class="form-label">Event Title</label>
+                                <input id="event-title" type="text" class="form-control" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 mt-4">
+                              <div><label class="form-label">Event Color</label></div>
+                              <div class="d-flex">
+                                <div class="n-chk">
+                                  <div class="form-check form-check-primary form-check-inline">
+                                    <input class="form-check-input" type="radio" name="event-level" value="Danger"
+                                      id="modalDanger" />
+                                    <label class="form-check-label" for="modalDanger">Danger</label>
+                                  </div>
+                                </div>
+                                <div class="n-chk">
+                                  <div class="form-check form-check-warning form-check-inline">
+                                    <input class="form-check-input" type="radio" name="event-level" value="Success"
+                                      id="modalSuccess" />
+                                    <label class="form-check-label" for="modalSuccess">Success</label>
+                                  </div>
+                                </div>
+                                <div class="n-chk">
+                                  <div class="form-check form-check-success form-check-inline">
+                                    <input class="form-check-input" type="radio" name="event-level" value="Primary"
+                                      id="modalPrimary" />
+                                    <label class="form-check-label" for="modalPrimary">Primary</label>
+                                  </div>
+                                </div>
+                                <div class="n-chk">
+                                  <div class="form-check form-check-danger form-check-inline">
+                                    <input class="form-check-input" type="radio" name="event-level" value="Warning"
+                                      id="modalWarning" />
+                                    <label class="form-check-label" for="modalWarning">Warning</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 d-none">
+                              <div>
+                                <label class="form-label">Enter Start Date</label>
+                                <input id="event-start-date" type="text" class="form-control" />
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 d-none">
+                              <div>
+                                <label class="form-label">Enter End Date</label>
+                                <input id="event-end-date" type="text" class="form-control" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn" data-bs-dismiss="modal">
+                            Close
+                          </button>
+                          <button type="button" class="btn btn-success btn-update-event" data-fc-event-public-id="">
+                            Update changes
+                          </button>
+                          <button type="button" class="btn btn-primary btn-add-event">
+                            Add Event
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END MODAL -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body border-bottom">
+                  <h4 class="card-title">Customer Support</h4>
+                  <p class="card-subtitle fw-normal mb-0">24 new support ticket request generate</p>
+                </div>
+                <div class="card-body">
+                  <div class="chat-box w-100 h-390" data-simplebar>
+                    <!--chat Row -->
+                    <ul class="chat-list m-0 p-0">
+                      <!--chat Row -->
+                      <li class="pb-9 border-bottom">
+                        <div class="chat-img d-inline-block align-top">
+                          <img src="@@webRoot/assets/images/profile/user-5.jpg" alt="user" class="rounded-circle" />
+                        </div>
+                        <div class="chat-content ps-6 d-inline-block">
+                          <h6 class="text-muted text-nowrap fw-medium">James Anderson</h6>
+                          <div class="box d-inline-block message fs-3 bg-secondary-subtle">
+                            <h6 class="mb-2 fw-medium">It’s Great opportunity to work. I would loveto join the team. 🎉
+                            </h6>
+                            <h6 class="chat-time text-end mb-0 fw-medium d-block w-100">
+                              10:56 am
+                            </h6>
+                          </div>
+                        </div>
+                      </li>
+                      <!--chat Row -->
+                      <li class="py-9 border-bottom">
+                        <div class="chat-img d-inline-block align-top">
+                          <img src="@@webRoot/assets/images/profile/user-7.jpg" alt="user" class="rounded-circle" />
+                        </div>
+                        <div class="chat-content ps-6 d-inline-block">
+                          <h6 class="text-muted text-nowrap fw-medium">Hritik Roshan</h6>
+                          <div class="box d-inline-block message fs-3 bg-warning-subtle">
+                            <h6 class="mb-2 fw-medium">Sed sed eros quis libero 😆Well we have good budget for the
+                              project</h6>
+                            <h6 class="chat-time text-end mb-0 fw-medium d-block w-100">
+                              10:56 am
+                            </h6>
+                          </div>
+                        </div>
+                      </li>
+                      <!--chat Row -->
+                      <li class="py-9 border-bottom text-end">
+                        <div class="chat-content ps-6 d-inline-block">
+                          <div class="box d-inline-block message fs-3 bg-info-subtle">
+                            <h6 class="mb-2 fw-medium">Whats budget of the new project. Looking forward to hear back
+                            </h6>
+                            <h6 class="chat-time text-end mb-0 fw-medium d-block w-100">
+                              10:58 am
+                            </h6>
+                          </div>
+                        </div>
+                      </li>
+                      <!--chat Row -->
+                      <li class="pt-9">
+                        <div class="chat-img d-inline-block align-top">
+                          <img src="@@webRoot/assets/images/profile/user-7.jpg" alt="user" class="rounded-circle" />
+                        </div>
+                        <div class="chat-content ps-6 d-inline-block">
+                          <h6 class="text-muted text-nowrap fw-medium">Sonu Nigam</h6>
+                          <div class="box d-inline-block message fs-3 bg-success-subtle">
+                            <h6 class="mb-2 fw-medium">Sed sed eros quis libero Well we have good budget for the project
+                            </h6>
+                            <h6 class="chat-time text-end m-0 fw-medium d-block w-100">
+                              11:00 am
+                            </h6>
+                          </div>
+                        </div>
+                      </li>
+                      <!--chat Row -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-body border-top">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-6 w-85">
+                      <a class="position-relative" href="javascript:void(0)"> <i class="ti ti-paperclip fs-6"></i></a>
+                      <input type="text"
+                        class="bg-transparent form-control fw-medium text-muted border-0 p-0 shadow-none"
+                        placeholder="Write a message">
+                    </div>
+                    <ul class="list-unstyled mb-0 d-flex align-items-center gap-6">
+                      <li><a class="fs-6" href="javascript:void(0)"><i class="ti ti-mood-smile"></i></a></li>
+                      <li><a class="fs-6" href="javascript:void(0)"><i class="ti ti-microphone"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title mb-0">Recent Messages</h4>
+                </div>
+                <div class="message-box h-545" data-simplebar>
+                  <div class="message-widget message-scroll">
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-10.jpg" alt="user"
+                          class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Mathew Anderson</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:30 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">Just see the my new admin!</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-2.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Bianca Anderson</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:10 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">Just a reminder that you have
+                          event</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-3.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Andrew Johnson</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:08 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">You can customize this template as you
+                          want</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-4.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Mark Strokes</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:30 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">Just see the my new admin!</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-5.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Mark, Stoinus & Rishvi..</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:10 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">Just a reminder that you have
+                          event</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-6.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Daniel Kristeen</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:30 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">Just see the my new admin!</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-7.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Emma Smith</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:10 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">Just a reminder that you have
+                          event</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-8.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Olivia Johnson</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:08 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">You can customize this template as you
+                          want</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="@@webRoot/assets/images/profile/user-9.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Isabella Williams</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:30 AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-body-color">Just see the my new admin!</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      @@include("partials/customizer.html")
+    </div>
+
+    @@include("partials/header-components/dd-searchbar.html")
+  </div>
+  <div class="dark-transparent sidebartoggler"></div>
+  <script src="@@webRoot/assets/js/vendor.min.js"></script>
+  @@include("partials/scripts.html")
+  <script src="@@webRoot/node_modules/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="@@webRoot/node_modules/jvectormap/jquery-jvectormap.min.js"></script>
+  <script src="@@webRoot/node_modules/fullcalendar/index.global.min.js"></script>
+  <script src="@@webRoot/assets/js/apps/calendar-init.js"></script>
+  <script src="@@webRoot/assets/js/extra-libs/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+  <script src="@@webRoot/assets/js/dashboards/dashboard4.js"></script>
+</body>
+
+</html>

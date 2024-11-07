@@ -1,0 +1,32 @@
+//
+// common
+//
+.social-profile {
+    background: rgba(7, 10, 43, 0.8);
+}
+
+.profile-card .profile-img {
+    height: 410px;
+}
+
+.profile-tab,
+.customtab {
+    li {
+        a.nav-link {
+            border: 0;
+            padding: 15px 20px;
+            border-radius: 0;
+            color: var(--bs-body-color);
+
+            &.active {
+                border-bottom: 2px solid var(--bs-info);
+                color: var(--bs-info);
+                background-color: transparent;
+            }
+
+            &:hover {
+                color: var(--bs-info);
+            }
+        }
+    }
+}
