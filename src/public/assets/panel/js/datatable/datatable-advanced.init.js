@@ -3,6 +3,11 @@
 // 
 $("#file_export").DataTable({
   dom: "Bfrtip",
+  columnDefs: [
+      { width: "50px", targets: -1 } // Targets the last column; adjust as needed
+  ],
+  scrollX: true, // Enables horizontal scrolling if needed
+  autoWidth: false,
   buttons: ["copy", "csv", "excel", "pdf", "print"],
 });
 $(

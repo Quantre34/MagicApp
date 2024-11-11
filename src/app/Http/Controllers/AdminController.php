@@ -385,7 +385,7 @@ class AdminController extends Controller
                 $Treatments= json_decode(json_encode(DB::table('treatment')->where('ParentId', $Category['Id'])->get()), true);
                 $Categories[$key]['Treatments'] = $Treatments;
             }
-            $result = ['outcome'=>true,'route'=>'panel.Categories','data'=>[
+            $result = ['outcome'=>true,'route'=>'panel.Categories.List','data'=>[
                 'Categories'=>$Categories
             ]];
         }else {
@@ -432,6 +432,117 @@ class AdminController extends Controller
         }
     }
     ///
+    public function Agencies(){
+        if (!empty($this->User)) {
+            if ($this->User['Type']=='2' || $this->User['Type']=='1') {
+                if ($this->User['Type']=='2') {
+                    $Agencies = $this->toArray( DB::table('agency')->get() );
+                }else{
+                    if ($this->User['uid']=='RzLD3NVEm88skxZCglJdWKacjBU2rT') {
+                        $Agencies = $this->toArray( DB::table('agency')->where('ParentId', '7Y26i0bhE5aHBs1JcCDXutU932lnoj7AK3vVqGZwmpx8zQNgO1')->orWhere('ParentId','mKOroqWzTbAv6U981cPfR7LXnF621G')->get() );
+                    }else {
+                        $Agencies = $this->toArray( DB::table('agency')->where('ParentId', ($this->User['Type']=='1')? $this->User['uid'] : NULL )->get() );
+                    }
+                }
+                $Managers = $this->toArray(DB::table('user')->where('Type','1')->where('Status','1')->get());
+                $applications = $this->toArray( DB::table('application')->orderBy('create_at','desc')->get() );
+                $Countries = json_decode(file_get_contents('assets/json/CountryCodes.json'),true);
+                $result = ['outcome'=>true,'route'=>'panel.Agencies.List','data'=>[
+                    'Managers'=>$Managers,
+                    'Agencies'=>$Agencies,
+                    'Countries'=>$Countries
+                    // 'Applications'= >$applications
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function AgencyDetail($uid){
+        if (!empty($this->User)) {
+            if ($this->User['Type']=='2' || $this->User['Type']=='1') {
+                $Clients = [];
+                $Agency = $this->toArray( DB::table('agency')->where('uid',$uid)->first() );
+                $Appointments = $this->toArray( DB::table('appointment')->where('AgencyId',$uid)->get());
+                $MonthlyAppointments = $this->toArray( DB::table('appointment')->where('AgencyId',$uid)->get());
+                $WeeklyAppointments = $this->toArray( DB::table('appointment')->where('AgencyId',$uid)->get());
+
+                foreach($Appointments as $key=>$Appointment){
+                    $Client=$this->toArray(DB::table('client')->where('uid',$Appointment['ClientId'])->first());
+                    $Clients[$Client['uid']]=$Client;
+                    $Appointments[$key]['Client'] = $Client;
+                    $Appointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
+                    $Appointments[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
+                    $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                }
+                foreach($MonthlyAppointments as $key=>$Appointment){
+                    $Client=$this->toArray(DB::table('client')->where('uid',$Appointment['ClientId'])->first());
+                    $Clients[$Client['uid']]=$Client;
+                    $MonthlyAppointments[$key]['Client'] = $Client;
+                    $MonthlyAppointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
+                    $MonthlyAppointments[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
+                    $MonthlyAppointments[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                }
+                foreach($WeeklyAppointments as $key=>$Appointment){
+                    $Client=$this->toArray(DB::table('client')->where('uid',$Appointment['ClientId'])->first());
+                    $Clients[$Client['uid']]=$Client;
+                    $WeeklyAppointments[$key]['Client'] = $Client;
+                    $WeeklyAppointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
+                    $WeeklyAppointments[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
+                    $WeeklyAppointments[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                }
+                $Coworkers= $this->toArray(DB::table('user')->where('ParentId',$uid)->get());
+                $result = ['outcome'=>true,'route'=>'panel.Agencies.Detail','data'=>[
+                    'Agency'=>$Agency,
+                    'Clients'=>$Clients,
+                    'Coworkers'=>$Coworkers,
+                    'Appointments'=>$Appointments,
+                    'MonthlyAppointments'=>$MonthlyAppointments,
+                    'WeeklyAppointments'=>$WeeklyAppointments
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    public function EditAgency($uid){
+        if (!empty($this->User)) {
+            $uid = htmlspecialchars($uid);
+            if ($this->User['Type']=='2') {
+                $Managers = $this->toArray(DB::table('user')->where('Type','1')->where('Status','1')->get());
+                $Agency = $this->toArray(DB::table('agency')->where('uid', $uid)->first());
+                $result = ['outcome'=>true,'route'=>'panel.Agencies.Edit','data'=>[
+                    'Agency'=>$Agency,
+                    'Managers'=>$Managers
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
     public function ManageClinics(){
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
@@ -457,17 +568,12 @@ class AdminController extends Controller
         }
     }
     ///
-    public function ManageCategories(){
+    public function NewCategory(){
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
-                $Clinics = DB::table('clinic')->get();
-                $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
-                foreach($Categories as $key => $Category){
-                    $Categories[$key]['Treatments'] = $this->toArray(DB::table('treatment')->where('ParentId', $Category['Id'])->get());
-                }
-                $result = ['outcome'=>true,'route'=>'panel.ManageCategories','data'=>[
-                    'Clinics'=>$Clinics,
-                    'Categories'=>$Categories,
+                $Clinics = DB::table('clinic')->where('Status','1')->get();                
+                $result = ['outcome'=>true,'route'=>'panel.Categories.New','data'=>[
+                    'Clinics'=>$Clinics
                 ]];
             }else {
                 $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
@@ -482,23 +588,59 @@ class AdminController extends Controller
         }
     }
     ///
-    public function ManageTreatments(){
+    public function EditCategory($uid){
+        if (!empty($this->User)) {
+            if ($this->User['Type']=='2') {
+                $Clinics = DB::table('clinic')->where('Status','1')->get();
+                $Category = $this->toArray(DB::table('category')->where('uid',$uid)->first());
+                $Categories['Treatments'] = $this->toArray(DB::table('treatment')->where('ParentId', $Category['Id'])->get());
+                $result = ['outcome'=>true,'route'=>'panel.Categories.Edit','data'=>[
+                    'Clinics'=>$Clinics,
+                    'Category'=>$Category,
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function Treatments(){
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
                 $Treatments = $this->toArray(DB::table('treatment')->where('Lang',$this->Lang)->where('Status','1')->get());
                 $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
-                foreach($Categories as $key => $Category){
-                    $Categories[$key]['Treatments'] = $this->toArray(DB::table('treatment')->where('ParentId', $Category['Id'])->get());
-                    foreach($Treatments as $key => $Treatment){
-                        if ($Treatment['ParentId']==$Category['Id']) {
-                            $Treatments[$key]['Category'] = $Category;
-                        }
-                    }
-                }
-
-                $result = ['outcome'=>true,'route'=>'panel.ManageTreatments','data'=>[
+                $result = ['outcome'=>true,'route'=>'panel.Treatments.List','data'=>[
                     'Treatments'=>$Treatments,
                     'Categories'=>$Categories,
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    public function EditTreatment($uid){
+        if (!empty($this->User)) {
+            if ($this->User['Type']=='2') {
+                $Clinics = DB::table('clinic')->where('Status','1')->get();
+                $Treatment = $this->toArray(DB::table('treatment')->where('uid',$uid)->first());
+                $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
+                $result = ['outcome'=>true,'route'=>'panel.Treatments.Edit','data'=>[
+                    'Treatment'=>$Treatment,
+                    'Categories'=>$Categories
                 ]];
             }else {
                 $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];

@@ -689,7 +689,7 @@ class AjaxController extends Controller
                     if (!$Check) {
                         $Query = DB::table('category')->where('Id', $data['Id'])->update($data);
                         if ($Query) {
-                            $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetCategories();'];
+                            $result = ['outcome'=>true,'route'=>'/panel/categories'];
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
                         }
@@ -953,7 +953,7 @@ class AjaxController extends Controller
                     if (!$Check) {
                         $Query = DB::table('treatment')->where('Id', $Id)->update($data);
                         if ($Query) {
-                            $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetTreatments();'];
+                            $result = ['outcome'=>true,'route'=>false];
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
                         }
@@ -1000,7 +1000,7 @@ class AjaxController extends Controller
                         $FileType = pathinfo($target_file, PATHINFO_EXTENSION);
                         $result = [];
                         $TargetDir = $_POST['TargetDir'] ?? 'upload';
-                        $uzanti = array('jpeg','jpg','png','x-png','gif','pdf','docx');
+                        $uzanti = array('jpeg','jpg','png','x-png','gif','pdf','docx','webp');
                         if (!empty($_FILES[$key])) {
                             $size = ($_FILES[$key]["size"]/1024);
                             if ($size < 5048) {

@@ -1,6 +1,8 @@
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
-
+<?php $_SESSION['Locale'] = 'tr' ?>
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8" />
@@ -12,10 +14,84 @@
 
   <!-- Core Css -->
   <link rel="stylesheet" href="{{asset('assets/panel/css/styles.css')}}" />
-
-  <title>Monster Bootstrap Admin</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <title>{{ (str_contains(Request::url(), 'magicmedical'))? 'Agency | MagicMedical' : 'Agency | Medescare' }}</title>
   <base href="http://localhost:8088/panel">
-  @yield('style')
+
+  <!-- Favicon Tags Start -->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : 'assets\img\favicon\magic.png' }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : 'assets\img\favicon\magic.png' }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : 'assets\img\favicon\magic.png' }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : 'assets\img\favicon\magic.png' }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+
+  <link rel="icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" sizes="196x196" />
+  <link rel="icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" sizes="96x96" />
+  <link rel="icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" sizes="32x32" />
+  <link rel="icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" sizes="128x128" />
+  <meta name="application-name" content="&nbsp;" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+  <meta name="msapplication-square70x70logo" content="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+  <meta name="msapplication-square150x150logo" content="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+  <meta name="msapplication-wide310x150logo" content="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+  <meta name="msapplication-square310x310logo" content="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
+
+  <!-- hold on -->
+  <link href="{{URL::asset('assets/css/HoldOn.css')}}" rel="stylesheet">
+  <script type="text/javascript">var options={theme:"sk-circle",message:'Yükleniyor',textColor:"white"};</script>
+  <!-- hold on -->
+  <style type="text/css">
+
+.button--loading {
+  padding-left: 70px;
+}
+
+.button__loader {
+  float: left;
+  position: absolute;
+  left: -50px;
+  top: 10px;
+  transition: all .2s;
+ }
+
+.button__loader {
+  left: 15px;
+}
+
+.btn-loader, .btn-loader:after {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.btn-loader {
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 4px solid rgba(255, 255, 255, 0.2);
+  border-right: 4px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+  border-left: 4px solid #ffffff;
+  transform: translateZ(0);
+  animation: loaderSpin 1.1s infinite linear;
+}
+
+@keyframes loaderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+  </style>
+
+  @yield("style")
 </head>
 
 <body>
@@ -978,6 +1054,243 @@
   </div>
   @include('panel.layout.scripts')
   @yield('script')
+  <script type="text/javascript">
+        
+        // let AsyncAuthCheck = setInterval(function(){
+        //     $.ajax({
+        //     type:  "POST",
+        //     url: "/ajax",
+        //     data: "action=AuthSync&_token="+@json(csrf_token()),
+        //     cache: false,
+        //     success: function(resp) {
+        //       if (resp['outcome']==true) {
+        //             if (resp['route']) {
+        //                 window.location=resp['route'];
+        //             }
+        //       }else {
+        //             if (resp['route']) {
+        //                 window.location=resp['route'];
+        //                 clearInterval(AsyncAuthCheck);
+        //             }
+        //         }
+        //     }
+        //   });                        
+        // },5000);
+
+        let AsyncNotificationCheck = setInterval(function(){
+            $.ajax({
+            type:  "POST",
+            url: "/ajax",
+            data: "action=GetMyNotifications&_token="+@json(csrf_token()),
+            cache: false,
+            success: function(resp) {
+              if (resp['outcome']==true) {
+                    if (resp['route']) {
+                        window.location=resp['route'];
+                    }
+                    let Container = $('.Notification-Container');
+                    Container.html('');
+                    if (resp['data'].length > 0) {
+                        resp['data'].forEach(Item => {
+                          Container.append(`<li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
+                              <div class="align-self-center">
+                                ${Item['Content']}
+                              </div>
+                            </li>`);
+                        });
+                    }else {
+                      Container.append(`<li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
+                              <div class="align-self-center">
+                                <a href="#">@Lang('Base.NoNotification')</a>
+                              </div>
+                            </li>`);
+                    }
+
+              }else {
+                    if (resp['route']) {
+                        window.location=resp['route'];
+                        clearInterval(AsyncNotificationCheck);
+                    }
+                }
+            }
+          });                        
+        },10000);
+
+        $(document).ready(function(){
+
+          $('form').on('submit', function(e){
+            let $this = $(this);
+            if ($this.attr('action')=='ajax') {
+                //loadSpinner($('*[type=submit]',this));
+                
+                let target = $this.attr('target');
+                let callback = $this.attr('callback');
+                let formData = new FormData(this);
+                formData.append('action', target);
+                if($this.hasAttr('callback')){
+                    formData.append('callback', $this.attr('callback'));
+                }
+                if (CheckValidation($this)) {
+                    HoldOn.open(options);
+                    $.ajax({
+                      type: $this.attr('method'),
+                      url: '/ajax',
+                      cache: false,
+                      processData: false,
+                      datatype: 'json',
+                      contentType: false,
+                      headers: {'X-CSRF-TOKEN' : @json(csrf_token())},
+                      data: formData,
+                      beforeSend: function(){
+                          if($this.hasAttr('beforeSend')){
+                              eval($this.attr('beforeSend'));
+                          }
+                      },
+                      success: function(data){
+                        if (data['outcome']) {
+                              if (!data['NoAlert']) {
+                                  // Swal.fire('{{Lang::get('Base.Success')}}', (data['Message']??  '{{Lang::get('Base.Successfuly')}}'), 'success').then((result)=>{
+                                  //   $('input').css('border','1px solid var(--separator)');
+                                  //   if (data['route']) {
+                                  //       window.location = data['route'];
+                                  //   }
+                                  // });
+                                  if (data['route']) {
+                                        window.location = data['route'];
+                                  }
+                              }else {
+                                if (data['route']) {
+                                      window.location = data['route'];
+                                }
+                              }
+                        }else {
+                            // Swal.fire('{{Lang::get('Base.Failed')}}', data['ErrorMessage'], 'error').then((result)=>{
+                            //   if (data['route']) {
+                            //       window.location = data['route'];
+                            //   }
+                            //   if (data['tag']) {
+                            //       $('input[name='+data['tag']+']').css('border', '1px solid red');
+                            //       $('select[name='+data['tag']+']').css('border', '1px solid red');
+                            //   }
+                            // });
+                        }
+                        HoldOn.close();
+                      } 
+                    });
+                }
+            }
+            return false;
+          });
+        });
+
+
+    function getAttributes($node) {
+        var attrs = {};
+        $.each( $node[0].attributes, function ( index, attribute ) {
+            attrs[attribute.name] = attribute.value;
+        } );
+        return attrs;
+    }
+
+    function addDays( date, days ) {
+      var result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
+
+
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
+
+    function removeData(chart) {
+        chart.data.labels.pop();
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.pop();
+        });
+        chart.update();
+    }
+
+    $.fn.hasAttr = function(name){
+      return this.attr(name) !== undefined;
+    }
+    ///
+    function SetModalContent(type){
+      HoldOn.open(options);
+      let action = 'GetDocContent';
+      $.ajax({
+        type: 'POST',
+        url: '/ajax',
+        cache: false,
+        headers: {'X-CSRF-TOKEN': @json(csrf_token())},
+        data: {
+          action: action,
+          Type: type
+        },
+        success: function(data){
+            if (data['outcome']) {
+                HoldOn.close();
+                Swal.fire({
+                        html: data['data'],
+                        icon: false,
+                        showCancelButton: true,
+                        width: '90%',
+                        showConfirmButton: false,
+                        cancelButtonText: 'ok',
+                      });
+
+            }
+        }
+      });
+    }
+
+
+function loadSpinner(e) {
+      var button = $(e);
+      if (!button.hasClass('loading')) {
+          setCookie('btn-loader-'+$(e).attr('id'),$(e).html(),1);
+          button.toggleClass('loading');
+          button.html('<div class="btn-loader button__loader button--loading"></div>');
+      }else {
+          button.toggleClass('loading');
+          button.html(getCookie('btn-loader-'+$(e).attr('id')));
+      }
+}
+
+
+function CheckValidation(formelement) {
+    let result = true;
+    $('input, select, textarea', formelement).each((index, Item) => {
+        if ($(Item).is(':invalid')) {
+            result = false;
+            console.log(Item);
+        }
+    });
+    return result;
+}
+
+  </script>
+
+
+@if (\Session::has('outcome'))
+  <script type="text/javascript">
+      $(document).ready(function(){
+          islem = '<?php echo (Session::get('outcome')==true)? Lang::get('Base.Success') : Lang::get('Base.Failed'); ?>';
+          Swal.fire(islem, '<?php echo Session::get('ErrorMessage');  ?>','<?php echo (Session::get('outcome')==true)? 'success' : 'error'; ?>').then((result)=>{
+              <?php 
+              echo (\Session::has('route'))? 'window.location="'.Session::get('route').'"; ' : '' ;
+              echo (\Session::has('tag'))? '$("#'.Session::get('tag').'").css("border", "1px solid red");' : '' ;
+              ?>
+          });s
+      });
+  </script>
+@endif
+
+
 </body>
 
 </html>

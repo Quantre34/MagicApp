@@ -277,7 +277,7 @@ if (isset($_GET['Terminate'])) {
   </body>
 </html>
 
-    <script type="text/javascript">
+  <script type="text/javascript">
 
     new AcornIcons().replace();
 

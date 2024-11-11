@@ -47,7 +47,21 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/Appointments/{uid}', [AdminController::class, 'OrderDetail']);
     Route::get('/panel/Dashboard/Agency', [AdminController::class, 'AgencyDashborad'])->name('AgencyDashborad');
     Route::get('/panel/Dashboard/Admin', [AdminController::class, 'AdminDashborad'])->name('AdminDashborad');
-    Route::get('/panel/Categories', [AdminController::class, 'Categories']);
+
+    Route::get('/panel/categories', [AdminController::class, 'Categories']);
+    Route::get('/panel/categories/new', [AdminController::class, 'NewCategory']);
+    Route::get('/panel/categories/{uid}', [AdminController::class, 'EditCategory']);
+
+    Route::get('/panel/treatments', [AdminController::class, 'Treatments']);
+    Route::get('/panel/treatments/new', [AdminController::class, 'NewTreatment']);
+    Route::get('/panel/treatments/{uid}', [AdminController::class, 'EditTreatment']);
+
+    Route::get('/panel/agencies', [AdminController::class, 'Agencies']);
+    Route::get('/panel/agencies/new', [AdminController::class, 'NewAgency']);
+    Route::get('/panel/agencies/{uid}', [AdminController::class, 'AgencyDetail']);
+    Route::get('/panel/agencies/edit/{uid}', [AdminController::class, 'EditAgency']);
+
+
     Route::get('/panel/Manage/Packages', [AdminController::class, 'ManagePackages']);
     Route::get('/panel/Manage/Features', [AdminController::class, 'ManageFeatures']);
     Route::get('/panel/Manage/Agencies', [AdminController::class, 'ManageAgencies']);
