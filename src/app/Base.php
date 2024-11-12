@@ -314,4 +314,5 @@ function GetData($table=false, $params=['Status'=>'1'], $limit=100,$sort=['Id','
         return $data;
     }
 }
+
 ?>

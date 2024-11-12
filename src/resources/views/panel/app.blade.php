@@ -45,52 +45,53 @@
   <link href="{{URL::asset('assets/css/HoldOn.css')}}" rel="stylesheet">
   <script type="text/javascript">var options={theme:"sk-circle",message:'Yükleniyor',textColor:"white"};</script>
   <!-- hold on -->
+   <link rel="stylesheet" href="{{asset('assets/panel/libs/quill/dist/quill.snow.css')}}">
   <style type="text/css">
 
-.button--loading {
-  padding-left: 70px;
-}
+    .button--loading {
+      padding-left: 70px;
+    }
 
-.button__loader {
-  float: left;
-  position: absolute;
-  left: -50px;
-  top: 10px;
-  transition: all .2s;
- }
+    .button__loader {
+      float: left;
+      position: absolute;
+      left: -50px;
+      top: 10px;
+      transition: all .2s;
+     }
 
-.button__loader {
-  left: 15px;
-}
+    .button__loader {
+      left: 15px;
+    }
 
-.btn-loader, .btn-loader:after {
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-}
-.btn-loader {
-  font-size: 10px;
-  position: relative;
-  text-indent: -9999em;
-  border-top: 4px solid rgba(255, 255, 255, 0.2);
-  border-right: 4px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 4px solid rgba(255, 255, 255, 0.2);
-  border-left: 4px solid #ffffff;
-  transform: translateZ(0);
-  animation: loaderSpin 1.1s infinite linear;
-}
+    .btn-loader, .btn-loader:after {
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+    }
+    .btn-loader {
+      font-size: 10px;
+      position: relative;
+      text-indent: -9999em;
+      border-top: 4px solid rgba(255, 255, 255, 0.2);
+      border-right: 4px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+      border-left: 4px solid #ffffff;
+      transform: translateZ(0);
+      animation: loaderSpin 1.1s infinite linear;
+    }
 
-@keyframes loaderSpin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+    @keyframes loaderSpin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
   </style>
-
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.css">
   @yield("style")
 </head>
 
@@ -1054,6 +1055,7 @@
   </div>
   @include('panel.layout.scripts')
   @yield('script')
+
   <script type="text/javascript">
         
         // let AsyncAuthCheck = setInterval(function(){
@@ -1149,12 +1151,7 @@
                       success: function(data){
                         if (data['outcome']) {
                               if (!data['NoAlert']) {
-                                  // Swal.fire('{{Lang::get('Base.Success')}}', (data['Message']??  '{{Lang::get('Base.Successfuly')}}'), 'success').then((result)=>{
-                                  //   $('input').css('border','1px solid var(--separator)');
-                                  //   if (data['route']) {
-                                  //       window.location = data['route'];
-                                  //   }
-                                  // });
+                                  alertify.success(data['Message']??  '{{Lang::get('Base.Successfuly')}}');
                                   if (data['route']) {
                                         window.location = data['route'];
                                   }
@@ -1164,15 +1161,7 @@
                                 }
                               }
                         }else {
-                            // Swal.fire('{{Lang::get('Base.Failed')}}', data['ErrorMessage'], 'error').then((result)=>{
-                            //   if (data['route']) {
-                            //       window.location = data['route'];
-                            //   }
-                            //   if (data['tag']) {
-                            //       $('input[name='+data['tag']+']').css('border', '1px solid red');
-                            //       $('select[name='+data['tag']+']').css('border', '1px solid red');
-                            //   }
-                            // });
+                            alertify.error(data['ErrorMessage']);
                         }
                         HoldOn.close();
                       } 

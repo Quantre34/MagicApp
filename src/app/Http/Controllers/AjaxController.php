@@ -423,8 +423,7 @@ class AjaxController extends Controller
                         'VatNumber'=>htmlspecialchars(request('VatNumber')),
                         'CommissionRate'=>intval( request('CommissionRate') ?? 0 ),
                         'AgencyFee' => (intval(request('AgencyFee') ?? 0) <= 15)? intval(request('AgencyFee')) : 1,
-                        'Status'=>htmlspecialchars(request('Status')),
-                        'update_at'=>date('Y-m-d H:i:s')
+                        'Status'=>htmlspecialchars(request('Status'))
                     ];
                     $isAnyEmpty = $this->isAnyEmpty($data,['ParentId','Fax','Whatsapp','WebPage','Instagram']);
                     if (!$isAnyEmpty) {
@@ -1113,14 +1112,14 @@ class AjaxController extends Controller
             if (!empty($this->User)) {
                 $data = [
                     'uid'=>htmlspecialchars(request('uid')),
-                    'ProfilPic'=>(!empty(request('ProfilPic'))? htmlspecialchars(request('ProfilPic')) : NULL),
+                    'ProfilPic'=>(!empty(request('ProfilPic'))? request('ProfilPic') : NULL),
                     'Type'=>htmlspecialchars(request('Type')),
                     'FirstName'=>htmlspecialchars(request('FirstName')),
                     'LastName'=>htmlspecialchars(request('LastName')),
                     'Mail'=>htmlspecialchars(request('Mail')),
                     'CommissionRate'=>request('CommissionRate') ?? 0,
                     'Cell'=>$this->CellFormatter(request('Cell')),
-                    'ParentId'=>(!empty(request('Parent')))? htmlspecialchars(request('Parent')) : NULL,
+                    'ParentId'=>(!empty(request('ParentId')))? htmlspecialchars(request('ParentId')) : NULL,
                     'Status'=>htmlspecialchars(request('Status')),
                     'update_at'=>date('Y-m-d H:i:s')
                 ];
@@ -1128,20 +1127,16 @@ class AjaxController extends Controller
                 if ($this->User['Type']=='2') {
                     $exceptions[] = 'ParentId';
                 }
-                if($this->User['Type']== '1' && empty($this->User['ParentId']) || $this->User['Type'] == '2' || $data['Type'] != '1' ){
-                    $Check = $this->isAnyEmpty($data, $exceptions);
-                    if (!$Check) {
-                        $query = DB::table('user')->where('uid', $data['uid'])->update($data);
-                        if ($query) {
-                            $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetUsers();'];
-                        }else {
-                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
-                        }
+                $Check = $this->isAnyEmpty($data, $exceptions);
+                if (!$Check) {
+                    $query = DB::table('user')->where('uid', $data['uid'])->update($data);
+                    if ($query) {
+                        $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetUsers();'];
                     }else {
-                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields'),'tag'=>$Check];
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
                     }
                 }else {
-                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields'),'tag'=>$Check];
                 }
             }else {
                 $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
@@ -1663,6 +1658,7 @@ class AjaxController extends Controller
             if (!empty($this->User)) {
                 if ($this->User['Type']=='2') {
                     $data = [
+                        'uid'=>$this->UniqueId(30),
                         'Img'=>htmlspecialchars(request('Img')),
                         'Title'=>request('Title'),
                         'Slug'=>htmlspecialchars(request('Slug')),

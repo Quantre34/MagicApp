@@ -15,6 +15,12 @@
     <script src="<?= asset('assets/panel/js/dashboards/dashboard3.js') ?>"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
     <script src="<?= asset('assets/js/HoldOn.js') ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+
+    <script src="<?= asset('assets/panel/libs/quill/dist/quill.min.js') ?>"></script>
+    <script src="<?= asset('assets/panel/js/forms/quill-init.js') ?>"></script>
+
     <script type="text/javascript">
         function getCookie(cname) {
             var name = cname + "=";
@@ -35,9 +41,14 @@
         function eraseCookie(name) {   
             document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
-    </script>
-
-
-
+      /*---------------*/
+      function SweetSelect(Id){
+            if (document.getElementById(Id) !== null && jQuery().select2) {
+              jQuery('#'+Id).select2({minimumResultsForSearch: Infinity, placeholder: ''});
+              return true;
+            }
+      }
+      /*---------------*/
+  </script>
 
 

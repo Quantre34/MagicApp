@@ -9,27 +9,21 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Bootstrap-Validation</h4>
+              <h4 class="fs-6 mb-0">Kullanıcılar</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Home</a>
+                    <a class="text-muted text-decoration-none" href="/panel/{{ $User['Type']=='1'? 'managers' : 'agents' }}">{{ $User['Type']=='1'?'Yöneticiler' : 'Temsilciler' }}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Bootstrap-Validation</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{$User['FirstName']}} {{$User['LastName']}}</li>
                 </ol>
               </nav>
             </div>
             <div class="d-flex align-items-center justify-content-between gap-6">
-              <select class="form-select border fs-3" aria-label="Default select example">
-                <option selected>November 2024</option>
-                <option value="1">February 2024</option>
-                <option value="2">March 2024</option>
-                <option value="3">April 2024</option>
-              </select>
-              <button class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
-                <i class="ti ti-plus fs-4"></i>
-                Create
-              </button>
+                <a class="text-warning d-flex align-items-center ">
+                  <i href="/panel/agencies" class="fas fa-arrow-left"></i>
+                   &nbsp Geri dön
+                </a>
             </div>
           </div>
           <div class="row">
@@ -39,25 +33,23 @@
 
           <div class="card">
             <div class="border-bottom title-part-padding">
-              <h4 class="card-title mb-0">Dropzone</h4>
+              <h4 class="card-title mb-0">{{$User['FirstName']}} {{$User['LastName']}}</h4>
             </div>
             <div class="card-body">
-  
-
 
                   <div class="row">
                     <div class="col-lg-6 d-flex align-items-stretch">
                       <div class="card w-100 border position-relative overflow-hidden">
                         <div class="card-body p-4">
-                          <h4 class="card-title">Change Profile</h4>
-                          <p class="card-subtitle mb-4">Change your profile picture from here</p>
+                          <h4 class="card-title">Profil Resmi</h4>
+                          <p class="card-subtitle mb-4">Profil resmini</p>
                           <div class="text-center">
-                            <img src="{{asset('assets/panel/images/profile/user-1.jpg')}}" alt="monster-img" class="img-fluid rounded-circle" width="120" height="120">
-                            <div class="d-flex align-items-center justify-content-center my-4 gap-6">
-                              <button class="btn btn-primary">Upload</button>
-                              <button class="btn bg-danger-subtle text-danger">Reset</button>
-                            </div>
-                            <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                            <form id="FileUploadForm" action="ajax" method="POST" target="UploadFile" >                
+                                <img id="ProfilPic" class="img-fluid rounded-circle" width="200" height="200" onclick="javascript:$(this).parent().children('input[type=file]').click();" src="{{$User['ProfilPic']??asset('assets/img/profile/Default.png')}}"  />
+                                <input onchange="javascript:$(this).parent().children('button[type=submit]').click();" type="file" hidden name="ProfilPic">
+                                <button type="submit" hidden class="btn submit">submit</button>
+                            </form>  
+                            <p class="mb-0">Allowed JPG, JPEG or PNG. Max size of 2MB</p>
                           </div>
                         </div>
                       </div>
@@ -65,27 +57,68 @@
                     <div class="col-lg-6 d-flex align-items-stretch">
                       <div class="card w-100 border position-relative overflow-hidden">
                         <div class="card-body p-4">
-                          <h4 class="card-title">Change Password</h4>
-                          <p class="card-subtitle mb-4">To change your password please confirm here</p>
-                          <form>
-                            <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Current Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1" value="12345678910">
+                          <form class="needs-validation" novalidate action="ajax" id="UserForm" target="AlterUser" method="POST">
+                            <input type="hidden" required name="uid" value="{{$User['uid']}}">
+                            <input type="hidden" name="ProfilPic" value="{{$User['ProfilPic']}}">
+                            <div class="row col-12">
+                              <div class="mb-1 col-6">
+                                <label class="form-label">İsim</label>
+                                <input type="text" class="form-control" required name="FirstName" value="{{$User['FirstName']}}">
+                              </div>
+                              <div class="mb-1 col-6">
+                                <label for="exampleInputPassword1" class="form-label">Soy İsim</label>
+                                <input type="text" class="form-control" required name="LastName" value="{{$User['LastName']}}">
+                              </div>
                             </div>
-                            <div class="mb-3">
-                              <label for="exampleInputPassword2" class="form-label">New Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword2" value="12345678910">
+                            
+                            <div class="mb-1">
+                              <label class="form-label">Mail</label>
+                              <input type="text" class="form-control" name="Mail" required value="{{$User['Mail']}}">
                             </div>
-                            <div>
-                              <label for="exampleInputPassword3" class="form-label">Confirm Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword3" value="12345678910">
+                            <div class="mb-1">
+                              <label  class="form-label">Telefon</label>
+                              <input type="text" class="form-control" name="Cell" required value="{{$User['Cell']}}">
                             </div>
+                            <div class="mb-1">
+                              <label class="form-label">Komisyon Oranı</label>
+                              <input type="text" class="form-control" name="CommissionRate" required value="{{$User['CommissionRate']}}">
+                            </div>
+                            <div class="mb-1">
+                              <label  class="form-label">Yöneticisi</label>
+                              <select class="form-select" required name="ParentId">
+                                  @foreach(($User['Type'] ='1'? $Agencies : $Users ) as $Manager)
+                                      <option {{$Manager['uid'] == $User['ParentId'] ? 'selected' : ''}} value="{{$Manager['uid']}}">
+                                      {{ !empty($Manager['Title'])? $Manager['Title'] : (!empty($Manager['FirstName'])? $Manager['FirstName'].' '.$Manager['LastName'] : '') }}</option>
+                                  @endforeach                        
+                              </select>
+                            </div>
+                            @if(User('Type')=='2')
+                              <div class="mb-1">
+                                <label class="from-label">@Lang('ManageUser.Type')</label>
+                                  <select  class="form-select" required name="Type">
+                                    <option value="2">@Lang('ManageUser.Admin')</option>
+                                    <option selected value="0">@Lang('ManageUser.Agent')</option>
+                                    <option value="1">@Lang('ManageUser.Manager')</option>
+                                  </select>
+                              </div>
+                            @endif
+                            <div class="mb-1">
+                              <label for="exampleInputtext1" class="form-label">Durum</label>
+                              <select class="form-select" required name="Status">
+                                <option {{$User['Status']=='0'? 'Selected' : ''}} value="0">Pasif</option>
+                                <option  {{$User['Status']=='1'? 'Selected' : ''}} value="1">Aktif</option>
+                              </select>
+                            </div>
+
+                            <button hidden id="SubmitBtn" type="submit"></button>
                           </form>
                         </div>
                       </div>
                     </div>
                     </div>
-
+                    <div class="col-12 d-flex justify-content-center">
+                      <button onclick="$('#SubmitBtn').trigger('click');">Güncelle</button>
+                    </div>
 
             </div>
           </div>
@@ -259,12 +292,11 @@
       @section('script')
         <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
         <script src="{{asset('assets/panel/js/plugins/bootstrap-validation-init.js')}}"></script>
-        <script src="{{asset('assets/panek/libs/dropzone/dist/min/dropzone.min.js')}}"></script>
         <script type="text/javascript">
-            function FileUploaded(url){
-              $('#Logo').attr('src', url);
-              $('#CategoryForm input[name=Img]').val(url);
-            }
+                  function FileUploaded(url){
+                    $('input[name=ProfilPic]').parent().children('img').attr('src', url);
+                    $('#UserForm input[name=ProfilPic]').val(url);
+                  }
 
           function Reset(){
             $('#CategoryForm')[0].reset();

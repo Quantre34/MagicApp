@@ -58,9 +58,9 @@
                     <thead>
                       <!-- start row -->
                         <tr>
-                          <th>Image</th>
                           <th>Name</th>
                           <th>Slug</th>
+                          <th>Cost</th>
                           <th>Status</th>
                           <th></th>
                         </tr>
@@ -70,9 +70,9 @@
                     <tbody>
                       @foreach($Treatments as $Treatment)
                         <tr>
-                          <td> <img style="width: 50px;height: 50px;" src="{{$Treatment['Img']}}"> </td>
                           <td>{{$Treatment['Title']}}</td>
                           <td>{{$Treatment['Slug']}}</td>
+                          <td>{{$Treatment['Cost']}}</td>
                           <td class="hidden-xs" width="150">
                               <span class="badge  bg-<?= $Treatment['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $Treatment['Status']=='1'? 'success' : 'danger' ?>"><?= $Treatment['Status']=='1'? 'Aktif' : 'Pasif' ?></span>
                           </td>

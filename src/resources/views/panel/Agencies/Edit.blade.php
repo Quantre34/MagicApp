@@ -20,10 +20,10 @@
               </nav>
               </div>
               <div class="d-flex align-items-center justify-content-between gap-6">
-              <a class="text-warning d-flex align-items-center ">
-                <i href="/panel/agencies" class="fas fa-arrow-left"></i>
-                 &nbsp Geri dön
-              </a>
+                <a class="text-warning d-flex align-items-center ">
+                  <i href="/panel/agencies" class="fas fa-arrow-left"></i>
+                   &nbsp Geri dön
+                </a>
             </div>
           </div>
           <div class="row">
@@ -44,7 +44,7 @@
                       <div style="width: 100%;"  class="col-auto">
                         <div sclass="sw-5 me-3">
                         <div class="mx-auto">
-                            <img id="Logo" onclick="javascript:$('input[type=file][name=Logo]').click();" src="{{$Agency['Logo']??'/assets/img/Default-Package.jpg'}}" style="width: 100%;max-width: 400px;" alt="thumb">
+                            <img id="Logo" onclick="javascript:$('input[type=file][name=Logo]').click();" src="{{$Agency['Logo']??'/assets/img/Default-Package.jpg'}}" style="width: 100%;max-width: 200px;" alt="thumb">
                         </div>
                           <input onchange="javascript:$('.LogoSend[type=submit]').click();" type="file" hidden name="Logo">
                           <button type="submit" hidden class="btn submit LogoSend">submit</button>
@@ -56,8 +56,8 @@
                 </form>
                 <form id="form-validate" action="ajax" target="AlterAgency" method="POST" class="needs-validation" novalidate>
                   
-                    <input type="text" hidden required name="Img" value="{{$Agency['Logo']}}">
-                    <input hidden type="text" class="form-control" name="uid" value="{{$Agency['Id']}}" />
+                    <input type="text" hidden required name="Logo" value="{{$Agency['Logo']}}">
+                    <input hidden type="text" class="form-control" name="uid" value="{{$Agency['uid']}}" />
 
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Başlık</label>
@@ -77,11 +77,23 @@
                     </div>
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Instagram</label>
-                      <input type="text"  name="Intagram" required class="form-control" id="exampleInputtext1" value="{{$Agency['Instagram']}}">
+                      <input type="text"  name="Instagram" class="form-control" id="exampleInputtext1" value="{{$Agency['Instagram']}}">
                     </div>
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Websitesi</label>
-                      <input type="text"  name="WebPage" required class="form-control" id="exampleInputtext1" value="{{$Agency['WebPage']}}">
+                      <input type="text"  name="WebPage" class="form-control" id="exampleInputtext1" value="{{$Agency['WebPage']}}">
+                    </div>
+                     <div class="mb-1">
+                      <label for="exampleInputtext1" class="form-label">VatNumber</label>
+                      <input type="text"  name="VatNumber" class="form-control" id="exampleInputtext1" value="{{$Agency['VatNumber']}}">
+                    </div>
+                    <div class="mb-1">
+                      <label for="exampleInputtext1" class="form-label">Ülke</label>
+                      <select class="form-select"  required name="Country" id="Country">
+                          @foreach($Countries as $Country)
+                              <option {{$Country['name'] == $Agency['Country'] ? 'selected' : ''}} value="{{$Country['name']}}">{{$Country['name']}}</option>
+                          @endforeach                        
+                      </select>
                     </div>
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Yöneticisi</label>
@@ -90,6 +102,16 @@
                               <option {{$Manager['uid'] == $Agency['ParentId'] ? 'selected' : ''}} value="{{$Manager['uid']}}">{{$Manager['FirstName']}} {{$Manager['LastName']}}</option>
                           @endforeach                        
                       </select>
+                    </div>
+
+                    <div class="mb-1">
+                      <label for="exampleInputtext1" class="form-label">Adres</label>
+                      <textarea class="form-control" required name="Adress">{{$Agency['Adress']}}</textarea>
+                    </div>
+
+                    <div class="mb-1">
+                      <label for="exampleInputtext1" class="form-label">Komisyon oranı</label>
+                      <input type="text"  name="CommissionRate" class="form-control" id="exampleInputtext1" value="{{$Agency['CommissionRate']}}">
                     </div>
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Durum</label>
@@ -282,109 +304,110 @@
         <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
         <script src="{{asset('assets/panel/js/plugins/bootstrap-validation-init.js')}}"></script>
         <script src="{{asset('assets/panek/libs/dropzone/dist/min/dropzone.min.js')}}"></script>
-  <script type="text/javascript">
+        <script type="text/javascript">
 
+          SweetSelect('Country');
 
-
-    function Slugify(str) {
-      return String(str)
-        .normalize('NFKD') // split accented characters into their base characters and diacritical marks
-        .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
-        .trim() // trim leading or trailing whitespace
-        .toLowerCase() // convert to lowercase
-        .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
-        .replace(/\s+/g, '-') // replace spaces with hyphens
-        .replace(/-+/g, '-'); // remove consecutive hyphens
-    }
-    $(document).ready(function(){
-      $('form input[name=Title]').on('change', function(){
-        var Slug = Slugify($(this).val());
-        $('input[name=Slug]').val(''+Slug);
-      });
-    });
-
-    function FileUploaded(url){
-      $('#Logo').attr('src', url);
-      $('form input[name=Img]').val(url);
-    }
-
-    function Reset(){
-      $('#CategoryForm')[0].reset();
-      $('#title').html('@Lang('ManageCategory.InsertCategory')');
-      $('#CategoryForm option').removeAttr('selected');
-      $('#CategoryForm #ResetBtn').remove();
-      $('#CategoryForm').attr('target','InsertCategory');
-      $('img[id=Logo]').attr('src', '/assets/img/Default-Package.jpg');
-      $('#CategoryForm button[type=submit]').html('@Lang('ManageCategory.InsertCategory')');
-      $('.select2-selection').css('background-color','var(--input)');///let the selects bg be...
-      $('#CategoryForm').each((e)=>{
-          console.log(e);
-          $( ".select2-selection__choice__remove" ).click();
-      });
-      $('#CategorySelect').val('');
-      $('.select2-search__field').attr('style','width: 0.75em;" aria-controls="select2-CategorySelect-results" aria-activedescendant="select2-CategorySelect-result-hgjq-1');
-    }
-    function GetCategories(){
-        $.ajax({
-          type: 'POST',
-          url: '/ajax',
-          cache: false,
-          headers: {
-            'X-CSRF-TOKEN': @json(csrf_token())
-          },
-          data: {
-            action: 'GetCategories'
-          },
-          success: function(data){
-            if (data['outcome']) {
-                $('.CategoryList').empty();
-                Object.entries(data['data']).forEach( Item => {
-                    const [key, value] = Item;
-                    $('.CategoryList').append(`<div onclick="SetCategoryInfo('${value['Id']}')" style="border:  1px solid black; border-radius: 30px; " class="mb-4"><center><div class="col-auto"><div class="sw-5 me-3"><img src="${(value['Img']?? '/assets/img/Default-Package.jpg')}" class="img-fluid rounded-xl" alt="thumb" />
-                    </div>
-                  </div>
-                </center><div  class="text-primary mb-1">${value['Title']}</div><div class="text-muted">${((value['Status']=='1')? '{{Lang::get('ManageCategory.Active')}}': '{{Lang::get('ManageCategory.Active')}}')}</div></div>`);
-                });
-            }
-
+          function Slugify(str) {
+            return String(str)
+              .normalize('NFKD') // split accented characters into their base characters and diacritical marks
+              .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+              .trim() // trim leading or trailing whitespace
+              .toLowerCase() // convert to lowercase
+              .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+              .replace(/\s+/g, '-') // replace spaces with hyphens
+              .replace(/-+/g, '-'); // remove consecutive hyphens
           }
-        });
-    }
-    function SetCategoryInfo(Id){
-        $.ajax({
-          type: 'POST',
-          url: '/ajax',
-          cache: false,
-          headers: {
-            'X-CSRF-TOKEN': @json(csrf_token())
-          },
-          data: {
-            action: 'GetCategoryInfo',
-            Id: Id
-          },
-          success: function(data){
-            if (data['outcome']) {
-              $('#title').html('@Lang('ManageCategory.UpdateCategory')');
-              $('#CategoryForm #ResetBtn').remove();
-                $('#CategoryForm').attr('target', 'AlterCategory');
-                $('#CategoryForm input[name=uid]').val(data['data']['uid']);
-                $('#CategoryForm button[type=submit]').html('@Lang('ManageCategory.UpdateCategory')');
-                $('.select2-search__field').attr('style','width: 0.75em;" aria-controls="select2-CategorySelect-results" aria-activedescendant="select2-CategorySelect-result-hgjq-1');
-                Object.entries(data['data']).forEach(Item => {
-                    const [key, value] = Item;
-                    $('#CategoryForm input[name='+key+']').val(value);
-                });
-                $('#Logo').attr('src', data['data']['Img']); 
-                $('option').removeAttr('selected');
-                $(`option[value=${data['data']['Status']}]`).attr('selected','selected');
-                $('#CategorySelect').trigger('change');
-                console.log('Status:'+data['data']['Status']);
-                $('#CategorySelect').attr('value', data['data']['Status']);
-                $('#CategoryFormButtons').append('<button id="ResetBtn" class="btn btn-outline-danger" onclick="Reset()">{{Lang::get('ManageCategory.Reset')}}</button>');
-            }
-            console.log(data);
+          $(document).ready(function(){
+            $('form input[name=Title]').on('change', function(){
+              var Slug = Slugify($(this).val());
+              $('input[name=Slug]').val(''+Slug);
+            });
+          });
+
+          function FileUploaded(url){
+            $('#Logo').attr('src', url);
+            $('form input[name=Logo]').val(url);
           }
-        });
-    }
-    ///
-</script>      @endsection
+
+          function Reset(){
+            $('#CategoryForm')[0].reset();
+            $('#title').html('@Lang('ManageCategory.InsertCategory')');
+            $('#CategoryForm option').removeAttr('selected');
+            $('#CategoryForm #ResetBtn').remove();
+            $('#CategoryForm').attr('target','InsertCategory');
+            $('img[id=Logo]').attr('src', '/assets/img/Default-Package.jpg');
+            $('#CategoryForm button[type=submit]').html('@Lang('ManageCategory.InsertCategory')');
+            $('.select2-selection').css('background-color','var(--input)');///let the selects bg be...
+            $('#CategoryForm').each((e)=>{
+                console.log(e);
+                $( ".select2-selection__choice__remove" ).click();
+            });
+            $('#CategorySelect').val('');
+            $('.select2-search__field').attr('style','width: 0.75em;" aria-controls="select2-CategorySelect-results" aria-activedescendant="select2-CategorySelect-result-hgjq-1');
+          }
+          function GetCategories(){
+              $.ajax({
+                type: 'POST',
+                url: '/ajax',
+                cache: false,
+                headers: {
+                  'X-CSRF-TOKEN': @json(csrf_token())
+                },
+                data: {
+                  action: 'GetCategories'
+                },
+                success: function(data){
+                  if (data['outcome']) {
+                      $('.CategoryList').empty();
+                      Object.entries(data['data']).forEach( Item => {
+                          const [key, value] = Item;
+                          $('.CategoryList').append(`<div onclick="SetCategoryInfo('${value['Id']}')" style="border:  1px solid black; border-radius: 30px; " class="mb-4"><center><div class="col-auto"><div class="sw-5 me-3"><img src="${(value['Img']?? '/assets/img/Default-Package.jpg')}" class="img-fluid rounded-xl" alt="thumb" />
+                          </div>
+                        </div>
+                      </center><div  class="text-primary mb-1">${value['Title']}</div><div class="text-muted">${((value['Status']=='1')? '{{Lang::get('ManageCategory.Active')}}': '{{Lang::get('ManageCategory.Active')}}')}</div></div>`);
+                      });
+                  }
+
+                }
+              });
+          }
+          function SetCategoryInfo(Id){
+              $.ajax({
+                type: 'POST',
+                url: '/ajax',
+                cache: false,
+                headers: {
+                  'X-CSRF-TOKEN': @json(csrf_token())
+                },
+                data: {
+                  action: 'GetCategoryInfo',
+                  Id: Id
+                },
+                success: function(data){
+                  if (data['outcome']) {
+                    $('#title').html('@Lang('ManageCategory.UpdateCategory')');
+                    $('#CategoryForm #ResetBtn').remove();
+                      $('#CategoryForm').attr('target', 'AlterCategory');
+                      $('#CategoryForm input[name=uid]').val(data['data']['uid']);
+                      $('#CategoryForm button[type=submit]').html('@Lang('ManageCategory.UpdateCategory')');
+                      $('.select2-search__field').attr('style','width: 0.75em;" aria-controls="select2-CategorySelect-results" aria-activedescendant="select2-CategorySelect-result-hgjq-1');
+                      Object.entries(data['data']).forEach(Item => {
+                          const [key, value] = Item;
+                          $('#CategoryForm input[name='+key+']').val(value);
+                      });
+                      $('#Logo').attr('src', data['data']['Img']); 
+                      $('option').removeAttr('selected');
+                      $(`option[value=${data['data']['Status']}]`).attr('selected','selected');
+                      $('#CategorySelect').trigger('change');
+                      console.log('Status:'+data['data']['Status']);
+                      $('#CategorySelect').attr('value', data['data']['Status']);
+                      $('#CategoryFormButtons').append('<button id="ResetBtn" class="btn btn-outline-danger" onclick="Reset()">{{Lang::get('ManageCategory.Reset')}}</button>');
+                  }
+                  console.log(data);
+                }
+              });
+          }
+          ///
+        </script>      
+@endsection

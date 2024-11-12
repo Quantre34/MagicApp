@@ -9,7 +9,7 @@ return [
     'Error' => 'Hata',
     'NoNotification'=>'Duyuru yok!',
     'SessionInitiated'=>'Oturum Başlatıldı',
-    'Internal-Error' => 'İç Hata',
+    'Internal-Error' => 'Düzenleme yapılamadı',
     'AgencyNotFound' => 'Acente bulunamadı!',
     'UserNotFound' => 'Kullanıcı bulunamadı!',
     'WellBeBack' => 'Sana kısa süre içinde geri döneceğiz',

@@ -9,7 +9,7 @@ return [
 	'Error'=>'Error',
 	'NoNotification'=>'No Notification!',
     'SessionInitiated'=>'Session Initiated',
-	'Internal-Error'=>'Internal Error',
+	'Internal-Error'=>'Couldnt Update',
 	'AgencyNotFound'=>'Agency Not Found!',
 	'UserNotFound'=>'User Not Found!',
 	'WellBeBack'=>'We will get back to you shortly',

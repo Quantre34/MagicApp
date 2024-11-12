@@ -122,13 +122,13 @@
                   </a>
                   <ul aria-expanded="false" class="collapse two-level">
                     <li class="sidebar-item">
-                      <a href="javascript:void(0)" class="sidebar-link">
+                      <a href="/panel/managers" class="sidebar-link">
                         <span class="icon-small"></span>
                         <span class="hide-menu">İş ortakları</span>
                       </a>
                     </li>
                     <li class="sidebar-item">
-                      <a href="javascript:void(0)" class="sidebar-link">
+                      <a href="/panel/agents" class="sidebar-link">
                         <span class="icon-small"></span>
                         <span class="hide-menu">Acente çalışanları</span>
                       </a>
@@ -137,6 +137,12 @@
                   </ul>
                 </li>
 
+                <li class="sidebar-item">
+                  <a href="/panel/articles" class="sidebar-link">
+                    <span class="icon-small"></span>
+                    <span class="hide-menu">Makaleler</span>
+                  </a>
+                </li>
 
 
               </ul>
@@ -160,7 +166,7 @@
 
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/clients" id="get-url" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Hastalar</span>
               </a>

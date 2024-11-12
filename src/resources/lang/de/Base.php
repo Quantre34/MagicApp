@@ -10,7 +10,7 @@ return [
     'Error' => 'Fehler',
 	'NoNotification'=>'Keine Benachrichtigung!',
     'SessionInitiated'=>'Sitzung initiiert',
-    'Internal-Error' => 'Interner Fehler',
+    'Internal-Error' => 'Aktualisierung fehlgeschlagen',
     'AgencyNotFound' => 'Agentur nicht gefunden!',
     'UserNotFound' => 'Benutzer nicht gefunden!',
     'WellBeBack' => 'Wir melden uns bald bei Ihnen',
