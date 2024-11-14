@@ -1161,7 +1161,7 @@ class AjaxController extends Controller
                     }
                     $result = [ 'outcome'=>true, 'data'=>$Query,'Chat'=>$Chat ];
                 }else {
-                    $result = [ 'outcome'=>false, 'ErrorMessage'=>'Chat'.Lang::get('Base.NotFound'), 'route'=>' '];
+                    $result = [ 'outcome'=>false, 'ErrorMessage'=>'Chat'.Lang::get('Base.NotFound'), 'route'=>''];
                 }
             }else {
                 $result = [ 'outcome'=>false, 'ErrorMessage'=>Lang::get('Base.SessionOut'), 'route'=>' '];

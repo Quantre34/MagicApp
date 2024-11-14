@@ -150,41 +150,40 @@ class AdminController extends Controller
                     // $Appointments[$key]['Clinic']=json_decode(json_encode(DB::table('clinic')->where('uid', $Appointment['ClinicId'])->first()), true);
                     $Appointments[$key]['Client']=json_decode(json_encode(DB::table('client')->where('uid', $Appointment['ClientId'])->first()), true);
                     $Appointments[$key]['Category']=json_decode(json_encode(DB::table('category')->where('Id', $Appointment['CategoryId'])->first()), true);
-                    $Appointments[$key]['Treatment']=json_decode(json_encode(DB::table('treatment')->where('Id', $Appointment['TreatmentId'])->first()), true);
+                    $Appointments[$key]['Treatment']=json_decode(json_encode(DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first()), true);
                     $Appointments[$key]['Agency']=json_decode(json_encode(DB::table('agency')->where('uid', $Appointment['AgencyId'])->first()), true);
                 }
-                $result = ['outcome'=>true,'route'=>'panel.Appointments','data'=>[
+                $result = ['outcome'=>true,'route'=>'panel.Appointments.List','data'=>[
                     'Appointments'=>$Appointments
                 ]];
             }elseif ($this->User['Type']=='1') {
                 $Appointments = [];
                 $Agencies = json_decode(json_encode(DB::table('agency')->where('ParentId', $this->User['uid'])->orderBy('create_at','desc')->get()),true);
                 foreach($Agencies as $Agency){
-
                     $AllAppointments[] = json_decode(json_encode(DB::table('appointment')->where('AgencyId', $Agency['uid'])->get()), true);
                     $AppointmentsInner = json_decode(json_encode(DB::table('appointment')->where('AgencyId', $Agency['uid'])->get()), true);
                     foreach($AppointmentsInner as $key => $Appointment){
                         $AppointmentsInner[$key]['Client']=(array)DB::table('client')->where('uid', $Appointment['ClientId'])->first();
-                        $AppointmentsInner[$key]['Clinic']=(array)DB::table('clinic')->where('uid', $Appointment['ClinicId'])->first();
+                        // $AppointmentsInner[$key]['Clinic']=(array)DB::table('clinic')->where('uid', $Appointment['ClinicId'])->first();
                         $AppointmentsInner[$key]['Category']=(array)DB::table('category')->where('Id', $Appointment['CategoryId'])->first();
-                        $AppointmentsInner[$key]['Treatment']=json_decode(json_encode(DB::table('treatment')->where('Id', $Appointment['TreatmentId'])->first()), true);
+                        $AppointmentsInner[$key]['Treatment']=json_decode(json_encode(DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first()), true);
                         $AppointmentsInner[$key]['Agency']=$Agency;
                         $Appointments = $AppointmentsInner;
                     }
                 }
-                $result = ['outcome'=>true,'route'=>'panel.Appointments','data'=>[
+                $result = ['outcome'=>true,'route'=>'panel.Appointments.List','data'=>[
                     'Appointments'=>$Appointments
                 ]];
             }else {
                 $Appointments = $this->toArray( DB::table('appointment')->where('AgencyId', $this->User['ParentId'])->where('Status', '1')->orderBy('create_at','desc')->get() );
                 foreach($Appointments as $key => $Appointment){
                     // $Appointments[$key]['Clinic']=json_decode(json_encode(DB::table('clinic')->where('uid', $Appointment['ClinicId'])->first()), true);
-                    $Appointments[$key]['Client']=json_decode(json_encode(DB::table('client')->where('uid', $Appointment['ClientId'])->first()), true);
-                    $Appointments[$key]['Category']=json_decode(json_encode(DB::table('category')->where('Id', $Appointment['CategoryId'])->first()), true);
-                    $Appointments[$key]['Treatment']=json_decode(json_encode(DB::table('treatment')->where('Id', $Appointment['TreatmentId'])->first()), true);
-                    $Appointments[$key]['Agency']=json_decode(json_encode(DB::table('agency')->where('uid', $Appointment['AgencyId'])->first()), true);
+                    $Appointments[$key]['Client']=$this->toArray(DB::table('client')->where('uid', $Appointment['ClientId'])->first());
+                    $Appointments[$key]['Category']=$this->toArray(DB::table('category')->where('Id', $Appointment['CategoryId'])->first());
+                    $Appointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first());
+                    $Appointments[$key]['Agency']=$this->toArray(DB::table('agency')->where('uid', $Appointment['AgencyId'])->first());
                 }
-                $result = ['outcome'=>true,'route'=>'panel.Appointments','data'=>[
+                $result = ['outcome'=>true,'route'=>'panel.Appointments.List','data'=>[
                     'Appointments'=>$Appointments
                 ]];
             }
@@ -319,7 +318,7 @@ class AdminController extends Controller
         return view($result['route'], $result['data']);
     }
     ///
-    public function NewAppointmentPage(){
+    public function NewAppointment(){
         if (!empty($this->User)){
             if ($this->User['Type']=='0') {
                 $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status', '1')->get());
@@ -329,7 +328,7 @@ class AdminController extends Controller
                     $Packages[$key]['Features'] = $this->toArray( DB::table('feature')->where('Lang',$this->Lang)->where('ParentId', $Package['Id'])->where('Status','1')->orderBy('Order','asc')->get() );
                 }
                 $PaymentMethods = $this->toArray(DB::table('payment_method')->where('Status','1')->get());
-                $result = ['outcome'=>true, 'route'=>'panel.NewAppointment', 'data'=>[
+                $result = ['outcome'=>true, 'route'=>'panel.Appointments.New', 'data'=>[
                     'Categories'=>$Categories,
                     'Packages'=>$Packages,
                     'PaymentMethods'=>$PaymentMethods,
@@ -341,7 +340,6 @@ class AdminController extends Controller
         }else {
             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
         }
-
         if ($result['outcome']) {
             return view($result['route'], $result['data']);
         }else {
@@ -994,7 +992,7 @@ class AdminController extends Controller
                 $Features[] = $this->toArray(DB::table('feature')->where('Id',$Feature)->first());
             }
             $Order['Features'] = $Features;
-            $result = ['outcome'=>true,'route'=>'panel.OrderDetail','data'=>[
+            $result = ['outcome'=>true,'route'=>'panel.Appointments.Detail','data'=>[
                 'Order'=>$Order
             ]];
         }else {

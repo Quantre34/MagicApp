@@ -38,15 +38,17 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     
     Route::get('/panel', [AdminController::class, 'PanelHomePage'])->name('Home');
     Route::get('/panel/Home', [AdminController::class, 'PanelHomePage'])->name('Home');
-    Route::get('/panel/Appointments', [AdminController::class, 'Appointments'])->name('Appointments');
     Route::get('/panel/Doctors', [AdminController::class, 'Doctors'])->name('Doctors');
     Route::get('/panel/Clinics', [AdminController::class, 'Clinics'])->name('Clinics');
     Route::get('/panel/Clinics/{Id}', [AdminController::class, 'ClinicDetail']);
     Route::get('/panel/Clients', [AdminController::class, 'Clients'])->name('Clients');
-    Route::get('/panel/Appointments/New', [AdminController::class, 'NewAppointmentPage']);
-    Route::get('/panel/Appointments/{uid}', [AdminController::class, 'OrderDetail']);
+
     Route::get('/panel/Dashboard/Agency', [AdminController::class, 'AgencyDashborad'])->name('AgencyDashborad');
     Route::get('/panel/Dashboard/Admin', [AdminController::class, 'AdminDashborad'])->name('AdminDashborad');
+
+    Route::get('/panel/appointments', [AdminController::class, 'Appointments']);
+    Route::get('/panel/appointments/new', [AdminController::class, 'NewAppointment']);
+    Route::get('/panel/appointments/{uid}', [AdminController::class, 'OrderDetail']);
 
     Route::get('/panel/categories', [AdminController::class, 'Categories']);
     Route::get('/panel/categories/new', [AdminController::class, 'NewCategory']);
@@ -75,6 +77,9 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/articles', [AdminController::class, 'Articles']);
     Route::get('/panel/articles/new', [AdminController::class, 'NewArticle']);
     Route::get('/panel/articles/{uid}', [AdminController::class, 'EditArticle']);
+
+    Route::get('/panel/consult', [AdminController::class, 'Consult']);
+
 
 
     Route::get('/panel/Manage/Packages', [AdminController::class, 'ManagePackages']);

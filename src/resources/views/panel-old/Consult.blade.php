@@ -208,7 +208,6 @@
         $('#MessageForm').append('<input hidden type="text" value="'+$url+'" name="Attachments[]">');
         $('#FileUploadForm').append('<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="acorn-icons acorn-icons-check-circle mb-3 d-inline-block text-primary"><path d="M17 5L10.6329 12.2032C10.2511 12.6351 9.58418 12.6556 9.17656 12.248L6.92857 10"></path><path d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C11.0609 2 12.0736 2.20651 13 2.58152"></path></svg>');
     }
-
   </script>
 @endsection
 

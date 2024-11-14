@@ -69,7 +69,7 @@
             <!-- ---------------------------------- -->
             <li class="nav-small-cap">
               <iconify-icon icon="solar:menu-dots-linear" class="mini-icon"></iconify-icon>
-              <span class="hide-menu">B2B Yönetimi</span>
+              <span class="hide-menu"> <?= User('Type')=='2'? 'B2B Yönetimi' : 'Yönetim' ?> </span>
             </li>
             <!-- ---------------------------------- -->
             <!-- Dashboard -->
@@ -80,77 +80,77 @@
                 <span class="hide-menu">Anasayfa</span>
               </a>
             </li>
+            <? if(User('Type')!='0'): ?>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+                  <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
+                  <span class="hide-menu">Operasyon Şeması</span>
+                </a>
+              </li>
+
+              <li class="sidebar-item">
+                <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
+                  <iconify-icon icon="solar:align-left-line-duotone"></iconify-icon>
+                  <span class="hide-menu">Yönetim</span>
+                </a>
+                <ul aria-expanded="false" class="collapse first-level">
+
+
+                  <li class="sidebar-item">
+                    <a href="/panel/categories" class="sidebar-link">
+                      <span class="icon-small"></span>
+                      <span class="hide-menu">Kategoriler</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="/panel/treatments" class="sidebar-link">
+                      <span class="icon-small"></span>
+                      <span class="hide-menu">Tedaviler</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="/panel/agencies" class="sidebar-link">
+                      <span class="icon-small"></span>
+                      <span class="hide-menu">Acenteler</span>
+                    </a>
+                  </li>
+   
+                 <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                      <span class="icon-small"></span>
+                      <span class="hide-menu">Kullanıcılar</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse two-level">
+                      <li class="sidebar-item">
+                        <a href="/panel/managers" class="sidebar-link">
+                          <span class="icon-small"></span>
+                          <span class="hide-menu">İş ortakları</span>
+                        </a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a href="/panel/agents" class="sidebar-link">
+                          <span class="icon-small"></span>
+                          <span class="hide-menu">Acente çalışanları</span>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a href="/panel/articles" class="sidebar-link">
+                      <span class="icon-small"></span>
+                      <span class="hide-menu">Makaleler</span>
+                    </a>
+                  </li>
+
+
+                </ul>
+              </li>
+            <? endif; ?>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
-                <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
-                <span class="hide-menu">Operasyon Şeması</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
-                <iconify-icon icon="solar:align-left-line-duotone"></iconify-icon>
-                <span class="hide-menu">Yönetim</span>
-              </a>
-              <ul aria-expanded="false" class="collapse first-level">
-
-
-                <li class="sidebar-item">
-                  <a href="/panel/categories" class="sidebar-link">
-                    <span class="icon-small"></span>
-                    <span class="hide-menu">Kategoriler</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="/panel/treatments" class="sidebar-link">
-                    <span class="icon-small"></span>
-                    <span class="hide-menu">Tedaviler</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="/panel/agencies" class="sidebar-link">
-                    <span class="icon-small"></span>
-                    <span class="hide-menu">Acenteler</span>
-                  </a>
-                </li>
- 
-               <li class="sidebar-item">
-                  <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                    <span class="icon-small"></span>
-                    <span class="hide-menu">Kullanıcılar</span>
-                  </a>
-                  <ul aria-expanded="false" class="collapse two-level">
-                    <li class="sidebar-item">
-                      <a href="/panel/managers" class="sidebar-link">
-                        <span class="icon-small"></span>
-                        <span class="hide-menu">İş ortakları</span>
-                      </a>
-                    </li>
-                    <li class="sidebar-item">
-                      <a href="/panel/agents" class="sidebar-link">
-                        <span class="icon-small"></span>
-                        <span class="hide-menu">Acente çalışanları</span>
-                      </a>
-                    </li>
-
-                  </ul>
-                </li>
-
-                <li class="sidebar-item">
-                  <a href="/panel/articles" class="sidebar-link">
-                    <span class="icon-small"></span>
-                    <span class="hide-menu">Makaleler</span>
-                  </a>
-                </li>
-
-
-              </ul>
-            </li>
-
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/appointments" id="get-url" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Randevular</span>
               </a>
@@ -173,7 +173,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#chip" aria-expanded="false">
+                <a class="sidebar-link" href="/panel/consult" aria-expanded="false">
                   <iconify-icon icon="solar:shield-check-linear" class="aside-icon"></iconify-icon>
                   <div class="hide-menu w-100">
                     <div class="d-flex align-items-center justify-content-between w-100">
@@ -200,7 +200,7 @@
               </a>
             </li>
 
-
+             <? if(User('Type')=='2'): ?>
             <li class="nav-small-cap">
               <iconify-icon icon="solar:menu-dots-linear" class="mini-icon"></iconify-icon>
               <span class="hide-menu">SİTE YÖNETİMİ</span>
@@ -253,7 +253,7 @@
                 </li>
               </ul>
             </li>
-
+          <? endif; ?>
 
 
 

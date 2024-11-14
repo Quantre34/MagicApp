@@ -19,6 +19,7 @@
           </div>
           <!-- Title End -->
 
+
           @if(User('Type') == '0')
           <div class="{{ (isMobile())? 'container ' :  'row col-6'}}">
             <!-- Top Buttons Start -->

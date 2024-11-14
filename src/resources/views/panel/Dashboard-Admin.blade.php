@@ -2,216 +2,129 @@
   @section('content')
       <div class="body-wrapper">
         <div class="container-fluid">
-          <div class="d-md-flex align-items-center justify-content-between mb-7">
-            <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Dashboard</h4>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Home</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="d-flex align-items-center justify-content-between gap-6">
-              <select class="form-select border fs-3" aria-label="Default select example">
-                <option selected>November 2024</option>
-                <option value="1">February 2024</option>
-                <option value="2">March 2024</option>
-                <option value="3">April 2024</option>
-              </select>
-              <button class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
-                <i class="ti ti-plus fs-4"></i>
-                Create
-              </button>
-            </div>
-          </div>
-
           <div class="row">
-            <div class="col-lg-7">
-              <div class="card uncover-exciting-enhancements">
-                <div class="card-body position-relative z-1 row p-7 py-5">
-                  <div class="col-xl-7 col-xxl-6">
-                    <p class="mb-6 text-uppercase fs-3 fw-medium text-muted">Uncover Exciting
-                      Enhancements</p>
-                    <h2 class="mb-6 lh-sm pb-1">Better user experience.
-                    </h2>
-                    <h6 class="fw-normal">Find additional information in our most recent blog entry.
-                    </h6>
-                    <div class="hstack gap-9 mt-7 mb-5 pb-1">
-                      <div class="hstack gap-2">
-                        <div class="round-36 bg-white rounded-circle hstack justify-content-center">
-                          <i class="ti ti-user fs-5 text-success"></i>
-                        </div>
-                        <div>
-                          <p class="mb-0 fs-2">Team</p>
-                          <h6 class="mb-0 fs-2">Up to 240</h6>
-                        </div>
-                      </div>
-                      <div class="hstack gap-2">
-                        <div class="round-36 bg-white rounded-circle hstack justify-content-center">
-                          <i class="ti ti-circles-relation fs-5 text-primary"></i>
-                        </div>
-                        <div>
-                          <p class="mb-0 fs-2">Progress</p>
-                          <h6 class="mb-0 fs-2">Almost 85%</h6>
-                        </div>
-                      </div>
-                    </div>
-                    <a href="javascript:void(0)" class="btn btn-primary fs-3 py-2 fs-3 py-2">Discover updates</a>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="hstack justify-content-between py-3">
-                        <h5 class="mb-0 fw-medium">Current
-                          <br /> Weather
-                        </h5>
-                        <div class="hstack gap-9">
-                          <i class="ti ti-sun text-warning fs-13 flex-shrink-0"></i>
-                          <h2 class="mb-0 fw-medium fs-10 hstack align-items-start">28 <span class="text-muted fs-6">°C</span>
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="hstack justify-content-between py-3">
-                        <h5 class="mb-0 fw-medium">Health
-                          <br /> Care
-                        </h5>
-                        <div class="hstack gap-9">
-                          <i class="ti ti-heart text-danger fs-13 flex-shrink-0"></i>
-                          <h2 class="mb-0 fw-medium fs-10 hstack align-items-start">75</h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-box position-relative text-bg-info">
+                <div class="card-body text-center">
+                  <h2 class="fw-medium fs-8 text-white">2,064</h2>
+                  <h6 class="text-white mb-0 fw-medium">Sessions</h6>
                 </div>
               </div>
             </div>
-            <div class="col-lg-5">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="card text-bg-success">
-                    <div class="card-body">
-                      <h5 class="text-white fw-normal">{{Lang::get('AdminDashboard.Weekly')}}</h5>
-                    </div>
-                    <div id="total-profit"></div>
-                    <div class="card-body">
-                      <h5 class="fs-6 text-white mb-1">43.16%</h5>
-                      <h6 class="text-white fw-medium mb-0">Avg. Commission</h6>
-                    </div>
-                  </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-box position-relative text-bg-secondary">
+                <div class="card-body text-center">
+                  <h2 class="fw-medium fs-8 text-white">2,064</h2>
+                  <h6 class="text-white mb-0 fw-medium">Sessions</h6>
                 </div>
-                <div class="col-md-6">
-                  <div class="card text-bg-primary">
-                    <div class="card-body">
-                      <h5 class="text-white fw-normal">Total Profit</h5>
-                    </div>
-                    <div id="total-profit2"></div>
-                    <div class="card-body">
-                      <h5 class="fs-6 text-white mb-1">24.3K</h5>
-                      <h6 class="text-white fw-medium mb-0">New Candidates</h6>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-box position-relative text-bg-success">
+                <div class="card-body text-center">
+                  <h2 class="fw-medium fs-8 text-white">2,064</h2>
+                  <h6 class="text-white mb-0 fw-medium">Sessions</h6>
                 </div>
-                <div class="col-md-6">
-                  <div class="card coverage-bg">
-                    <div class="card-body pb-3">
-                      <h5 class="text-white fw-normal">Coverage</h5>
-                    </div>
-                    <div id="coverage"></div>
-                    <div class="card-body pt-2">
-                      <h5 class="fs-6 text-white mb-1">24.3K</h5>
-                      <h6 class="text-white fw-medium mb-0">New Candidates</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card text-bg-secondary">
-                    <div class="card-body">
-                      <h5 class="text-white fw-normal">Pending Tasks</h5>
-                    </div>
-                    <div id="pending-tasks"></div>
-                    <div class="card-body">
-                      <h5 class="fs-6 text-white mb-1">18 Days</h5>
-                      <h6 class="text-white fw-medium mb-0">Time to finish</h6>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card bg-box position-relative text-bg-warning">
+                <div class="card-body text-center">
+                  <h2 class="fw-medium fs-8 text-white">2,064</h2>
+                  <h6 class="text-white mb-0 fw-medium">Sessions</h6>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
-              <div class="card w-100">
-                <div class="card-body">
-                  <div class="d-flex flex-row">
-                    <div>
-                      <img src="assets/panel/images/profile/user-1.jpg" alt="user" class="rounded-circle" width="96" />
-                    </div>
-                    <div class="ps-9">
-                      <h3 class="fs-6">Markarn Doe</h3>
-                      <h6 class="text-muted fw-normal">Designer</h6>
-                      <button class="btn bg-success-subtle text-success">
-                        Follow
-                      </button>
-                    </div>
-                  </div>
-                  <div class="row mt-4 py-3">
-                    <div class="col text-center border-end">
-                      <h2>14</h2>
-                      <h6 class="text-muted fw-medium mb-0">Photos</h6>
-                    </div>
-                    <div class="col text-center border-end">
-                      <h2>54</h2>
-                      <h6 class="text-muted fw-medium mb-0">Videos</h6>
-                    </div>
-                    <div class="col text-center">
-                      <h2>145</h2>
-                      <h6 class="text-muted fw-medium mb-0">Tasks</h6>
-                    </div>
-                  </div>
+              <div class="card">
+                <div class="card-body border-bottom">
+                  <h4 class="card-title">Welcome Markarn</h4>
+                  <p class="card-subtitle">you have 4 new messages</p>
                 </div>
-                <div class="card-body border-top">
-                  <p class="text-center text-muted mb-9 fs-3 h-65" data-simplebar>
-                    Lorem Ipsum is simply dummy text of the printing and type setting industry.
-                    Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing
-                    and type setting industry.
-                  </p>
-                  <ul class="list-unstyled hstack justify-content-center gap-9 mb-0">
-                    <li>
-                      <a class="text-muted link-primary" href="javascript:void(0)">
-                        <i class="ti ti-brand-facebook fs-6"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="text-muted link-primary" href="javascript:void(0)">
-                        <i class="ti ti-brand-twitter fs-6"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="text-muted link-primary" href="javascript:void(0)">
-                        <i class="ti ti-brand-linkedin fs-6"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="text-muted link-primary" href="javascript:void(0)">
-                        <i class="ti ti-brand-youtube fs-6"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="text-muted link-primary" href="javascript:void(0)">
-                        <i class="ti ti-world fs-6"></i>
-                      </a>
-                    </li>
-                  </ul>
+                <div class="message-box">
+                  <div class="message-widget">
+
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="../assets/images/profile/user-3.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Mathew Anderson</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:30
+                            AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-muted">Just see the
+                          my new admin!</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="../assets/images/profile/user-4.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Bianca Anderson</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:10
+                            AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-muted">Just a
+                          reminder that you have
+                          event</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="../assets/images/profile/user-5.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Andrew Johnson</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:08
+                            AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-muted">You can
+                          customize this template as
+                          you want</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="../assets/images/profile/user-6.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Mark Strokes</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:30
+                            AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-muted">Just see the
+                          my new admin!</span>
+                      </div>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center border-bottom gap-3 p-3">
+                      <span class="round-48 user-img position-relative d-block flex-shrink-0">
+                        <img src="../assets/images/profile/user-7.jpg" alt="user" class="rounded-circle w-100" />
+                        <span class="profile-status bg-success position-absolute rounded-circle"></span>
+                      </span>
+                      <div class="w-100 d-inline-block v-middle">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-1 lh-base">Mark, Stoinus & Rishvi..</h6>
+                          <span class="fs-2 text-nowrap d-block text-body-color">9:10
+                            AM</span>
+                        </div>
+                        <span class="fs-2 d-block text-truncate text-muted">Just a
+                          reminder that you have
+                          event</span>
+                      </div>
+                    </a>
+
+
+                  </div>
                 </div>
               </div>
             </div>
@@ -240,551 +153,1135 @@
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body border-bottom">
-                  <h4 class="card-title">Customer Support</h4>
-                  <p class="card-subtitle">24 new support ticket request generate</p>
+              <div class="card w-100">
+                <div class="card-body pb-8">
+                  <h4 class="card-title">Members Activity</h4>
+                  <p class="card-subtitle">
+                    what members preformance status
+                  </p>
                 </div>
-                <div class="card-body">
-                  <div class="chat-box w-100 h-350" data-simplebar>
-                    <!--chat Row -->
-                    <ul class="chat-list m-0 p-0">
-                      <!--chat Row -->
-                      <li class="pb-9 border-bottom">
-                        <div class="chat-img d-inline-block align-top">
-                          <img src="assets/panel/images/profile/user-5.jpg" alt="user" class="rounded-circle" />
-                        </div>
-                        <div class="chat-content ps-6 d-inline-block">
-                          <h6 class="text-muted text-nowrap fw-medium">James Anderson</h6>
-                          <div class="box d-inline-block message fs-3 bg-secondary-subtle">
-                            <h6 class="mb-2 fw-medium">It’s Great opportunity to work. I
-                              would
-                              loveto join the team. 🎉
-                            </h6>
-                            <h6 class="chat-time text-end mb-0 fw-medium d-block w-100">
-                              10:56 am
-                            </h6>
+                <div class="table-responsive">
+                  <table class="table stylish-table mb-0 align-middle text-nowrap">
+                    <thead>
+                      <tr>
+                        <th class="border-bottom fs-3 ps-4">
+                          Member
+                        </th>
+                        <th class="border-bottom fs-3">Earnings</th>
+                        <th class="border-bottom fs-3">Posts</th>
+                        <th class="border-bottom fs-3 pe-4">Team</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="ps-4">
+                          <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="../assets/images/profile/user-6.jpg" alt="user" width="48" />
+                            <div class="ms-6">
+                              <h6 class="mb-1 fw-medium fs-4">Kevin Peter</h6>
+                              <span class="
+                                                badge
+                                                bg-success-subtle
+                                                text-success
+                                                rounded-pill
+                                              ">Designer</span>
+                            </div>
                           </div>
-                        </div>
-                      </li>
-                      <!--chat Row -->
-                      <li class="py-9 border-bottom">
-                        <div class="chat-img d-inline-block align-top">
-                          <img src="assets/panel/images/profile/user-7.jpg" alt="user" class="rounded-circle" />
-                        </div>
-                        <div class="chat-content ps-6 d-inline-block">
-                          <h6 class="text-muted text-nowrap fw-medium">Hritik Roshan</h6>
-                          <div class="box d-inline-block message fs-3 bg-warning-subtle">
-                            <h6 class="mb-2 fw-medium">Sed sed eros quis libero 😆Well we
-                              have
-                              good budget for the project
-                            </h6>
-                            <h6 class="chat-time text-end mb-0 fw-medium d-block w-100">
-                              10:56 am
-                            </h6>
+                        </td>
+                        <td class="text-muted">$325.00</td>
+                        <td class="text-muted">48</td>
+                        <td class="pe-4">
+                          <div class="
+                                            d-flex
+                                            align-items-center
+                                            button-group
+                                          ">
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-success-subtle
+                                              text-success
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center
+                                            ">A</a>
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-danger-subtle
+                                              text-danger
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center ms-n3
+                                            ">T</a>
                           </div>
-                        </div>
-                      </li>
-                      <!--chat Row -->
-                      <li class="py-9 border-bottom text-end">
-                        <div class="chat-content ps-6 d-inline-block">
-                          <div class="box d-inline-block message fs-3 bg-info-subtle">
-                            <h6 class="mb-2 fw-medium">Whats budget of the new project.
-                              Looking forward to hear back</h6>
-                            <h6 class="chat-time text-end mb-0 fw-medium d-block w-100">
-                              10:58 am
-                            </h6>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">
+                          <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="../assets/images/profile/user-5.jpg" alt="user" width="48" />
+                            <div class="ms-6">
+                              <h6 class="mb-1 fw-medium fs-4">John Smith</h6>
+                              <span class="
+                                                badge
+                                                bg-danger-subtle
+                                                text-danger
+                                                rounded-pill
+                                              ">Developer</span>
+                            </div>
                           </div>
-                        </div>
-                      </li>
-                      <!--chat Row -->
-                      <li class="pt-9">
-                        <div class="chat-img d-inline-block align-top">
-                          <img src="assets/panel/images/profile/user-7.jpg" alt="user" class="rounded-circle" />
-                        </div>
-                        <div class="chat-content ps-6 d-inline-block">
-                          <h6 class="text-muted text-nowrap fw-medium">Sonu Nigam</h6>
-                          <div class="box d-inline-block message fs-3 bg-success-subtle">
-                            <h6 class="mb-2 fw-medium">Sed sed eros quis libero Well we have
-                              good budget for the project
-                            </h6>
-                            <h6 class="chat-time text-end m-0 fw-medium d-block w-100">
-                              11:00 am
-                            </h6>
+                        </td>
+                        <td class="text-muted">$225</td>
+                        <td class="text-muted ">48</td>
+                        <td class="pe-4">
+                          <div class="
+                                            d-flex
+                                            align-items-center
+                                            button-group
+                                          ">
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-warning-subtle
+                                              text-warning
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center
+                                            ">S</a>
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-secondary-subtle
+                                              text-secondary
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center ms-n3
+                                            ">V</a>
                           </div>
-                        </div>
-                      </li>
-                      <!--chat Row -->
-                    </ul>
-                  </div>
-                </div>
-                <div class="card-body border-top">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center gap-6 w-85">
-                      <a class="position-relative" href="javascript:void(0)">
-                        <i class="ti ti-paperclip fs-6"></i>
-                      </a>
-                      <input type="text" class="bg-transparent form-control fw-medium text-muted border-0 p-0 shadow-none" placeholder="Write a message">
-                    </div>
-                    <ul class="list-unstyled mb-0 d-flex align-items-center gap-6">
-                      <li>
-                        <a class="fs-6" href="javascript:void(0)">
-                          <i class="ti ti-mood-smile"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="fs-6" href="javascript:void(0)">
-                          <i class="ti ti-microphone"></i>
-                        </a>
-                      </li>
-                    </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">
+                          <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="../assets/images/profile/user-3.jpg" alt="user" width="48" />
+                            <div class="ms-6">
+                              <h6 class="mb-1 fw-medium fs-4">Harry Peter</h6>
+                              <span class="
+                                                badge
+                                                bg-info-subtle
+                                                text-info
+                                                rounded-pill
+                                              ">Manager</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-muted">$185</td>
+                        <td class="text-muted ">48</td>
+                        <td class="pe-4">
+                          <div class="
+                                            d-flex
+                                            align-items-center
+                                            button-group
+                                          ">
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-success-subtle
+                                              text-success
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center
+                                            ">B</a>
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-info-subtle
+                                              text-info
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center ms-n3
+                                            ">M</a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">
+                          <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="../assets/images/profile/user-8.jpg" alt="user" width="48" />
+                            <div class="ms-6">
+                              <h6 class="mb-1 fw-medium fs-4">James Deo</h6>
+                              <span class="
+                                                badge
+                                                bg-secondary-subtle
+                                                text-secondary
+                                                rounded-pill
+                                              ">Designer</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-muted">$125</td>
+                        <td class="text-muted ">48</td>
+                        <td class="pe-4">
+                          <div class="
+                                            d-flex
+                                            align-items-center
+                                            button-group
+                                          ">
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-secondary-subtle
+                                              text-secondary
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center
+                                            ">K</a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">
+                          <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="../assets/images/profile/user-5.jpg" alt="user" width="48" />
+                            <div class="ms-6">
+                              <h6 class="mb-1 fw-medium fs-4">Willium Deo</h6>
+                              <span class="
+                                                badge
+                                                bg-danger-subtle
+                                                text-danger
+                                                rounded-pill
+                                              ">UX/UI Designer</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-muted">$225</td>
+                        <td class="text-muted ">48</td>
+                        <td class="pe-4">
+                          <div class="
+                                            d-flex
+                                            align-items-center
+                                            button-group
+                                          ">
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-danger-subtle
+                                              text-danger
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center
+                                            ">L</a>
+                            <a href="javascript:void(0)" class="
+                                              btn round-32 rounded-circle btn-sm bg-info-subtle
+                                              text-info
+                                              d-flex
+                                              align-items-center
+                                              justify-content-center ms-n3
+                                            ">J</a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="text-center py-6">
+                    <button class="btn btn-success fs-3 py-2">Show More</button>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="card">
+              <div class="card w-100">
                 <div class="card-body">
-                  <div class="d-flex align-items-center mb-7">
-                    <h4 class="card-title mb-0">To Do list</h4>
-                    <div class="ms-auto">
-                      <button class="btn btn-rounded btn-success hstack gap-1" data-bs-toggle="modal" data-bs-target="#myModal">
-                        <i class="ti ti-plus fs-6"></i>
-                        Add Task
-                      </button>
+                  <h4 class="card-title">Customer Support</h4>
+                  <p class="card-subtitle mb-7">
+                    24 new support ticket request generate
+                  </p>
+                  <div class="comment-widgets position-relative mb-2 h-485" data-simplebar>
+                    <!-- Comment Row -->
+                    <div class="d-flex gap-9 comment-row mb-5">
+                      <span class="flex-shrink-0">
+                        <img src="../assets/images/profile/user-5.jpg" alt="user" width="56" height="56" class="rounded-circle" />
+                      </span>
+                      <div class="comment-text">
+                        <div class="hstack justify-content-between gap-6 mb-6">
+                          <div class="hstack gap-6">
+                            <h5 class="mb-0">Michael Jorden</h5>
+                            <p class="mb-0 fs-3 text-muted">April 14, 2024</p>
+                          </div>
+                          <span class="badge bg-success-subtle text-success rounded-pill">Approved</span>
+                        </div>
+                        <p class="comment-details mb-6">
+                          Lorem Ipsum is simply dummy text of the printing and type setting
+                          industry.
+                          Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing
+                          and type setting industry.
+                        </p>
+                        <ul class="list-unstyled mb-0 hstack gap-3 lh-1">
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:gallery-edit-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:check-square-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-danger" href="javascript:void(0)">
+                              <iconify-icon icon="solar:heart-angle-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- Comment Row -->
+                    <div class="d-flex gap-9 comment-row mb-5">
+                      <span class="flex-shrink-0">
+                        <img src="../assets/images/profile/user-3.jpg" alt="user" width="56" height="56" class="rounded-circle" />
+                      </span>
+                      <div class="comment-text">
+                        <div class="hstack justify-content-between gap-6 mb-6">
+                          <div class="hstack gap-6">
+                            <h5 class="mb-0">Johnathan Doeting</h5>
+                            <p class="mb-0 fs-3 text-muted">April 14, 2024</p>
+                          </div>
+                          <span class="badge bg-danger-subtle text-danger rounded-pill">Rejected</span>
+                        </div>
+                        <p class="comment-details mb-6">
+                          Lorem Ipsum is simply dummy text of the printing and type setting
+                          industry.
+                          Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing
+                          and type setting industry.
+                        </p>
+                        <ul class="list-unstyled mb-0 hstack gap-3 lh-1">
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:gallery-edit-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:check-square-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-danger" href="javascript:void(0)">
+                              <iconify-icon icon="solar:heart-angle-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- Comment Row -->
+                    <div class="d-flex gap-9 comment-row mb-5">
+                      <span class="flex-shrink-0">
+                        <img src="../assets/images/profile/user-7.jpg" alt="user" width="56" height="56" class="rounded-circle" />
+                      </span>
+                      <div class="comment-text">
+                        <div class="hstack justify-content-between gap-6 mb-6">
+                          <div class="hstack gap-6">
+                            <h5 class="mb-0">James Anderson</h5>
+                            <p class="mb-0 fs-3 text-muted">April 14, 2024</p>
+                          </div>
+                          <span class="badge bg-info-subtle text-info rounded-pill">Pending</span>
+                        </div>
+                        <p class="comment-details mb-6">
+                          Lorem Ipsum is simply dummy text of the printing and type setting
+                          industry.
+                          Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing
+                          and type setting industry.
+                        </p>
+                        <ul class="list-unstyled mb-0 hstack gap-3 lh-1">
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:gallery-edit-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:check-square-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-danger" href="javascript:void(0)">
+                              <iconify-icon icon="solar:heart-angle-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- Comment Row -->
+                    <div class="d-flex gap-9 comment-row mb-5">
+                      <span class="flex-shrink-0">
+                        <img src="../assets/images/profile/user-8.jpg" alt="user" width="56" height="56" class="rounded-circle" />
+                      </span>
+                      <div class="comment-text">
+                        <div class="hstack justify-content-between gap-6 mb-6">
+                          <div class="hstack gap-6">
+                            <h5 class="mb-0">Daniel Kristeen</h5>
+                            <p class="mb-0 fs-3 text-muted">April 14, 2024</p>
+                          </div>
+                          <span class="badge bg-success-subtle text-success rounded-pill">Approved</span>
+                        </div>
+                        <p class="comment-details mb-6">
+                          Lorem Ipsum is simply dummy text of the printing and type setting
+                          industry.
+                          Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing
+                          and type setting industry.
+                        </p>
+                        <ul class="list-unstyled mb-0 hstack gap-3 lh-1">
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:gallery-edit-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-primary" href="javascript:void(0)">
+                              <iconify-icon icon="solar:check-square-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="fs-6 text-muted link-danger" href="javascript:void(0)">
+                              <iconify-icon icon="solar:heart-angle-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <!-- .modal for add task -->
-                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header d-flex align-items-center">
-                          <h4 class="modal-title">Add Task</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card w-100">
+                <div class="card-body">
+                  <h4 class="card-title">Today's Schedule</h4>
+                  <p class="card-subtitle">
+                    check out your daily schedule
+                  </p>
+                  <div class="steamline mt-4">
+                    <div class="sl-item pt-0">
+                      <div class="sl-left">
+                        <img class="rounded-circle" alt="user" src="../assets/images/profile/user-3.jpg" />
+                      </div>
+                      <div class="sl-right">
+                        <div class="hstack gap-2 mb-2">
+                          <h6 class="mb-0">Daniel Kristeen</h6>
+                          <span class="sl-date fs-3">5 minutes ago</span>
                         </div>
-                        <div class="modal-body">
-                          <form>
-                            <div class="mb-3">
-                              <label class="form-label">Name</label>
-                              <input type="text" class="form-control" placeholder="Enter Your Name" />
-                            </div>
-                            <div class="mb-3">
-                              <label class="form-label">Email address</label>
-                              <input type="email" class="form-control" placeholder="Enter email" />
-                            </div>
-                          </form>
+                        <div class="desc text-muted fs-3">Contrary to popular belief</div>
+                      </div>
+                    </div>
+                    <div class="sl-item">
+                      <div class="sl-left hstack justify-content-center">
+                        <img class="rounded-circle" alt="user" src="../assets/images/profile/user-5.jpg">
+                      </div>
+                      <div class="sl-right">
+                        <div class="hstack gap-2 mb-2">
+                          <h6 class="mb-0">Hritik Roshan</h6>
+                          <span class="sl-date fs-3">5 minutes ago</span>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn bg-danger-subtle text-danger" data-bs-dismiss="modal">
-                            Close
-                          </button>
-                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                            Submit
-                          </button>
+                        <div class="desc text-muted fs-3 mb-2">Lorem Ipsum is simply</div>
+                        <ul class="list-unstyled hstack gap-6 mb-0">
+                          <li class="rounded overflow-hidden">
+                            <img class="img-fluid" alt="blog" src="../assets/images/blog/blog-img1.jpg" />
+                          </li>
+                          <li class="rounded overflow-hidden">
+                            <img class="img-fluid" alt="blog" src="../assets/images/blog/blog-img2.jpg" />
+                          </li>
+                          <li class="rounded overflow-hidden">
+                            <img class="img-fluid" alt="blog" src="../assets/images/blog/blog-img3.jpg" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="sl-item">
+                      <div class="sl-left hstack justify-content-center">
+                        <img class="rounded-circle" alt="user" src="../assets/images/profile/user-6.jpg">
+                      </div>
+                      <div class="sl-right">
+                        <div class="hstack gap-2 mb-2">
+                          <h6 class="mb-0">Gohn Doe</h6>
+                          <span class="sl-date fs-3">5 minutes ago</span>
+                        </div>
+                        <div class="desc text-muted fs-3">Contrary to popular belief</div>
+                      </div>
+                    </div>
+                    <div class="sl-item">
+                      <div class="sl-left">
+                        <img class="rounded-circle" alt="user" src="../assets/images/profile/user-7.jpg" />
+                      </div>
+                      <div class="sl-right">
+                        <div class="hstack gap-2 mb-2">
+                          <h6 class="mb-0">Tiger Sroff</h6>
+                          <span class="sl-date fs-3">5 minutes ago</span>
+                        </div>
+                        <div class="desc text-muted fs-3 mb-2">Approve meeting with tiger</div>
+                        <div class="hstack gap-6">
+                          <a href="javascript:void(0)" class="btn bg-success-subtle text-success btn-sm">Approve</a>
+                          <a href="javascript:void(0)" class="btn bg-danger-subtle text-danger btn-sm">Refuse</a>
                         </div>
                       </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                  <!-- /.modal -->
-                  <!-- ============================================================== -->
-                  <!-- To do list widgets -->
-                  <!-- ============================================================== -->
-                  <div class="to-do-widget mt-3 h-460" data-simplebar>
-                    <ul class="list-task todo-list mb-0" data-role="tasklist">
-                      <li class="border-0 p-0 mb-4" data-role="task">
-                        <div class="form-check border-start border-2 border-info ps-9">
-                          <input type="checkbox" class="form-check-input ms-0" id="inputSchedule" name="inputCheckboxesSchedule" />
-                          <label for="inputSchedule" class="form-check-label ps-3 gap-3 hstack">
-                            <h5 class="mb-0 fw-medium">Schedule meeting with</h5>
-                          </label>
-                        </div>
-                        <ul class="assignedto list-inline m-0 ps-5 ms-2 mt-1">
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-3.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Steave" />
-                          </li>
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-4.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Jessica" />
-                          </li>
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-6.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Priyanka" />
-                          </li>
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-2.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Selina" />
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="border-0 p-0 mb-4" data-role="task">
-                        <div class="form-check border-start border-2 border-danger ps-9 d-flex">
-                          <input type="checkbox" class="form-check-input ms-0" id="inputCall" name="inputCheckboxesCall" />
-                          <label for="inputCall" class="form-check-label ps-3 gap-3 hstack">
-                            <h5 class="mb-0 fw-medium opacity-50 text-decoration-line-through">
-                              Give Purchase report to
-                            </h5>
-                            <span class="badge bg-danger-subtle text-danger rounded-pill">Today</span>
-                          </label>
-                        </div>
-                        <ul class="assignedto list-inline m-0 ps-5 ms-2 mt-1 opacity-50">
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-8.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Priyanka" />
-                          </li>
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-7.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Selina" />
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="border-0 p-0 mb-4" data-role="task">
-                        <div class="form-check border-start border-2 border-secondary ps-9">
-                          <input type="checkbox" class="form-check-input ms-0" id="inputBook" name="inputCheckboxesBook" />
-                          <label for="inputBook" class="form-check-label ps-3 gap-3 hstack">
-                            <h5 class="mb-0 fw-medium opacity-50 text-decoration-line-through">
-                              Book flight for holiday
-                            </h5>
-                          </label>
-                        </div>
-                        <div class="item-date fs-2 ps-5 ms-2 mt-1 opacity-50 text-muted d-inline-block">
-                          26 jun 2023
-                        </div>
-                      </li>
-                      <li class="border-0 p-0 mb-4" data-role="task">
-                        <div class="form-check border-start border-2 border-warning ps-9">
-                          <input type="checkbox" class="form-check-input ms-0" id="inputForward" name="inputCheckboxesForward" />
-                          <label for="inputForward" class="form-check-label ps-3 gap-3 hstack">
-                            <h5 class="mb-0 fw-medium">Forward all tasks</h5>
-                            <span class="badge bg-warning-subtle text-warning rounded-pill">2
-                              weeks</span>
-                          </label>
-                        </div>
-                        <div class="item-date fs-2 ps-5 ms-2 mt-1 text-muted d-inline-block">
-                          26 jun 2023
-                        </div>
-                      </li>
-                      <li class="border-0 p-0 mb-4" data-role="task">
-                        <div class="form-check border-start border-2 border-secondary ps-9">
-                          <input type="checkbox" class="form-check-input ms-0" id="inputRecieve" name="inputCheckboxesRecieve" />
-                          <label for="inputRecieve" class="form-check-label ps-3 gap-3 hstack">
-                            <h5 class="mb-0 fw-medium">Recieve shipment</h5>
-                          </label>
-                        </div>
-                        <div class="item-date fs-2 ps-5 ms-2 mt-1 text-muted d-inline-block">
-                          26 jun 2023
-                        </div>
-                      </li>
-                      <li class="border-0 p-0 mb-4" data-role="task">
-                        <div class="form-check border-start border-2 border-success ps-9">
-                          <input type="checkbox" class="form-check-input ms-0" id="inputForward2" name="inputCheckboxesd" />
-                          <label for="inputForward2" class="form-check-label ps-3 gap-3 hstack">
-                            <h5 class="mb-0 fw-medium">Send payment today</h5>
-                            <span class="badge bg-success-subtle text-success rounded-pill">3
-                              weeks</span>
-                          </label>
-                        </div>
-                        <ul class="assignedto list-inline m-0 ps-5 ms-2 mt-1">
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-3.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Assign to Steave" />
-                          </li>
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-6.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Assign to Jessica" />
-                          </li>
-                          <li class="list-inline-item">
-                            <img class="rounded-circle" src="assets/panel/images/profile/user-7.jpg" alt="user" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-original-title="Assign to Selina" />
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="border-0 p-0 mb-4" data-role="task">
-                        <div class="form-check border-start border-2 border-primary ps-9">
-                          <input type="checkbox" class="form-check-input ms-0" id="inputRecieve2" name="inputCheckboxesRecieve" />
-                          <label for="inputRecieve2" class="form-check-label ps-3 gap-3 hstack">
-                            <h5 class="mb-0 fw-medium">Recieve shipment</h5>
-                          </label>
-                        </div>
-                        <div class="item-date fs-2 ps-5 ms-2 mt-1 text-muted d-inline-block">
-                          26 jun 2023
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4">
-              <div class="card">
-                <a href="javascript:void(0)">
-                  <img class="card-img-top img-responsive" src="assets/panel/images/blog/blog-img1.jpg" alt="Card" />
-                </a>
-                <div class="card-body">
-                  <div class="hstack mb-6">
-                    <span class="fs-3 fw-normal">20 May 2024</span>
-                    <div class="ms-auto">
-                      <a href="javascript:void(0)" class="link hstack gap-1 lh-1 fw-light link-primary fs-3 fw-normal text-muted">
-                        <i class="ti ti-message-circle-2 fs-5"></i>3 Comments
-                      </a>
                     </div>
                   </div>
-                  <h4 class="mb-0">
-                    Featured Hydroflora Pots Garden & Outdoors
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card">
-                <a href="javascript:void(0)">
-                  <img class="card-img-top img-responsive" src="assets/panel/images/blog/blog-img2.jpg" alt="Card" />
-                </a>
-                <div class="card-body">
-                  <div class="hstack mb-6">
-                    <span class="fs-3 fw-normal">20 May 2024</span>
-                    <div class="ms-auto">
-                      <a href="javascript:void(0)" class="link hstack gap-1 lh-1 fw-light link-primary fs-3 fw-normal text-muted">
-                        <i class="ti ti-message-circle-2 fs-5"></i>3 Comments
-                      </a>
-                    </div>
-                  </div>
-                  <h4 class="mb-0">
-                    Featured Hydroflora Pots Garden & Outdoors
-                  </h4>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card">
-                <a href="javascript:void(0)">
-                  <img class="card-img-top img-responsive" src="assets/panel/images/blog/blog-img3.jpg" alt="Card" />
-                </a>
-                <div class="card-body">
-                  <div class="hstack mb-6">
-                    <span class="fs-3 fw-normal">20 May 2024</span>
-                    <div class="ms-auto">
-                      <a href="javascript:void(0)" class="link hstack gap-1 lh-1 fw-light link-primary fs-3 fw-normal text-muted">
-                        <i class="ti ti-message-circle-2 fs-5"></i>3 Comments
-                      </a>
-                    </div>
-                  </div>
-                  <h4 class="mb-0">
-                    Featured Hydroflora Pots Garden & Outdoors
-                  </h4>
                 </div>
               </div>
             </div>
             <div class="col-lg-8">
-              <div class="card w-100 overflow-hidden">
-                <div class="card-body pb-8">
-                  <div class="d-md-flex no-block align-items-center">
-                    <h4 class="card-title mb-0">Projects of the Month</h4>
+              <div class="card w-100">
+                <div class="card-body">
+                  <div class="d-md-flex no-block">
+                    <div>
+                      <h4 class="card-title">Sales Overview</h4>
+                      <p class="card-subtitle">Check the monthly sales</p>
+                    </div>
                     <div class="ms-auto">
                       <select class="form-select">
-                        <option selected>November</option>
+                        <option selected="">November</option>
                         <option value="1">February</option>
-                        <option value="2">March</option>
+                        <option value="2">May</option>
                         <option value="3">April</option>
                       </select>
                     </div>
                   </div>
                 </div>
-                <div class="table-responsive">
-                  <table class="table stylish-table align-middle text-nowrap">
-                    <thead>
-                      <tr>
-                        <th class="border-bottom fs-3 ps-4">
-                          Assigned
-                        </th>
-                        <th class="border-bottom fs-3">
-                          Name
-                        </th>
-                        <th class="border-bottom fs-3">
-                          Posts
-                        </th>
-                        <th class="border-bottom fs-3 pe-4">
-                          Budget
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="hstack gap-3">
-                            <span class="round-48 rounded-circle overflow-hidden bg-danger-subtle flex-shrink-0 hstack justify-content-center">
-                              <h6 class="mb-0 fw-medium text-danger fs-4">S</h6>
-                            </span>
-                            <div>
-                              <h6 class="mb-0 fw-medium fs-4">Sunil Joshi</h6>
-                              <p class="mb-0 fs-3 text-body">Web Designer</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">Elite Admin</p>
-                        </td>
-                        <td>
-                          <span class="badge bg-danger-subtle text-danger rounded-pill">Low</span>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">$2.4K</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="hstack gap-3">
-                            <span class="round-48 rounded-circle overflow-hidden bg-warning-subtle flex-shrink-0 hstack justify-content-center">
-                              <h6 class="mb-0 fw-medium text-warning fs-4">A</h6>
-                            </span>
-                            <div>
-                              <h6 class="mb-0 fw-medium fs-4">Andrew</h6>
-                              <p class="mb-0 fs-3 text-body">Project Manager</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">Real Homes</p>
-                        </td>
-                        <td>
-                          <span class="badge bg-warning-subtle text-warning rounded-pill">Medium</span>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">$23.5K</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="hstack gap-3">
-                            <span class="round-48 rounded-circle overflow-hidden bg-info-subtle flex-shrink-0 hstack justify-content-center">
-                              <h6 class="mb-0 fw-medium text-info fs-4">N</h6>
-                            </span>
-                            <div>
-                              <h6 class="mb-0 fw-medium fs-4">Nirav Joshi</h6>
-                              <p class="mb-0 fs-3 text-body">Frontend Eng</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">MedicalPro Theme</p>
-                        </td>
-                        <td>
-                          <span class="badge bg-success-subtle text-success rounded-pill">High</span>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">$10.3K</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="hstack gap-3">
-                            <span class="round-48 rounded-circle overflow-hidden bg-danger-subtle flex-shrink-0 hstack justify-content-center">
-                              <img src="assets/panel/images/profile/user-7.jpg" alt="" class="img-fluid">
-                            </span>
-                            <div>
-                              <h6 class="mb-0 fw-medium fs-4">Johnathan</h6>
-                              <p class="mb-0 fs-3 text-body">Content Writter</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">Helping Hands</p>
-                        </td>
-                        <td>
-                          <span class="badge bg-danger-subtle text-danger rounded-pill">Low</span>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">$2.6K</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="hstack gap-3">
-                            <span class="round-48 rounded-circle overflow-hidden bg-secondary-subtle flex-shrink-0 hstack justify-content-center">
-                              <h6 class="mb-0 fw-medium text-secondary fs-4">M</h6>
-                            </span>
-                            <div>
-                              <h6 class="mb-0 fw-medium fs-4">Michael Doe</h6>
-                              <p class="mb-0 fs-3 text-body">Graphic Designer</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">Digital Agency</p>
-                        </td>
-                        <td>
-                          <span class="badge bg-secondary-subtle text-secondary rounded-pill">Very
-                            High</span>
-                        </td>
-                        <td>
-                          <p class="mb-0 fs-3 text-body">$12.4K</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="card-body bg-primary-subtle">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h3 class="mb-1 fw-medium">March 2024</h3>
+                      <p class="text-muted mb-0">
+                        Report for this month
+                      </p>
+                    </div>
+                    <div class="
+                                      col-md-6
+                                      align-self-center
+                                      fs-8
+                                      fw-medium
+                                      text-info text-start text-md-end
+                                    ">
+                      $3,690
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body pt-8">
+                  <div class="table-responsive">
+                    <table class="table mb-0 align-middle text-nowrap">
+                      <thead>
+                        <tr>
+                          <th class="fs-3 ps-0">#</th>
+                          <th class="fs-3">Name</th>
+                          <th class="fs-3">Status</th>
+                          <th class="fs-3">Date</th>
+                          <th class="fs-3 pe-0">Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="ps-0 fs-3 text-muted">1</td>
+                          <td class="text-muted fs-3">Elite admin</td>
+                          <td>
+                            <span class="badge bg-success-subtle text-success rounded-pill">Sale</span>
+                          </td>
+                          <td class="text-muted fs-3">August 17, 2024</td>
+                          <td class="pe-0">
+                            <span class="text-success fw-medium fs-3">
+                              $24</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="ps-0 fs-3 text-muted">2</td>
+                          <td class="text-muted fs-3">Real Homes Theme</td>
+                          <td>
+                            <span class="badge bg-info-subtle text-info rounded-pill">Extended</span>
+                          </td>
+                          <td class="text-muted fs-3">February 25, 2024</td>
+                          <td class="pe-0">
+                            <span class="text-info fw-medium fs-3">
+                              $1250</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="ps-0 fs-3 text-muted">3</td>
+                          <td class="text-muted fs-3">Ample Admin</td>
+                          <td>
+                            <span class="badge bg-info-subtle text-info rounded-pill">Extended</span>
+                          </td>
+                          <td class="text-muted fs-3">June 11, 2024</td>
+                          <td class="pe-0">
+                            <span class="text-info fw-medium fs-3">
+                              $750</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="ps-0 fs-3 text-muted">4</td>
+                          <td class="text-muted fs-3">Medical Pro WP</td>
+                          <td>
+                            <span class="badge bg-danger-subtle text-danger rounded-pill">Tax</span>
+                          </td>
+                          <td class="text-muted fs-3">April 1, 2024</td>
+                          <td class="pe-0">
+                            <span class="text-danger fw-medium fs-3">
+                              -$14</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="ps-0 fs-3 text-muted">5</td>
+                          <td class="text-muted fs-3">HostingPress html</td>
+                          <td>
+                            <span class="badge bg-warning-subtle text-warning rounded-pill">Sale</span>
+                          </td>
+                          <td class="text-muted fs-3">July 22, 2024</td>
+                          <td class="pe-0">
+                            <span class="text-warning fw-medium fs-3">
+                              $24</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="card widget-weather-report w-100">
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
                 <div class="card-body">
-                  <div class="d-md-flex align-items-center no-block mb-4">
-                    <h4 class="card-title mb-0 text-white">Weather Report</h4>
+                  <div class="d-flex align-items-start">
+                    <div class="
+                                      bg-warning-subtle
+                                      text-warning
+                                      hstack justify-content-center
+                                      px-4
+                                      py-3
+                                      rounded
+                                      round-120
+                                    ">
+                      <i class="fab fa-google-drive fs-10"></i>
+                    </div>
                     <div class="ms-auto">
-                      <div class="dropdown">
-                        <button class="btn border-white border-opacity-10 text-white shadow-none dropdown-toggle fs-3 py-2 px-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Today
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end fs-3">
+                      <div class="dropdown dropstart">
+                        <a href="javascript:void(0)" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="ti ti-dots fs-5 text-muted"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Today</a>
+                            <h6 class="dropdown-header">New</h6>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Weekly</a>
+                            <a class="dropdown-item" href="javascript:void(0)">Folder</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Google
+                              Docs</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Google
+                              Sheets</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Google
+                              Slides</a>
                           </li>
                         </ul>
                       </div>
                     </div>
                   </div>
-                  <div class="hstack justify-content-between align-items-end pb-4 border-white border-bottom border-opacity-10">
-                    <div>
-                      <i class="ti ti-cloud-rain fs-10 mb-2 text-white d-block"></i>
-                      <h2 class="mb-0 text-white fs-10 fw-light">18° C</h2>
+                  <div class="mt-4 pt-6">
+                    <h4 class="card-title mb-0">Google Drive</h4>
+                    <div class="progress bg-warning-subtle my-6 h-4">
+                      <div class="progress-bar w-70 text-bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="mb-0 fs-6 text-white fw-normal text-end">Dramatic</br> Cloudy</h4>
-                  </div>
-                  <div class="my-3">
-                    <h5 class="mb-3 text-white fw-medium">Chance of rain</h5>
-                    <div class="hstack gap-6 mb-3">
-                      <h6 class="mb-0 text-white flex-shrink-0 fw-normal">7 PM</h6>
-                      <div class="progress bg-white bg-opacity-05 w-100 rounded-3" style="height: 16px;">
-                        <div class="progress-bar bg-info rounded-3" role="progressbar" style="width: 44%" aria-valuenow="44" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="d-flex align-items-center fs-3">
+                      <span>13.1Gb</span>
+                      <div class="ms-auto">
+                        <span>15Gb</span>
                       </div>
-                      <h6 class="mb-0 text-white flex-shrink-0 fw-normal">44%</h6>
                     </div>
-                    <div class="hstack gap-6 mb-3">
-                      <h6 class="mb-0 text-white flex-shrink-0 fw-normal">8 PM</h6>
-                      <div class="progress bg-white bg-opacity-05 w-100 rounded-3" style="height: 16px;">
-                        <div class="progress-bar bg-info rounded-3" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <h6 class="mb-0 text-white flex-shrink-0 fw-normal">30%</h6>
-                    </div>
-                    <div class="hstack gap-6">
-                      <h6 class="mb-0 text-white flex-shrink-0 fw-normal">9 PM</h6>
-                      <div class="progress bg-white bg-opacity-05 w-100 rounded-3" style="height: 16px;">
-                        <div class="progress-bar bg-info rounded-3" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <h6 class="mb-0 text-white flex-shrink-0 fw-normal">67%</h6>
-                    </div>
-                  </div>
-                  <div class="sunrise-bg rounded-1 p-3 hstack justify-content-between gap-9 mt-4">
-                    <i class="ti ti-sun-high text-white fs-10"></i>
-                    <div>
-                      <h5 class="text-white mb-8 fw-normal">Sunrise</h5>
-                      <h2 class="mb-0 text-white fw-medium">4:20 AM</h2>
-                    </div>
-                    <h6 class="mb-0 text-white fw-normal">4 hours ago</h6>
                   </div>
                 </div>
               </div>
             </div>
-
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-start">
+                    <div class="
+                                      bg-info-subtle
+                                      text-info
+                                      hstack justify-content-center
+                                      px-4
+                                      py-3
+                                      rounded
+                                      round-120
+                                    ">
+                      <i class="fab fa-dropbox fs-10"></i>
+                    </div>
+                    <div class="ms-auto">
+                      <div class="dropdown dropstart">
+                        <a href="javascript:void(0)" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="ti ti-dots fs-5 text-muted"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Upload
+                              Files</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Upload
+                              Folder</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">New
+                              Folder</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">New Shared
+                              Folder</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-4 pt-6">
+                    <h4 class="card-title mb-0">Dropbox</h4>
+                    <div class="progress bg-info-subtle my-6 h-4">
+                      <div class="progress-bar w-40 text-bg-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex align-items-center fs-3">
+                      <span>7.5Gb</span>
+                      <div class="ms-auto">
+                        <span>15Gb</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-start">
+                    <div class="
+                                      bg-secondary-subtle
+                                      text-secondary
+                                      hstack justify-content-center
+                                      px-4
+                                      py-3
+                                      rounded
+                                      round-120
+                                    ">
+                      <i class="fab fa-soundcloud fs-10"></i>
+                    </div>
+                    <div class="ms-auto">
+                      <div class="dropdown dropstart">
+                        <a href="javascript:void(0)" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="ti ti-dots fs-5 text-muted"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Upload
+                              Files</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Upload
+                              Folder</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">New
+                              Folder</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">New Shared
+                              Folder</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-4 pt-6">
+                    <h4 class="card-title mb-0">One Drive</h4>
+                    <div class="progress bg-secondary-subtle my-6 h-4">
+                      <div class="progress-bar w-20 text-bg-secondary" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex align-items-center fs-3">
+                      <span>2Gb</span>
+                      <div class="ms-auto">
+                        <span>15Gb</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-start">
+                    <div class="
+                                      bg-danger-subtle
+                                      text-danger
+                                      hstack justify-content-center
+                                      px-4
+                                      py-3
+                                      rounded
+                                      round-120
+                                    ">
+                      <i class="fab fa-amazon fs-10"></i>
+                    </div>
+                    <div class="ms-auto">
+                      <div class="dropdown dropstart">
+                        <a href="javascript:void(0)" class="link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="ti ti-dots fs-5 text-muted"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Upload
+                              Files</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">Upload
+                              Folder</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">New
+                              Folder</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="javascript:void(0)">New Shared
+                              Folder</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-4 pt-6">
+                    <h4 class="card-title mb-0">Amazon</h4>
+                    <div class="progress bg-danger-subtle my-6 h-4">
+                      <div class="progress-bar w-70 text-bg-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex align-items-center fs-3">
+                      <span>4Gb</span>
+                      <div class="ms-auto">
+                        <span>15Gb</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card earning-widget w-100">
+                <div class="card-body">
+                  <div class="d-md-flex align-items-center no-block mb-4">
+                    <div>
+                      <h2 class="mb-0 fs-8 fw-normal d-flex align-items-start gap-1">
+                        <span class="text-muted fs-5 lh-base">$</span>586,00
+                      </h2>
+                      <p class="mb-0 fs-3">Total earnings by users</p>
+                    </div>
+                    <div class="ms-auto">
+                      <select class="form-select">
+                        <option selected="">November</option>
+                        <option value="1">February</option>
+                        <option value="2">May</option>
+                        <option value="3">April</option>
+                      </select>
+                    </div>
+                  </div>
+                  <ul class="list-unstyled mb-0">
+                    <li class="hstack justify-content-between mb-9">
+                      <div class="hstack gap-6">
+                        <img src="../assets/images/profile/user-3.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="" width="56" height="56">
+                        <h5 class="mb-0 fw-medium">Andrew Simon</h5>
+                      </div>
+                      <span class="badge bg-info-subtle text-info rounded-pill">$2300</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-9">
+                      <div class="hstack gap-6">
+                        <img src="../assets/images/profile/user-5.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="" width="56" height="56">
+                        <h5 class="mb-0 fw-medium">Daniel Kristeen</h5>
+                      </div>
+                      <span class="badge bg-success-subtle text-success rounded-pill">$3300</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-9">
+                      <div class="hstack gap-6">
+                        <img src="../assets/images/profile/user-6.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="" width="56" height="56">
+                        <h5 class="mb-0 fw-medium">Dany John</h5>
+                      </div>
+                      <span class="badge bg-secondary-subtle text-secondary rounded-pill">$4300</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-9">
+                      <div class="hstack gap-6">
+                        <img src="../assets/images/profile/user-7.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="" width="56" height="56">
+                        <h5 class="mb-0 fw-medium">Chris Gyle</h5>
+                      </div>
+                      <span class="badge bg-warning-subtle text-warning rounded-pill">$5300</span>
+                    </li>
+                    <li class="hstack justify-content-between mb-9">
+                      <div class="hstack gap-6">
+                        <img src="../assets/images/profile/user-8.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="" width="56" height="56">
+                        <h5 class="mb-0 fw-medium">John Deo</h5>
+                      </div>
+                      <span class="badge bg-danger-subtle text-danger rounded-pill">$4567</span>
+                    </li>
+                    <li class="hstack justify-content-between">
+                      <div class="hstack gap-6">
+                        <img src="../assets/images/profile/user-10.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="" width="56" height="56">
+                        <h5 class="mb-0 fw-medium">Bianca Anderson</h5>
+                      </div>
+                      <span class="badge bg-info-subtle text-info rounded-pill">$7889</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card w-100">
+                <div class="card-body">
+                  <h4 class="card-title mb-4">Feeds</h4>
+                  <ul class="feeds list-unstyled">
+                    <div class="feed-item mb-9">
+                      <div class="
+                                        border-start border-2 border-info
+                                        d-md-flex
+                                        align-items-center
+                                      ">
+                        <div class="d-flex align-items-center">
+                          <a href="javascript:void(0)" class="
+                                            ms-9
+                                            btn bg-info-subtle
+                                            text-info
+                                            round-48
+                                            rounded-circle
+                                            fs-5
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            flex-shrink-0
+                                          ">
+                            <i class="ti ti-bell fs-6"></i>
+                          </a>
+                          <div class="ms-3 text-truncate">
+                            <h5 class="fw-medium mb-0">You have 4 pending tasks.</h5>
+                          </div>
+                        </div>
+                        <div class="
+                                          justify-content-end
+                                          text-truncate
+                                          ms-5 ms-md-auto
+                                          ps-4 ps-md-0
+                                        ">
+                          <span class="fs-2 text-muted">Just Now</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="feed-item mb-9">
+                      <div class="
+                                        border-start border-2 border-success
+                                        d-md-flex
+                                        align-items-center
+                                      ">
+                        <div class="d-flex align-items-center">
+                          <a href="javascript:void(0)" class="
+                                            ms-9
+                                            btn bg-success-subtle
+                                            text-success
+                                            round-48
+                                            rounded-circle
+                                            fs-5
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            flex-shrink-0
+                                          ">
+                            <i class="ti ti-server-2 fs-6"></i>
+                          </a>
+                          <div class="ms-3 text-truncate">
+                            <h5 class="fw-medium mb-0">Server #1 overloaded</h5>
+                          </div>
+                        </div>
+                        <div class="
+                                          justify-content-end
+                                          text-truncate
+                                          ms-5 ms-md-auto
+                                          ps-4 ps-md-0
+                                        ">
+                          <span class="fs-2 text-muted">2 Hours ago</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="feed-item mb-9">
+                      <div class="
+                                        border-start border-2 border-danger
+                                        d-md-flex
+                                        align-items-center
+                                      ">
+                        <div class="d-flex align-items-center">
+                          <a href="javascript:void(0)" class="
+                                            ms-9
+                                            btn bg-danger-subtle
+                                            text-danger
+                                            round-48
+                                            rounded-circle
+                                            fs-5
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            flex-shrink-0
+                                          ">
+                            <i class="ti ti-shopping-cart fs-6"></i>
+                          </a>
+                          <div class="ms-3 text-truncate">
+                            <h5 class="fw-medium mb-0">New order received.</h5>
+                          </div>
+                        </div>
+                        <div class="
+                                          justify-content-end
+                                          text-truncate
+                                          ms-5 ms-md-auto
+                                          ps-4 ps-md-0
+                                        ">
+                          <span class="fs-2 text-muted">31 May</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="feed-item mb-9">
+                      <div class="
+                                        border-start border-2 border-secondary
+                                        d-md-flex
+                                        align-items-center
+                                      ">
+                        <div class="d-flex align-items-center">
+                          <a href="javascript:void(0)" class="
+                                            ms-9
+                                            btn bg-secondary-subtle
+                                            text-secondary
+                                            round-48
+                                            rounded-circle
+                                            fs-5
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            flex-shrink-0
+                                          ">
+                            <i class="ti ti-users fs-6"></i>
+                          </a>
+                          <div class="ms-3 text-truncate">
+                            <h5 class="fw-medium mb-0">New user registered.</h5>
+                          </div>
+                        </div>
+                        <div class="
+                                          justify-content-end
+                                          text-truncate
+                                          ms-5 ms-md-auto
+                                          ps-4 ps-md-0
+                                        ">
+                          <span class="fs-2 text-muted">30 May</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="feed-item mb-9">
+                      <div class="
+                                        border-start border-2 border-success
+                                        d-md-flex
+                                        align-items-center
+                                      ">
+                        <div class="d-flex align-items-center">
+                          <a href="javascript:void(0)" class="
+                                            ms-9
+                                            btn bg-success-subtle
+                                            text-success
+                                            round-48
+                                            rounded-circle
+                                            fs-5
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            flex-shrink-0
+                                          ">
+                            <i class="ti ti-users fs-6"></i>
+                          </a>
+                          <div class="ms-3 text-truncate">
+                            <h5 class="fw-medium mb-0">New Version just arrived.</h5>
+                          </div>
+                        </div>
+                        <div class="
+                                          justify-content-end
+                                          text-truncate
+                                          ms-5 ms-md-auto
+                                          ps-4 ps-md-0
+                                        ">
+                          <span class="fs-2 text-muted">27 May</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="feed-item mb-9">
+                      <div class="
+                                        border-start border-2 border-warning
+                                        d-md-flex
+                                        align-items-center
+                                      ">
+                        <div class="d-flex align-items-center">
+                          <a href="javascript:void(0)" class="
+                                            ms-9
+                                            btn bg-warning-subtle
+                                            text-warning
+                                            round-48
+                                            rounded-circle
+                                            fs-5
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            flex-shrink-0
+                                          ">
+                            <i class="ti ti-bell fs-6"></i>
+                          </a>
+                          <div class="ms-3 text-truncate">
+                            <h5 class="fw-medium mb-0">You have 4 pending tasks.</h5>
+                          </div>
+                        </div>
+                        <div class="
+                                          justify-content-end
+                                          text-truncate
+                                          ms-5 ms-md-auto
+                                          ps-4 ps-md-0
+                                        ">
+                          <span class="fs-2 text-muted">Just Now</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="feed-item">
+                      <div class="
+                                        border-start border-2 border-secondary
+                                        d-md-flex
+                                        align-items-center
+                                      ">
+                        <div class="d-flex align-items-center">
+                          <a href="javascript:void(0)" class="
+                                            ms-9
+                                            btn bg-secondary-subtle
+                                            text-secondary
+                                            round-48
+                                            rounded-circle
+                                            fs-5
+                                            d-flex
+                                            align-items-center
+                                            justify-content-center
+                                            flex-shrink-0
+                                          ">
+                            <i class="ti ti-server-2 fs-6"></i>
+                          </a>
+                          <div class="ms-3 text-truncate">
+                            <h5 class="fw-medium mb-0">Server #1 overloaded</h5>
+                          </div>
+                        </div>
+                        <div class="
+                                          justify-content-end
+                                          text-truncate
+                                          ms-5 ms-md-auto
+                                          ps-4 ps-md-0
+                                        ">
+                          <span class="fs-2 text-muted">2 Hours ago</span>
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+  @endsection
+
+@section('script')
+    <script src="<?= asset('assets/panel/libs/apexcharts/dist/apexcharts.min.js') ?>"></script>
+    <script src="<?= asset('assets/panel/js/dashboards/dashboard3.js') ?>"></script>
 
 @endsection

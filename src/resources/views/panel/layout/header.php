@@ -657,30 +657,30 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                       <div class="message-body">
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
+
+                      <form id="LangForm" onchange="javascript:$(this).submit();" action="ajax" method="POST" target="ChangeLang" >
+                        <input type="hidden" name="Lang" >
+                      </form>
+
+                        <a href="javascript:$('input[name=Lang]').val('en');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
                             <img src="assets/panel/images/flag/icon-flag-en.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">English (UK)</p>
                         </a>
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
+                        <a href="javascript:$('input[name=Lang]').val('de');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
                             <img src="assets/panel/images/flag/icon-flag-cn.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">中国人 (Chinese)</p>
                         </a>
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
+                        <a href="javascript:$('input[name=Lang]').val('tr');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
                             <img src="assets/panel/images/flag/icon-flag-fr.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">français (French)</p>
                         </a>
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
-                          <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-sa.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
-                          </div>
-                          <p class="mb-0 fs-3">عربي (Arabic)</p>
-                        </a>
+                        
                       </div>
                     </div>
                   </li>

@@ -1261,7 +1261,9 @@ function CheckValidation(formelement) {
     });
     return result;
 }
-
+function customReplace(str, start, end, newStr) {
+  return str.substr(0, start) + newStr + str.substr(end);
+}
   </script>
 
 
