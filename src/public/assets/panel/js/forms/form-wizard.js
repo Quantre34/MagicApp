@@ -115,9 +115,14 @@ $(".tab-wizard").steps({
   transitionEffect: "fade",
   titleTemplate: '<span class="step">#index#</span> #title#',
   labels: {
-    finish: "Submit",
+    finish: "Book Now",
   },
+  // onInit: function (event, currentIndex) {
+  //   $(".actions a[href='#next']").hide();
+  //   $(".actions a[href='#previous']").hide();
+  // },
   onFinished: function (event, currentIndex) {
+    Book();
     swal(
       "Form Submitted!",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed."

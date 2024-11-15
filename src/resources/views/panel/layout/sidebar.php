@@ -48,16 +48,10 @@
                       Account Setting
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item d-flex align-items-center gap-2" href="../main/authentication-login.html">
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="/logout">
                       <iconify-icon icon="solar:login-2-linear" class="fs-5 text-primary"></iconify-icon>
                       Logout
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <div class="p-2">
-                      <button type="button" class="btn d-block w-100 btn-info">
-                        View Profile
-                      </button>
-                    </div>
+                    </a>                    
                   </div>
                 </div>
               </div>
@@ -75,7 +69,7 @@
             <!-- Dashboard -->
             <!-- ---------------------------------- -->
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel" id="get-url" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Anasayfa</span>
               </a>
@@ -158,7 +152,7 @@
 
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/list" id="get-url" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Fiyat Listesi</span>
               </a>
@@ -187,14 +181,14 @@
 
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/kullanim-talimatlari" id="get-url" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Kullanım talimatları</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/articles" id="get-url" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Makaleler</span>
               </a>

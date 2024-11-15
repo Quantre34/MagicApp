@@ -92,6 +92,52 @@
 
   </style>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.css">
+
+
+    <!--  Cell input with COuntry Code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <style type="text/css">
+      .intl-tel-input {
+        display: table-cell;
+      }
+      .intl-tel-input .selected-flag {
+        z-index: 4;
+      }
+      .intl-tel-input .country-list {
+        z-index: 5;
+      }
+      .input-group .intl-tel-input .form-control {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 0;
+      }
+      .iti {
+        width: 100% !important;
+      }
+.pulse{
+    border-radius: 15%;
+    animation: Pulse 1s linear infinite
+}
+@keyframes Pulse{
+    0%{
+        box-shadow: 0 0 0 0 var(--warning-darker) , 0 0 0 0 var(--warning-darker)
+    }
+    40%{
+        box-shadow: 0 0 0 1px var(--warning-darker) , 0 0 0 0 var(--warning-darker)
+    }
+    80%{
+        box-shadow: 0 0 0 2px var(--warning-darker) , 0 0 0 1.5px var(--warning-darker)
+    }
+    100%{
+        box-shadow: 0 0 0 0 var(--warning-darker) , 0 0 0 1.5px var(--warning-darker)
+    }
+}
+
+    </style>
+    <!--  Cell input with COuntry Code -->
+
+
   @yield("style")
 </head>
 

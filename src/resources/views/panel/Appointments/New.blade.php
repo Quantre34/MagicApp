@@ -1,93 +1,147 @@
 @extends('panel.App')
     @section('content')
+      <script type="text/javascript">
+        window.Get = {};
+        window.Get['Features'] = {};
+        window.Get['Packages'] = {};
+        window.Get['AgencyFee'] = {{User('Parent')['AgencyFee'] ?? 0}};
+        window.Get['CommissionRate'] = {{User('Parent')['CommissionRate'] ?? 0}};
+
+        @foreach($Packages as $key => $Package)
+            var i = 0;
+            window.Get['Packages'][{{$Package['Id']}}] = {};
+            window.Get['Packages'][{{$Package['Id']}}]['Defaults'] = {};
+            @php $Packages[$key]['Defaults'] = []; @endphp
+            @foreach($Package['Features'] as $Feature)
+                @if($Feature['Checked']=='1')
+                    @php $Packages[$key]['Defaults'][] = $Feature; @endphp
+                    window.Get['Packages'][{{$Package['Id']}}]['Defaults'][{{$Feature['Id']}}] = { Id:{{$Feature['Id']}}, Cost:{{$Feature['Cost']}}, Multiply:'{{$Feature['Multiply']}}',Title:'{{$Feature['Title']}}' };
+                @endif
+            @endforeach
+        @endforeach
+
+      </script>
+      <style type="text/css">
+        
+      .step-1 ul {
+        list-style-type: none!important;
+      }
+
+      .step-1 li {
+        display: inline-block!important;
+      }
+
+       .step-1 input[type="radio"][id^="cb"] {
+        display: none;
+      }
+
+      .step-1 label {
+        border: 1px solid #fff;
+        padding: 10px;
+        display: block;
+        position: relative;
+        margin: 10px;
+        cursor: pointer;
+      }
+
+      .step-1 label:before {
+        background-color: white;
+        color: white;
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        border: 1px solid grey;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        line-height: 28px;
+        transition-duration: 0.4s;
+        transform: scale(0);
+      }
+
+      .step-1 label img {
+        transition-duration: 0.2s;
+        transform-origin: 50% 50%;
+      }
+
+      .step-1 input[type="radio"]:checked + .step-1 label {
+        border-color: #ddd;
+      }
+
+      .step-1 input[type="radio"]:checked + .step-1 label:before {
+        content: "✓";
+        background-color: grey;
+        transform: scale(1);
+      }
+
+      .step-1 input[type="radio"]:checked  + .step-1 label img {
+        transform: scale(0.9);
+        box-shadow: 0 0 5px #333;
+        z-index: -1;
+      }
 
 
 
-<script type="text/javascript">
-  window.Get = {};
-  window.Get['Features'] = {};
-  window.Get['Packages'] = {};
-  window.Get['AgencyFee'] = {{User('Parent')['AgencyFee'] ?? 0}};
-  window.Get['CommissionRate'] = {{User('Parent')['CommissionRate'] ?? 0}};
 
-  @foreach($Packages as $key => $Package)
-      var i = 0;
-      window.Get['Packages'][{{$Package['Id']}}] = {};
-      window.Get['Packages'][{{$Package['Id']}}]['Defaults'] = {};
-      @php $Packages[$key]['Defaults'] = []; @endphp
-      @foreach($Package['Features'] as $Feature)
-          @if($Feature['Checked']=='1')
-              @php $Packages[$key]['Defaults'][] = $Feature; @endphp
-              window.Get['Packages'][{{$Package['Id']}}]['Defaults'][{{$Feature['Id']}}] = { Id:{{$Feature['Id']}}, Cost:{{$Feature['Cost']}}, Multiply:'{{$Feature['Multiply']}}',Title:'{{$Feature['Title']}}' };
-          @endif
-      @endforeach
-  @endforeach
+      .form-imagecheck {
+          position: relative;
+          margin: 0;
+          cursor: pointer;
+      }
+      .form-imagecheck-input {
+          position: absolute;
+          z-index: -1;
+          opacity: 0;
+      }
+      .form-imagecheck-figure {
+          position: relative;
+          display: block;
+          margin: 0;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          border: grey;
+          border-radius: 3px;
+      }
+      .form-imagecheck-input:checked~.form-imagecheck-figure {
+          border-color: grey;
+      }
 
-</script>
-<style type="text/css">
-  
-.step-1 ul {
-  list-style-type: none!important;
-}
+      .form-imagecheck-image {
+          max-width: 100%;
+          display: block;
+          opacity: .64;
+          transition: opacity .3s;
+      }
+      .form-imagecheck-image:first-child {
+          border-top-left-radius: 2px;
+          border-top-right-radius: 2px;
+      }
+      .form-imagecheck-image:last-child {
+          border-bottom-right-radius: 2px;
+          border-bottom-left-radius: 2px;
+      }
 
-.step-1 li {
-  display: inline-block!important;
-}
-
- .step-1 input[type="radio"][id^="cb"] {
-  display: none;
-}
-
-.step-1 label {
-  border: 1px solid #fff;
-  padding: 10px;
-  display: block;
-  position: relative;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.step-1 label:before {
-  background-color: white;
-  color: white;
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  border: 1px solid grey;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  line-height: 28px;
-  transition-duration: 0.4s;
-  transform: scale(0);
-}
-
-.step-1 label img {
-  height: 100px;
-  width: 100px;
-  transition-duration: 0.2s;
-  transform-origin: 50% 50%;
-}
-
-.step-1 input[type="radio"]:checked + .step-1 label {
-  border-color: #ddd;
-}
-
-.step-1 input[type="radio"]:checked + .step-1 label:before {
-  content: "✓";
-  background-color: grey;
-  transform: scale(1);
-}
-
-.step-1 input[type="radio"]:checked  + .step-1 label img {
-  transform: scale(0.9);
-  box-shadow: 0 0 5px #333;
-  z-index: -1;
-}
-</style>
+      .form-imagecheck-input:checked~.form-imagecheck-figure .form-imagecheck-image, .form-imagecheck-input:focus~.form-imagecheck-figure .form-imagecheck-image, .form-imagecheck:hover .form-imagecheck-image {
+          opacity: 1;
+          border: 1px solid #009efb;
+          width: 75%;
+      }
+      .form-imagecheck-input:checked~.form-imagecheck-figure {
+          width: 100%;
+          height: 100%;
+      }
+      .step-1 label img {
+          height: 100%;
+          width: 75%;
+          transition-duration: 0.2s;
+          transform-origin: 50% 50%;
+      }
+      </style>
       <div class="body-wrapper">
         <div class="container-fluid">
           
@@ -101,219 +155,72 @@
                     <h6>Category</h6>
                     <section class="step-1">
 
+                        <div class="mb-3">
+                          <label class="form-label">Image Check Radio</label>
+                          <div class="row g-2">
+                            @foreach($Categories as $key=>$Category)
+                              <div class="col-6 col-sm-4">
+                                <label class="form-imagecheck mb-2">
+                                  <input type="radio" class="form-imagecheck-input" Id="{{$Category['Id']}}" name="CategoryChoice">
+                                  <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
+                                    <img src="{{$Category['Img']}}" alt="-" class="form-imagecheck-image">
+                                    <b>{{$Category['Title']}}</b>
+                                  </span>
+                                </label>
+                              </div>
+                            @endforeach
+                          </div>
+                        </div>
 
-<ul>
-  <li><input type="radio" name="test" id="cb1" />
-    <label for="cb1"><img src="http://lorempixel.com/100/100" /></label>
-  </li>
-  <li><input type="radio" name="test" id="cb2" />
-    <label for="cb2"><img src="http://lorempixel.com/101/101" /></label>
-  </li>
-  <li><input type="radio" name="test" id="cb3" />
-    <label for="cb3"><img src="http://lorempixel.com/102/102" /></label>
-  </li>
-  <li><input type="radio" name="test" id="cb4" />
-    <label for="cb4"><img src="http://lorempixel.com/103/103" /></label>
-  </li>
-</ul>
 
                     </section>
 
                     <!-- Step 2 -->
                     <h6>Treatment</h6>
-                    <section>
-                      <div class="billing-address-content">
-                        <div class="row">
-                          <div class="col-lg-4">
-                            <div class="card shadow-none border">
-                              <div class="card-body p-4">
-                                <h6 class="mb-3 fs-4 fw-semibold">Johnathan Doe</h6>
-                                <p class="mb-1 fs-2">E601 Vrundavan Heights, godrej garden city - 382481</p>
-                                <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
-                                  <i class="ti ti-device-mobile fs-7"></i>9999501050
-                                </h6>
-                                <a href="javascript:void(0)" class="btn btn-outline-primary  billing-address">Deliver To
-                                  this address</a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-4">
-                            <div class="card shadow-none border">
-                              <div class="card-body p-4">
-                                <h6 class="mb-3 fs-4 fw-semibold">ParleG Doe</h6>
-                                <p class="mb-1 fs-2">D201 Galexy Heights, godrej garden city - 382481</p>
-                                <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
-                                  <i class="ti ti-device-mobile fs-7"></i>9999501050
-                                </h6>
-                                <a href="javascript:void(0)" class="btn btn-outline-primary  billing-address">Deliver To
-                                  this address</a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-4">
-                            <div class="card shadow-none border">
-                              <div class="card-body p-4">
-                                <h6 class="mb-3 fs-4 fw-semibold">Guddu Bhaiya</h6>
-                                <p class="mb-1 fs-2">Mumbai khao gali, Behind shukan, godrej garden city - 382481</p>
-                                <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
-                                  <i class="ti ti-device-mobile fs-7"></i>9999501050
-                                </h6>
-                                <a href="javascript:void(0)" class="btn btn-outline-primary  billing-address">Deliver To
-                                  this address</a>
-                              </div>
-                            </div>
+                    <section class="step-1">
+                        <div class="mb-3">
+                          <label class="form-label">Image Check Radio</label>
+                          <div class="row g-2" id="TreatmentBox">
+                            <!-- Treatment Container -->
                           </div>
                         </div>
-                        <div class="order-summary border rounded p-4 my-4">
-                          <div class="p-3">
-                            <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
-                            <div class="d-flex justify-content-between mb-4">
-                              <p class="mb-0 fs-4">Sub Total</p>
-                              <h6 class="mb-0 fs-4 fw-semibold">$285</h6>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <p class="mb-0 fs-4">Discount 5%</p>
-                              <h6 class="mb-0 fs-4 fw-semibold text-danger">-$14</h6>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <p class="mb-0 fs-4">Shipping</p>
-                              <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                              <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                              <h6 class="mb-0 fs-5 fw-semibold">$271</h6>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="payment-method-list payment-method">
-                        <div class="delivery-option btn-group-active  card shadow-none border">
-                          <div class="card-body p-4">
-                            <h6 class="mb-3 fw-semibold fs-4">Delivery Option</h6>
-                            <div class="btn-group flex-row gap-3 w-100" role="group" aria-label="Basic radio toggle button group">
-                              <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt1" id="btnradio1" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio1">
-                                  <div class="text-start ps-2">
-                                    <h6 class="fs-4 fw-semibold mb-0">Free delivery</h6>
-                                    <p class="mb-0 text-muted">Delivered on Firday, May 10</p>
-                                  </div>
-                                </label>
-                              </div>
-                              <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt1" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio2">
-                                  <div class="text-start ps-2">
-                                    <h6 class="fs-4 fw-semibold mb-0">Fast delivery ($2,00)</h6>
-                                    <p class="mb-0 text-muted">Delivered on Wednesday, May 8</p>
-                                  </div>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="payment-option btn-group-active  card shadow-none border">
-                          <div class="card-body p-4">
-                            <h6 class="mb-3 fw-semibold fs-4">Payment Option</h6>
-                            <div class="row">
-                              <div class="col-lg-8">
-                                <div class="btn-group flex-column" role="group" aria-label="Basic radio toggle button group">
-                                  <div class="position-relative mb-3 w-100 form-check btn-custom-fill ps-0">
-
-                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType1" id="btnradio3" autocomplete="off" checked>
-
-                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio3">
-                                      <div class="d-flex align-items-center">
-                                        <div class="text-start ps-2">
-                                          <h6 class="fs-4 fw-semibold mb-0">Pay with Paypal</h6>
-                                          <p class="mb-0 text-muted">You will be redirected to PayPal website to
-                                            complete your purchase securely.</p>
-                                        </div>
-                                        <img src="../assets/images/svgs/paypal.svg" alt="monster-img" class="img-fluid ms-auto">
-                                      </div>
-                                    </label>
-                                  </div>
-                                  <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
-                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType1" id="btnradio4" autocomplete="off">
-                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio4">
-                                      <div class="d-flex align-items-center">
-                                        <div class="text-start ps-2">
-                                          <h6 class="fs-4 fw-semibold mb-0">Credit / Debit Card</h6>
-                                          <p class="mb-0 text-muted">We support Mastercard, Visa, Discover and Stripe.
-                                          </p>
-                                        </div>
-                                        <img src="../assets/images/svgs/mastercard.svg" alt="monster-img" class="img-fluid ms-auto">
-                                      </div>
-                                    </label>
-                                  </div>
-                                  <div class="position-relative form-check btn-custom-fill ps-0">
-                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType1" id="btnradio5" autocomplete="off">
-                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio5">
-                                      <div class="text-start ps-2">
-                                        <h6 class="fs-4 fw-semibold mb-0">Cash on Delivery</h6>
-                                        <p class="mb-0 text-muted">Pay with cash when your order is delivered.</p>
-                                      </div>
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-lg-4">
-                                <img src="../assets/images/products/payment.svg" alt="monster-img" class="img-fluid">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="order-summary border rounded p-4 my-4">
-                          <div class="p-3">
-                            <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
-                            <div class="d-flex justify-content-between mb-4">
-                              <p class="mb-0 fs-4">Sub Total</p>
-                              <h6 class="mb-0 fs-4 fw-semibold">$285</h6>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <p class="mb-0 fs-4">Discount 5%</p>
-                              <h6 class="mb-0 fs-4 fw-semibold text-danger">-$14</h6>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <p class="mb-0 fs-4">Shipping</p>
-                              <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                              <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                              <h6 class="mb-0 fs-5 fw-semibold">$271</h6>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </section>
 
                     <!-- Step 3 -->
                     <h6>Date</h6>
                     <section class="payment-method text-center">
-                      <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
-                      <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
-                      <img src="../assets/images/products/payment-complete.svg" alt="monster-img" class="img-fluid mb-4" width="350">
-                      <p class="mb-0 fs-2">We will send you a notification
-                        <br>within 2 days when it ships.
-                      </p>
-                      <div class="d-sm-flex align-items-center justify-content-between my-4">
-                        <a href="./eco-shop.html" class="btn btn-success d-block mb-2 mb-sm-0">Continue Shopping</a>
-                        <a href="javascript:void(0)" class="btn btn-primary d-block">Download Receipt</a>
-                      </div>
+                         <div onmousemove="BlockDate()" class=" sh-xl-60 text-center" >
+                          <h5 class="card-title">@Lang('NewAppointment.ChooseDate')</h5>
+                          <p class="card-text text-alternate mb-4">@Lang('NewAppointment.ClickNext')</p>
+                          <div  class="row mb-2 justify-content-center">
+                            <div class="col-12 col-sm-6 col-xl-4">
+                              <label ></label>
+                              <div id="datePickerEmbed" min="{{date('Y-m-d',strtotime('now'))}}" class="border border-1 rounded-md p-3"></div>
+                            </div>
+                          </div>
+        <!--                   <div class="row justify-content-center text-start">
+                            <div class="col-12 col-sm-6 col-xl-4">
+                              <label class="top-label mb-0 w-100">
+                                <select id="selectTopLabel">
+                                  <option label="&nbsp;"></option>
+                                  <option value="11:00">11:00</option>
+                                  <option value="11:30">11:30</option>
+                                  <option value="14:00">14:00</option>
+                                  <option value="14:30">14:30</option>
+                                  <option value="15:00">15:00</option>
+                                  <option value="15:30">15:30</option>
+                                  <option value="16:00">16:00</option>
+                                </select>
+                                <span>TIME</span>
+                              </label>
+                            </div>
+                          </div> -->
+                        </div>
                     </section>
                     <!-- Step 4 -->
                     <h6>Package</h6>
                     <section class="payment-method text-center">
-                      <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
-                      <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
-                      <img src="../assets/images/products/payment-complete.svg" alt="monster-img" class="img-fluid mb-4" width="350">
-                      <p class="mb-0 fs-2">We will send you a notification
-                        <br>within 2 days when it ships.
-                      </p>
-                      <div class="d-sm-flex align-items-center justify-content-between my-4">
-                        <a href="./eco-shop.html" class="btn btn-success d-block mb-2 mb-sm-0">Continue Shopping</a>
-                        <a href="javascript:void(0)" class="btn btn-primary d-block">Download Receipt</a>
-                      </div>
+
                     </section>
 
 
@@ -334,19 +241,383 @@
 
 
                   </form>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <input type="hidden" id="Cell" name="">
+      <script src="<?= asset('assets/js/vendor/jquery-3.5.1.min.js') ?>"></script>
+
+
     @endsection
     @section('script')
       <!-- solar icons -->
-  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-  <script src="assets/panel/libs/jquery-steps/build/jquery.steps.min.js"></script>
-  <script src="assets/panel/libs/jquery-validation/dist/jquery.validate.min.js"></script>
-  <script src="assets/panel/js/forms/form-wizard.js"></script>
-  <script src="assets/panel/js/apps/ecommerce.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+      <script src="assets/panel/libs/jquery-steps/build/jquery.steps.min.js"></script>
+      <script src="assets/panel/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+      <script src="assets/panel/js/forms/form-wizard.js"></script>
+      <script src="assets/panel/js/apps/ecommerce.js"></script>
 
-  @endsection
+      <script src="{{URL::asset('assets/js/vendor/datepicker/bootstrap-datepicker.min.js')}}"></script>
+      <script type="text/javascript">
+        /* Document Ready Start */
+        $(document).ready(function(){
+            SweetSelect('Status');
+            _initDatepicker();
+             const phoneInputField = document.querySelector("#Cell");
+             const phoneInput = window.intlTelInput(phoneInputField, {
+                initialCountry: "{{Country(User('Parent')['CountryCode'] ?? 90)['code']}}",
+                utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            });
+
+             $('.form-check').on('click', function(){
+                $('.card').css('box-shadow','1px solid var(--seperator)');
+                $(this).parent('.card').css('box-shadow', 'inset 0 0 0 1px rgba(var(--primary-rgb), 0.5) !important');
+             });
+
+            $('.Personal-Info input[type=text], .Medical-Background input[type=text], .Personal-Info input[type=date]').on('change', function(e){
+              window.Get[""+$(this).attr('name')] =  $(this).val();
+            });
+
+            $('input[name=TotalAmount]').on('change', function(){
+              window.Get['TotalAmount'] = $(this).val();
+              window.Get['Commission'] =  ((window.Get['TreatmentCost'] ?? 0) * window.Get['AgencyFee'] / 100);
+              $('input[name=Commission]').val(window.Get['Commission']);
+              $('input[name=AmountToPay]').val(window.Get['TotalAmount'] / 2);
+              $('input[name=AmountToPay]').change();
+            });
+
+            $('input[name=AmountToPay]').on('change', function(){
+                if( $(this).val() < (window.Get['TotalAmount'] / 2) ){
+                    Swal.fire('You have to pay at least %50 of the Total Cost','','error').then((click)=>{
+                      $(this).val(window.Get['TotalAmount'] / 2);
+                      $('input[name=AmountToPay]').change();
+                    });
+                }
+                $('input[name=Remaining]').val(window.Get['TotalAmount'] - $(this).val() - (window.Get['AgencyFee'] * window.Get['TreatmentCost'] / 100) ) ;
+            });
+
+            $("input[name=Cell").on('change',function() {
+              var ConutrySelect = phoneInput.getSelectedCountryData();
+              window.Get['Cell']=$(this).val();
+              window.Get['CountryCode']=ConutrySelect.dialCode;
+            });
+
+            $('input[name=Smoke]').on('click', function(){
+                window.Get['Smoke'] = $(this).val();
+                $('.checkbox-parent-smoke').css('background', 'var(--input)');
+                $(this).parent().css('background','white');
+                $(this).parent().css('color','#00000');
+            });
+
+            $('input[name=Alcohol]').on('click', function(){
+                window.Get['Alcohol'] = $(this).val();
+                $('.checkbox-parent-alcohol').css('background', 'var(--input)');
+                $(this).parent().css('background','white');
+            });
+
+            $('input[name=Alergy]').on('click', function(){
+                window.Get['Alergy'] = $(this).val();
+                $('.checkbox-parent-alergy').css('background', 'var(--input)');
+                $(this).parent().css('background','white');
+            });   
+
+            $('input[name=Gender]').on('click', function(){
+                window.Get['Gender'] = $(this).val();
+                $('.checkbox-parent-gender').css('background', 'var(--input)');
+                $(this).parent('div[class=checkbox-parent-gender]').css('background','white)'); ///color of the option which is selected
+                $('.checkbox-parent-gender').each((index, Item)=>{
+                  if ($(Item).children('input[name=Gender]').is(':checked')) {
+                    $(Item).css('background', 'white');
+                  }
+                });
+            });   
+
+            $('#selectTopLabel').on('change', function(){
+              window.Get['Time'] = $(this).val();
+            });
+            ///
+            $(document).on('change','input[name=CategoryChoice]', function(){
+                console.log('CategoryChoice is made');
+                let TreatmentBox = $('#TreatmentBox');
+                window.Get['Category'] = $(this).attr('Id');
+                $.ajax({
+                  type: "POST",
+                  url: "/ajax",
+                  cache: false,
+                  headers: {'X-CSRF-TOKEN': @json(csrf_token())},
+                  data: {
+                    Id: window.Get['Category'],
+                    action: 'GetTreatments',
+                    _token: @json(csrf_token())
+                  },
+                  success: function(data){
+                    if (data['outcome']==true) {
+                      TreatmentBox.empty();
+                        data['data'].forEach((Category)=>{
+                          if (Category['Treatments'].length > 0) {
+                            Category['Treatments'].forEach((Treatment)=>{
+                              TreatmentBox.append(`<div class="col-6 col-sm-4">
+                                <label class="form-imagecheck mb-2">
+                                  <input Id="${Treatment['Id']}" onchange="javascript:TreatmentChoiceClicked(this);" data-time="${Treatment['EstimatedTime']}" type="radio" name="TreatmentChoice" value="${Treatment['Cost']}"  type="radio" class="form-imagecheck-input" >
+                                  <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
+                                    <img src="${Treatment['Img']}" alt="-" class="form-imagecheck-image">
+                                    <b>${Treatment['Title']}</b>
+                                  </span>
+                                </label>
+                              </div>`);
+                            });                      
+                          }else {
+                                TreatmentBox.append('<div style="border: 1px solid black; border-radius: 30px;" class="mb-4"><div class="text-danger mb-1">@Lang('NewAppointment.TreatmentNotFound')</div></div>');
+                          }
+                        }); 
+                    }else {
+                      Swal.fire('Failed','An Error occurred', 'error');
+                    }
+                  }
+                });
+               Skip()
+            });
+            ///
+            setTimeout(function(){
+                BlockDate();
+            },1000);
+
+
+        });
+        /* Document Ready End */
+        
+
+        ///
+        function FeatureChecked(e){
+
+          const $this = e;
+          var FeatureCost = 0;
+          var package = $('.PackageIn-'+$($this).data('parent'));
+          if ($($this).hasAttr('multiply')) {
+              FeatureCost = $($this).data('cost') * window.Get['EstimatedTime'];
+          }else {
+            FeatureCost = $($this).data('cost');
+          }
+          if ($($this).is(":checked")) {
+
+              window.Get['Features'][$($this).val()]=$($this).val();
+              window.Get['TotalAmount'] = window.Get['TotalAmount'] ??  parseInt(window.Get['TreatmentCost'] ?? 0) + ( (window.Get['TreatmentCost'] *parseInt(package.data('rate')) / 100) ) + parseInt(FeatureCost);
+              window.Get['TotalAmount'] = parseInt(window.Get['TotalAmount']) + parseInt(FeatureCost);
+              $('input[name=TotalAmount]').val(window.Get['TotalAmount']);
+              $('input[name=TotalAmount]').change();
+              package.html(window.Get['TotalAmount']);
+
+              console.table({
+                DefaultsTotal : window.Get['Packages'][$($this).data('parent')]['Defaults'],
+                FeatureCost : parseInt(FeatureCost),
+                AgencyFee : parseInt((window.Get['TotalAmount'] * window.Get['AgencyFee']) / 100),
+                PackageCost : parseInt(window.Get['PackageCost']),
+                Treatmentcost : parseInt(window.Get['TreatmentCost'])
+              });
+          }else {
+              var $thisValue = $($this).val();
+              delete window.Get['Features'][$($this).val()];
+              window.Get['TotalAmount'] = parseInt(window.Get['TotalAmount']) - parseInt(FeatureCost);
+              $('input[name=TotalAmount]').val(window.Get['TotalAmount']);
+              $('input[name=TotalAmount]').change();
+              package.html(window.Get['TotalAmount']);
+
+              console.table({
+                DefaultsTotal : window.Get['Packages'][$($this).data('parent')]['Defaults'],
+                AgencyFee : parseInt((window.Get['TotalAmount'] * window.Get['AgencyFee']) / 100),
+                PackageCost : parseInt(window.Get['PackageCost']),
+                Treatmentcost : parseInt(window.Get['TreatmentCost'])
+              });
+          }
+        };
+        ///
+        function TreatmentChoiceClicked(e){
+            // let ClinicBox = $('#ClinicBox');
+            console.log('TreatmentChoice is made');
+            window.Get['Treatment'] = $(e).attr('Id');
+            window.Get['TreatmentCost'] = parseInt($(e).val());
+            window.Get['EstimatedTime'] = $(e).attr('data-time');
+            var Description = $('.PackageDescription');
+
+            Description.each(function(i,item) {
+                $(item).empty();
+                $(item).text($(item).text() + '@Lang('NewAppointment.TreatmentCost'): '+window.Get['TreatmentCost']+'€');
+            });
+
+            $('.TotalAmountOnPackage').each((key, Item)=>{
+                var PackageId = parseInt($(Item).attr('data-id'));
+                var PrevTotal = parseInt( ((window.Get['TreatmentCost'] ?? 0) *  parseInt($(Item).data('rate'))) / 100 ) + parseInt($(e).val());
+                PrevTotal += parseInt(window.Get['TreatmentCost'] * {{User('Parent')['AgencyFee'] ?? 0}} / 100) ;
+
+                Object.entries(window.Get['Packages'][PackageId]['Defaults']).forEach(([i,item])=>{
+                     var Feature = item;
+                     console.log(Feature);
+                     PrevTotal += parseInt((Feature.Multiply=='1')? Feature.Cost * (window.Get['EstimatedTime'] ?? 1) : Feature.Cost);
+                });
+                console.log(PackageId+': '+PrevTotal);
+                $(Item).html( PrevTotal );
+            });
+            Skip();
+        }
+        ///
+        function ClinicChoiceClicked(e){
+          window.Get['Clinic'] = $(e).val();
+        }
+        ///
+        function PackAgeChoiceClicked(e){
+          $('#PackAgeInnerBox input[type=checkbox]').each(function(index,element){
+            if (!$(this).hasAttr('checked')) {
+                if($(this).data('parent') != $(e).val()){
+                  $(this).attr('disabled', true);
+                  element.checked = false;
+                }else {
+                  $(this).removeAttr('disabled');
+                }
+            }
+          });
+          var PackageId = parseInt($(e).val());
+          window.Get['Package'] = $(e).val();
+          window.Get['PackageCost'] = ( parseInt(window.Get['TreatmentCost'] ?? 0) * parseInt($(e).data('rate')) ) / 100;
+          var Cost = parseInt(window.Get['PackageCost']) + parseInt(window.Get['TreatmentCost'] ?? 0);
+          var AgencyFee = (parseInt(window.Get['TreatmentCost'] ?? 0) * {{User('Parent')['AgencyFee'] ?? 0}} / 100);
+          Cost += AgencyFee;
+
+
+          window.Get['Features'] = {};
+          Object.entries(window.Get['Packages'][PackageId]['Defaults']).forEach(([i,item])=>{
+              window.Get['Features'][i] = i;
+             var Feature = item;
+             console.log(Feature);
+             Cost += (Feature.Multiply=='1')? parseInt(Feature.Cost) * parseInt(window.Get['EstimatedTime']) : parseInt(Feature.Cost);
+          });
+
+          $('input[name=TotalAmount]').val(parseInt(Cost));
+          $('input[name=TotalAmount]').trigger('change');
+
+          console.table({
+            DefaultsTotal : window.Get['Packages'][PackageId]['Defaults'],
+            AgencyFee : AgencyFee,
+            PackageCost : (  window.Get['TreatmentCost']  * parseInt($(e).data('rate')) ) / 100,
+            Treatmentcost : parseInt(window.Get['TreatmentCost'])
+          });
+          // $('.package-border').css('border','1px solid var(--seperator)!important');
+          $(e).parent().parent().parent().css('border','1px solid var(--primary)!important');
+          $('.TotalAmountOnPackage[data-id="'+$(e).val()+'"]').text(parseInt(Cost));
+        }
+        ///
+        function Book(){
+             var data = new FormData();
+              window.Get['action']='NewAppointment';
+              window.Get['PaymentMethod'] = $('select[name=PaymentType]').val();
+              window.Get['Status'] = $('select[name=Status]').val();
+              Object.entries(window.Get).forEach(entry => {
+                const [key, value] = entry;
+                data.append(key, value); 
+              });
+              data.append('Features', Object.values( window.Get['Features'] ));
+              $.ajax({
+                  type:'POST',
+                  url:"/ajax?marked=true",
+                  data: data,
+                  headers: {'X-CSRF-TOKEN': @json(csrf_token())},
+                  processData:false,
+                  datatype:'json',
+                  contentType:false,
+                  success: function(data){
+                      if (data['outcome']) {
+                        $('#Result-Title').html('@Lang('NewAppointment.Thanks')');
+                        $('#Result-ErrorMessage').html('@Lang('NewAppointment.Success')');
+                        $('#Result-Button').html(`<a href="/panel/Appointments/${data['uid']}"><button class="btn btn-icon btn-icon-start btn-primary btn-reset" type="button"><i data-acorn-icon="calendar"></i><span>@Lang('NewAppointment.AppDetails')</span></button></a>`);
+                        return false;
+                      }else {
+                          Swal.fire('Failed!', data['ErrorMessage'], 'error').then((result)=>{
+                              $('#Result-Title').html('@Lang('NewAppointment.Failed')');
+                              $('#Result-ErrorMessage').html(data['ErrorMessage']);
+                              $('#Result-Button').html('');
+                              if (data['tag']) {
+                                window.location = '#'+data['tag'];
+                              }
+                          });
+                          return false;
+                      }
+                  }
+                });
+        }
+        ///
+        function addDays(date, days) {
+          var result = new Date(date);
+          result.setDate(result.getDate() + days);
+          return result;
+        }
+        ///
+        function PickAuto(e){
+          var EstimatedTime = parseInt(window.Get['EstimatedTime']);
+          $('.FeatureBox label').each(function(i,item){
+            if ($(item).text().includes('@Lang('NewAppointment.Accommodation')') ) {
+              var data = {
+                id : $(item).children('input').attr('data-id'),
+                cost : $(item).children('input').attr('data-cost'),
+                text : $(item).text(),
+                value : $(item).children('input').val(),
+                parent : $(item).children('input').attr('data-parent'),
+                multiply : $(item).children('input').hasAttr('multiply')? 'multiply' : '',
+                disabled : $(item).children('input').hasAttr('disabled')? 'disabled' : '',
+                checked : $(item).children('input').hasAttr('checked')? 'checked' : ''
+              }
+              // console.table(data);
+              var html = `<input onchange="FeatureChecked(this)" ${data.disabled} ${data.checked} ${data.attr}  ${data.multiply} type="checkbox" data-parent="${data.parent}" data-id="${data.id}" name="Features" data-cost="${data.cost}" value="${data.value}">${data.text} (${EstimatedTime} days)`;
+              $(item).html(html);
+            }
+          });
+          $('td').each((key, value)=>{
+            const $this = $(value);
+            var start = (new Date(parseInt($this.attr('data-date'))));
+            for (var i = EstimatedTime - 1; i >= 0; i--) {
+              if ( start.toLocaleDateString() == (new Date(addDays(e.date, i).getTime())).toLocaleDateString() ) {
+                  $this.addClass('active');
+              }
+            }
+          });
+          Skip();
+        }
+        ///
+        function LastChoiceClicked(){
+          $('#NextBtn span').html('@Lang('NewAppointment.Purchase')');
+          $('#NextBtn').attr('target','Purchase');
+        }
+        function Skip(time=50){
+          HoldOn.open(options);
+          setTimeout(function(){
+            var NextBtn = $('#NextBtn');
+            if (NextBtn.attr('target')=='Next') {
+              NextBtn.trigger('click');
+            }
+            HoldOn.close();
+          }, time);
+        }
+        function BlockDate(){
+              $('td').each((key, value)=>{
+              const $this = $(value);
+              var start = (new Date(parseInt($this.attr('data-date'))) );
+              if ( start.getTime() <= (new Date()).getTime() ) {
+                  $this.addClass('disabled');
+                  
+              }
+            });
+        }
+        function _initDatepicker() {
+           $('#datePickerEmbed').datepicker({ 
+                format: 'yyyy-mm-dd',
+                minDate: new Date()
+            }).on('changeDate', function(e) {
+                window.Get['Date'] = e.format();
+                window.Get['DateFormat'] = 'Y-m-d';
+                PickAuto(e);
+            });  
+        }
+      </script>
+    @endsection

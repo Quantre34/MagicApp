@@ -52,7 +52,7 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
 
     Route::get('/panel/categories', [AdminController::class, 'Categories']);
     Route::get('/panel/categories/new', [AdminController::class, 'NewCategory']);
-    Route::get('/panel/categories/{uid}', [AdminController::class, 'EditCategory']);
+    Route::get('/panel/categories/{uid}', [AdminController::class, 'k']);
 
     Route::get('/panel/treatments', [AdminController::class, 'Treatments']);
     Route::get('/panel/treatments/new', [AdminController::class, 'NewTreatment']);

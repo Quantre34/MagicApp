@@ -1,182 +1,102 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-    <title>Login</title>
-    <link rel="shortcut icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/css/login-1.css')}}">
-    <script src="{{URL::asset('assets/icon/acorn-icons.js')}}"></script>
-    <script src="{{URL::asset('assets/icon/acorn-icons-interface.js')}}"></script>
-    <script src="{{URL::asset('assets/icon/acorn-icons-medical.js')}}"></script>
-    <!--  Cell input with COuntry Code -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
-    <style type="text/css">
+  <!-- Required meta tags -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    .swal2-x-mark span {
-        font-size:100%;
-    }
-      .intl-tel-input {
-        display: table-cell;
-      }
-      .intl-tel-input .selected-flag {
-        z-index: 4;
-      }
-      .intl-tel-input .country-list {
-        z-index: 5;
-      }
-      .input-group .intl-tel-input .form-control {
-        border-top-left-radius: 4px;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 0;
-      }
-      .iti {
-        width: 100% !important;
-      }
-      input.form-control {
-          width: 200px!important;
-      }
-    /* mobile optimization test */
-    @if(isMobile())
-    .container {
-        width: 100vw;
-        height: 100%;
-/*      height: calc(var(--vh, 1vh) * 50);*/
+  <!-- Favicon icon-->
+  <link rel="shortcut icon" type="image/png" href="assets/panel/images/logos/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
 
-    }
-    .pinned, .logoin {
-        width: 100%!important;
-    }
-    #SignUpForm input {
-        margin: 2px 0 !important;
-    }
+  <!-- Core Css -->
+  <link rel="stylesheet" href="assets/panel/css/styles.css" />
 
-    @endif
-    /* mobile optimization test */
-
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-    <!--  Cell input with COuntry Code -->
-
-    <script type="text/javascript">
-        window.Get = {};
-    </script>
+  <title>Monster Bootstrap Admin</title>
+  <script type="text/javascript">
+    window.Get = {};
+  </script>
 </head>
-<body >
 
-<center>
-<section>
-    <div class="container " id="container">
-        <div   class="form-container sign-up-container">
+<body>
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="assets/panel/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+  </div>
+  <div id="main-wrapper" class="auth-customizer-none">
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
+      <div class="position-relative z-index-5">
+        <div class="row">
+          <div class="col-xl-5 col-xxl-4">
+            <div class="authentication-login min-vh-100 bg-body row justify-content-center">
+              <div class="col-12">
+                <a href="../main/index.html" class="text-nowrap logo-img d-block px-4 py-9 w-100">
+                  <img src="assets/panel/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
+                  <img src="assets/panel/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+                </a>
+              </div>
+              <div class="auth-max-width col-sm-8 col-md-6 col-xl-7 px-4">
+                <h3 class="mb-1 fs-7 fw-bolder"> Medescare Panel</h3>
 
-            <form  method="POST" id="SignUpForm" target="ajax" action="SignUp">
-                <!-- Logo Start -->
-                <div style="padding: 0;" class="logo position-relative"  >
-                    <!-- <img style="@if(isMobile()) margin-top: 15%; @endif width:200px;" class="logoin" width="250" src="{{ (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic_medikal-13.png') : asset('assets/img/logo/1_MEDESCARE-LOGO-MAVI.png')}}" alt="logo" /> -->
+                <div class="position-relative text-center my-4">
+                  <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                 </div>
-                <!-- Logo End -->
-                <h5>{{Lang::get('Login.ApplyForAgency')}}</h5>
-                <label>
-                    <input class="form-control" type="text" placeholder="{{Lang::get('Login.FullName')}}" name="FullName"/>
-                </label>
-                <label>
-                    <input class="form-control" type="text" placeholder="{{Lang::get('Login.CompanyName')}}" name="Title"/>
-                </label>
-                <label>
-                    <input width="200" class="form-control" type="email" name="Mail" placeholder="{{Lang::get('Login.Email')}}"/>
-                </label>
-                <label>
-                    <input class="form-control" type="text" name="ReferenceCode" placeholder="{{Lang::get('Login.ReferenceCode')}}"/>
-                </label>
-                <label>
-                    <input class="form-control" title="Not Valid"  type="tel"  id="Cell" name="Cell">
-                </label>
-                <button style="margin-top: 9px">{{Lang::get('Login.Send')}}</button>
-            </form>
-        </div>
-        <div  class="form-container sign-in-container">
+                <form method="POST" id="LoginForm" target="ajax" action="Login">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <input type="email" name="Mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="Password" class="form-control" id="exampleInputPassword1">
+                  </div>
 
-            <form method="POST" id="LoginForm" target="ajax" action="Login">
-                <!-- Logo Start -->
-                <div  class="logo position-relative " style="margin-bottom: 15%;">
-                    <!-- <img style="width: 200px;" class="logoin"  src="{{ (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic_medikal-13.png') : asset('assets/img/logo/1_MEDESCARE-LOGO-MAVI.png')}}" alt="logo" /> -->
-                </div>
-                <!-- Logo End -->
-                <h3>{{Lang::get('Login.LoginWithYourMail')}}</h3>
-                @if(!isMobile())
-                    <div class="social-container">
-                        <a href="https://instagram.com/medescare" target="_blank" class="social"><i data-acorn-icon="instagram"></i></a>
-                        <a href="https://facebook.com/medescare" target="_blank" class="social"><i data-acorn-icon="facebook"></i></a>
-                        <a href="mailto:info@medescare.com" target="_blank" class="social"><i data-acorn-icon="email"></i></a>
-                    </div>
-                @endif
-                <label>
-                    <input type="email" name="Mail" placeholder="Email"/>
-                </label>
-                <label>
-                    <input type="password" name="Password" placeholder="Password"/>
-                </label>
-                <!-- <a href="#">Forgot your password?</a> -->
-                <button type="submit">{{Lang::get('Login.Login')}}</button>
-            </form>
+                  <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</button>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <a class="text-primary fw-medium ms-2" href="../main/authentication-register.html">Create an
+                      account</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-7 col-xxl-8 d-none d-xl-block">
+            <div class="d-none d-xl-flex align-items-center justify-content-center h-100">
+              <img src="assets/panel/images/backgrounds/user-login.png" alt="" class="img-fluid">
+            </div>
+          </div>
         </div>
-        <div  class="overlay-container">
-            
-                <div class="overlay">
-                    <div class="overlay-panel overlay-left">
-                        <!-- <p style="text-align: center;">@Lang('Login.PoweredBy')</p> -->
-                        <img class="pinned" width="200" src="{{ (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic-medical.png') : asset('assets/img/logo/1_MEDESCARE LOGO BEYAZ.png')}}">
-                        <br><br><br>
-                        <h1>{{Lang::get('Login.Login')}} </h1>
-                        <p>{{Lang::get('Login.SignInText')}}</p>
-                        <button class="ghost mt-5" id="signIn">{{Lang::get('Login.Login')}}</button>
-                    </div>
-                    <div class="overlay-panel overlay-right" style="display: flex; flex-direction: columns; align-items: center;">
-                        <!-- <p style="text-align: center;">@Lang('Login.PoweredBy')</p> -->
+      </div>
 
-                        <img class="pinned" width="200" src="{{ (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic-medical.png') : asset('assets/img/logo/1_MEDESCARE LOGO BEYAZ.png')}}">
-                       
-                        <br><br><br>
-                        <h1>{{Lang::get('Login.JoinUs')}} </h1>
-                        <p>{{Lang::get('Login.ApplyForAgency')}} ... </p>
-                        <a id="signUp" href="#"><button class="ghost" >{{Lang::get('Login.JoinUs')}}</button></a>
-                        <button hidden class="ghost" id="signUp">{{Lang::get('Login.JoinUs')}}</button>
-                    </div>
-                </div>
-        </div>
     </div>
-</section>
-</center>
+  </div>
+  <div class="dark-transparent sidebartoggler"></div>
+  <!-- Import Js Files -->
+  <script src="assets/panel/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/panel/libs/simplebar/dist/simplebar.min.js"></script>
+  <script src="assets/panel/js/theme/app.init.js"></script>
+  <script src="assets/panel/js/theme/theme.js"></script>
+  <script src="assets/panel/js/theme/app.min.js"></script>
 
-<!-- Animated Wave Background  -->
-<!-- <div class="ocean">
-    <div class="wave"></div>
-    <div class="wave"></div>
-</div> -->
-<!-- Log In Form Section -->
+  <!-- solar icons -->
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+
+
 
 <script src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
+<input type="hidden" name="Cell" id="Cell">
 <script type="text/javascript">
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 
-
-
-signUpButton.addEventListener('click', () =>
-    container.classList.add('right-panel-active'));
-signInButton.addEventListener('click', () =>
-    container.classList.remove('right-panel-active'));
 
 $(document).ready(function(){
     _initIcons();
@@ -246,25 +166,9 @@ $('form').on('submit', function(e){
         window.addEventListener("resize", resizeOps);
     @endif
 </script>
-<!--         @if (\Session::has('outcome'))
-          <script type="text/javascript">
-              $(document).ready(function(){
-                  islem = '<?php echo (Session::get('outcome')==true)? 'İşlem başarılı' : 'İşlem başarısız'; ?>';
-                  Swal.fire(islem, '<?php echo Session::get('ErrorMessage');  ?>','<?php echo (Session::get('outcome')==true)? 'success' : 'error'; ?>').then((result)=>{
-                      <?php 
-                      echo (\Session::has('route'))? 'window.location="'.Session::get('route').'"; ' : '' ;
-                      echo (\Session::has('tag'))? '$("#'.Session::get('tag').'").css("border", "1px solid red");' : '' ;
-                      ?>
-                  });s
-              });
-          </script>
-        @endif -->
-
-
-        @include('main.Cookie')
-
 
 
 
 </body>
+
 </html>

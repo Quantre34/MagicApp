@@ -222,7 +222,7 @@
 
 
 
-                <div  onmousemove="BlockDate()" class="tab-pane fade sh-xl-60 text-center" id="dateTab" role="tabpanel">
+                <div onmousemove="BlockDate()" class="tab-pane fade sh-xl-60 text-center" id="dateTab" role="tabpanel">
                   <h5 class="card-title">@Lang('NewAppointment.ChooseDate')</h5>
                   <p class="card-text text-alternate mb-4">@Lang('NewAppointment.ClickNext')</p>
                   <div  class="row mb-2 justify-content-center">
@@ -289,7 +289,6 @@
                                 @if(!empty($Package['Features']))
                                   @foreach($Package['Features'] as $Feature)
                                     <div class="row col-12 g-0 align-items-left mb-1">
-
                                       <div  class="col ps-3 sh-4 d-flex align-items-center lh-1-25">
                                         <label class="label"> 
                                           <input onchange="FeatureChecked(this)" {{ ($Feature['Multiply']==1)? 'multiply' : '' }} disabled {{ ($Feature['Checked'])? 'checked disabled' : '' }} type="checkbox" data-parent="{{$Feature['ParentId']}}" data-id="{{$Feature['Id']}}" name="Features" data-cost="{{$Feature['Cost']}}" value="{{$Feature['Id']}}">
