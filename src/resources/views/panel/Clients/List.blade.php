@@ -26,7 +26,7 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Acenteler</h4>
+              <h4 class="fs-6 mb-0">Hastalar</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">

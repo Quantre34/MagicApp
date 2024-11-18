@@ -283,9 +283,9 @@
                 <div class="title">Services</div>
                 <ul class="menu">
                     <li><a href="/categories" title="Medical Units">MEDICAL UNITS</a></li>
-                    <li><a href="/categories/{{Categories(['Id'=>'5'])[0]['Slug']}}" title="Obesity"> {{Categories(['Id'=>'5'])[0]['Title']}}</a></li>
-                    <li><a href="/categories/{{Categories(['Id'=>'3'])[0]['Slug']}}" title="Aesthetic"> {{Categories(['Id'=>'3'])[0]['Title']}}</a></li>
-                    <li><a href="/categories/{{Categories(['Id'=>'1'])[0]['Slug']}}" title="Hair"> {{Categories(['Id'=>'1'])[0]['Title']}}</a></li>
+                    <li><a href="/categories/{{GetData('category',['Id'=>'5'])['Slug']}}" title="Obesity"> {{Categories(['Id'=>'5'])[0]['Title']}}</a></li>
+                    <li><a href="/categories/{{GetData('category',['Id'=>'5'])['Slug']}}" title="Aesthetic"> {{Categories(['Id'=>'3'])[0]['Title']}}</a></li>
+                    <li><a href="/categories/{{GetData('category',['Id'=>'5'])['Slug']}}" title="Hair"> {{Categories(['Id'=>'1'])[0]['Title']}}</a></li>
                 </ul>
             </div>
             <div class="col-sm-auto d-none d-sm-block">

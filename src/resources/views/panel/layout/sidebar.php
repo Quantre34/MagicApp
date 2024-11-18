@@ -7,11 +7,10 @@
       <div>
         <div class="brand-logo d-flex align-items-center">
           <a href="" class="text-nowrap logo-img">
-            <img style="max-width: 100%;" src="<?=  (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic-medical.png') : asset('assets/img/logo/1_MEDESCARE_LOGO_BEYAZ.png')  ?>" alt="Logo" class="dark-logo" />
-            <img style="max-width: 100%;" src="<?= (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic-medical.png') : asset('assets/img/logo/1_MEDESCARE_LOGO_BEYAZ.png') ?>" alt="Logo" class="light-logo" />
+            <img style="max-width: 100%;" src="<?=  (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic-medical.png') : asset('assets/img/logo/1_MEDESCARE-LOGO-MAVI.png')  ?>" alt="Logo" class="dark-logo" />
+            <img style="max-width: 100%;" src="<?= (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic-medical.png') : asset('assets/img/logo/1_MEDESCARE-LOGO-MAVI.png') ?>" alt="Logo" class="light-logo" />
           </a>
         </div>
-
         <!-- ---------------------------------- -->
         <!-- Dashboard -->
         <!-- ---------------------------------- -->
@@ -32,25 +31,18 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item d-flex align-items-center gap-2" href="../main/page-user-profile.html">
                       <iconify-icon icon="solar:user-linear" class="fs-5 text-primary"></iconify-icon>
-                      My Profile
+                      Hesabım
                     </a>
-                    <a class="dropdown-item d-flex align-items-center gap-2" href="../main/page-user-profile.html">
-                      <iconify-icon icon="solar:card-linear" class="fs-5 text-primary"></iconify-icon>
-                      My Balance
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center gap-2" href="../main/app-email.html">
-                      <iconify-icon icon="solar:inbox-linear" class="fs-5 text-primary"></iconify-icon>
-                      Inbox
-                    </a>
+                   
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item d-flex align-items-center gap-2" href="../main/page-account-settings.html">
                       <iconify-icon icon="solar:settings-linear" class="fs-5 text-primary"></iconify-icon>
-                      Account Setting
+                      Acente Ayarları
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item d-flex align-items-center gap-2" href="/logout">
                       <iconify-icon icon="solar:login-2-linear" class="fs-5 text-primary"></iconify-icon>
-                      Logout
+                      Çıkış
                     </a>                    
                   </div>
                 </div>
@@ -75,12 +67,12 @@
               </a>
             </li>
             <? if(User('Type')!='0'): ?>
-              <li class="sidebar-item">
+              <!-- <li class="sidebar-item">
                 <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
                   <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                   <span class="hide-menu">Operasyon Şeması</span>
                 </a>
-              </li>
+              </li> -->
 
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
@@ -89,19 +81,27 @@
                 </a>
                 <ul aria-expanded="false" class="collapse first-level">
 
+                  <?if(User('Type')=='2'): ?>
+                    <li class="sidebar-item">
+                      <a href="/panel/categories" class="sidebar-link">
+                        <span class="icon-small"></span>
+                        <span class="hide-menu">Kategoriler</span>
+                      </a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a href="/panel/treatments" class="sidebar-link">
+                        <span class="icon-small"></span>
+                        <span class="hide-menu">Tedaviler</span>
+                      </a>
+                    </li>
+                     <li class="sidebar-item">
+                      <a href="/panel/articles" class="sidebar-link">
+                        <span class="icon-small"></span>
+                        <span class="hide-menu">Makaleler</span>
+                      </a>
+                    </li>
+                  <? endif; ?>
 
-                  <li class="sidebar-item">
-                    <a href="/panel/categories" class="sidebar-link">
-                      <span class="icon-small"></span>
-                      <span class="hide-menu">Kategoriler</span>
-                    </a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="/panel/treatments" class="sidebar-link">
-                      <span class="icon-small"></span>
-                      <span class="hide-menu">Tedaviler</span>
-                    </a>
-                  </li>
                   <li class="sidebar-item">
                     <a href="/panel/agencies" class="sidebar-link">
                       <span class="icon-small"></span>
@@ -131,12 +131,7 @@
                     </ul>
                   </li>
 
-                  <li class="sidebar-item">
-                    <a href="/panel/articles" class="sidebar-link">
-                      <span class="icon-small"></span>
-                      <span class="hide-menu">Makaleler</span>
-                    </a>
-                  </li>
+                 
 
 
                 </ul>
@@ -152,7 +147,7 @@
 
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/panel/list" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/services" id="get-url" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Fiyat Listesi</span>
               </a>
@@ -173,11 +168,11 @@
                     <div class="d-flex align-items-center justify-content-between w-100">
                       <span class="d-none"></span>
                       <span>Yardım Masası</span>
-                      <span class="badge rounded-circle text-bg-info d-flex align-items-center justify-content-center rounded-pill fs-2 px-2 py-1">9</span>
+                      <span class="badge rounded-circle text-bg-info d-flex align-items-center justify-content-center rounded-pill fs-2 px-2 py-1">2</span>
                     </div>
                   </div>
                 </a>
-              </li>
+            </li>
 
 
             <li class="sidebar-item">
@@ -202,16 +197,58 @@
             <li class="sidebar-item">
               <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
                 <iconify-icon icon="solar:align-left-line-duotone"></iconify-icon>
-                <span class="hide-menu">Menu Level</span>
+                <span class="hide-menu">İçerikler</span>
+              </a>
+              <ul aria-expanded="false" class="collapse first-level">
+                <li class="sidebar-item">
+                  <a href="/panel/website/sliders" class="sidebar-link">
+                    <span class="icon-small"></span>
+                    <span class="hide-menu">Sliderlar</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/panel/website/blogs" class="sidebar-link">
+                    <span class="icon-small"></span>
+                    <span class="hide-menu">Blog</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/panel/website/media" class="sidebar-link">
+                    <span class="icon-small"></span>
+                    <span class="hide-menu">Galeri</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/panel/website/doctors" class="sidebar-link">
+                    <span class="icon-small"></span>
+                    <span class="hide-menu">Doktorlar</span>
+                  </a>
+                </li>
+                
+
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
+                <iconify-icon icon="solar:align-left-line-duotone"></iconify-icon>
+                <span class="hide-menu">Ayarlar</span>
               </a>
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a href="javascript:void(0)" class="sidebar-link">
                     <span class="icon-small"></span>
-                    <span class="hide-menu">Level 1</span>
+                    <span class="hide-menu">Site Bilgileri</span>
                   </a>
                 </li>
                 <li class="sidebar-item">
+                  <a href="javascript:void(0)" class="sidebar-link">
+                    <span class="icon-small"></span>
+                    <span class="hide-menu">İletişim Bilgileri</span>
+                  </a>
+                </li>
+
+
+              <!-- <li class="sidebar-item">
                   <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                     <span class="icon-small"></span>
                     <span class="hide-menu">Level 1.1</span>
@@ -244,8 +281,8 @@
                       </ul>
                     </li>
                   </ul>
-                </li>
-              </ul>
+                </li> 
+              </ul> -->
             </li>
           <? endif; ?>
 

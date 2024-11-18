@@ -279,7 +279,7 @@ function FormatEuros($amount){
 }
 ///
 function Categories($params=['Status'=>'1'], $limit=100,$sort=['Id','asc']){
-    $Categories =  DB::table('category')->where('Lang', App::getLocale());
+    $Categories =  DB::table('category');
     foreach($params as $keyparam => $param){
         $Categories->where($keyparam, $param);
     }
@@ -302,15 +302,26 @@ function Treatments($params=['Status'=>'1'], $limit=100,$sort=['Id','asc']){
     $Treatments = toArray($Treatments->get());
     return $Treatments;
 }
-function GetData($table=false, $params=['Status'=>'1'], $limit=100,$sort=['Id','asc']){
+function GetData($table=false, $params=['Status'=>'1'], $limit=100,$sort=['Id','asc'],$First=false){
     if ($table) {
-        $data =  DB::table($table)->where('Lang', App::getLocale());
-        foreach($params as $keyparam => $param){
-            $data->where($keyparam, $param);
+        $data =  DB::table($table);
+        if ($params) {
+            foreach($params as $keyparam => $param){
+                $data->where($keyparam, $param);
+            }
         }
-        $data->limit($limit);
-        $data->orderBy($sort[0],$sort[1]);
-        $data = toArray($data->first());
+        if ($limit) {
+            $data->limit($limit);
+        }
+        if ($sort) {
+            $data->orderBy($sort[0],$sort[1]);
+        }
+        if (@$params['Id'] || @$params['uid'] || $First) {
+            $data = toArray($data->first());
+        }else {
+            $data = toArray($data->get());
+        }
+        
         return $data;
     }
 }

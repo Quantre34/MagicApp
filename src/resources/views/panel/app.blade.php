@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/png" href="{{asset('assets/panel/images/logos/favicon.png')}}" />
+  <link rel="shortcut icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
 
   <!-- Core Css -->
   <link rel="stylesheet" href="{{asset('assets/panel/css/styles.css')}}" />
@@ -144,7 +144,7 @@
 <body>
   <!-- Preloader -->
   <div class="preloader">
-    <img src="{{asset('assets/panel/images/logos/favicon.png')}}" alt="loader" class="lds-ripple img-fluid" />
+    <img src="{{asset('assets/icon/favicon.png')}}" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <div id="main-wrapper">
     @include('panel.layout.sidebar')
@@ -1125,44 +1125,51 @@
         //   });                        
         // },5000);
 
-        let AsyncNotificationCheck = setInterval(function(){
-            $.ajax({
-            type:  "POST",
-            url: "/ajax",
-            data: "action=GetMyNotifications&_token="+@json(csrf_token()),
-            cache: false,
-            success: function(resp) {
-              if (resp['outcome']==true) {
-                    if (resp['route']) {
-                        window.location=resp['route'];
-                    }
-                    let Container = $('.Notification-Container');
-                    Container.html('');
-                    if (resp['data'].length > 0) {
-                        resp['data'].forEach(Item => {
-                          Container.append(`<li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
-                              <div class="align-self-center">
-                                ${Item['Content']}
-                              </div>
-                            </li>`);
-                        });
-                    }else {
-                      Container.append(`<li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
-                              <div class="align-self-center">
-                                <a href="#">@Lang('Base.NoNotification')</a>
-                              </div>
-                            </li>`);
-                    }
+        // let AsyncNotificationCheck = setInterval(function(){
+        //     $.ajax({
+        //     type:  "POST",
+        //     url: "/ajax",
+        //     data: "action=GetMyNotifications&_token="+@json(csrf_token()),
+        //     cache: false,
+        //     success: function(resp) {
+        //       if (resp['outcome']==true) {
+        //             if (resp['route']) {
+        //                 window.location=resp['route'];
+        //             }
+        //             let Container = $('.Notification-Container');
+        //             Container.html('');
+        //             if (resp['data'].length > 0) {
+        //                 resp['data'].forEach(Item => {
+        //                   Container.append(`<a href="javascript:void(0)" class="p-3 pe-0 border-bottom d-flex align-items-center dropdown-item gap-3">
+        //               <span class="flex-shrink-0 bg-danger-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-danger">
+        //                 <iconify-icon icon="solar:widget-3-line-duotone"></iconify-icon>
+        //               </span>
+        //               <div class="w-75 d-inline-block ">
+        //                 <div class="d-flex align-items-center justify-content-between">
+        //                   <h6 class="mb-1 fw-semibold">Yönetici</h6>
+        //                   <span class="d-block fs-2 text-body-color">9:30 AM</span>
+        //                 </div>
+        //                 <span class="d-block text-truncate text-truncate fs-11 text-body-color">${Item['Content']}</span>
+        //               </div>
+        //             </a>`);
+        //                 });
+        //             }else {
+        //               Container.append(`<li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
+        //                       <div class="align-self-center">
+        //                         <a href="#">@Lang('Base.NoNotification')</a>
+        //                       </div>
+        //                     </li>`);
+        //             }
 
-              }else {
-                    if (resp['route']) {
-                        window.location=resp['route'];
-                        clearInterval(AsyncNotificationCheck);
-                    }
-                }
-            }
-          });                        
-        },10000);
+        //       }else {
+        //             if (resp['route']) {
+        //                 window.location=resp['route'];
+        //                 clearInterval(AsyncNotificationCheck);
+        //             }
+        //         }
+        //     }
+        //   });                        
+        // },10000);
 
         $(document).ready(function(){
 

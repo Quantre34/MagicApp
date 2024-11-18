@@ -19,50 +19,29 @@
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
 
-
-                <div class="swiper-slide">
-                    <div class="video-wrapper slide-video ratio"><video autoplay muted width="400" height="400"
-                            class="home-video lazy-video" playsinline preload="none" loop
-                            data-src="assets/uploads//2022/12/medescare.mp4">
-                            <source src="uploads/2022/12/medescare.mp4" type="video/mp4"></video></div>
-                    <div class="wrapper">
-                        <div class="container">
-                            <div class="content">
-                                <div class="title-1">Professional Services and Reliability</div>
-                                <div class="title-2">
-                                    <p class="title-2">Medical Consultation</p>
+                @foreach(GetData('slider',['Status'=>'1']) as $Slider)
+                    <div class="swiper-slide">
+                        <div class="video-wrapper slide-video ratio"><video autoplay muted width="400" height="400"
+                                class="home-video lazy-video" playsinline preload="none" loop
+                                data-src="{{$Slider['File']}}">
+                                <source src="{{$Slider['File']}}" type="video/mp4"></video></div>
+                        <div class="wrapper">
+                            <div class="container">
+                                <div class="content">
+                                    <div class="title-1">{{$Slider['Info']}}</div>
+                                    <div class="title-2">
+                                        <p class="title-2">{{$Slider['Title']}}</p>
+                                    </div>
+                                    <p>{{$Slider['Content']}}</p> 
+                                    <a href="{{$Slider['Target']}}" title="Learn More" class="rounded-pill btn btn-primary"> Learn More<svg class="cvzicon">
+                                        <use xlink:href="assets/img/icons.svg#chevron-right-light"></use>
+                                    </svg></a>
                                 </div>
-                                <p>Recommending doctors or hospitals is more than a job, it’s a responsibility. That’s why we have adopted the slogan “Your trust is our responsibility.”</p> 
-                                <a href="/appointment" title="Learn More" class="rounded-pill btn btn-primary"> Learn More<svg class="cvzicon">
-                                    <use xlink:href="assets/img/icons.svg#chevron-right-light"></use>
-                                </svg></a>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-
-                <div class="swiper-slide">
-                    <div class="video-wrapper slide-video ratio"><video autoplay muted width="400" height="400"
-                            class="home-video lazy-video" playsinline preload="none" loop
-                            data-src="assets/uploads//2023/05/ngushtimi-stomakut-slider-video.mp4">
-                            <source src="uploads/2023/05/ngushtimi-stomakut-slider-video.mp4" type="video/mp4"></video>
-                    </div>
-                    <div class="wrapper">
-                        <div class="container">
-                            <div class="content">
-                                <div class="title-1">Professional Services and Reliability</div>
-                                <div class="title-2">
-                                    <p class="title-2">Stomach Reduction</p>
-                                </div>
-                                <p>You can overcome obesity by applying the Gastric Sleeve, Gastric ByPass, or Gastric Balloon methods at one of Turkey’s largest hospitals.</p> 
-                                <a href="/categories/obesity-treatments" title="Learn More" class="rounded-pill btn btn-primary"> Learn More<svg class="cvzicon">
-                                    <use xlink:href="assets/img/icons.svg#chevron-right-light"></use>
-                                </svg></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
@@ -563,11 +542,9 @@
                                 <p class="title">Body Aesthetics</p>
                             </div>
                             <ul>
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'U7O60n8dmsp5xQr'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'U7O60n8dmsp5xQr'])[0]['Title'] ?? '' }}"> {{ Treatments(['uid'=>'U7O60n8dmsp5xQr'])[0]['Title'] ?? '' }} </a></li>
-
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'gEJncM5YbC8WF5H'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'gEJncM5YbC8WF5H'])[0]['Title'] ?? '' }}">{{ Treatments(['uid'=>'gEJncM5YbC8WF5H'])[0]['Title'] ?? '' }}</a></li>
-
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'P8pwjhnHX1NfTFW'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'P8pwjhnHX1NfTFW'])[0]['Title'] ?? '' }}"> {{ Treatments(['uid'=>'P8pwjhnHX1NfTFW'])[0]['Title'] ?? '' }}</a></li>
+                                @foreach(Treatments(['ParentId'=>'3']) as $Treatment)
+                                    <li><a href="/treatments/{{ $Treatment['Slug'] }}" title="{{ $Treatment['Title']  }}"> {{ $Treatment['Title']  }} </a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -583,11 +560,9 @@
                             </div>
                             <ul>
 
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'OvwVNhz9LtBipqC'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'OvwVNhz9LtBipqC'])[0]['Title'] ?? '' }}"> {{ Treatments(['uid'=>'OvwVNhz9LtBipqC'])[0]['Title'] ?? '' }} </a></li>
-
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'irILb3QUcW89vmt'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'irILb3QUcW89vmt'])[0]['Title'] ?? '' }}">{{ Treatments(['uid'=>'irILb3QUcW89vmt'])[0]['Title'] ?? '' }}</a></li>
-                                
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'uH1OWIbjp3f6637'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'uH1OWIbjp3f6637'])[0]['Title'] ?? '' }}"> {{ Treatments(['uid'=>'uH1OWIbjp3f6637'])[0]['Title'] ?? '' }}</a></li>
+                                @foreach(Treatments(['ParentId'=>'3']) as $Treatment)
+                                    <li><a href="/treatments/{{ $Treatment['Slug'] }}" title="{{ $Treatment['Title']  }}"> {{ $Treatment['Title']  }} </a></li>
+                                @endforeach
 
                             </ul>
                         </div>
@@ -604,11 +579,9 @@
                             </div>
                             <ul>
                                 
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'V3989kOxadmtijP'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'V3989kOxadmtijP'])[0]['Title'] ?? '' }}"> {{ Treatments(['uid'=>'V3989kOxadmtijP'])[0]['Title'] ?? '' }} </a></li>
-
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'V3989kOxadmtijP'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'V3989kOxadmtijP'])[0]['Title'] ?? '' }}">{{ Treatments(['uid'=>'V3989kOxadmtijP'])[0]['Title'] ?? '' }}</a></li>
-                                
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'OSC5zJK5c43dMmA'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'OSC5zJK5c43dMmA'])[0]['Title'] ?? '' }}"> {{ Treatments(['uid'=>'OSC5zJK5c43dMmA'])[0]['Title'] ?? '' }}</a></li>
+                                @foreach(Treatments(['ParentId'=>'2']) as $Treatment)
+                                    <li><a href="/treatments/{{ $Treatment['Slug'] }}" title="{{ $Treatment['Title']  }}"> {{ $Treatment['Title']  }} </a></li>
+                                @endforeach
 
                             </ul>
                         </div>
@@ -625,9 +598,9 @@
                             </div>
                           <ul>
                                 
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'2h6fDo7RG825Y9c'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'2h6fDo7RG825Y9c'])[0]['Title'] ?? '' }}"> {{ Treatments(['uid'=>'2h6fDo7RG825Y9c'])[0]['Title'] ?? '' }} </a></li>
-
-                                <li><a href="/treatments/{{ Treatments(['uid'=>'zu5bx7h3eOH007y'])[0]['Slug'] }}" title="{{ Treatments(['uid'=>'zu5bx7h3eOH007y'])[0]['Title'] ?? '' }}">{{ Treatments(['uid'=>'zu5bx7h3eOH007y'])[0]['Title'] ?? '' }}</a></li>
+                                @foreach(Treatments(['ParentId'=>'1']) as $Treatment)
+                                    <li><a href="/treatments/{{ $Treatment['Slug'] }}" title="{{ $Treatment['Title']  }}"> {{ $Treatment['Title']  }} </a></li>
+                                @endforeach
                                 
                                 
 
@@ -811,7 +784,7 @@
                     <div class="title"><span class="fw-semi-bold fs-normal text-primary d-inline-block">Medescare </span>
                         Foto Galeria</div>
                     <p>Klikoni mbi foto për më shumë foto të ngjajshme!</p>
-                </div><a href="foto-galeria.html" title="Shiko të Gjithë"
+                </div><a href="foto-galeria.html" title=""
                     class="text-decoration-underline fw-semi-bold"> Shiko të Gjitha</a>
             </div>
             <div class="swiper">
@@ -861,22 +834,21 @@
             </div>
             <div class="row gy-lg-4 gy-2">
                 <div class="col-lg-6">
-                    <div class="showcase-blog-item ratio first"><img data-src="{{ GetData('blog', ['Id'=>'1'])['Img'] }}" alt="{{ GetData('blog', ['Id'=>'1'])['Title'] }}">
-                        <div class="title">{{ GetData('blog', ['Id'=>'1'])['Title'] }}</div><a href="/bog/{{ GetData('blog', ['Id'=>'1'])['Slug'] }}" title="{{ GetData('blog', ['Id'=>'1'])['Title'] }}" aria-label="{{ GetData('blog', ['Id'=>'1'])['Title'] }}"></a>
-                    </div>
+                    @foreach(GetData('blog', ['Status'=>'1'],1) as $Blog)
+                        <div class="showcase-blog-item ratio first"><img data-src="{{ $Blog['Img'] }}" alt="{{ $Blog['Title'] }}">
+                            <div class="title">{{ $Blog['Title'] }}</div><a href="/bog/{{ $Blog['Slug'] }}" title="{{ $Blog['Title'] }}" aria-label="{{ $Blog['Title'] }}"></a>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="col-lg-6">
                     <div class="row gy-lg-4 gy-2">
-                        <div class="col-lg-12 col-md-6">
-                            <div class="showcase-blog-item ratio ratio-21x9"><img data-src="{{ GetData('blog', ['Id'=>'3'])['Img'] }}" alt="{{ GetData('blog', ['Id'=>'3'])['Title'] }}">
-                                <div class="title">{{ GetData('blog', ['Id'=>'3'])['Title'] }}</div><a href="/blog/{{ GetData('blog', ['Id'=>'3'])['Slug'] }}" title="{{ GetData('blog', ['Id'=>'3'])['Title'] }}" aria-label="{{ GetData('blog', ['Id'=>'3'])['Title'] }}"></a>
+                        @foreach(GetData('blog', ['Status'=>'1'],2,['Id','desc']) as $Blog)
+                            <div class="col-lg-12 col-md-6">
+                                <div class="showcase-blog-item ratio ratio-21x9"><img data-src="{{ $Blog['Img'] }}" alt="{{ $Blog['Title'] }}">
+                                    <div class="title">{{ $Blog['Title'] }}</div><a href="/blog/{{ $Blog['Slug'] }}" title="{{ $Blog['Title'] }}" aria-label="{{ $Blog['Title'] }}"></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="showcase-blog-item ratio ratio-21x9"><img data-src="{{ GetData('blog', ['Id'=>'2'])['Img'] }}" alt="Hyperbaric Oxygen Chambers (HBOC)">
-                                <div class="title">{{ GetData('blog', ['Id'=>'2'])['Title'] }}</div><a href="/blog/{{ GetData('blog', ['Id'=>'2'])['Slug'] }}" title="{{ GetData('blog', ['Id'=>'2'])['Title'] }}" aria-label="{{ GetData('blog', ['Id'=>'2'])['Title'] }}"></a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -908,102 +880,27 @@
                         </div>
                         <div class="swiper">
                             <div class="swiper-wrapper">
+                                @foreach(GetData('doctor',['Status'=>'1']) as $Doctor)
                                 <div class="swiper-slide">
                                     <div class="doctor-item">
                                         <figure class="mb-0 ratio">
-                                            <img src="assets/img/doctor-1.webp" class="w-100 h-100 of-cover" alt="Prof. Dr. Samet Yardimci">
+                                            <img src="{{$Doctor['Img']}}" class="w-100 h-100 of-cover" alt="{{$Doctor['Title']}}">
                                         </figure>
                                         <div class="overlay">
                                             <div class="content">
-                                                <div class="title">Prof. Dr. Samet Yardimci</div>
-                                                <div class="department mt-0">Bariatric & Metabolic Surgery</div>
-                                                <div class="desc">His areas of expertise include tumor surgery, reflux surgery, inflammatory bowel disease surgery, bariatric surgery, and metabolic surgery.</div>
-                                                <a href="doctors/prof-dr-samet-yardimci.html" class="btn btn-white text-primary w-100 rounded-pill" title="View Profile">View Profile</a>
-                                                <a href="https://wa.me/+905415573736?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment%20for%20Prof.%20Dr.%20Samet%20Yardimci." target="_blank" rel="nofollow external" class="btn btn-white text-primary w-100 rounded-pill" title="Book Appointment">Book Appointment</a>
+                                                <div class="title">{{$Doctor['Title']}}</div>
+                                                <div class="department mt-0">{{$Doctor['Info']}}</div>
+                                                <div class="desc">{{$Doctor['Description']}}</div>
+                                                @if(trim($Doctor['Path'])!='') 
+                                                    <a href="{{$Doctor['Path']}}" class="btn btn-white text-primary w-100 rounded-pill" title="View Profile">View Profile</a>
+                                                @endif
+                                                <a href="/appointment" target="_blank" rel="internal" class="btn btn-white text-primary w-100 rounded-pill" title="Book Appointment">Book Appointment</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="doctor-item">
-                                        <figure class="mb-0 ratio">
-                                            <img src="assets/img/doctor-2.webp" class="w-100 h-100 of-cover" alt="Prof. Assoc. Dr. Mustafa Atabey">
-                                        </figure>
-                                        <div class="overlay">
-                                            <div class="content">
-                                                <div class="title">Prof. Assoc. Dr. Mustafa Atabey</div>
-                                                <div class="department mt-0">Bariatric & Metabolic Surgery</div>
-                                                <div class="desc">Prof. Assoc. Dr. Mustafa Atabey offers services at Medical Park Göztepe and Medical Park Maltepe hospitals. His area of interest is Bariatric and Metabolic Surgery (Obesity and Diabetes).</div>
-                                                <a href="doctors/prof-assoc-mustafa-atabey.html" class="btn btn-white text-primary w-100 rounded-pill" title="View Profile">View Profile</a>
-                                                <a href="https://wa.me/+905415573736?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment%20for%20Prof.%20Assoc.%20Dr.%20Mustafa%20Atabey." target="_blank" rel="nofollow external" class="btn btn-white text-primary w-100 rounded-pill" title="Book Appointment">Book Appointment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="doctor-item">
-                                        <figure class="mb-0 ratio">
-                                            <img src="assets/img/doctor-3.webp" class="w-100 h-100 of-cover" alt="Prof. Dr. Erdal Karaöz">
-                                        </figure>
-                                        <div class="overlay">
-                                            <div class="content">
-                                                <div class="title">Prof. Dr. Erdal Karaöz</div>
-                                                <div class="department mt-0">Genetics</div>
-                                                <div class="desc">Dr. Karaöz has worked in 'Stem Cell, Tissue Engineering, and Gene Therapy' since 2000 and has conducted experiments in 'Stem Cell and Islet Cell Transplantation' at Harvard USA.</div>
-                                                <a href="doctors/prof-dr-erdal-karaoz.html" class="btn btn-white text-primary w-100 rounded-pill" title="View Profile">View Profile</a>
-                                                <a href="https://wa.me/+905415573736?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment%20for%20Prof.%20Dr.%20Erdal%20Karaöz." target="_blank" rel="nofollow external" class="btn btn-white text-primary w-100 rounded-pill" title="Book Appointment">Book Appointment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="doctor-item">
-                                        <figure class="mb-0 ratio">
-                                            <img src="assets/img/doctor-4.webp" class="w-100 h-100 of-cover" alt="Prof. Dr. Türker Kılıç">
-                                        </figure>
-                                        <div class="overlay">
-                                            <div class="content">
-                                                <div class="title">Prof. Dr. Türker Kılıç</div>
-                                                <div class="department mt-0">Neurosurgery</div>
-                                                <div class="desc">Prof. Dr. Türker Kılıç established the first Gamma Knife Radiation Surgery in Turkey in 1997. So far, he has performed Gamma Knife Radiation Surgery on nearly 11,000 patients.</div>
-                                                <a href="doctors/prof-dr-turker-kilic.html" class="btn btn-white text-primary w-100 rounded-pill" title="View Profile">View Profile</a>
-                                                <a href="https://wa.me/+905415573736?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment%20for%20Prof.%20Dr.%20Türker%20Kılıç." target="_blank" rel="nofollow external" class="btn btn-white text-primary w-100 rounded-pill" title="Book Appointment">Book Appointment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="doctor-item">
-                                        <figure class="mb-0 ratio">
-                                            <img src="assets/img/doctor-5.webp" class="w-100 h-100 of-cover" alt="Prof. Dr. Tolga Taşçı">
-                                        </figure>
-                                        <div class="overlay">
-                                            <div class="content">
-                                                <div class="title">Prof. Dr. Tolga Taşçı</div>
-                                                <div class="department mt-0">Gynecology, Obstetrics & Oncology</div>
-                                                <div class="desc">He works as an associate professor at Bahçeşehir University's Faculty of Medicine, Department of Obstetrics and Gynecology, and as a Gynecological and Oncological Specialist at Medical Park.</div>
-                                                <a href="doctors/prof-dr-tolga-tasci.html" class="btn btn-white text-primary w-100 rounded-pill" title="View Profile">View Profile</a>
-                                                <a href="https://wa.me/+905415573736?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment%20for%20Prof.%20Dr.%20Tolga%20Taşçı." target="_blank" rel="nofollow external" class="btn btn-white text-primary w-100 rounded-pill" title="Book Appointment">Book Appointment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="doctor-item">
-                                        <figure class="mb-0 ratio">
-                                            <img src="assets/img/doctor-6.webp" class="w-100 h-100 of-cover" alt="Prof. Assoc. Dr. Aynur Adeviye Erşahin">
-                                        </figure>
-                                        <div class="overlay">
-                                            <div class="content">
-                                                <div class="title">Prof. Assoc. Dr. Aynur Adeviye Erşahin</div>
-                                                <div class="department mt-0">Gynecology & Obstetrics</div>
-                                                <div class="desc">Prof. Assoc. Dr. Aynur Adeviye Erşahin is a specialist in Gynecology and Obstetrics / IVF. Since 2014, she has been working as the responsible physician of the IVF Unit at Medicalpark Göztepe Hospital.</div>
-                                                <a href="doctors/doc-dr-aynur-adeviye-ersahin.html" class="btn btn-white text-primary w-100 rounded-pill" title="View Profile">View Profile</a>
-                                                <a href="https://wa.me/+905415573736?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment%20for%20Prof.%20Assoc.%20Dr.%20Aynur%20Adeviye%20Erşahin." target="_blank" rel="nofollow external" class="btn btn-white text-primary w-100 rounded-pill" title="Book Appointment">Book Appointment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>

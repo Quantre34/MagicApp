@@ -24,88 +24,25 @@
                 </a>
                 <div class="dropdown-menu content-dd dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="py-3 px-4 border-bottom">
-                    <h5 class="mb-0 fs-4 fw-normal">Notifications</h5>
+                    <h5 class="mb-0 fs-4 fw-normal">Bildirimlerim</h5>
                   </div>
                   <div class="message-body" data-simplebar>
+
                     <a href="javascript:void(0)" class="p-3 pe-0 border-bottom d-flex align-items-center dropdown-item gap-3">
                       <span class="flex-shrink-0 bg-danger-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-danger">
                         <iconify-icon icon="solar:widget-3-line-duotone"></iconify-icon>
                       </span>
                       <div class="w-75 d-inline-block ">
                         <div class="d-flex align-items-center justify-content-between">
-                          <h6 class="mb-1 fw-semibold">Launch Admin</h6>
-                          <span class="d-block fs-2 text-body-color">9:30 AM</span>
+                          <h6 class="mb-1 fw-semibold">Yönetici</h6>
+                          <span class="d-block fs-2 text-body-color">15-11-2024 10:28</span>
                         </div>
-                        <span class="d-block text-truncate text-truncate fs-11 text-body-color">Just see the my new admin!</span>
+                        <span class="d-block text-truncate text-truncate fs-11 text-body-color">Test Bildirimi herkese gönderildi</span>
                       </div>
                     </a>
-                    <a href="javascript:void(0)" class="p-3 pe-0 border-bottom d-flex align-items-center dropdown-item gap-3">
-                      <span class="flex-shrink-0 bg-primary-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-primary">
-                        <iconify-icon icon="solar:calendar-line-duotone"></iconify-icon>
-                      </span>
-                      <div class="w-75 d-inline-block ">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h6 class="mb-1 fw-semibold">Event today</h6>
-                          <span class="d-block fs-2 text-body-color">9:15 AM</span>
-                        </div>
-                        <span class="d-block text-truncate text-truncate fs-11 text-body-color">Just a reminder that you have event</span>
-                      </div>
-                    </a>
-                    <a href="javascript:void(0)" class="p-3 pe-0 border-bottom d-flex align-items-center dropdown-item gap-3">
-                      <span class="flex-shrink-0 bg-secondary-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-secondary">
-                        <iconify-icon icon="solar:settings-line-duotone"></iconify-icon>
-                      </span>
-                      <div class="w-75 d-inline-block ">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h6 class="mb-1 fw-semibold">Settings</h6>
-                          <span class="d-block fs-2 text-body-color">4:36 PM</span>
-                        </div>
-                        <span class="d-block text-truncate text-truncate fs-11 text-body-color">You can customize this template as you want</span>
-                      </div>
-                    </a>
-                    <a href="javascript:void(0)" class="p-3 pe-0 border-bottom d-flex align-items-center dropdown-item gap-3">
-                      <span class="flex-shrink-0 bg-warning-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-warning">
-                        <iconify-icon icon="solar:widget-4-line-duotone"></iconify-icon>
-                      </span>
-                      <div class="w-75 d-inline-block ">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h6 class="mb-1 fw-semibold">Launch Admin</h6>
-                          <span class="d-block fs-2 text-body-color">9:30 AM</span>
-                        </div>
-                        <span class="d-block text-truncate text-truncate fs-11 text-body-color">Just see the my new admin!</span>
-                      </div>
-                    </a>
-                    <a href="javascript:void(0)" class="p-3 pe-0 border-bottom d-flex align-items-center dropdown-item gap-3">
-                      <span class="flex-shrink-0 bg-primary-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-primary">
-                        <iconify-icon icon="solar:calendar-line-duotone"></iconify-icon>
-                      </span>
-                      <div class="w-75 d-inline-block ">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h6 class="mb-1 fw-semibold">Event today</h6>
-                          <span class="d-block fs-2 text-body-color">9:15 AM</span>
-                        </div>
-                        <span class="d-block text-truncate text-truncate fs-11 text-body-color">Just a reminder that you have event</span>
-                      </div>
-                    </a>
-                    <a href="javascript:void(0)" class="p-3 pe-0 border-bottom d-flex align-items-center dropdown-item gap-3">
-                      <span class="flex-shrink-0 bg-secondary-subtle rounded-circle round d-flex align-items-center justify-content-center fs-6 text-secondary">
-                        <iconify-icon icon="solar:settings-line-duotone"></iconify-icon>
-                      </span>
-                      <div class="w-75 d-inline-block ">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <h6 class="mb-1 fw-semibold">Settings</h6>
-                          <span class="d-block fs-2 text-body-color">4:36 PM</span>
-                        </div>
-                        <span class="d-block text-truncate text-truncate fs-11 text-body-color">You can customize this template as you want</span>
-                      </div>
-                    </a>
+
                   </div>
-                  <div>
-                    <a class="d-flex align-items-center pt-3 pb-2 justify-content-center link-primary text-dark" href="javascript:void(0);">
-                      <span class="fw-semibold">Check all notifications</span>
-                      <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
-                    </a>
-                  </div>
+                 
 
                 </div>
               </li>
@@ -116,7 +53,7 @@
               <!-- ------------------------------- -->
               <!-- start messages Dropdown -->
               <!-- ------------------------------- -->
-              <li class="nav-item dropdown nav-icon-hover-bg dark rounded-circle d-none d-xl-flex">
+ <!--              <li class="nav-item dropdown nav-icon-hover-bg dark rounded-circle d-none d-xl-flex">
                 <a class="nav-link position-relative" href="javascript:void(0)" id="drop2" aria-expanded="false">
                   <iconify-icon icon="solar:inbox-line-duotone" class="fs-6"></iconify-icon>
                   <div class="notify">
@@ -230,11 +167,11 @@
                   </div>
 
                 </div>
-              </li>
+              </li> -->
               <!-- ------------------------------- -->
               <!-- end messages Dropdown -->
               <!-- ------------------------------- -->
-
+<!-- 
               <li class="nav-item dropdown nav-icon-hover-bg dark rounded-circle d-none d-xl-flex">
                 <div class="hover-dd">
                   <a class="nav-link" id="drop2" href="javascript:void(0)" aria-haspopup="true" aria-expanded="false">
@@ -375,7 +312,7 @@
                     </div>
                   </div>
                 </div>
-              </li>
+              </li> -->
             </ul>
 
             <div class="d-block d-lg-none py-4 py-xl-0">
@@ -497,7 +434,7 @@
                   <!-- ------------------------------- -->
                   <!-- start mailbox Dropdown -->
                   <!-- ------------------------------- -->
-                  <li class="nav-item hover-dd dropdown">
+<!--                   <li class="nav-item hover-dd dropdown">
                     <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" aria-expanded="false">
                       <iconify-icon icon="solar:inbox-linear" class="fs-6"></iconify-icon>
                       <div class="notify">
@@ -611,7 +548,7 @@
                       </div>
 
                     </div>
-                  </li>
+                  </li> -->
                   <!-- ------------------------------- -->
                   <!-- end mailbox Dropdown -->
                   <!-- ------------------------------- -->
@@ -666,19 +603,19 @@
                           <div class="position-relative">
                             <img src="assets/panel/images/flag/icon-flag-en.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
-                          <p class="mb-0 fs-3">English (UK)</p>
+                          <p class="mb-0 fs-3">TR Türkçe</p>
                         </a>
                         <a href="javascript:$('input[name=Lang]').val('de');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
                             <img src="assets/panel/images/flag/icon-flag-cn.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
-                          <p class="mb-0 fs-3">中国人 (Chinese)</p>
+                          <p class="mb-0 fs-3">DE Germany</p>
                         </a>
-                        <a href="javascript:$('input[name=Lang]').val('tr');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
+                        <a href="javascript:$('input[name=Lang]').val('en');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
                             <img src="assets/panel/images/flag/icon-flag-fr.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
-                          <p class="mb-0 fs-3">français (French)</p>
+                          <p class="mb-0 fs-3">EN English</p>
                         </a>
                         
                       </div>
@@ -1258,7 +1195,7 @@
               </li>
             </ul>
             <div class="d-block d-xl-none">
-              <a href="../main/index.html" class="text-nowrap nav-link">
+              <a href="/panel" class="text-nowrap nav-link">
                 <img src="assets/panel/images/logos/light-logo.svg" alt="Logo" />
               </a>
             </div>
@@ -1280,7 +1217,7 @@
                   <li class="nav-item search-box d-none d-xl-flex align-items-center">
                     <div class="nav-link">
                       <form class="app-search position-relative">
-                        <input type="text" class="form-control rounded-pill border-0 shadow-none" placeholder="Search for..." />
+                        <input type="text" class="form-control rounded-pill border-0 shadow-none" placeholder="Panelde Ara..." />
                         <a href="javascript:void(0)" class="srh-btn">
                           <iconify-icon icon="solar:magnifer-linear" class="position-absolute top-50 end-0 translate-middle-y me-2 fs-5"></iconify-icon>
                         </a>

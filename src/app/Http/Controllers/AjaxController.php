@@ -1813,6 +1813,204 @@ class AjaxController extends Controller
             return response()->json($result,200);
         }
         ///
+        if ($this->action=='InsertSlider') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'uid'=>$this->UniqueId(30),
+                        'Title'=>htmlspecialchars($_POST['Title']),
+                        'Info'=>htmlspecialchars($_POST['Info']),
+                        'Content'=>htmlspecialchars($_POST['Content']),
+                        'Lang'=>$this->Lang,
+                        'File'=>htmlspecialchars(($_POST['File']??'/assets/panel/images/mp4.png')),
+                        'Status'=>htmlspecialchars($_POST['Status']),
+                    ];
+                    $Check = $this->isAnyEmpty($data);
+                    if (!$Check) {
+                        $Query = DB::table('slider')->insert($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/sliders'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
+        if ($this->action=='AlterSlider') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'uid'=>htmlspecialchars($_POST['uid']),
+                        'Title'=>htmlspecialchars($_POST['Title']),
+                        'Info'=>htmlspecialchars($_POST['Info']),
+                        'Content'=>htmlspecialchars($_POST['Content']),
+                        'File'=>htmlspecialchars(($_POST['File']??'/assets/panel/images/mp4.png')),
+                        'Status'=>htmlspecialchars($_POST['Status']),
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    $Check = $this->isAnyEmpty($data);
+                    if (!$Check) {
+                        $Query = DB::table('slider')->where('uid', $data['uid'])->update($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/sliders'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
+        if ($this->action=='InsertMedia') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'uid'=>$this->UniqueId(30),
+                        'Title'=>htmlspecialchars($_POST['Title']),
+                        'Type'=>htmlspecialchars($_POST['Type']),
+                        'FadeInHome'=>htmlspecialchars($_POST['FadeInHome']),
+                        'Info'=>htmlspecialchars($_POST['Info']),
+                        'Path'=>htmlspecialchars($_POST['Path']),
+                        'Lang'=>$this->Lang,
+                        'Img'=>htmlspecialchars(($_POST['Img'])),
+                        'Status'=>htmlspecialchars($_POST['Status']),
+                    ];
+                    $Check = $this->isAnyEmpty($data);
+                    if (!$Check) {
+                        $Query = DB::table('gallery')->insert($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/media'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
+      if ($this->action=='AlterMedia') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'uid'=>$_POST['uid'],
+                        'Title'=>htmlspecialchars($_POST['Title']),
+                        'Type'=>htmlspecialchars($_POST['Type']),
+                        'FadeInHome'=>htmlspecialchars($_POST['FadeInHome']),
+                        'Info'=>htmlspecialchars($_POST['Info']),
+                        'Path'=>htmlspecialchars($_POST['Path']),
+                        'Lang'=>$this->Lang,
+                        'Img'=>htmlspecialchars(($_POST['Img'])),
+                        'Status'=>htmlspecialchars($_POST['Status']),
+                    ];
+                    $Check = $this->isAnyEmpty($data);
+                    if (!$Check) {
+                        $Query = DB::table('gallery')->where('uid',$data['uid'])->update($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/media'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
+        if ($this->action=='InsertDoctor') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'uid'=>$this->UniqueId(30),
+                        'Title'=>htmlspecialchars($_POST['Title']),
+                        'Info'=>htmlspecialchars($_POST['Info']),
+                        'Path'=>htmlspecialchars($_POST['Path']),
+                        'Description'=>htmlspecialchars($_POST['Description']),
+                        'Lang'=>$this->Lang,
+                        'Img'=>htmlspecialchars(($_POST['Img'])),
+                        'Status'=>htmlspecialchars($_POST['Status']),
+                    ];
+                    $Check = $this->isAnyEmpty($data,['Path']);
+                    if (!$Check) {
+                        $Query = DB::table('doctor')->insert($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/doctors'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
+      if ($this->action=='AlterDoctor') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'uid'=>$_POST['uid'],
+                        'Title'=>htmlspecialchars($_POST['Title']),
+                        'Info'=>htmlspecialchars($_POST['Info']),
+                        'Description'=>htmlspecialchars($_POST['Description']),
+                        'Path'=>htmlspecialchars($_POST['Path']),
+                        'Lang'=>$this->Lang,
+                        'Img'=>htmlspecialchars(($_POST['Img'])),
+                        'Status'=>htmlspecialchars($_POST['Status']),
+                    ];
+                    $Check = $this->isAnyEmpty($data,['Path']);
+                    if (!$Check) {
+                        $Query = DB::table('doctor')->where('uid',$data['uid'])->update($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/doctors'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
         if($this->action=='RemindPass'){
             $data['uid']=request('uid');
             $User = $this->toArray( DB::table('user')->where('uid',$data['uid'])->first() );

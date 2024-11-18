@@ -338,89 +338,89 @@ document.addEventListener("DOMContentLoaded", function () {
     // doughnut chart option
     // -----------------------------------------------------------------------
 
-    var option_Sales_of_the_Month = {
-        series: [9, 3, 2, 2],
-        labels: ["Social", "Marketing", "Search Engine", "Organic Sales"],
-        chart: {
-            type: "donut",
-            height: 270,
-            offsetY: 20,
-            fontFamily: "inherit",
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            width: 0,
-        },
-        plotOptions: {
-            pie: {
-                expandOnClick: true,
-                donut: {
-                    size: "88",
-                    labels: {
-                        show: false,
-                        name: {
-                            show: true,
-                            offsetY: 7,
-                        },
-                        value: {
-                            show: false,
-                        },
-                        total: {
-                            show: false,
-                            color: "#a1aab2",
-                            fontSize: "13px",
-                            label: "Our Visitor",
-                        },
-                    },
-                },
-            },
-        },
-        colors: ["#edf1f5", "var(--bs-primary)", "var(--bs-success)", "var(--bs-secondary)"],
-        tooltip: {
-            show: true,
-            fillSeriesColor: false,
-        },
-        legend: {
-            show: false,
-        },
-        responsive: [
-            {
-                breakpoint: 1025,
-                options: {
-                    chart: {
-                        width: 250,
-                    },
-                },
-            },
-            {
-                breakpoint: 769,
-                options: {
-                    chart: {
-                        height: 270,
-                        width: "100%",
-                    },
-                },
-            },
-            {
-                breakpoint: 426,
-                options: {
-                    chart: {
-                        height: 250,
-                        offsetX: -20,
-                        width: 250,
-                    },
-                },
-            },
-        ],
-    };
+    // var option_Sales_of_the_Month = {
+    //     series: [9, 3, 2, 2],
+    //     labels: ["Social", "Marketing", "Search Engine", "Organic Sales"],
+    //     chart: {
+    //         type: "donut",
+    //         height: 270,
+    //         offsetY: 20,
+    //         fontFamily: "inherit",
+    //     },
+    //     dataLabels: {
+    //         enabled: false,
+    //     },
+    //     stroke: {
+    //         width: 0,
+    //     },
+    //     plotOptions: {
+    //         pie: {
+    //             expandOnClick: true,
+    //             donut: {
+    //                 size: "88",
+    //                 labels: {
+    //                     show: false,
+    //                     name: {
+    //                         show: true,
+    //                         offsetY: 7,
+    //                     },
+    //                     value: {
+    //                         show: false,
+    //                     },
+    //                     total: {
+    //                         show: false,
+    //                         color: "#a1aab2",
+    //                         fontSize: "13px",
+    //                         label: "Our Visitor",
+    //                     },
+    //                 },
+    //             },
+    //         },
+    //     },
+    //     colors: ["#edf1f5", "var(--bs-primary)", "var(--bs-success)", "var(--bs-secondary)"],
+    //     tooltip: {
+    //         show: true,
+    //         fillSeriesColor: false,
+    //     },
+    //     legend: {
+    //         show: false,
+    //     },
+    //     responsive: [
+    //         {
+    //             breakpoint: 1025,
+    //             options: {
+    //                 chart: {
+    //                     width: 250,
+    //                 },
+    //             },
+    //         },
+    //         {
+    //             breakpoint: 769,
+    //             options: {
+    //                 chart: {
+    //                     height: 270,
+    //                     width: "100%",
+    //                 },
+    //             },
+    //         },
+    //         {
+    //             breakpoint: 426,
+    //             options: {
+    //                 chart: {
+    //                     height: 250,
+    //                     offsetX: -20,
+    //                     width: 250,
+    //                 },
+    //             },
+    //         },
+    //     ],
+    // };
 
-    var chart_pie_donut = new ApexCharts(
-        document.querySelector("#sales-of-the-month"),
-        option_Sales_of_the_Month
-    );
-    chart_pie_donut.render();
+    // var chart_pie_donut = new ApexCharts(
+    //     document.querySelector("#sales-of-the-month"),
+    //     option_Sales_of_the_Month
+    // );
+    // chart_pie_donut.render();
 
 
 

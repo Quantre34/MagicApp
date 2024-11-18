@@ -59,9 +59,9 @@
                       <!-- start row -->
                         <tr>
                           <th>Logo</th>
+                          <th>Başlık</th>
                           <th>Mail</th>
                           <th>Telefon</th>
-                          <th>Ülke</th>
                           <th>Komisyon</th>
                           <th>Durum</th>
                           <th></th>
@@ -88,8 +88,7 @@
                                <a href="/panel/agencies/edit/{{$Agency['uid']}}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                               </a>
-                          </div>
-                           
+                            </div>
                           </td>
                         </tr>
                       @endforeach

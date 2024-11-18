@@ -175,7 +175,7 @@
                         </div>
                         <div>
                           <h6 class="mb-1 name fw-semibold"></h6>
-                          <p class="mb-0 Title">Away</p>
+                          <p class="mb-0 Title">Destek</p>
                         </div>
                       </div>
                       <ul class="list-unstyled mb-0 d-flex align-items-center">
@@ -622,7 +622,7 @@
                     Container.empty();
                     data['data'].forEach((Item)=>{
                       // Container.append('<div onclick="javascript:GetMessages(\''+Item['uid']+'\');" class=" '+((Item['Pulse'])? 'Pulse': '')+' col-auto col-xl-12"><div class="card active hover-border-primary"><div class="card-body"><div class="row g-0 sh-6"><div class="col-auto"><img src="'+(Item['User']['ProfilPic'] ?? '/assets/upload/Default.png')+'" class="card-img rounded-xl sh-6 sw-6 no-delay" data-bs-delay="0" alt="thumb" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+Item['User']['FirstName']+' '+Item['User']['LastName']+'"/></div><div class="col d-none d-xl-block"><div class="card-body d-flex flex-row pt-0 pb-0 ps-3 pe-0 h-100 align-items-center justify-content-between"><div class="d-flex flex-column"><a href="#" class="body-link">'+Item['Title']+'</a><div class="text-small text-muted">'+Item['User']['FirstName']+' '+Item['User']['LastName']+'</div><div class="text-small text-muted">'+((Item['User']['Type']=='2')? '{{Lang::get('Consult.Admin')}}' : ((Item['User']['Type']=='1')? '{{Lang::get('Consult.Manager')}}' : '{{Lang::get('Consult.Agent')}}'))  +'</div></div></div></div></div></div></div></div>');
-                      Container.append(`<li onclick="javascript:GetMessages('${Item['uid']}');" title="{{$Chat['Title']}}" user="${Item['User']['FirstName']} ${Item['User']['FirstName']}"  class=" ${((Item['Pulse'])? 'Pulse': '')}" >
+                      Container.append(`<li onclick="javascript:GetMessages('${Item['uid']}');" title="${Item['Title']}" user="${Item['User']['FirstName']} ${Item['User']['FirstName']}"  class=" ${((Item['Pulse'])? 'Pulse': '')}" >
                       <a  class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light-subtle" id="chat_user_1" data-user-id="1">
                         <div class="d-flex align-items-center">
                           <span class="position-relative">

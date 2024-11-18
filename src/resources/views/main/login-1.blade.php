@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/png" href="assets/panel/images/logos/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="{{ (str_contains(Request::url(), 'medescare'))? '\assets\icon\favicon.png' : '\assets\img\favicon\magic.png' }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
 
   <!-- Core Css -->
@@ -23,7 +23,7 @@
 <body>
   <!-- Preloader -->
   <div class="preloader">
-    <img src="assets/panel/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+     <img src="{{asset('assets/icon/favicon.png')}}" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <div id="main-wrapper" class="auth-customizer-none">
     <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
@@ -54,10 +54,10 @@
                   </div>
 
                   <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</button>
-                  <div class="d-flex align-items-center justify-content-center">
+                  <!-- <div class="d-flex align-items-center justify-content-center">
                     <a class="text-primary fw-medium ms-2" href="../main/authentication-register.html">Create an
                       account</a>
-                  </div>
+                  </div> -->
                 </form>
               </div>
             </div>

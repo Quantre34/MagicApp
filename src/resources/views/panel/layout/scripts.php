@@ -20,6 +20,7 @@
     <script src="<?= asset('assets/panel/libs/quill/dist/quill.min.js') ?>"></script>
     <script src="<?= asset('assets/panel/js/forms/quill-init.js') ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         function getCookie(cname) {
             var name = cname + "=";

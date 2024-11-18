@@ -52,7 +52,7 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
 
     Route::get('/panel/categories', [AdminController::class, 'Categories']);
     Route::get('/panel/categories/new', [AdminController::class, 'NewCategory']);
-    Route::get('/panel/categories/{uid}', [AdminController::class, 'k']);
+    Route::get('/panel/categories/{uid}', [AdminController::class, 'EditCategory']);
 
     Route::get('/panel/treatments', [AdminController::class, 'Treatments']);
     Route::get('/panel/treatments/new', [AdminController::class, 'NewTreatment']);
@@ -78,9 +78,22 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/articles/new', [AdminController::class, 'NewArticle']);
     Route::get('/panel/articles/{uid}', [AdminController::class, 'EditArticle']);
 
+    Route::get('/panel/website/media', [AdminController::class, 'Media']);
+    Route::get('/panel/website/media/new', [AdminController::class, 'NewMedia']);
+    Route::get('/panel/website/media/{uid}', [AdminController::class, 'EditMedia']);
+
     Route::get('/panel/consult', [AdminController::class, 'Consult']);
 
+    Route::get('/panel/website/sliders', [AdminController::class, 'Sliders']);
+    Route::get('/panel/website/sliders/new', [AdminController::class, 'NewSlider']);
+    Route::get('/panel/website/sliders/{uid}', [AdminController::class, 'EditSlider']);
 
+    Route::get('/panel/services', [AdminController::class, 'Services']);
+
+    Route::get('/panel/website/doctors', [AdminController::class, 'Doctors']);
+    Route::get('/panel/website/doctors/new', [AdminController::class, 'NewDoctor']);
+    Route::get('/panel/website/doctors/{uid}', [AdminController::class, 'EditDoctor']);
+    /// old
 
     Route::get('/panel/Manage/Packages', [AdminController::class, 'ManagePackages']);
     Route::get('/panel/Manage/Features', [AdminController::class, 'ManageFeatures']);

@@ -99,12 +99,6 @@ if (isset($_GET['Terminate'])) {
     }
 }
 
-/*@media screen (max-width:1050px){
-  .logo > img {
-    width:125px!important;
-    height: 35px;
-  }
-}*/
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <!--  Cell input with COuntry Code -->

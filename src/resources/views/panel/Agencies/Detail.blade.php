@@ -267,7 +267,7 @@
                             <i class="ti ti-map-pin text-dark fs-3 me-1"></i>{{$Client['Cell']}}
                           </span>
                         </div>
-                        <button class="btn btn-outline-primary py-1 px-2 ms-auto">Detay</button>
+                        <!-- <button class="btn btn-outline-primary py-1 px-2 ms-auto">Detay</button> -->
                       </div>
                     </div>
                   </div>
