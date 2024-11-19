@@ -60,7 +60,7 @@
                 </div> 
                 </form>
                 <form action="ajax" target="InsertCategory" method="POST" class="needs-validation" novalidate>
-                  
+                   @csrf
                     <input type="text" hidden required name="Img" value="">
 
                     <div class="mb-1">

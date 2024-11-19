@@ -281,6 +281,11 @@
                             </li>
                           </ul> -->
                         </div>
+                        <style type="text/css">
+                          .chat:not(.active-chat){
+                            display: none;
+                          }
+                        </style>
                         <div class="position-relative overflow-hidden">
                           <div class="position-relative">
                             <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
@@ -329,17 +334,34 @@
                                         <p class="mb-1 fs-2">Ek Komisyonu</p>
                                         <h6 class="fw-semibold mb-0">{{$Appointment['AgencyFee']}}%</h6>
                                       </div>
+
+                                      <div class="col-12 mb-9">
+                                        <p class="mb-1 fs-2">Durumu</p>
+                                        <h6 class="fw-semibold mb-0">
+                                          <? 
+                                              if($Appointment['Status']=='1'){
+                                                  if ($Appointment['PaymentStatus']=='0') {
+                                                      echo '<div class="text-primary">Ödeme Yapılmadı</div>';
+                                                  }elseif($Appointment['PaymentStatus']=='1'){
+                                                      echo '<div class="text-primary">Ödeme Alındı</div>';
+                                                  }else {
+                                                      echo '<div class="text-primary">Ödeme İade Edildi</div>';
+                                                  }
+                                              }elseif($Appointment['Status']=='2') {
+                                                  echo '<div class="text-danger">İptal Edildi</div>';
+                                              }elseif($Appointment['Status']=='3') {
+                                                  echo '<div class="text-danger">Teslim Edildi</div>';
+                                              }
+                                          ?>
+                                        </h6>
+                                      </div>
                                     </div>
-                                    <div class="border-bottom pb-7 mb-4">
-                                      <p class="mb-2 fs-2">Notlar</p>
-                                      <p class="mb-3 text-dark">
-                                          
-                                      </p>
+
                                     </div>
-                                  </div>
+                                    
                               @endforeach
 
-
+                              
 
                             </div>
                           </div>

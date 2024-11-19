@@ -58,6 +58,7 @@
                     <thead>
                       <!-- start row -->
                         <tr>
+                          <th>Id</th>
                           <th>Name</th>
                           <th>Slug</th>
                           <th>Cost</th>
@@ -70,6 +71,7 @@
                     <tbody>
                       @foreach($Treatments as $Treatment)
                         <tr>
+                          <td>{{$Treatment['Id']}}</td>
                           <td>{{$Treatment['Title']}}</td>
                           <td>{{$Treatment['Slug']}}</td>
                           <td>{{$Treatment['Cost']}}</td>

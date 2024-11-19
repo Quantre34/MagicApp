@@ -58,11 +58,10 @@
                     <thead>
                       <!-- start row -->
                         <tr>
-                          <th>Profil</th>
+                          <th>{{$Type=='agents'? 'Acente' : 'Yönetici'}}</th>
                           <th>İsim/Soyisim</th>
                           <th>Mail</th>
                           <th>Telefon</th>
-                          <th>Yönetici</th>
                           <th>Komisyon</th>
                           <th>Durum</th>
                           <th></th>
@@ -73,11 +72,10 @@
                     <tbody>
                       @foreach($Users as $User)
                         <tr>
-                          <td> <img style="width: 50px;height: 50px;" src="{{$User['ProfilPic']??'assets/img/profile/Default.png'}}"> </td>
+                          <td> {{ !empty($User['Parent']['Title'])? $User['Parent']['Title'] : (!empty($User['Parent']['FirstName'])? $User['Parent']['FirstName'].' '.$User['Parent']['LastName'] : '') }} </td>
                           <td>{{$User['FirstName']}} {{$User['LastName']}}</td>
                           <td>{{$User['Mail']}}</td>
                           <td>{{$User['Cell']}}</td>
-                          <td>{{ !empty($User['Parent']['Title'])? $User['Parent']['Title'] : (!empty($User['Parent']['FirstName'])? $User['Parent']['FirstName'].' '.$User['Parent']['LastName'] : '') }}</td>
                           <td>{{$User['CommissionRate']??'0'}} %</td>
                           <td class="hidden-xs" width="150">
                               <span class="badge  bg-<?=  $User['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $User['Status']=='1'? 'success' : 'danger' ?>"><?= $User['Status']=='1'? 'Aktif' : 'Pasif' ?></span>

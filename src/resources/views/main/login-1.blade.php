@@ -31,19 +31,18 @@
         <div class="row">
           <div class="col-xl-5 col-xxl-4">
             <div class="authentication-login min-vh-100 bg-body row justify-content-center">
-              <div class="col-12">
-                <a href="../main/index.html" class="text-nowrap logo-img d-block px-4 py-9 w-100">
-                  <img src="assets/panel/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
-                  <img src="assets/panel/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+              <div class="col-12" style="padding: 20% 50px 10px 20%;">
+                <a href="/" class="text-nowrap logo-img d-block  w-100">
+                  <img src="{{Main('Logo')}}" class="dark-logo" alt="Logo-Dark" />
+                  <img src="{{Main('AlternativeLogo')}}" class="light-logo " style="display: none;" alt="Logo-light" />
                 </a>
               </div>
               <div class="auth-max-width col-sm-8 col-md-6 col-xl-7 px-4">
-                <h3 class="mb-1 fs-7 fw-bolder"> Medescare Panel</h3>
-
+                <h3 class="mb-1 fs-7 fw-bolder">Medescare Panel</h3>
                 <div class="position-relative text-center my-4">
                   <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                 </div>
-                <form method="POST" id="LoginForm" target="ajax" action="Login">
+                <form method="POST" id="LoginForm" target="ajax" action="Login" class="LoginForm needs-validation"  novalidate>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="email" name="Mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -52,13 +51,36 @@
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" name="Password" class="form-control" id="exampleInputPassword1">
                   </div>
-
-                  <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</button>
-                  <!-- <div class="d-flex align-items-center justify-content-center">
-                    <a class="text-primary fw-medium ms-2" href="../main/authentication-register.html">Create an
+                  <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">{{Lang::get('Login.Send')}}</button>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <a class="text-primary fw-medium ms-2" onclick="javascript:$('.LoginForm').fadeOut('fast');$('.SignUpForm').fadeIn();">Create an
                       account</a>
-                  </div> -->
+                  </div>
                 </form>
+                 <form  method="POST" id="SignUpForm" target="ajax" action="SignUp" class="SignUpForm needs-validation"  novalidate style="display: none;">
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.FullName')}}</label>
+                        <input type="email" name="FullName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.CompanyName')}}</label>
+                        <input type="email" name="Title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.Email')}}</label>
+                        <input type="email" name="Mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.ReferenceCode')}}</label>
+                        <input type="email" name="ReferenceCode" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label"></label>
+                        <input type="email" id="Cell" name="Cell" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                      <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">{{Lang::get('Login.Apply')}}</button>
+                  </form>
+
               </div>
             </div>
           </div>
@@ -99,9 +121,9 @@ const container = document.getElementById('container');
 
 
 $(document).ready(function(){
-    _initIcons();
-   const phoneInputField = document.querySelector("#Cell");
-   const phoneInput = window.intlTelInput(phoneInputField, {
+      _initIcons();
+     const phoneInputField = document.querySelector("#Cell");
+     const phoneInput = window.intlTelInput(phoneInputField, {
           initialCountry: "{{ (App::getLocale()=='en')? 'us' : App::getLocale() }}",
           utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
       });

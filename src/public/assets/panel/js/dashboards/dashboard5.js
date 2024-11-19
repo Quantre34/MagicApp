@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var total_revenue = {
         series: [
-            { name: "Inbound Calls", data: [65, 80, 80, 60, 60, 45, 45, 80, 80, 70, 70, 90, 90, 80, 80, 80, 60, 60, 50] },
-            { name: "Outbound Calls", data: [90, 110, 110, 95, 95, 85, 85, 95, 95, 115, 115, 100, 100, 115, 115, 95, 95, 85, 85] },
+            { name: "Inbound Calls", data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+            { name: "Outbound Calls", data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
         ],
         chart: { fontFamily: "inherit", type: "area", height: 240, toolbar: { show: !1 } },
         plotOptions: {},
@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var options = {
         color: "#adb5bd",
-        series: [12, 88],
-        labels: ["12", "88"],
+        series: [0, 100],
+        labels: ["0", "100"],
         chart: {
             type: "donut",
             height: 95,
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             color: 'var(--bs-primary)',
                             fontSize: '14px',
                             fontWeight: "500",
-                            label: '86',
+                            label: '%',
                         },
                     },
                 },
@@ -123,8 +123,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var options = {
         color: "#adb5bd",
-        series: [20, 80],
-        labels: ["20", "80"],
+        series: [0, 100],
+        labels: ["0", "100"],
         chart: {
             type: "donut",
             height: 95,
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             color: 'var(--bs-danger)',
                             fontSize: '14px',
                             fontWeight: "500",
-                            label: '248',
+                            label: '%',
                         },
                     },
                 },
@@ -196,8 +196,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var options = {
         color: "#adb5bd",
-        series: [30, 70],
-        labels: ["30", "70"],
+        series: [0, 100],
+        labels: ["0", "100"],
         chart: {
             type: "donut",
             height: 95,
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             color: 'var(--bs-warning)',
                             fontSize: '14px',
                             fontWeight: "500",
-                            label: '352',
+                            label: '%',
                         },
                     },
                 },
@@ -268,8 +268,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var options = {
         color: "#adb5bd",
-        series: [60, 40],
-        labels: ["60", "40"],
+        series: [0, 100],
+        labels: ["0", "100"],
         chart: {
             type: "donut",
             height: 95,
@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             color: 'var(--bs-success)',
                             fontSize: '14px',
                             fontWeight: "500",
-                            label: '159',
+                            label: '%',
                         },
                     },
                 },

@@ -29,16 +29,18 @@
                   <a href="javascript:void(0)" class="dropdown-toggle link u-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?= User('FirstName') ?> <?= User('LastName') ?><span class="caret"></span>
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item d-flex align-items-center gap-2" href="../main/page-user-profile.html">
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="/panel/users/<?= User('uid'); ?>">
                       <iconify-icon icon="solar:user-linear" class="fs-5 text-primary"></iconify-icon>
                       Hesabım
                     </a>
-                   
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item d-flex align-items-center gap-2" href="../main/page-account-settings.html">
-                      <iconify-icon icon="solar:settings-linear" class="fs-5 text-primary"></iconify-icon>
-                      Acente Ayarları
-                    </a>
+                    
+                    <? if(User('Type')=='0'): ?>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item d-flex align-items-center gap-2" href="/panel/agencies/<?= User('Parent')['uid'] ?? '' ?>">
+                        <iconify-icon icon="solar:settings-linear" class="fs-5 text-primary"></iconify-icon>
+                        Acente Ayarları
+                      </a>
+                    <? endif; ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item d-flex align-items-center gap-2" href="/logout">
                       <iconify-icon icon="solar:login-2-linear" class="fs-5 text-primary"></iconify-icon>
@@ -61,7 +63,7 @@
             <!-- Dashboard -->
             <!-- ---------------------------------- -->
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/panel" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Anasayfa</span>
               </a>
@@ -82,6 +84,18 @@
                 <ul aria-expanded="false" class="collapse first-level">
 
                   <?if(User('Type')=='2'): ?>
+                    <li class="sidebar-item">
+                      <a href="/panel/packages" class="sidebar-link">
+                        <span class="icon-small"></span>
+                        <span class="hide-menu">Paketler</span>
+                      </a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a href="/panel/features" class="sidebar-link">
+                        <span class="icon-small"></span>
+                        <span class="hide-menu">Hizmetler</span>
+                      </a>
+                    </li>
                     <li class="sidebar-item">
                       <a href="/panel/categories" class="sidebar-link">
                         <span class="icon-small"></span>
@@ -224,7 +238,12 @@
                     <span class="hide-menu">Doktorlar</span>
                   </a>
                 </li>
-                
+                <li class="sidebar-item">
+                  <a href="panel/agencies/{{$this->User['Parent']}}" class="sidebar-link">
+                    <span class="icon-small"></span>
+                    <span class="hide-menu">Ayarlar</span>
+                  </a>
+                </li>
 
               </ul>
             </li>
@@ -235,13 +254,13 @@
               </a>
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
-                  <a href="javascript:void(0)" class="sidebar-link">
+                  <a href="panel/website/settings" class="sidebar-link">
                     <span class="icon-small"></span>
                     <span class="hide-menu">Site Bilgileri</span>
                   </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="javascript:void(0)" class="sidebar-link">
+                  <a href="panel/website/contactinfo" class="sidebar-link">
                     <span class="icon-small"></span>
                     <span class="hide-menu">İletişim Bilgileri</span>
                   </a>

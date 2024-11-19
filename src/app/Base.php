@@ -325,5 +325,15 @@ function GetData($table=false, $params=['Status'=>'1'], $limit=100,$sort=['Id','
         return $data;
     }
 }
-
+function num2k($number) {
+    if ($number >= 1000 && $number < 1000000) {
+        // Format as 'x.xk'
+        return number_format($number / 1000, $number % 1000 === 0 ? 0 : 1) . 'k';
+    } elseif ($number >= 1000000) {
+        // Format as 'x.xM'
+        return number_format($number / 1000000, $number % 1000000 === 0 ? 0 : 1) . 'M';
+    }
+    // For numbers less than 1000, return as is
+    return (string)$number;
+}
 ?>

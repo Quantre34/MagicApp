@@ -60,7 +60,7 @@
                 </div> 
                 </form>
                 <form action="ajax" target="AlterCategory" method="POST" class="needs-validation" novalidate>
-                  
+                     @csrf
                     <input type="text" hidden required name="Img" value="{{$Category['Img']}}">
                     <input hidden type="text" class="form-control" name="Id" value="{{$Category['Id']}}" />
 

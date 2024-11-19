@@ -104,7 +104,7 @@
                 <div class="app-chat">
                   <ul id="ChatContainer" class="chat-users mb-0 mh-n100" data-simplebar >
                     @foreach($Chats as $Chat)
-                    <li title="{{$Chat['Title']}}" user="{{$Chat['User']['FirstName']??'Silindi'}} {{$Chat['User']['LastName']??''}}" onclick="javascript:GetMessages('{{$Chat['uid']}}');" class=" {{($Chat['Pulse'] ?? false)? 'pulse' : ''}}" >
+                    <li title="{{$Chat['Title']}}" user="{{$Chat['User']['FirstName']??'Silindi'}} {{$Chat['User']['LastName']??''}}" onclick="javascript:GetMessages('{{$Chat['uid']}}');" class=" {{($Chat['Pulse'] ?? false)? 'pulse' : ''}} chat" >
                       <a  class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light-subtle" id="chat_user_1" data-user-id="1">
                         <div class="d-flex align-items-center">
                           <span class="position-relative">
@@ -358,141 +358,30 @@
                 </div>
                 <div class="app-chat">
                   <ul class="chat-users mh-n100" data-simplebar>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light-subtle" id="chat_user_1" data-user-id="1">
+
+
+                    @foreach($Chats as $Chat)
+                    <li title="{{$Chat['Title']}}" user="{{$Chat['User']['FirstName']??'Silindi'}} {{$Chat['User']['LastName']??''}}" onclick="javascript:GetMessages('{{$Chat['uid']}}');" class=" {{($Chat['Pulse'] ?? false)? 'pulse' : ''}} chat" >
+                      <a  class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light-subtle" >
                         <div class="d-flex align-items-center">
                           <span class="position-relative">
-                            <img src="assets/panel/images/profile/user-2.jpg" alt="user1" width="48" height="48" class="rounded-circle" />
+                            <img src="assets/panel/images/profile/user-3.jpg" alt="user1" width="48" height="48" class="rounded-circle" />
                             <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
                               <span class="visually-hidden">New alerts</span>
                             </span>
                           </span>
                           <div class="ms-3 d-inline-block w-75">
                             <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
-                              Michell Flintoff
+                              {{$Chat['User']['FirstName']}} {{$Chat['User']['LastName']}}
                             </h6>
-                            <span class="fs-3 text-truncate text-body-color d-block">You: Yesterdy was great...</span>
+                            <span class="fs-3 text-truncate text-body-color d-block">{{ strip_tags( substr($Chat['Title'], 0,30))  }}.</span>
                           </div>
                         </div>
                         <p class="fs-2 mb-0 text-muted">15 mins</p>
                       </a>
                     </li>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_2" data-user-id="2">
-                        <div class="d-flex align-items-center">
-                          <span class="position-relative">
-                            <img src="assets/panel/images/profile/user-2.jpg" alt="user-2" width="48" height="48" class="rounded-circle" />
-                            <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-danger">
-                              <span class="visually-hidden">New alerts</span>
-                            </span>
-                          </span>
-                          <div class="ms-3 d-inline-block w-75">
-                            <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
-                              Bianca Anderson
-                            </h6>
-                            <span class="fs-3 text-truncate text-dark fw-semibold d-block">Nice looking dress
-                              you...</span>
-                          </div>
-                        </div>
-                        <p class="fs-2 mb-0 text-muted">30 mins</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_3" data-user-id="3">
-                        <div class="d-flex align-items-center">
-                          <span class="position-relative">
-                            <img src="assets/panel/images/profile/user-8.jpg" alt="user-8" width="48" height="48" class="rounded-circle" />
-                            <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-warning">
-                              <span class="visually-hidden">New alerts</span>
-                            </span>
-                          </span>
-                          <div class="ms-3 d-inline-block w-75">
-                            <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
-                              Andrew Johnson
-                            </h6>
-                            <span class="fs-3 text-truncate text-body-color d-block">Sent a photo</span>
-                          </div>
-                        </div>
-                        <p class="fs-2 mb-0 text-muted">2 hrs</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_4" data-user-id="4">
-                        <div class="d-flex align-items-center">
-                          <span class="position-relative">
-                            <img src="assets/panel/images/profile/user-4.jpg" alt="user-4" width="48" height="48" class="rounded-circle" />
-                            <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                              <span class="visually-hidden">New alerts</span>
-                            </span>
-                          </span>
-                          <div class="ms-3 d-inline-block w-75">
-                            <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
-                              Daisy Wilson
-                            </h6>
-                            <span class="fs-3 text-truncate text-body-color d-block">Lorem ispusm text sud...</span>
-                          </div>
-                        </div>
-                        <p class="fs-2 mb-0 text-muted">5 days</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_5" data-user-id="5">
-                        <div class="d-flex align-items-center">
-                          <span class="position-relative">
-                            <img src="assets/panel/images/profile/user-7.jpg" alt="user1" width="48" height="48" class="rounded-circle" />
-                            <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                              <span class="visually-hidden">New alerts</span>
-                            </span>
-                          </span>
-                          <div class="ms-3 d-inline-block w-75">
-                            <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
-                              Mark, Stoinus & Rishvi..
-                            </h6>
-                            <span class="fs-3 text-truncate text-dark fw-semibold d-block">Lorem ispusm text ...</span>
-                          </div>
-                        </div>
-                        <p class="fs-2 mb-0 text-muted">5 days</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_2" data-user-id="2">
-                        <div class="d-flex align-items-center">
-                          <span class="position-relative">
-                            <img src="assets/panel/images/profile/user-2.jpg" alt="user-2" width="48" height="48" class="rounded-circle" />
-                            <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-danger">
-                              <span class="visually-hidden">New alerts</span>
-                            </span>
-                          </span>
-                          <div class="ms-3 d-inline-block w-75">
-                            <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
-                              Bianca Anderson
-                            </h6>
-                            <span class="fs-3 text-truncate text-dark fw-semibold d-block">Nice looking dress
-                              you...</span>
-                          </div>
-                        </div>
-                        <p class="fs-2 mb-0 text-muted">30 mins</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_3" data-user-id="3">
-                        <div class="d-flex align-items-center">
-                          <span class="position-relative">
-                            <img src="assets/panel/images/profile/user-8.jpg" alt="user-8" width="48" height="48" class="rounded-circle" />
-                            <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-warning">
-                              <span class="visually-hidden">New alerts</span>
-                            </span>
-                          </span>
-                          <div class="ms-3 d-inline-block w-75">
-                            <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
-                              Andrew Johnson
-                            </h6>
-                            <span class="fs-3 text-truncate text-body-color d-block">Sent a photo</span>
-                          </div>
-                        </div>
-                        <p class="fs-2 mb-0 text-muted">2 hrs</p>
-                      </a>
-                    </li>
+                    @endforeach
+
                   </ul>
                 </div>
               </div>
@@ -646,4 +535,25 @@
               }
             });
           }
+
+$(document).ready(function(){
+  $(document).on('change', '.search-chat', function() {
+    let v = $(this).val().toLowerCase(); 
+    $('.chat').each(function() {
+      let title = $(this).attr('title') || ''; 
+      if (title.toLowerCase().includes(v)) {
+        $(this).fadeIn();
+      } else {
+        $(this).fadeOut(); 
+      }
+    });
+  });
+});
   </script>
+
+@endsection
+
+
+
+
+

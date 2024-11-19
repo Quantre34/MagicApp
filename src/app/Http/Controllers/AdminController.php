@@ -32,6 +32,7 @@ class AdminController extends Controller
     ///
     ///
     public function PanelHomePage(){
+
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
                 $Start = date('Y-m-d');
@@ -413,7 +414,7 @@ class AdminController extends Controller
     ///
     public function Categories(){
         if (!empty($this->User)) {
-            $Categories = json_decode(json_encode(DB::table('category')->where('Lang',$this->Lang)->where('Status', '1')->get()), true);
+            $Categories = json_decode(json_encode(DB::table('category')->where('Lang',$this->Lang)->get()), true);
             $Clinics = json_decode(json_encode(DB::table('clinic')->where('Status','1')->get()), true);
             foreach($Categories as $key => $Category){
                 $Clinics = json_decode(json_encode(DB::table('clinic')->where('Status', '1')->get()), true);
@@ -510,7 +511,7 @@ class AdminController extends Controller
     ///
     public function AgencyDetail($uid){
         if (!empty($this->User)) {
-            if ($this->User['Type']=='2' || $this->User['Type']=='1') {
+            if ($this->User['Type']!='0' || $this->User['Parent']['uid'] == $uid )  {
                 $Clients = [];
                 $Agency = $this->toArray( DB::table('agency')->where('uid',$uid)->first() );
                 $Appointments = $this->toArray( DB::table('appointment')->where('AgencyId',$uid)->get());
@@ -565,7 +566,7 @@ class AdminController extends Controller
     public function EditAgency($uid){
         if (!empty($this->User)) {
             $uid = htmlspecialchars($uid);
-            if ($this->User['Type']=='2') {
+            if ($this->User['Type']!='0' || $this->User['Parent']['uid'] == $uid ) {
                 $Managers = $this->toArray(DB::table('user')->where('Type','1')->where('Status','1')->get());
                 $Agency = $this->toArray(DB::table('agency')->where('uid', $uid)->first());
                 $Countries = json_decode(file_get_contents('assets/json/CountryCodes.json'),true);
@@ -658,7 +659,7 @@ class AdminController extends Controller
     public function Treatments(){
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
-                $Treatments = $this->toArray(DB::table('treatment')->where('Lang',$this->Lang)->where('Status','1')->get());
+                $Treatments = $this->toArray(DB::table('treatment')->where('Lang',$this->Lang)->get());
                 $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
                 $result = ['outcome'=>true,'route'=>'panel.Treatments.List','data'=>[
                     'Treatments'=>$Treatments,
@@ -684,6 +685,26 @@ class AdminController extends Controller
                 $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
                 $result = ['outcome'=>true,'route'=>'panel.Treatments.Edit','data'=>[
                     'Treatment'=>$Treatment,
+                    'Categories'=>$Categories
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function NewTreatment(){
+        if (!empty($this->User)) {
+            if ($this->User['Type']=='2') {
+                $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
+                $result = ['outcome'=>true,'route'=>'panel.Treatments.New','data'=>[
                     'Categories'=>$Categories
                 ]];
             }else {
@@ -1240,7 +1261,7 @@ class AdminController extends Controller
     ///
     public function EditUser($uid){
         if (!empty($this->User)) {
-            if ($this->User['Type']!='0') {
+            if ($this->User['Type']!='0' || $uid == $this->User['uid']) {
                 $Users = DB::table('user');
                 $Agencies = DB::table('agency');
                 if ($this->User['Type']=='1') {
@@ -1490,8 +1511,140 @@ class AdminController extends Controller
             return redirect()->back()->with($result);
         }
     }
+    ///
+    public function WebsiteSettings(){
+        if ($this->User['Type']=='2') {
+            $Settings = $this->toArray(DB::table('main')->first());
+            $result = ['outcome'=>true,'route'=>'panel.Website.Settings','data'=>[
+                'Settings'=>$Settings,
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function ContactInfo(){
+        if ($this->User['Type']=='2') {
+            $Settings = $this->toArray(DB::table('main')->first());
+            $result = ['outcome'=>true,'route'=>'panel.Website.Contact','data'=>[
+                'Settings'=>$Settings,
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function Packages(){
+        if ($this->User['Type']=='2') {
+            $Packages = $this->toArray(DB::table('package')->where('Lang', $this->Lang)->get());
+            $result = ['outcome'=>true,'route'=>'panel.Packages.List','data'=>[
+                'Packages'=>$Packages,
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function EditPackage($uid){
+        if ($this->User['Type']=='2') {
+            $Package = $this->toArray(DB::table('package')->where('uid',$uid)->first());
+            $result = ['outcome'=>true,'route'=>'panel.Packages.Edit','data'=>[
+                'Package'=>$Package,
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function NewPackage(){
+        if ($this->User['Type']=='2') {
+            $result = ['outcome'=>true,'route'=>'panel.Packages.New','data'=>[
+                'Type'=>false
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function Features(){
+        if ($this->User['Type']=='2') {
+            $Features = $this->toArray(DB::table('feature')->where('Lang', $this->Lang)->get());
+            foreach($Features as $key=>$Feature){
+                $Features[$key]['Parent'] = $this->toArray(DB::table('package')->where('Id', $Feature['ParentId'] )->first());
+            }
+            
+            $result = ['outcome'=>true,'route'=>'panel.Features.List','data'=>[
+                'Features'=>$Features,
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function EditFeature($uid){
+        if ($this->User['Type']=='2') {
+            $Packages = $this->toArray(DB::table('package')->where('Lang', $this->Lang)->get());
+            $Feature = $this->toArray(DB::table('feature')->where('uid',$uid)->first());
+            $result = ['outcome'=>true,'route'=>'panel.Features.Edit','data'=>[
+                'Feature'=>$Feature,
+                'Packages'=>$Packages
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function NewFeature(){
+        if ($this->User['Type']=='2') {
+            $result = ['outcome'=>true,'route'=>'panel.Features.New','data'=>[
+                'Type'=>false
+            ]]; 
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
 
-    // public function Clients(){
+    // public function Clients(){ 
     //     if (!empty($this->User)) {
     //         $Clients = $this->toArray(DB::table('client')->get());
     //         foreach($Clients as $key=>$Client){

@@ -78,6 +78,10 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/articles/new', [AdminController::class, 'NewArticle']);
     Route::get('/panel/articles/{uid}', [AdminController::class, 'EditArticle']);
 
+    Route::get('/panel/packages', [AdminController::class, 'Packages']);
+    Route::get('/panel/packages/new', [AdminController::class, 'NewPackage']);
+    Route::get('/panel/packages/{uid}', [AdminController::class, 'EditPackage']);
+
     Route::get('/panel/website/media', [AdminController::class, 'Media']);
     Route::get('/panel/website/media/new', [AdminController::class, 'NewMedia']);
     Route::get('/panel/website/media/{uid}', [AdminController::class, 'EditMedia']);
@@ -93,6 +97,17 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/website/doctors', [AdminController::class, 'Doctors']);
     Route::get('/panel/website/doctors/new', [AdminController::class, 'NewDoctor']);
     Route::get('/panel/website/doctors/{uid}', [AdminController::class, 'EditDoctor']);
+    
+    Route::get('/panel/users/{uid}', [AdminController::class, 'EditUser']);
+
+
+    Route::get('/panel/website/settings', [AdminController::class, 'WebsiteSettings']);
+    Route::get('/panel/website/contactinfo', [AdminController::class, 'ContactInfo']);
+
+    Route::get('/panel/features', [AdminController::class, 'Features']);
+    Route::get('/panel/features/new', [AdminController::class, 'NewFeature']);
+    Route::get('/panel/features/{uid}', [AdminController::class, 'EditFeature']);
+
     /// old
 
     Route::get('/panel/Manage/Packages', [AdminController::class, 'ManagePackages']);

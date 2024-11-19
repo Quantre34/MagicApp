@@ -405,14 +405,22 @@ class AjaxController extends Controller
         ///
         if ($this->action=='AlterAgency') {
             if (!empty($this->User)) {
-                if ($this->User['Type']=='1' || $this->User['Type']=='2') {
+                if ($this->User['Type']!='0' || $this->User['Parent']['uid'] == request('uid') )  {
+                    $parent = $this->toArray(DB::table('agency')->where('uid',request('uid'))->first());
+                    if ($this->User['Type']=='1') {
+                        $parentId = $this->User['uid'];
+                    }elseif($this->User['Type']=='0'){
+                        $parentId = $this->User['Parent']['uid'];
+                    }else {
+                        $parentId = request('ParentId') ?? NULL;
+                    }
                     $data = [
                         'uid'=>htmlspecialchars(request('uid')),
                         'Title'=>htmlspecialchars(request('Title')),
                         'Logo'=>htmlspecialchars(request('Logo')??'assets/upload/default-logo.png'),
                         'Mail'=>htmlspecialchars(request('Mail')),
                         'Tell'=>$this->CellFormatter(request('Tell')),
-                        'ParentId'=> ($this->User['Type']=='1')? $this->User['uid'] : ((request('ParentId') != 'null')? request('ParentId') : NULL),
+                        'ParentId'=> $parentId,
                         'Whatsapp'=>$this->CellFormatter(request('Whatsapp')),
                         'Instagram'=>htmlspecialchars(request('Instagram')),
                         'WebPage'=>htmlspecialchars(request('WebPage')),
@@ -891,11 +899,13 @@ class AjaxController extends Controller
             if (!empty($this->User)) {
                 if ($this->User['Type']=='2') {
                     $data = [
+                        'uid'=>$this->UniqueId(30),
                         'Img'=>htmlspecialchars(request('Img') ?? '/assets/img/Default-Package.jpg'),
                         'Title'=>htmlspecialchars($_POST['Title']),
-                        'Cost'=>htmlspecialchars($_POST['Cost']),
-                        'EstimatedTime'=>htmlspecialchars($_POST['EstimatedTime']),
+                        'Cost'=>intval($_POST['Cost']),
+                        'EstimatedTime'=>intval($_POST['EstimatedTime']),
                         'ParentId'=>htmlspecialchars($_POST['Category']),
+                        'Slug'=>htmlspecialchars($_POST['Slug']),
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status'])
                     ];
@@ -937,20 +947,21 @@ class AjaxController extends Controller
         if ($this->action=='AlterTreatment') {
             if (!empty($this->User)) {
                 if ($this->User['Type']=='2') {
-                    ${'Id'} = htmlspecialchars($_POST['Id']);
+                    ${'uid'} = htmlspecialchars($_POST['uid']);
                     $data = [
                         'Img'=>htmlspecialchars(request('Img')),
                         'Title'=>htmlspecialchars($_POST['Title']),
-                        'Cost'=>htmlspecialchars($_POST['Cost']),
-                        'EstimatedTime'=>htmlspecialchars($_POST['EstimatedTime']),
+                        'Cost'=>intval($_POST['Cost']),
+                        'EstimatedTime'=>intval($_POST['EstimatedTime']),
                         'ParentId'=>htmlspecialchars($_POST['Category']),
+                        'Slug'=>htmlspecialchars($_POST['Slug']),
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status']),
                         'update_at'=>date('Y-m-d H:i:s')
                     ];
                     $Check = $this->isAnyEmpty($data);
                     if (!$Check) {
-                        $Query = DB::table('treatment')->where('Id', $Id)->update($data);
+                        $Query = DB::table('treatment')->where('uid', $uid)->update($data);
                         if ($Query) {
                             $result = ['outcome'=>true,'route'=>false];
                         }else {
@@ -1378,6 +1389,7 @@ class AjaxController extends Controller
             if (!empty($this->User)) {
                 if ($this->User['Type']=='2') {
                     $data = [
+                        'uid'=>$this->UniqueId(30),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Logo'=>htmlspecialchars($_POST['Logo']),
                         'Rate'=> intval($_POST['Rate']),
@@ -1402,13 +1414,12 @@ class AjaxController extends Controller
         }
         ///
         if ($this->action == 'AlterPackage') {
-            if (!empty($_SESSION['User'])) {
-                if ($_SESSION['User']['Type']=='2') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
                     $data = [
-                        'Id'=>htmlspecialchars($_POST['Id']),
+                        'uid'=>htmlspecialchars($_POST['uid']),
                         'Title'=>htmlspecialchars($_POST['Title']),
-                        'Logo'=>htmlspecialchars($_POST['Logo']),
-                        'Rate'=> intval($_POST['Rate']),
+                        'Img'=>htmlspecialchars($_POST['Img']),
                         'Description'=>htmlspecialchars($_POST['Description']),
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status'])
@@ -1469,7 +1480,7 @@ class AjaxController extends Controller
             if (!empty($this->User)) {
                 if ($this->User['Type']) {
                     $data = [
-                        'Id'=>htmlspecialchars($_POST['Id']),
+                        'uid'=>htmlspecialchars($_POST['uid']),
                         'Checked'=>htmlspecialchars($_POST['Checked']),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Cost'=>htmlspecialchars($_POST['Cost']),
@@ -1500,6 +1511,7 @@ class AjaxController extends Controller
             if (!empty($this->User)) {
                 if ($this->User['Type']) {
                     $data = [
+                        'uid'=>$this->UniqueId(15),
                         'Checked'=>htmlspecialchars($_POST['Checked']),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Cost'=>htmlspecialchars($_POST['Cost']),
@@ -2224,6 +2236,74 @@ class AjaxController extends Controller
             ];
             return response()->json($result,200);
         }
+        ///
+        if ($this->action=='AlterSettings') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'Title'=>htmlspecialchars($_POST['Title']),
+                        'Logo'=>htmlspecialchars($_POST['Logo']),
+                        'Description'=>htmlspecialchars($_POST['Description']),
+                        'Icon'=>htmlspecialchars($_POST['Icon']),
+                        'KeyWords'=>htmlspecialchars($_POST['KeyWords']),
+                        'Status'=>htmlspecialchars($_POST['Status']),
+                    ];
+                    $Check = $this->isAnyEmpty($data,['Path']);
+                    if (!$Check) {
+                        $Query = DB::table('main')->update($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/settings'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
+        if ($this->action=='AlterContact') {
+            if (!empty($this->User)) {
+                if ($this->User['Type']=='2') {
+                    $data = [
+                        'Mail'=>htmlspecialchars($_POST['Mail']),
+                        'Tell'=>htmlspecialchars($_POST['Tell']),
+                        'Whatsapp'=>htmlspecialchars($_POST['Whatsapp']),
+                        'Instagram'=>htmlspecialchars($_POST['Instagram']),
+                        'Facebook'=>htmlspecialchars($_POST['Facebook']),
+                        'Twitter'=>htmlspecialchars($_POST['Twitter']),
+                        'Tiktok'=>htmlspecialchars($_POST['Tiktok'])
+                    ];
+                    $Check = $this->isAnyEmpty($data);
+                    if (!$Check) {
+                        $Query = DB::table('main')->update($data);
+                        if ($Query) {
+                            $result = ['outcome'=>true,'route'=>'/panel/website/contactinfo'];
+                        }else {
+                            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
+                        }
+                    }else {
+                        $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields')];
+                    }
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+                }
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+
+
+
+
+
 
         /* End of the Index Method */    
         if (request()) {

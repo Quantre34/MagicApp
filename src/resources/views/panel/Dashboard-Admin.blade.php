@@ -62,7 +62,18 @@
                     <!-- Row -->
                     <div class="row align-items-center">
                       <div class="col-6">
-                        <h1 class="fw-light">45k </h1>
+                        <h1 class="fw-light">
+                          <?
+                            $total = 0;
+                            foreach($AllAppointments as $Appointment){
+                                if ($Appointment['PaymentStatus']=='1') {
+                                    $total += $Appointment['Cost'];
+                                }
+                                
+                            }
+                            echo num2k($total);
+                           ?>
+                         </h1>
                         <h6 class="text-muted mb-0">Kazanç</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
@@ -76,7 +87,17 @@
                     <!-- Row -->
                     <div class="row align-items-center">
                       <div class="col-6">
-                        <h1 class="fw-light">67</h1>
+                        <h1 class="fw-light">
+                          <?
+                            $total = 0;
+                            foreach($AllAppointments as $Appointment){
+                              if ($Appointment['Status']=='1' && $Appointment['PaymentStatus']=='1') {
+                                  $total++;
+                              }
+                            }
+                            echo $total;
+                          ?>
+                        </h1>
                         <h6 class="text-muted mb-0">Onaylı Randevu</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
@@ -90,7 +111,15 @@
                     <!-- Row -->
                     <div class="row align-items-center">
                       <div class="col-6">
-                        <h1 class="fw-light">12</h1>
+                        <h1 class="fw-light"><?
+                            $total = 0;
+                            foreach($AllAppointments as $Appointment){
+                              if ($Appointment['Status']=='0') {
+                                  $total++;
+                              }
+                            }
+                            echo $total;
+                          ?></h1>
                         <h6 class="text-muted mb-0">Bekleyen Randevu</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
@@ -104,7 +133,16 @@
                     <!-- Row -->
                     <div class="row align-items-center">
                       <div class="col-6">
-                        <h1 class="fw-light">10</h1>
+                        <h1 class="fw-light">
+                          <?
+                            $total = 0;
+                            foreach($AllAppointments as $Appointment){
+                              if ($Appointment['Status']=='3' && $Appointment['PaymentStatus']=='1') {
+                                  $total++;
+                              }
+                            }
+                            echo $total;
+                          ?></h1>
                         <h6 class="text-muted mb-0">Tamamlanan</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
@@ -140,15 +178,14 @@
                       </h1>
                       <h6 class="text-muted">79 toplam randevu</h6>
                       <ul class="list-icons mt-4 list-style-none">
-                        <li class="my-1 py-1 hstack gap-2">
-                          <i class="fa fa-circle text-secondary"></i> Mucalle Kantaroğlu
-                        </li>
-                        <li class="my-1 py-1 hstack gap-2">
-                          <i class="fa fa-circle text-success"></i> Yekta Berk Yavuz
-                        </li>
-                        <li class="my-1 py-1 hstack gap-2">
-                          <i class="fa fa-circle text-primary"></i> Sami Tayah
-                        </li>
+                        @foreach($Agencies as $Agency)
+                          @if(count($Agency['Appointments']))
+                            <li class="my-1 py-1 hstack gap-2">
+                              <i class="fa fa-circle text-secondary"></i> {{$Agency['Title']}}
+                            </li>
+                          @endif
+                        @endforeach
+                       
                       </ul>
                     </div>
                   </div>
@@ -248,10 +285,29 @@
     <script src="<?= asset('assets/panel/libs/apexcharts/dist/apexcharts.min.js') ?>"></script>
     <script src="<?= asset('assets/panel/js/dashboards/dashboard5.js') ?>"></script>
     <script type="text/javascript">
-      
+
+
+
+
+
+
+
     var option_Sales_of_the_Month = {
-        series: [9, 3, 2, 2],
-        labels: ["-", "Mücella Kantaroğlu", "Yakta Berk Yavuz", "Sami Tayah"],
+
+        series: [
+          @foreach($Agencies as $Agency)
+            @if(count($Agency['Appointments']))
+              <?= count($Agency['Appointments']); ?>,
+            @endif
+          @endforeach
+        ],
+        labels: ["-", 
+            @foreach($Agencies as $Agency)
+              @if(count($Agency['Appointments']))
+                '<?= $Agency['Title'] ?>',
+              @endif
+            @endforeach
+        ],
         chart: {
             type: "donut",
             height: 270,

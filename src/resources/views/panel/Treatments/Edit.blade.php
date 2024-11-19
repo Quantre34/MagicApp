@@ -57,7 +57,7 @@
                 <form id="form-validate" action="ajax" target="AlterTreatment" method="POST" class="needs-validation" novalidate>
                   
                     <input type="text" hidden required name="Img" value="{{$Treatment['Img']}}">
-                    <input hidden type="text" class="form-control" name="Id" value="{{$Treatment['Id']}}" />
+                    <input hidden type="text" class="form-control" name="uid" value="{{$Treatment['uid']}}" />
 
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Başlık</label>
