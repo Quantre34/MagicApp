@@ -115,7 +115,7 @@
                         </div>
                       </div>
                     </div>
-                    </div>
+                  </div>
                     <div class="col-12 d-flex justify-content-center">
                       <button onclick="$('#SubmitBtn').trigger('click');">Güncelle</button>
                     </div>

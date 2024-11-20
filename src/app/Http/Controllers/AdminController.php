@@ -9,6 +9,8 @@ use App\Models\Clinic;
 use App\Models\Client;
 use Lang;
 use App;
+use Carbon\Carbon;
+
     /*
     * @param <request>
     * @return <json>
@@ -102,7 +104,7 @@ class AdminController extends Controller
                     $Categories[$key]['Treatments']= json_decode(json_encode(DB::table('treatment')->where('Lang', $this->Lang)->where('ParentId', $Category['Id'])->where('Status', '1')->get()), true);
                 }
                 
-                $result = ['outcome'=>true,'route'=>'panel.Dashboard-Manager','data'=>[
+                $result = ['outcome'=>true,'route'=>'panel.Dashboard-Admin','data'=>[
                     'Appointments'=>$Appointments,
                     'Categories'=>$Categories,
                     'SubManager'=>$SubManagers,
@@ -110,6 +112,11 @@ class AdminController extends Controller
                     'Agencies' => $Agencies
                 ]];
             }elseif ($this->User['Type']=='0') {
+
+                Carbon::setWeekStartsAt(Carbon::SUNDAY);
+                  
+                $WeeklyAppointments = $this->toArray(DB::table('appointment')->whereBetween('create_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])->get());
+
                     $CountryCodes =  json_decode(file_get_contents('assets/json/CountryCodes.json'), true);
                     $Appointments = json_decode(json_encode(DB::table('appointment')->where('AgencyId', $this->User['Parent']['uid'])->where('Status', '1')->orderBy('AppointmentDate', 'asc')->get()), true);
                     foreach($Appointments as $key => $Appointment){
@@ -131,7 +138,8 @@ class AdminController extends Controller
                         'Members'=>$Members,
                         //'Clinics'=>$Clinics,
                         'Campain'=>$Campain,
-                        'CountryCodes'=>$CountryCodes
+                        'CountryCodes'=>$CountryCodes,
+                        'WeeklyAppointments'=>$WeeklyAppointments
                     ]];
             }
         }else {
@@ -1265,10 +1273,10 @@ class AdminController extends Controller
                 $Users = DB::table('user');
                 $Agencies = DB::table('agency');
                 if ($this->User['Type']=='1') {
-                    $Users = $User->where('ParentId', $this->User['uid']);
+                    $Users = $Users->where('ParentId', $this->User['uid']);
                     $Agencies = $Agencies->where('ParentId', $this->User['uid']);
                 }
-                $User = $this->toArray($Users->where('uid',$uid)->first());
+                $User = $this->toArray(DB::table('user')->where('uid',$uid)->first());
                 $Users = $this->toArray($Users->get());
                 $Agencies = $this->toArray($Agencies->get());
                 $result = ['outcome'=>true,'route'=>'panel.Users.Edit','data'=>[

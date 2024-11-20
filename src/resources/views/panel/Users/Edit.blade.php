@@ -79,30 +79,31 @@
                               <input type="text" class="form-control" name="Cell" required value="{{$User['Cell']}}">
                             </div>
 
-                            @if(User('Type')!='0')
+                            @if(User('Type')=='2')
                               <div class="mb-1">
                                 <label class="form-label">Komisyon Oranı</label>
                                 <input type="text" class="form-control" name="CommissionRate" required value="{{$User['CommissionRate']}}">
                               </div>
-                              <div class="mb-1">
-                                <label  class="form-label">Yöneticisi</label>
-                                <select class="form-select" required name="ParentId">
-                                    @foreach(($User['Type'] ='1'? $Agencies : $Users ) as $Manager)
-                                        <option {{$Manager['uid'] == $User['ParentId'] ? 'selected' : ''}} value="{{$Manager['uid']}}">
-                                        {{ !empty($Manager['Title'])? $Manager['Title'] : (!empty($Manager['FirstName'])? $Manager['FirstName'].' '.$Manager['LastName'] : '') }}</option>
-                                    @endforeach                        
-                                </select>
-                              </div>
-                              @if(User('Type')=='2')
+                              @if($User['Type']!='2')
                                 <div class="mb-1">
-                                  <label class="from-label">@Lang('ManageUser.Type')</label>
-                                    <select  class="form-select" required name="Type">
-                                      <option value="2">@Lang('ManageUser.Admin')</option>
-                                      <option selected value="0">@Lang('ManageUser.Agent')</option>
-                                      <option value="1">@Lang('ManageUser.Manager')</option>
-                                    </select>
+                                  <label  class="form-label">Yöneticisi</label>
+                                  <select class="form-select" required name="ParentId">
+                                      <option></option>
+                                      @foreach(($User['Type'] ='1'? $Agencies : $Users ) as $Manager)
+                                          <option {{$Manager['uid'] == $User['ParentId'] ? 'selected' : ''}} value="{{$Manager['uid']}}">
+                                          {{ !empty($Manager['Title'])? $Manager['Title'] : (!empty($Manager['FirstName'])? $Manager['FirstName'].' '.$Manager['LastName'] : '') }}</option>
+                                      @endforeach                        
+                                  </select>
                                 </div>
                               @endif
+                              <div class="mb-1">
+                                <label class="from-label">@Lang('ManageUser.Type')</label>
+                                  <select  class="form-select" required name="Type">
+                                    <option {{$User['Type']=='2'? 'Selected' : ''}} value="2">@Lang('ManageUser.Admin')</option>
+                                    <option {{$User['Status']=='0'? 'Selected' : ''}}  value="0">@Lang('ManageUser.Agent')</option>
+                                    <option {{$User['Status']=='0'? 'Selected' : ''}} value="1">@Lang('ManageUser.Manager')</option>
+                                  </select>
+                              </div>
                             @endif
                             <div class="mb-1">
                               <label for="exampleInputtext1" class="form-label">Durum</label>

@@ -1,4 +1,5 @@
 @extends('panel.App')
+
     @section('content')
       <script type="text/javascript">
         window.Get = {};
@@ -82,9 +83,6 @@
         box-shadow: 0 0 5px #333;
         z-index: -1;
       }
-
-
-
 
       .form-imagecheck {
           position: relative;
@@ -177,7 +175,7 @@
 
                     <!-- Step 2 -->
                     <h6>Treatment</h6>
-                    <section class="step-1">
+                    <section >
                         <div class="mb-3">
                           <label class="form-label">Image Check Radio</label>
                           <div class="row g-2" id="TreatmentBox">
@@ -220,11 +218,111 @@
                     <!-- Step 4 -->
                     <h6>Package</h6>
                     <section class="payment-method text-center">
+                        <div id="PackAgeBox" class="row g-2 col-12 input-group">
 
+<!--                           @foreach($Packages as $Package)
+                            <div id="PackAgeInnerBox" class="PackAgeBox-{{$Package['Id']}} col-6 custom-card" onclick="javascript:$('input[name="PackageChoice"]').click();"> 
+                                <div  class="card form-check-label w-100 custom-border package-border">
+                                  <div class="card-body text-center">
+                                    
+                                    <label class="form-check custom-card w-100 position-relative p-0 m-0">
+                                        <input onchange="PackAgeChoiceClicked(this)" type="radio" data-rate="{{$Package['Rate']}}" value="{{$Package['Id']}}" class="form-check-input position-absolute e-2 t-2 z-index-1" name="PackageChoice" />
+                                      <div class="mx-auto">
+                                        <img src="{{$Package['Img']}}" style="width: 100%;" alt="thumb" />
+                                      </div>
+                                      <br>
+                                      <a class="fs-3 text-primary"><h2>{{$Package['Title']}}</h2></a>
+                                      <div class="text-muted text-medium mb-2"></div>
+
+                                      
+                                      <div class="fs-4 text-muted sh-3 mb-1 ">
+                                        {{$Package['Description']}}
+                                      </div>
+
+                                      <div class="fs-5 text-muted sh-7 mb-1 PackageDescription">
+                                        
+                                      </div>
+                                    </label>
+                                  
+                                    <div class="col-6 FeatureBox ">
+                                      @if(!empty($Package['Features']))
+                                        @foreach($Package['Features'] as $Feature)
+                                          <div class="row col-12 g-0 align-items-left mb-1">
+                                            <div  class="col ps-3 sh-4 d-flex align-items-center lh-1-25">
+                                              <label class="label"> 
+                                                <input onchange="FeatureChecked(this)" {{ ($Feature['Multiply']==1)? 'multiply' : '' }} disabled {{ ($Feature['Checked'])? 'checked disabled' : '' }} type="checkbox" data-parent="{{$Feature['ParentId']}}" data-id="{{$Feature['Id']}}" name="Features" data-cost="{{$Feature['Cost']}}" value="{{$Feature['Id']}}">
+                                                {{$Feature['Title']}}
+                                              </label>
+                                            </div>
+                                            <div class="col-auto">
+                                              <div class="sw-3 sh-4 d-flex align-items-center">
+                                                <i data-acorn-icon="{{$Feature['Icon']}}" class="text-primary"></i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        @endforeach
+                                      @endif
+                                    </div>
+
+                                    <div  class="data-rate col-6 justify-content-center align-items-center">
+                                      <div class="row  g-0 align-items-center mb-1">
+                                        <div class="col-auto">
+                                          <div class="sw-3 sh-4 d-flex justify-content-center align-items-center">
+                                            <span style="font-size: xx-large;" class="text-primary">€</span>
+                                          </div>
+                                        </div>
+                                        <div class="col ps-3">
+                                          <div style="font-size: 20px;" data-id="{{$Package['Id']}}" data-rate="{{$Package['Rate']}}" class="PackageIn-{{$Package['Id']}} TotalAmountOnPackage sh-4 d-flex align-items-center lh-1-25">
+                                            <?php 
+                                              $DefaultsTotal = 0;
+                                              foreach($Package['Defaults'] as $Default){
+                                                  $DefaultsTotal += $Default['Cost'];
+                                              } 
+                                            ?>
+                                            {{
+                                              $DefaultsTotal;
+                                            }}
+                                          </div>
+                                        </div>
+                                      </div> 
+                                    </div>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                          @endforeach  -->
+
+                          @foreach($Packages as $Package)
+                            <div class="col-6 col-sm-4">
+                              <label class="form-imagecheck mb-2">
+                                <input type="radio" class="form-imagecheck-input" Id="{{$Package['Id']}}" name="CategoryChoice">
+                                <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
+                                  <img src="{{$Package['Img']}}" alt="-" class="form-imagecheck-image">
+                                  <b>{{$Package['Title']}}</b>
+                                </span>
+                              </label>
+                            </div>
+                          @endforeach
+
+                        </div> 
+
+                        <h5 class="mt-3  text-danger">@Lang('NewAppointment.PackageBottomMessage')</h5>
                     </section>
 
 
                     <!-- Step 4 -->
+                    <h6>Features</h6>
+                    <section class="step-1">
+                        <div class="mb-3">
+                          <label class="form-label">Image Check Radio</label>
+                          <div class="row g-2" id="TreatmentBox">
+                            <!-- Treatment Container -->
+                          </div>
+                        </div>
+                    </section>
+
+                    <!-- Step 5 -->
                     <h6>Patient</h6>
                     <section class="payment-method text-center">
                       <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
@@ -592,10 +690,8 @@
         function Skip(time=50){
           HoldOn.open(options);
           setTimeout(function(){
-            var NextBtn = $('#NextBtn');
-            if (NextBtn.attr('target')=='Next') {
-              NextBtn.trigger('click');
-            }
+            var NextBtn = $('a[href="#next"]');
+            NextBtn.trigger('click');
             HoldOn.close();
           }, time);
         }
@@ -620,4 +716,10 @@
             });  
         }
       </script>
+
+
+
+
     @endsection
+
+

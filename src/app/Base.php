@@ -336,4 +336,24 @@ function num2k($number) {
     // For numbers less than 1000, return as is
     return (string)$number;
 }
+///
+function GetMyMessages(){
+        $Count = 0;
+        $chats = toArray(DB::table('chat')->where('UserTo',User('uid'))->orwhere('UserFrom',User('uid'))->get());
+        foreach($chats as $chat){
+            $messages =  toArray(DB::table('message')->where('ChatId',$chat['uid'])->get());
+            foreach($messages as $message){
+                if (!str_contains($message['Seen'], User('uid')) ) {
+                    $Count ++;
+                }
+                
+            }
+        }
+        return $Count;
+}
 ?>
+
+
+
+
+

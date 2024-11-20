@@ -1121,23 +1121,32 @@ class AjaxController extends Controller
         ///
         if ($this->action=='AlterUser') {
             if (!empty($this->User)) {
+                $User = $this->toArray(DB::table('user')->where('uid',request('uid'))->first());
+                if ($User['Type']=='2') {
+                    $Type = request('Type') ?? NULL;
+                    $Parent = request('ParentId') ?? NULL;
+                    $Commission = request('CommissionRate') ?? 0;
+                }else {
+                    $Type = $User['Type'];
+                    $Parent = $User['ParentId'];
+                    $Commission = $User['CommissionRate'];
+                }
                 $data = [
                     'uid'=>htmlspecialchars(request('uid')),
                     'ProfilPic'=>(!empty(request('ProfilPic'))? request('ProfilPic') : NULL),
-                    'Type'=>htmlspecialchars(request('Type')),
+                    'Type'=>$Type,
                     'FirstName'=>htmlspecialchars(request('FirstName')),
                     'LastName'=>htmlspecialchars(request('LastName')),
                     'Mail'=>htmlspecialchars(request('Mail')),
-                    'CommissionRate'=>request('CommissionRate') ?? 0,
+                    'CommissionRate'=>$Commission,
                     'Cell'=>$this->CellFormatter(request('Cell')),
-                    'ParentId'=>(!empty(request('ParentId')))? htmlspecialchars(request('ParentId')) : NULL,
+                    'ParentId'=>$Parent,
                     'Status'=>htmlspecialchars(request('Status')),
                     'update_at'=>date('Y-m-d H:i:s')
                 ];
-                $exceptions = ['ProfilPic'];
-                if ($this->User['Type']=='2') {
-                    $exceptions[] = 'ParentId';
-                }
+
+                $exceptions = ['ProfilPic','ParentId'];
+               
                 $Check = $this->isAnyEmpty($data, $exceptions);
                 if (!$Check) {
                     $query = DB::table('user')->where('uid', $data['uid'])->update($data);
@@ -1400,7 +1409,7 @@ class AjaxController extends Controller
                     $Empty = $this->isAnyEmpty($data,['Description']);
                     if (!$Empty) {
                         $act = DB::table('package')->insert($data);
-                        $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetPackages();'];
+                        $result = ['outcome'=>true,'route'=>'panel/packages'];
                     }else {
                         $result = ['outcome'=>false,'ErrorMessage'=> Lang::get('Base.FillTheFields').' '.$Empty, 'tag'=>$Empty];
                     }
@@ -1426,8 +1435,8 @@ class AjaxController extends Controller
                     ];
                     $Empty = $this->isAnyEmpty($data);
                     if (!$Empty) {
-                        $act = DB::table('package')->where('Id', $data['Id'])->update($data);
-                        $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetPackages();'];
+                        $act = DB::table('package')->where('uid', $data['uid'])->update($data);
+                        $result = ['outcome'=>true,'route'=>'panel/packages'];
                     }else {
                         $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields').' '.$Empty, 'tag'=>$Empty];
                     }

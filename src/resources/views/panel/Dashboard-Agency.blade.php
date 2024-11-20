@@ -2,7 +2,7 @@
   @section('content')
       <div class="body-wrapper">
         <div class="container-fluid">
-<!--           <div class="d-md-flex align-items-center justify-content-between mb-7">
+          <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
               <h4 class="fs-6 mb-0">Dashboard</h4>
               <nav aria-label="breadcrumb">
@@ -15,18 +15,18 @@
               </nav>
             </div>
             <div class="d-flex align-items-center justify-content-between gap-6">
-              <select class="form-select border fs-3" aria-label="Default select example">
+             <!--  <select class="form-select border fs-3" aria-label="Default select example">
                 <option selected>November 2024</option>
                 <option value="1">February 2024</option>
                 <option value="2">March 2024</option>
                 <option value="3">April 2024</option>
-              </select>
-              <button class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
+              </select> -->
+              <a href="/panel/appointments/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
                 Create
-              </button>
+              </a>
             </div>
-          </div> -->
+          </div>
 
           <div class="row">
             <div class="col-lg-7">
@@ -60,7 +60,7 @@
                         </div>
                       </div>
                     </div>
-                    <a href="javascript:void(0)" class="btn btn-primary fs-3 py-2 fs-3 py-2">Discover updates</a>
+                    <!-- <a href="javascript:void(0)" class="btn btn-primary fs-3 py-2 fs-3 py-2">Discover updates</a> -->
                   </div>
                 </div>
               </div>
@@ -108,7 +108,15 @@
                     </div>
                     <div id="total-profit"></div>
                     <div class="card-body">
-                      <h5 class="fs-6 text-white mb-1">9400₺</h5>
+                      <? 
+                        $weektotal = 0;
+                        foreach($WeeklyAppointments as $Appitem){
+                            if ($Appitem['PaymentStatus']=='1') {
+                                $weektotal += $Appitem['Cost'];
+                            }
+                        } 
+                      ?>
+                      <h5 class="fs-6 text-white mb-1">{{$weektotal}}$</h5>
                       <h6 class="text-white fw-medium mb-0">Kar</h6>
                     </div>
                   </div>
@@ -157,7 +165,7 @@
                 <div class="card-body pb-8">
                   <div class="d-md-flex no-block align-items-center">
                     <h4 class="card-title mb-0">Bu ayın randevuları</h4>
-<!--                     <div class="ms-auto">
+                    <!-- <div class="ms-auto">
                       <select class="form-select">
                         <option selected>November</option>
                         <option value="1">February</option>

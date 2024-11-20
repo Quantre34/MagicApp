@@ -9,13 +9,13 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Home</a>
+                    <a class="text-muted text-decoration-none" >Anasayfa</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                 </ol>
               </nav>
             </div>
-            <div class="d-flex align-items-center justify-content-between gap-6">
+            <!-- <div class="d-flex align-items-center justify-content-between gap-6">
               <select class="form-select border fs-3" aria-label="Default select example">
                 <option selected>November 2024</option>
                 <option value="1">February 2024</option>
@@ -26,7 +26,7 @@
                 <i class="ti ti-plus fs-4"></i>
                 Create
               </button>
-            </div>
+            </div> -->
           </div>
 
           <div class="row">
@@ -174,9 +174,9 @@
                       <!-- <div class="round-overlap sales"><i class="mdi mdi-cart"></i></div> -->
                     </div>
                     <div class="col-md-5 align-self-center">
-                      <h1 class="mb-0">65<small>%</small>
+                      <h1 class="mb-0">{{$total}}<small>%</small>
                       </h1>
-                      <h6 class="text-muted">79 toplam randevu</h6>
+                      <h6 class="text-muted">{{count($Agencies)}} toplam Acente</h6>
                       <ul class="list-icons mt-4 list-style-none">
                         @foreach($Agencies as $Agency)
                           @if(count($Agency['Appointments']))

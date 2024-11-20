@@ -83,7 +83,7 @@
                 </a>
                 <ul aria-expanded="false" class="collapse first-level">
 
-                  <?if(User('Type')=='2'): ?>
+                  <? if(User('Type')=='2'): ?>
                     <li class="sidebar-item">
                       <a href="/panel/packages" class="sidebar-link">
                         <span class="icon-small"></span>
@@ -145,15 +145,12 @@
                     </ul>
                   </li>
 
-                 
-
-
                 </ul>
               </li>
             <? endif; ?>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/panel/appointments" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/appointments"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Randevular</span>
               </a>
@@ -161,7 +158,7 @@
 
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/panel/services" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/services"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Fiyat Listesi</span>
               </a>
@@ -169,7 +166,7 @@
 
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/panel/clients" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/clients"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Hastalar</span>
               </a>
@@ -182,7 +179,7 @@
                     <div class="d-flex align-items-center justify-content-between w-100">
                       <span class="d-none"></span>
                       <span>Yardım Masası</span>
-                      <span class="badge rounded-circle text-bg-info d-flex align-items-center justify-content-center rounded-pill fs-2 px-2 py-1">2</span>
+                      <span class="badge rounded-circle text-bg-info d-flex align-items-center justify-content-center rounded-pill fs-2 px-2 py-1"><?= GetMyMessages() ?></span>
                     </div>
                   </div>
                 </a>
@@ -190,14 +187,14 @@
 
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/panel/kullanim-talimatlari" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/kullanim-talimatlari"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Kullanım talimatları</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/panel/articles" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/panel/articles" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Makaleler</span>
               </a>
