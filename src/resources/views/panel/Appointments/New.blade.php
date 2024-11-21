@@ -139,6 +139,9 @@
           transition-duration: 0.2s;
           transform-origin: 50% 50%;
       }
+      .hide {
+        display: none!important;
+      }
       </style>
       <div class="body-wrapper">
         <div class="container-fluid">
@@ -149,12 +152,11 @@
               <div class="card-body p-4">
                 <div class="wizard-content">
                   <form action="#" class="tab-wizard wizard-circle">
-                    <!-- Step 1 -->
-                    <h6>Category</h6>
-                    <section class="step-1">
 
+
+<!--                     <h6>Category</h6>
+                    <section class="step-1">
                         <div class="mb-3">
-                          <label class="form-label">Image Check Radio</label>
                           <div class="row g-2">
                             @foreach($Categories as $key=>$Category)
                               <div class="col-6 col-sm-4">
@@ -169,22 +171,17 @@
                             @endforeach
                           </div>
                         </div>
-
-
                     </section>
 
-                    <!-- Step 2 -->
                     <h6>Treatment</h6>
                     <section >
                         <div class="mb-3">
                           <label class="form-label">Image Check Radio</label>
                           <div class="row g-2" id="TreatmentBox">
-                            <!-- Treatment Container -->
                           </div>
                         </div>
-                    </section>
+                    </section> -->
 
-                    <!-- Step 3 -->
                     <h6>Date</h6>
                     <section class="payment-method text-center">
                          <div onmousemove="BlockDate()" class=" sh-xl-60 text-center" >
@@ -298,7 +295,7 @@
                               <label class="form-imagecheck mb-2">
                                 <input type="radio" class="form-imagecheck-input" Id="{{$Package['Id']}}" name="CategoryChoice">
                                 <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
-                                  <img src="{{$Package['Img']}}" alt="-" class="form-imagecheck-image">
+                                  <img src="{{$Package['Img']}}" alt="-" style="max-width: 100%;width: 100%;">
                                   <b>{{$Package['Title']}}</b>
                                 </span>
                               </label>
@@ -316,14 +313,157 @@
                     <section class="step-1">
                         <div class="mb-3">
                           <label class="form-label">Image Check Radio</label>
-                          <div class="row g-2" id="TreatmentBox">
-                            <!-- Treatment Container -->
+                          <div class="row g-2" id="FeatureBox">
+                            <!-- FeatureBox Container -->
                           </div>
                         </div>
                     </section>
 
-                    <!-- Step 5 -->
-                    <h6>Patient</h6>
+                     <h6>@Lang('NewAppointment.PersonalInfo')</h6>
+                    <section>
+                                               
+
+                  <div class="row userinfo">
+                    <div class="col-lg-6 d-flex align-items-stretch">
+                      <div class="card w-100 border position-relative overflow-hidden">
+                        <div class="card-body p-4">
+                         
+                            <div class="row col-12">
+                              <div class="mb-1 col-6">
+                                <label class="form-label">İsim</label>
+                                <input type="text" class="form-control" required name="FirstName" >
+                              </div>
+                              <div class="mb-1 col-6">
+                                <label for="exampleInputPassword1" class="form-label">Soy İsim</label>
+                                <input type="text" class="form-control" required name="LastName" >
+                              </div>
+                            </div>
+                            <div class="mb-1">
+                              <label class="form-label">T.C Kimlik NO</label>
+                              <input type="text" class="form-control" name="Identification" required >
+                            </div>
+                            <div class="mb-1">
+                              <label class="form-label">Mail</label>
+                              <input type="text" class="form-control" name="Mail" required >
+                            </div>
+                            <div class="mb-1">
+                              <label  class="form-label">Telefon</label>
+                              <input id="Cell" type="text" class="form-control" name="Cell" required >
+                            </div>
+
+
+
+                            <div class="row col-12">
+                              <div class="mb-1 col-6">
+                                <label class="form-label">Boy</label>
+                                <input type="text" class="form-control" required name="Height" >
+                              </div>
+                              <div class="mb-1 col-6">
+                                <label for="exampleInputPassword1" class="form-label">Kilo</label>
+                                <input type="text" class="form-control" required name="Weight" >
+                              </div>
+                            </div>
+                            <div class="mb-1">
+                              <label class="form-label">Doğum Tarihi</label>
+                              <input type="date" class="form-control" name="Birth" required >
+                            </div>
+
+                            <div class="row col-12">
+                              <label for="exampleInputPassword1" class="form-label">Cinsiyet</label>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" name="Gender" id="Gender1" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Gender1">Evet</label>
+                              </div>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" name="Gender" id="Gender2" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Gender2">Hayır</label>
+                              </div>
+                            </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 d-flex align-items-stretch">
+                      <div class="card w-100 border position-relative overflow-hidden">
+                        <div class="card-body p-4 ">
+
+                        
+
+                            <div class="mb-1 col-12 " >
+                              <label for="exampleInputPassword1" class="form-label">Daha önceki Tanılar</label>
+                              <textarea class="form-control" name="PrevDiagnosis"></textarea>
+                            </div>
+                            <div class="mb-1 col-12" >
+                              <label for="exampleInputPassword1" class="form-label">Daha önceki Operasyonlar</label>
+                              <textarea class="form-control" name="PreOperations"></textarea>
+                            </div>
+
+                            <div class="row col-12">
+                              <label for="exampleInputPassword1" class="form-label">Smoke</label>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" value="Yes"  name="Smoke" id="Smoke1" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Smoke1">Evet</label>
+                              </div>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" name="Smoke" id="Smoke2" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" value="No"  for="Smoke2">Hayır</label>
+                              </div>
+                            </div>
+                            <div class="mb-1 col-12 hide area-Smoke" >
+                              <label for="exampleInputPassword1" class="form-label">Sıklığı</label>
+                              <textarea class="form-control" name="SmokeFrequency"></textarea>
+                            </div>
+
+                             <div class="row col-12">
+                              <label for="exampleInputPassword1" class="form-label">Alkol</label>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" value="Yes" name="Alcohol" id="Alcohol1" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Alcohol1">Evet</label>
+                              </div>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" value="No" name="Alcohol" id="Alcohol2" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Alcohol2">Hayır</label>
+                              </div>
+                            </div>
+                            <div class="mb-1 col-12 hide area-Alcohol">
+                              <label for="exampleInputPassword1" class="form-label">Sıklığı</label>
+                              <textarea class="form-control" name="AlcoholFrequency"></textarea>
+                            </div>
+
+
+                            <div class="row col-12">
+                              <label for="exampleInputPassword1" class="form-label">Alerji</label>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" value="Yes" name="Alergy" id="Alergy1" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Alergy1">Evet</label>
+                              </div>
+                              <div class="mb-1 col-6">
+                                <input type="radio" class="btn-check" value="No" name="Alergy" id="Alergy2" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Alergy2">Hayır</label>
+                              </div>
+                            </div>
+                            <div class="mb-1 col-12 hide area-Alergy">
+                              <label for="exampleInputPassword1" class="form-label">Türü</label>
+                              <textarea class="form-control" name="AlcoholFrequency"></textarea>
+                            </div>
+
+
+
+                    
+<!-- 
+                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
+                    <label class="btn btn-outline-danger " for="option2">Radio</label> -->
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    </section>
+
+
+
+                    <h6>ÖNİZLEME</h6>
                     <section class="payment-method text-center">
                       <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
                       <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
@@ -338,6 +478,25 @@
                     </section>
 
 
+
+
+
+                    <!-- Step 5 -->
+<!--                     <h6>ÖNİZLEME</h6>
+                    <section class="payment-method text-center">
+                      <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
+                      <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
+                      <img src="../assets/images/products/payment-complete.svg" alt="monster-img" class="img-fluid mb-4" width="350">
+                      <p class="mb-0 fs-2">We will send you a notification
+                        <br>within 2 days when it ships.
+                      </p>
+                      <div class="d-sm-flex align-items-center justify-content-between my-4">
+                        <a href="./eco-shop.html" class="btn btn-success d-block mb-2 mb-sm-0">Continue Shopping</a>
+                        <a href="javascript:void(0)" class="btn btn-primary d-block">Download Receipt</a>
+                      </div>
+                    </section>
+ -->
+
                   </form>
 
                 </div>
@@ -346,7 +505,6 @@
           </div>
         </div>
       </div>
-      <input type="hidden" id="Cell" name="">
       <script src="<?= asset('assets/js/vendor/jquery-3.5.1.min.js') ?>"></script>
 
 
@@ -459,6 +617,47 @@
                           if (Category['Treatments'].length > 0) {
                             Category['Treatments'].forEach((Treatment)=>{
                               TreatmentBox.append(`<div class="col-6 col-sm-4">
+                                <label class="form-imagecheck mb-2">
+                                  <input Id="${Treatment['Id']}" onchange="javascript:TreatmentChoiceClicked(this);" data-time="${Treatment['EstimatedTime']}" type="radio" name="TreatmentChoice" value="${Treatment['Cost']}"  type="radio" class="form-imagecheck-input" >
+                                  <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
+                                    <img src="${Treatment['Img']}" alt="-" class="form-imagecheck-image">
+                                    <b>${Treatment['Title']}</b>
+                                  </span>
+                                </label>
+                              </div>`);
+                            });                      
+                          }else {
+                                TreatmentBox.append('<div style="border: 1px solid black; border-radius: 30px;" class="mb-4"><div class="text-danger mb-1">@Lang('NewAppointment.TreatmentNotFound')</div></div>');
+                          }
+                        }); 
+                    }else {
+                      Swal.fire('Failed','An Error occurred', 'error');
+                    }
+                  }
+                });
+               Skip()
+            });
+            $(document).on('change','input[name=PackageChoice]', function(){
+                console.log('CategoryChoice is made');
+                let FeatureBox = $('#FeatureBox');
+                window.Get['Category'] = $(this).attr('Id');
+                $.ajax({
+                  type: "POST",
+                  url: "/ajax",
+                  cache: false,
+                  headers: {'X-CSRF-TOKEN': @json(csrf_token())},
+                  data: {
+                    Id: $(this).val(),
+                    action: 'GetFeatures',
+                    _token: @json(csrf_token())
+                  },
+                  success: function(data){
+                    if (data['outcome']==true) {
+                      FeatureBox.empty();
+                        data['data'].forEach((Package)=>{
+                          if (Package['Features'].length > 0) {
+                            Package['Features'].forEach((Treatment)=>{
+                              FeatureBox.append(`<div class="col-6 col-sm-4">
                                 <label class="form-imagecheck mb-2">
                                   <input Id="${Treatment['Id']}" onchange="javascript:TreatmentChoiceClicked(this);" data-time="${Treatment['EstimatedTime']}" type="radio" name="TreatmentChoice" value="${Treatment['Cost']}"  type="radio" class="form-imagecheck-input" >
                                   <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
@@ -715,6 +914,15 @@
                 PickAuto(e);
             });  
         }
+
+        $(document).on('change', 'input[type=radio]', function(){
+            let key = $(this).attr('name');
+            if ($(this).val()=='Yes') {
+              $('.area-'+key).removeClass('hide');
+            }else {
+             $('.area-'+key).addClass('hide');
+            }
+        });
       </script>
 
 
