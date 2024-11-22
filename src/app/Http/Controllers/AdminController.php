@@ -333,19 +333,27 @@ class AdminController extends Controller
     public function NewAppointment(){
         if (!empty($this->User)){
             if ($this->User['Type']=='0') {
-                $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status', '1')->get());
-                $Agency = $this->toArray(DB::table('agency')->where('uid', $this->User['ParentId'])->get());
-                $Packages = $this->toArray(DB::table('package')->where('Lang',$this->Lang)->where('Status', '1')->get());
-                foreach($Packages as $key => $Package){
-                    $Packages[$key]['Features'] = $this->toArray( DB::table('feature')->where('Lang',$this->Lang)->where('ParentId', $Package['Id'])->where('Status','1')->orderBy('Order','asc')->get() );
+                $Treatment = $this->toArray(DB::table('treatment')->where('uid',request('Treatment'))->first());
+                if (!empty($Treatment)) {
+                    $Category = $this->toArray(DB::table('category')->where('Id',$Treatment['ParentId'])->first());
+                    $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status', '1')->get());
+                    $Agency = $this->toArray(DB::table('agency')->where('uid', $this->User['ParentId'])->first());
+                    $Packages = $this->toArray(DB::table('package')->where('Lang',$this->Lang)->where('Status', '1')->get());
+                    foreach($Packages as $key => $Package){
+                        $Packages[$key]['Features'] = $this->toArray( DB::table('feature')->where('Lang',$this->Lang)->where('ParentId', $Package['Id'])->where('Status','1')->orderBy('Order','asc')->get() );
+                    }
+                    $PaymentMethods = $this->toArray(DB::table('payment_method')->where('Status','1')->get());
+                    $result = ['outcome'=>true, 'route'=>'panel.Appointments.New', 'data'=>[
+                        'Categories'=>$Categories,
+                        'Packages'=>$Packages,
+                        'PaymentMethods'=>$PaymentMethods,
+                        'Agency'=>$Agency ?? [],
+                        'Category'=>$Category,
+                        'Treatment'=>$Treatment
+                    ]]; 
+                }else {
+                    $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.NotFound')];
                 }
-                $PaymentMethods = $this->toArray(DB::table('payment_method')->where('Status','1')->get());
-                $result = ['outcome'=>true, 'route'=>'panel.Appointments.New', 'data'=>[
-                    'Categories'=>$Categories,
-                    'Packages'=>$Packages,
-                    'PaymentMethods'=>$PaymentMethods,
-                    'Agency'=>$Agency ?? []
-                ]];            
             }else {
                 $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
             }
@@ -1603,7 +1611,7 @@ class AdminController extends Controller
         if ($this->User['Type']=='2') {
             $Features = $this->toArray(DB::table('feature')->where('Lang', $this->Lang)->get());
             foreach($Features as $key=>$Feature){
-                $Features[$key]['Parent'] = $this->toArray(DB::table('package')->where('Id', $Feature['ParentId'] )->first());
+                $Features[$key]['Parent'] = $this->toArray(DB::table('package')->where('uid', $Feature['ParentId'] )->first());
             }
             
             $result = ['outcome'=>true,'route'=>'panel.Features.List','data'=>[

@@ -1204,11 +1204,22 @@
                       success: function(data){
                         if (data['outcome']) {
                               if (!data['NoAlert']) {
-                                  alertify.success(data['Message']??  '{{Lang::get('Base.Successfuly')}}');
+                                  toastr.success(
+                                    (data['Message']??  '{{Lang::get('Base.Successfuly')}}'),
+                                    "{{Lang::get('Base.Success')}}",
+                                    {
+                                      positionClass: "toastr toast-bottom-right",
+                                      containerId: "toast-bottom-right",
+                                    }
+                                  );
                                   if (data['route']) {
                                         window.location = data['route'];
                                   }
                               }else {
+                                toastr.error(data['ErrorMessage'],'{{Lang::get('Base.Failed')}}',{
+                                  positionClass: 'toastr toast-bottom-right',
+                                  containerId: 'toast-bottom-right'
+                                });
                                 if (data['route']) {
                                       window.location = data['route'];
                                 }

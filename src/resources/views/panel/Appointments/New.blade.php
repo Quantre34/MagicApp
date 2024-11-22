@@ -134,53 +134,50 @@
           height: 100%;
       }
       .step-1 label img {
-          height: 100%;
-          width: 75%;
           transition-duration: 0.2s;
           transform-origin: 50% 50%;
       }
       .hide {
         display: none!important;
       }
+      input[type="radio"]:checked + .treatmentcard {
+          border: 2px solid #007bff; /* Örneğin, mavi renkte bir border */
+          box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Hafif bir gölge efekti */
+      }
+      input[type="checkbox"]:checked + .treatmentcard {
+          border: 2px solid #007bff; /* Örneğin, mavi renkte bir border */
+          box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Hafif bir gölge efekti */
+      }
+      table{
+        width: 100%;
+      }
       </style>
       <div class="body-wrapper">
         <div class="container-fluid">
           
 
+<!--                 
+                'Date'             => htmlspecialchars(@$_POST['Date']),
+                'Package'          => htmlspecialchars(@$_POST['Package']),
+                'AmountToPay'      => htmlspecialchars(@$_POST['AmountToPay']),
+                'CountryCode'      => htmlspecialchars(@$_POST['CountryCode']),
+                'PaymentMethod'    => htmlspecialchars(@$_POST['PaymentMethod']),
+                'Features'         => explode(',', $_POST['Features'] ?? ''),
+                'Status'            => htmlspecialchars(request('Status'))
+-->
+
           <div class="checkout">
             <div class="card">
               <div class="card-body p-4">
                 <div class="wizard-content">
-                  <form action="#" class="tab-wizard wizard-circle">
+                  <form action="ajax" target="NewAppointment" class="tab-wizard wizard-circle" id="NewAppointment">
 
-
-<!--                     <h6>Category</h6>
-                    <section class="step-1">
-                        <div class="mb-3">
-                          <div class="row g-2">
-                            @foreach($Categories as $key=>$Category)
-                              <div class="col-6 col-sm-4">
-                                <label class="form-imagecheck mb-2">
-                                  <input type="radio" class="form-imagecheck-input" Id="{{$Category['Id']}}" name="CategoryChoice">
-                                  <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
-                                    <img src="{{$Category['Img']}}" alt="-" class="form-imagecheck-image">
-                                    <b>{{$Category['Title']}}</b>
-                                  </span>
-                                </label>
-                              </div>
-                            @endforeach
-                          </div>
-                        </div>
-                    </section>
-
-                    <h6>Treatment</h6>
-                    <section >
-                        <div class="mb-3">
-                          <label class="form-label">Image Check Radio</label>
-                          <div class="row g-2" id="TreatmentBox">
-                          </div>
-                        </div>
-                    </section> -->
+                    <input type="hidden" name="Category" value="{{$Category['uid']}}">
+                    <input type="hidden" name="Treatment" value="{{$Treatment['uid']}}">
+                    <input type="hidden" name="AgencyFee" value="{{$Agency['AgencyFee']}}">
+                    <input type="hidden" name="CommissionRate" value="{{$Agency['CommissionRate']}}">
+                    <input type="hidden" name="Package" >
+                    <input type="hidden" name="Date" >
 
                     <h6>Date</h6>
                     <section class="payment-method text-center">
@@ -283,7 +280,6 @@
                                         </div>
                                       </div> 
                                     </div>
-
                                   </div>
 
                                 </div>
@@ -291,20 +287,45 @@
                           @endforeach  -->
 
                           @foreach($Packages as $Package)
-                            <div class="col-6 col-sm-4">
-                              <label class="form-imagecheck mb-2">
-                                <input type="radio" class="form-imagecheck-input" Id="{{$Package['Id']}}" name="CategoryChoice">
-                                <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
-                                  <img src="{{$Package['Img']}}" alt="-" style="max-width: 100%;width: 100%;">
-                                  <b>{{$Package['Title']}}</b>
-                                </span>
-                              </label>
+
+                          <div class="col-sm-6 col-xxl-6 " >
+                            <label>
+                              <input type="radio" style="display: none;" value="{{$Package['uid']}}" data-rate="{{$Package['Rate']}}" name="PackageChoice">
+                            <div class="card overflow-hidden rounded-2 border treatmentcard" >
+                              <div class="position-relative">
+                                <a class="hover-img d-block overflow-hidden">
+                                  <img src="{{$Package['Img']}}" class="card-img-top rounded-0" alt="monster-img">
+                                </a>
+                              </div>
+                              <div class="card-body pt-3 p-4">
+                                <h6 class="fw-semibold fs-4">{{$Package['Title']}}</h6>
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <h6 class="fw-semibold fs-4 mb-0">
+                                    <span class="ms-2 fw-normal text-muted fs-3">
+                                      <p>{{$Package['Description']}}</p>
+                                    </span>
+                                  </h6>
+                                  <br>
+     <!--                              <div class="col-12">
+                                    <ul style="list-style: none outside none!important;" class=" d-flex align-items-center mb-0">
+                                    
+                                    @for ($i=0; $i < $Package['Stat']; $i++)
+                                      <li>
+                                        <a class="me-1" href="javascript:void(0)">
+                                          <i class="ti ti-star text-warning"></i>
+                                        </a>
+                                      </li>
+                                    @endfor
+                                  </ul>
+                                  </div> -->
+                                </div>
+                              </div>
                             </div>
+                            </label>
+                          </div>
                           @endforeach
-
                         </div> 
-
-                        <h5 class="mt-3  text-danger">@Lang('NewAppointment.PackageBottomMessage')</h5>
+                        
                     </section>
 
 
@@ -321,7 +342,6 @@
 
                      <h6>@Lang('NewAppointment.PersonalInfo')</h6>
                     <section>
-                                               
 
                   <div class="row userinfo">
                     <div class="col-lg-6 d-flex align-items-stretch">
@@ -371,12 +391,12 @@
                             <div class="row col-12">
                               <label for="exampleInputPassword1" class="form-label">Cinsiyet</label>
                               <div class="mb-1 col-6">
-                                <input type="radio" class="btn-check" name="Gender" id="Gender1" autocomplete="off"  />
-                                <label class="btn btn-outline-primary col-12" for="Gender1">Evet</label>
+                                <input type="radio" class="btn-check" name="Gender" value="Female" id="Gender1" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Gender1">Kadın</label>
                               </div>
                               <div class="mb-1 col-6">
-                                <input type="radio" class="btn-check" name="Gender" id="Gender2" autocomplete="off"  />
-                                <label class="btn btn-outline-primary col-12" for="Gender2">Hayır</label>
+                                <input type="radio" class="btn-check" name="Gender" value="Male" id="Gender2" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12" for="Gender2">Erkek</label>
                               </div>
                             </div>
 
@@ -386,8 +406,7 @@
                     </div>
                     <div class="col-lg-6 d-flex align-items-stretch">
                       <div class="card w-100 border position-relative overflow-hidden">
-                        <div class="card-body p-4 ">
-
+                        <div class="card-body p-4 ">  
                         
 
                             <div class="mb-1 col-12 " >
@@ -396,18 +415,18 @@
                             </div>
                             <div class="mb-1 col-12" >
                               <label for="exampleInputPassword1" class="form-label">Daha önceki Operasyonlar</label>
-                              <textarea class="form-control" name="PreOperations"></textarea>
+                              <textarea class="form-control" name="PrevOperations"></textarea>
                             </div>
 
                             <div class="row col-12">
                               <label for="exampleInputPassword1" class="form-label">Smoke</label>
                               <div class="mb-1 col-6">
-                                <input type="radio" class="btn-check" value="Yes"  name="Smoke" id="Smoke1" autocomplete="off"  />
+                                <input type="radio" class="btn-check" value="True"  name="Smoke" id="Smoke1" autocomplete="off"  />
                                 <label class="btn btn-outline-primary col-12" for="Smoke1">Evet</label>
                               </div>
                               <div class="mb-1 col-6">
-                                <input type="radio" class="btn-check" name="Smoke" id="Smoke2" autocomplete="off"  />
-                                <label class="btn btn-outline-primary col-12" value="No"  for="Smoke2">Hayır</label>
+                                <input type="radio" class="btn-check" name="Smoke" value="False"  id="Smoke2" autocomplete="off"  />
+                                <label class="btn btn-outline-primary col-12"  for="Smoke2">Hayır</label>
                               </div>
                             </div>
                             <div class="mb-1 col-12 hide area-Smoke" >
@@ -435,25 +454,18 @@
                             <div class="row col-12">
                               <label for="exampleInputPassword1" class="form-label">Alerji</label>
                               <div class="mb-1 col-6">
-                                <input type="radio" class="btn-check" value="Yes" name="Alergy" id="Alergy1" autocomplete="off"  />
+                                <input type="radio" class="btn-check" value="True" name="Alergy" id="Alergy1" autocomplete="off"  />
                                 <label class="btn btn-outline-primary col-12" for="Alergy1">Evet</label>
                               </div>
                               <div class="mb-1 col-6">
-                                <input type="radio" class="btn-check" value="No" name="Alergy" id="Alergy2" autocomplete="off"  />
+                                <input type="radio" class="btn-check" value="False" name="Alergy" id="Alergy2" autocomplete="off"  />
                                 <label class="btn btn-outline-primary col-12" for="Alergy2">Hayır</label>
                               </div>
                             </div>
                             <div class="mb-1 col-12 hide area-Alergy">
                               <label for="exampleInputPassword1" class="form-label">Türü</label>
-                              <textarea class="form-control" name="AlcoholFrequency"></textarea>
+                              <textarea class="form-control" name="AlergyType"></textarea>
                             </div>
-
-
-
-                    
-<!-- 
-                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
-                    <label class="btn btn-outline-danger " for="option2">Radio</label> -->
 
                         </div>
                       </div>
@@ -465,16 +477,45 @@
 
                     <h6>ÖNİZLEME</h6>
                     <section class="payment-method text-center">
-                      <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
-                      <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
-                      <img src="../assets/images/products/payment-complete.svg" alt="monster-img" class="img-fluid mb-4" width="350">
-                      <p class="mb-0 fs-2">We will send you a notification
-                        <br>within 2 days when it ships.
-                      </p>
-                      <div class="d-sm-flex align-items-center justify-content-between my-4">
-                        <a href="./eco-shop.html" class="btn btn-success d-block mb-2 mb-sm-0">Continue Shopping</a>
-                        <a href="javascript:void(0)" class="btn btn-primary d-block">Download Receipt</a>
-                      </div>
+
+
+                  <h3>@Lang('NewAppointment.PaymentDetails')</h3>
+                    <div class="mb-3  text-center ">
+                            <label class="form-label"><h5>@Lang('NewAppointment.TotalAmount')</h5></label>
+                            <input disabled name="TotalAmount"  class="result form-control" type="text" id="TotalAmount">
+                    </div>
+                    <div class="mb-3  text-center ">
+                            <label class="form-label"><h5>@Lang('NewAppointment.AmountToPay')</h5></label>
+                            <input  name="AmountToPay"  class="result form-control" type="text" id="AmountToPay">
+                    </div>
+                    <div class="mb-3  text-center ">
+                            <label class="form-label"><h5>@Lang('NewAppointment.Commission')</h5></label>
+                            <input disabled name="Commission"  class="result form-control" type="text" id="Commission">
+                    </div>
+                    <div class="mb-3  text-center ">
+                            <label class="form-label"><h5>@Lang('NewAppointment.RemainingAmount')</h5></label>
+                            <input  name="Remaining"  class="result form-control" type="text" id="Remaining" >
+                    </div>
+
+                    <div class="mb-1">
+                      <label for="exampleInputtext1" class="form-label">@Lang('NewAppointment.PaymentMethods')</label>
+                      <select class="form-select" required name="Status">
+                        <option  selected></option>
+                        @foreach($PaymentMethods as $Method)
+                          <option selected value="{{$Method['Id']}}">{{$Method['Title']}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+
+
+                    <div class="mb-1">
+                      <label for="exampleInputtext1" class="form-label">@Lang('NewAppointment.AppointmentStatus')</label>
+                      <select class="form-select" required name="Status">
+                        <option selected value="1">Active</option>
+                        <option value="2">On Hold</option>
+                      </select>
+                    </div>
+
                     </section>
 
 
@@ -639,38 +680,78 @@
             });
             $(document).on('change','input[name=PackageChoice]', function(){
                 console.log('CategoryChoice is made');
+                window.PackageRate = $(this).data('rate');
+
+
+                window.Total = 0
+                window.TreatmentCost = parseInt({{$Treatment['Cost']}});
+                window.AgencyFee = parseInt({{User('Parent')['AgencyFee']}});
+                
+
+                window.PackageCost = (TreatmentCost * PackageRate) / 100;
+                window.AgencyCost = (TreatmentCost * AgencyFee) / 100;
+
+                Total = TreatmentCost + AgencyCost + PackageCost;
+                window.Comission = (TreatmentCost * {{User('Parent')['CommissionRate']}}) / 100;
+                window.AmountToPay = (Total * 25) / 100;
+                window.Remaining = Total - AmountToPay;
+
+                console.table({
+                  'AgencyFee': AgencyFee,
+                  'TreatmentCost': TreatmentCost,
+                  'PackageCost': PackageCost,
+                  'AgencyCost':AgencyCost,
+                  'Comission': Comission,
+                  'Total': Total
+                })
+
+                $('#TotalAmount').val(Total);
+                $('#Commission').val(Comission);
+                $('#AmountToPay').val(AmountToPay);
+                $('#Remaining').val(Remaining);
+
                 let FeatureBox = $('#FeatureBox');
-                window.Get['Category'] = $(this).attr('Id');
                 $.ajax({
                   type: "POST",
                   url: "/ajax",
                   cache: false,
                   headers: {'X-CSRF-TOKEN': @json(csrf_token())},
                   data: {
-                    Id: $(this).val(),
-                    action: 'GetFeatures',
+                    uid: $(this).val(),
+                    action: 'GetFeaturesForApp',
                     _token: @json(csrf_token())
                   },
                   success: function(data){
                     if (data['outcome']==true) {
-                      FeatureBox.empty();
-                        data['data'].forEach((Package)=>{
-                          if (Package['Features'].length > 0) {
-                            Package['Features'].forEach((Treatment)=>{
-                              FeatureBox.append(`<div class="col-6 col-sm-4">
-                                <label class="form-imagecheck mb-2">
-                                  <input Id="${Treatment['Id']}" onchange="javascript:TreatmentChoiceClicked(this);" data-time="${Treatment['EstimatedTime']}" type="radio" name="TreatmentChoice" value="${Treatment['Cost']}"  type="radio" class="form-imagecheck-input" >
-                                  <span class="form-imagecheck-figure d-flex justify-content-center " style="flex-direction: column;align-items: center;">
-                                    <img src="${Treatment['Img']}" alt="-" class="form-imagecheck-image">
-                                    <b>${Treatment['Title']}</b>
-                                  </span>
-                                </label>
-                              </div>`);
-                            });                      
-                          }else {
-                                TreatmentBox.append('<div style="border: 1px solid black; border-radius: 30px;" class="mb-4"><div class="text-danger mb-1">@Lang('NewAppointment.TreatmentNotFound')</div></div>');
-                          }
-                        }); 
+                        FeatureBox.empty();
+                        window.Package = data['Package'];
+                        if (data['Features'].length) {
+                            data['Features'].forEach((Feature)=>{
+                              let Checked = Feature['Checked']=='1' ? 'checked disabled' : '';
+                              let Cost = Feature['Multiply']=='1' ? Feature['Cost']*parseInt({{$Treatment['EstimatedTime']}}) : Feature['Cost'];
+                              FeatureBox.append(`<div class="col-sm-6 col-xxl-3 " >
+                                  <label>
+                                    <input type="checkbox" ${Checked} style="display: none;" value="${Feature['Img']}" Multiply="${Feature['Multiply']}"  name="Features[]" cost="${Feature['Cost']}">
+                                    <div class="card overflow-hidden rounded-2 border treatmentcard" >
+                                      <div class="position-relative">
+                                        <a class="hover-img d-block overflow-hidden">
+                                          <img src="${Feature['Img']}" class="card-img-top rounded-0" alt="monster-img">
+                                        </a>
+                                      </div>
+                                      <div class="card-body pt-3 p-4">
+                                        <b class="fw-semibold fs-4">${Feature['Title']}</b>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                          <p class="fw-semibold fs-4 mb-0">${Cost} €</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </label>
+                                </div>`);
+                            });
+                        }else {
+                          FeatureBox.append('<div style="border: 1px solid black; border-radius: 30px;" class="mb-4"><div class="text-danger mb-1">@Lang('Base.NotFound')</div></div>');
+                        }
+                         
                     }else {
                       Swal.fire('Failed','An Error occurred', 'error');
                     }
@@ -777,6 +858,7 @@
             }
           });
           var PackageId = parseInt($(e).val());
+          $('#NewAppointment input[name="Package"]').val($PackageId);
           window.Get['Package'] = $(e).val();
           window.Get['PackageCost'] = ( parseInt(window.Get['TreatmentCost'] ?? 0) * parseInt($(e).data('rate')) ) / 100;
           var Cost = parseInt(window.Get['PackageCost']) + parseInt(window.Get['TreatmentCost'] ?? 0);
@@ -852,7 +934,7 @@
         }
         ///
         function PickAuto(e){
-          var EstimatedTime = parseInt(window.Get['EstimatedTime']);
+          var EstimatedTime = parseInt({{$Treatment['EstimatedTime']}});
           $('.FeatureBox label').each(function(i,item){
             if ($(item).text().includes('@Lang('NewAppointment.Accommodation')') ) {
               var data = {
@@ -910,6 +992,7 @@
                 minDate: new Date()
             }).on('changeDate', function(e) {
                 window.Get['Date'] = e.format();
+                $('#NewAppointment input[name="Date"]').val(window.Get['Date']);
                 window.Get['DateFormat'] = 'Y-m-d';
                 PickAuto(e);
             });  

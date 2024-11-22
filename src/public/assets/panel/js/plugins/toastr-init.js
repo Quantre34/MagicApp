@@ -412,6 +412,7 @@
     );
   });
 
+
   // Position Bottom Center
   $("#pos-bottom-center").on("click", function () {
     toastr.info(

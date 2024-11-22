@@ -70,6 +70,10 @@
                       <input type="text" name="Rate" required class="form-control" id="exampleInputtext1" value="{{$Package['Rate']}}" >
                     </div>
                     <div class="mb-1">
+                      <label for="exampleInputtext1" class="form-label">Seviye(Yıldız)</label>
+                      <input type="text" name="Stat" required class="form-control" id="exampleInputtext1" value="{{$Package['Stat']}}" >
+                    </div>
+                    <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Açıklama</label>
                       <textarea class="form-control" name="Description">{{$Package['Description']}}</textarea>
                     </div>

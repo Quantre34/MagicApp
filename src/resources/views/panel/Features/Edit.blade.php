@@ -39,10 +39,29 @@
               <div class="row">
                 <div class="col-lg-12">
 
+                <form id="FileUploadForm" action="ajax" method="POST" target="UploadFile" >                
+                <div class="mb-3 row">
+                  <label for="exampleInputtext1" class="form-label">Görsel</label>
+                  <div class="col-sm-8 col-md-9 col-lg-10">
+                    <center>
+                      <div style="width: 100%;"  class="col-auto">
+                        <div sclass="sw-5 me-3">
+                        <div class="mx-auto">
+                            <img id="Logo" onclick="javascript:$('input[type=file][name=Logo]').click();" src="{{$Feature['Img']??'/assets/img/Default-Package.jpg'}}" style="width: 100%;max-width: 400px;" alt="thumb">
+                        </div>
+                          <input onchange="javascript:$('.LogoSend[type=submit]').click();" type="file" hidden name="Logo">
+                          <button type="submit" hidden class="btn submit LogoSend">submit</button>
+                        </div>
+                      </div>
+                    </center>
+                  </div>
+                </div> 
+                </form>
+
                 <form action="ajax" target="AlterFeature" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <input type="text" hidden required name="uid" value="{{$Feature['uid']}}" >
-
+                    <input type="hidden" name="Img" value="{{$Feature['Img']}}">
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Başlık</label>
                       <input type="text" name="Title" required class="form-control" id="exampleInputtext1" value="{{$Feature['Title']}}" >
@@ -109,13 +128,9 @@
         <script src="{{asset('assets/panel/js/plugins/bootstrap-validation-init.js')}}"></script>
         <script src="{{asset('assets/panek/libs/dropzone/dist/min/dropzone.min.js')}}"></script>
         <script type="text/javascript">
-              function FileUploaded(url){
-                $('#Logo').attr('src', url);
-                $('input[type=text][name=Path]').val('https://localhost:8088/'+url);
-              }
-              function FileUploaded2(url){
-                $('#Cover').attr('src', url);
-                $('input[type=text][name=Img]').val(url);
-              }
+          function FileUploaded(url){
+            $('#Logo').attr('src', url);
+            $('form input[name=Img]').val(url);
+          }
         </script>
       @endsection

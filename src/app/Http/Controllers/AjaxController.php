@@ -134,6 +134,18 @@ class AjaxController extends Controller
             return response()->json($result, 200);
         }
         ///
+        if ($this->action=='GetFeaturesForApp') {
+            if (!empty($this->User)) {
+                $uid = $_POST['uid'];
+                $Package = $this->toArray(DB::table('package')->where('uid',$uid)->first());
+                $Features = $this->toArray(DB::table('feature')->where('ParentId',$uid)->where('Lang',$this->Lang)->where('Status','1')->get());
+                $result = ['outcome'=>true, 'Features'=>$Features,'Package'=>$Package];
+            }else{
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+            }
+            return response()->json($result, 200);
+        }
+        ///
         if ($this->action == 'GetClinicsOf') {
             $data = [];
             $TreatId = htmlspecialchars(request('Treatment'));
@@ -1401,7 +1413,8 @@ class AjaxController extends Controller
                         'uid'=>$this->UniqueId(30),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Logo'=>htmlspecialchars($_POST['Logo']),
-                        'Rate'=> intval($_POST['Rate']),
+                        'Rate'=>intval($_POST['Rate']),
+                        'Stat'=>intval($_POST['Stat']),
                         'Description'=>(!empty($_POST['Description']))? htmlspecialchars($_POST['Description']) : NULL,
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status'])
@@ -1428,6 +1441,8 @@ class AjaxController extends Controller
                     $data = [
                         'uid'=>htmlspecialchars($_POST['uid']),
                         'Title'=>htmlspecialchars($_POST['Title']),
+                        'Rate'=>intval($_POST['Rate']),
+                        'Stat'=>intval($_POST['Stat']),
                         'Img'=>htmlspecialchars($_POST['Img']),
                         'Description'=>htmlspecialchars($_POST['Description']),
                         'Lang'=>$this->Lang,
@@ -1489,21 +1504,22 @@ class AjaxController extends Controller
             if (!empty($this->User)) {
                 if ($this->User['Type']) {
                     $data = [
-                        'uid'=>htmlspecialchars($_POST['uid']),
+                        'uid'=>$_POST['uid'],
+                        'Img'=>htmlspecialchars($_POST['Img']),
                         'Checked'=>htmlspecialchars($_POST['Checked']),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Cost'=>htmlspecialchars($_POST['Cost']),
                         'Order'=>htmlspecialchars($_POST['Order']),
                         'Multiply'=>htmlspecialchars($_POST['Multiply']),
-                        'ParentId'=>htmlspecialchars($_POST['Package']),
+                        'ParentId'=>$_POST['Package'],
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status']),
                         'update_at'=>date('Y-m-d H:i:s')
                     ];
                     $isEmpty = $this->isAnyEmpty($data);
                     if (!$isEmpty) {
-                        $action = DB::table('feature')->where('Id', $data['Id'])->update($data);
-                        $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetFeatures();'];
+                        $action = DB::table('feature')->where('uid', $data['uid'])->update($data);
+                        $result = ['outcome'=>true,'route'=>'panel/features'];
                     }else {
                         $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields'),'tag'=>$isEmpty];
                     }
@@ -1521,6 +1537,7 @@ class AjaxController extends Controller
                 if ($this->User['Type']) {
                     $data = [
                         'uid'=>$this->UniqueId(15),
+                        'Img'=>htmlspecialchars($_POST['Img']),
                         'Checked'=>htmlspecialchars($_POST['Checked']),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Cost'=>htmlspecialchars($_POST['Cost']),
@@ -1533,7 +1550,7 @@ class AjaxController extends Controller
                     $isEmpty = $this->isAnyEmpty($data);
                     if (!$isEmpty) {
                         $action = DB::table('feature')->insert($data);
-                        $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetFeatures();'];
+                        $result = ['outcome'=>true,'route'=>'panel/features'];
                     }else {
                         $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.FillTheFields'),'tag'=>$isEmpty];
                     }
