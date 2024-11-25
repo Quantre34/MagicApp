@@ -1226,6 +1226,9 @@
                               }
                         }else {
                             alertify.error(data['ErrorMessage']);
+                            if (data['tag']) {
+                                $('input[name='+data['tag']+'], select[name='+data['tag']+'], textarea[name='+data['tag']+']').css('border',' 1px solid red');
+                            }
                         }
                         HoldOn.close();
                       } 

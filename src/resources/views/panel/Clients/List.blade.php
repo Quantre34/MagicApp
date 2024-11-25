@@ -32,7 +32,7 @@
                   <li class="breadcrumb-item">
                     <a class="text-muted text-decoration-none" href="/panel">Anasayfa</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Acenteler</li>
+                  <li class="breadcrumb-item active" aria-current="page">Hastalar</li>
                 </ol>
               </nav>
             </div>
@@ -43,9 +43,9 @@
                 <option value="2">March 2024</option>
                 <option value="3">April 2024</option>
               </select> -->
-              <a href="/panel/agencies/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
+              <a href="/panel/services" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
-                Yeni Ekle
+                Randevu Oluştur
               </a>
             </div>
           </div>

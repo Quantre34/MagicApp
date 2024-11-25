@@ -21,7 +21,7 @@
               </nav>
             </div>
             <div class="d-flex align-items-center justify-content-between gap-6">
-              <a href="/panel/categories" class="text-warning d-flex align-items-center ">
+              <a href="/panel/features" class="text-warning d-flex align-items-center ">
                 <i class="fas fa-arrow-left"></i>
                  &nbsp Geri dön
               </a>

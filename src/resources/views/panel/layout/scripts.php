@@ -53,6 +53,18 @@
             }
       }
       /*---------------*/
+      function SetLoader(e) {
+            let data = $(e).html();
+            let Id = Math.random();
+            setCookie('e-'+Id, data, 1);
+            $(e).html('<img class="center-me" style="max-width:50px;margin: auto;margin-top: 20px;margin-bottom: 20px;" data-id="e-'+Id+'" src="<?= asset('assets/img/loader.gif') ?>">');
+      }
+      function GetLoader(e){
+            let data = getCookie($(e).data('id'));
+            $(e).html(data);
+      }
+
+
   </script>
 
 

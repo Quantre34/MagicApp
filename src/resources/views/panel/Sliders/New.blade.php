@@ -86,8 +86,7 @@
 
                   <div class="col-12">
                     <div class="d-flex align-items-center justify-content-end mt-4 gap-6">
-                      <button id="savebtn" class="btn btn-primary">Save</button>
-                      <button class="btn bg-danger-subtle text-danger">Cancel</button>
+                      <button id="savebtn" class="btn btn-primary">Kaydet</button>
                     </div>
                   </div>
                 </form>

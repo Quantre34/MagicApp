@@ -115,32 +115,38 @@ class AdminController extends Controller
 
                 Carbon::setWeekStartsAt(Carbon::SUNDAY);
                   
-                $WeeklyAppointments = $this->toArray(DB::table('appointment')->whereBetween('create_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])->get());
+$currentMonth = Carbon::now()->month;
+$currentYear = Carbon::now()->year;
 
-                    $CountryCodes =  json_decode(file_get_contents('assets/json/CountryCodes.json'), true);
-                    $Appointments = json_decode(json_encode(DB::table('appointment')->where('AgencyId', $this->User['Parent']['uid'])->where('Status', '1')->orderBy('AppointmentDate', 'asc')->get()), true);
-                    foreach($Appointments as $key => $Appointment){
-                        $Appointments[$key]['Client']=(array)DB::table('client')->where('uid', $Appointment['ClientId'])->first();
-                        $Appointments[$key]['Treatment']=(array)DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first();
-                        //$Appointments[$key]['Clinic']=(array)DB::table('clinic')->where('uid', $Appointment['ClinicId'])->first();
-                    }
-                    $Agency = DB::table('agency')->where('uid', User('ParentId'))->first();
-                    $Categories = json_decode(json_encode(DB::table('category')->where('Status', '1')->get()),true);
-                    $Notes = DB::table('note')->where('UserId', User('ParentId'))->where('Status','1')->get();
-                    $Members = DB::table('user')->where('ParentId', User('ParentId'))->get();
-                    //$Clinics = DB::table('clinic')->where('Status', '1')->get();
-                    $Campain = DB::table('campain')->where('Lang', $this->Lang)->where('Type','0')->orderBy('create_at', 'desc')->limit(1)->where('Status', '1')->first();
-                    $result = ['outcome'=>true,'route'=>'panel.Dashboard-Agency', 'data'=>[
-                        'Appointments'=>$Appointments,
-                        'Agency'=>$Agency,
-                        'Categories'=>$Categories,
-                        'Notes'=>$Notes,
-                        'Members'=>$Members,
-                        //'Clinics'=>$Clinics,
-                        'Campain'=>$Campain,
-                        'CountryCodes'=>$CountryCodes,
-                        'WeeklyAppointments'=>$WeeklyAppointments
-                    ]];
+                $WeeklyAppointments = $this->toArray(DB::table('appointment')->whereBetween('create_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])->get());
+                $MountlyAppointments = $this->toArray(DB::table('appointment')->whereYear('create_at', $currentYear)->whereMonth('create_at', $currentMonth)->get());
+                $CountryCodes =  json_decode(file_get_contents('assets/json/CountryCodes.json'), true);
+                $Appointments = json_decode(json_encode(DB::table('appointment')->where('AgencyId', $this->User['Parent']['uid'])->where('Status', '1')->orderBy('AppointmentDate', 'asc')->get()), true);
+                foreach($Appointments as $key => $Appointment){
+                    $Appointments[$key]['Client']=(array)DB::table('client')->where('uid', $Appointment['ClientId'])->first();
+                    $Appointments[$key]['Treatment']=(array)DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first();
+                    //$Appointments[$key]['Clinic']=(array)DB::table('clinic')->where('uid', $Appointment['ClinicId'])->first();
+                }
+                $Agency = DB::table('agency')->where('uid', User('ParentId'))->first();
+                $Categories = json_decode(json_encode(DB::table('category')->where('Status', '1')->get()),true);
+                $Notes = DB::table('note')->where('UserId', User('ParentId'))->where('Status','1')->get();
+                $Members = DB::table('user')->where('ParentId', User('ParentId'))->get();
+                $Clients = DB::table('client')->where('Agency', User('ParentId'))->get();
+                //$Clinics = DB::table('clinic')->where('Status', '1')->get();
+                $Campain = DB::table('campain')->where('Lang', $this->Lang)->where('Type','0')->orderBy('create_at', 'desc')->limit(1)->where('Status', '1')->first();
+                $result = ['outcome'=>true,'route'=>'panel.Dashboard-Agency', 'data'=>[
+                    'Appointments'=>$Appointments,
+                    'Agency'=>$Agency,
+                    'Categories'=>$Categories,
+                    'Notes'=>$Notes,
+                    'Members'=>$Members,
+                    //'Clinics'=>$Clinics,
+                    'Campain'=>$Campain,
+                    'Clients'=>$Clients,
+                    'CountryCodes'=>$CountryCodes,
+                    'WeeklyAppointments'=>$WeeklyAppointments,
+                    'MountlyAppointments'=>$MountlyAppointments
+                ]];
             }
         }else {
             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
@@ -278,14 +284,14 @@ class AdminController extends Controller
                     $Appointments[$key]['Agency']=$this->toArray(DB::table('agency')->where('uid',$Appointment['AgencyId'])->first());
                     $Appointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
                     $Appointments[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
-                    $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                    $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('uid',$Appointment['PackageId'])->first());
                 }
                 $Holds = $this->toArray( DB::table('appointment')->where('ClientId', $Client['uid'])->where('Status','2')->orderBy('create_at','desc')->get() );
                 foreach($Holds as $key=>$Appointment){
                     $Holds[$key]['Agency']=$this->toArray(DB::table('agency')->where('uid',$Appointment['AgencyId'])->first());
                     $Holds[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
                     $Holds[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
-                    $Holds[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                    $Holds[$key]['Package']=$this->toArray(DB::table('package')->where('uid',$Appointment['PackageId'])->first());
                 }
                 $result = ['outcome'=>true,'route'=>'panel.Clients.Detail','data'=>[
                     'Client'=>$Client,
@@ -430,23 +436,28 @@ class AdminController extends Controller
     ///
     public function Categories(){
         if (!empty($this->User)) {
-            $Categories = json_decode(json_encode(DB::table('category')->where('Lang',$this->Lang)->get()), true);
-            $Clinics = json_decode(json_encode(DB::table('clinic')->where('Status','1')->get()), true);
-            foreach($Categories as $key => $Category){
-                $Clinics = json_decode(json_encode(DB::table('clinic')->where('Status', '1')->get()), true);
-                foreach($Clinics as $Clinic){
-                    if (!empty($Clinic['Categories'])) {
-                        if (in_array($Category['Id'], json_decode($Clinic['Categories']))) {
-                            $Categories[$key]['Clinics'][] = $Clinic;
+            if ($this->User['Type']!='0') {
+                $Categories = json_decode(json_encode(DB::table('category')->where('Lang',$this->Lang)->get()), true);
+                $Clinics = json_decode(json_encode(DB::table('clinic')->where('Status','1')->get()), true);
+                foreach($Categories as $key => $Category){
+                    $Clinics = json_decode(json_encode(DB::table('clinic')->where('Status', '1')->get()), true);
+                    foreach($Clinics as $Clinic){
+                        if (!empty($Clinic['Categories'])) {
+                            if (in_array($Category['Id'], json_decode($Clinic['Categories']))) {
+                                $Categories[$key]['Clinics'][] = $Clinic;
+                            }
                         }
                     }
+                    $Treatments= json_decode(json_encode(DB::table('treatment')->where('ParentId', $Category['Id'])->get()), true);
+                    $Categories[$key]['Treatments'] = $Treatments;
                 }
-                $Treatments= json_decode(json_encode(DB::table('treatment')->where('ParentId', $Category['Id'])->get()), true);
-                $Categories[$key]['Treatments'] = $Treatments;
+                $result = ['outcome'=>true,'route'=>'panel.Categories.List','data'=>[
+                    'Categories'=>$Categories
+                ]];
+
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
             }
-            $result = ['outcome'=>true,'route'=>'panel.Categories.List','data'=>[
-                'Categories'=>$Categories
-            ]];
         }else {
             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
         }
@@ -540,7 +551,7 @@ class AdminController extends Controller
                     $Appointments[$key]['Client'] = $Client;
                     $Appointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
                     $Appointments[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
-                    $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                    $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('uid',$Appointment['PackageId'])->first());
                 }
                 foreach($MonthlyAppointments as $key=>$Appointment){
                     $Client=$this->toArray(DB::table('client')->where('uid',$Appointment['ClientId'])->first());
@@ -548,7 +559,7 @@ class AdminController extends Controller
                     $MonthlyAppointments[$key]['Client'] = $Client;
                     $MonthlyAppointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
                     $MonthlyAppointments[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
-                    $MonthlyAppointments[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                    $MonthlyAppointments[$key]['Package']=$this->toArray(DB::table('package')->where('uid',$Appointment['PackageId'])->first());
                 }
                 foreach($WeeklyAppointments as $key=>$Appointment){
                     $Client=$this->toArray(DB::table('client')->where('uid',$Appointment['ClientId'])->first());
@@ -556,7 +567,7 @@ class AdminController extends Controller
                     $WeeklyAppointments[$key]['Client'] = $Client;
                     $WeeklyAppointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid',$Appointment['TreatmentId'])->first());
                     $WeeklyAppointments[$key]['Category']=$this->toArray(DB::table('category')->where('uid',$Appointment['CategoryId'])->first());
-                    $WeeklyAppointments[$key]['Package']=$this->toArray(DB::table('package')->where('Id',$Appointment['PackageId'])->first());
+                    $WeeklyAppointments[$key]['Package']=$this->toArray(DB::table('package')->where('uid',$Appointment['PackageId'])->first());
                 }
                 $Coworkers= $this->toArray(DB::table('user')->where('ParentId',$uid)->get());
                 $result = ['outcome'=>true,'route'=>'panel.Agencies.Detail','data'=>[
@@ -579,6 +590,29 @@ class AdminController extends Controller
             return redirect()->back()->with($result);
         }
     }
+    ///
+        public function InsertAgency(){
+        if (!empty($this->User)) {
+            if ($this->User['Type']!='0') {
+                $Managers = $this->toArray(DB::table('user')->where('Type','1')->where('Status','1')->get());
+                $Countries = json_decode(file_get_contents('assets/json/CountryCodes.json'),true);
+                $result = ['outcome'=>true,'route'=>'panel.Agencies.New','data'=>[
+                    'Managers'=>$Managers,
+                    'Countries'=>$Countries
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
     public function EditAgency($uid){
         if (!empty($this->User)) {
             $uid = htmlspecialchars($uid);
@@ -1068,8 +1102,7 @@ class AdminController extends Controller
         }
 
         if ($result['outcome']) {
-            // dd($arr);
-            return view('panel.TreeView', ['SubManagers'=>$arr[0],'Agencies'=>$arr[1]]);
+            return view('panel.Tree', ['SubManagers'=>$arr[0],'Agencies'=>$arr[1]]);
         }else {
             return redirect()->back()->with($result);
         }
@@ -1305,6 +1338,34 @@ class AdminController extends Controller
         }
     }
     ///
+    public function InsertUser($uid){
+        if (!empty($this->User)) {
+            if ($this->User['Type']!='0') {
+                $Users = DB::table('user')->where('Status','1');
+                $Agencies = DB::table('agency');
+                if ($this->User['Type']=='1') {
+                    $Users = $Users->where('ParentId', $this->User['uid']);
+                    $Agencies = $Agencies->where('ParentId', $this->User['uid']);
+                }
+                $Users = $this->toArray($Users->get());
+                $Agencies = $this->toArray($Agencies->get());
+                $result = ['outcome'=>true,'route'=>'panel.Users.New','data'=>[
+                    'Users'=>$Users,
+                    'Agencies'=>$Agencies
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'],$result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
     public function Sliders(){
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
@@ -1457,8 +1518,20 @@ class AdminController extends Controller
     ///
     public function NewAgent(){
         if (!empty($this->User)) {
-            if ($this->User['Type']=='2') {
-                $result = ['outcome'=>true,'route'=>'Users.Sliders.New','data'=>['Type'=>'Agent']];   
+            if ($this->User['Type']!='0') {
+                $Users = DB::table('user')->where('Status','1');
+                $Agencies = DB::table('agency');
+                if ($this->User['Type']=='1') {
+                    $Users = $Users->where('ParentId', $this->User['uid']);
+                    $Agencies = $Agencies->where('ParentId', $this->User['uid']);
+                }
+                $Users = $this->toArray($Users->get());
+                $Agencies = $this->toArray($Agencies->get());
+                $result = ['outcome'=>true,'route'=>'panel.Users.New','data'=>[
+                    'Type'=>'Agent',
+                    'Users'=>$Users,
+                    'Agencies'=>$Agencies
+                ]];
             }else {
                 $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
             }

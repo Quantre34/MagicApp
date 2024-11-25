@@ -1,5 +1,31 @@
 @extends('panel.App')
   @section('content')
+    <?
+      $WeeklyTotal = 0;
+      foreach($WeeklyAppointments as $App){
+        if ($Appitem['PaymentStatus']=='1') {
+            $WeeklyTotal += $App['Cost'];
+        }
+      }
+      $MountlyTotal = 0;
+      foreach($MountlyAppointments as $App){
+        if ($Appitem['PaymentStatus']=='1') {
+            $MountlyTotal += $App['Cost'];
+        }
+      }
+      $Holds = 0;
+      foreach($MountlyAppointments as $App){
+        if ($Appitem['Status']=='0') {
+            $Holds ++;
+        }
+      }
+      $DoneDeals = 0;
+      foreach($Appointments as $App){
+        if ($Appitem['Status']=='3') {
+            $DoneDeals ++;
+        }
+      }
+    ?>
       <div class="body-wrapper">
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
@@ -75,7 +101,7 @@
                         </h5>
                         <div class="hstack gap-9">
                           <i class="ti ti-heart text-warning fs-13 flex-shrink-0"></i>
-                          <h2 class="mb-0 fw-medium fs-10 hstack align-items-start">28 
+                          <h2 class="mb-0 fw-medium fs-10 hstack align-items-start">{{count($Clients)}}
                           </h2>
                         </div>
                       </div>
@@ -91,7 +117,7 @@
                         </h5>
                         <div class="hstack gap-9">
                           <i class="ti ti-heart text-success fs-13 flex-shrink-0"></i>
-                          <h2 class="mb-0 fw-medium fs-10 hstack align-items-start">75</h2>
+                          <h2 class="mb-0 fw-medium fs-10 hstack align-items-start">{{$DoneDeals}}</h2>
                         </div>
                       </div>
                     </div>
@@ -108,15 +134,7 @@
                     </div>
                     <div id="total-profit"></div>
                     <div class="card-body">
-                      <? 
-                        $weektotal = 0;
-                        foreach($WeeklyAppointments as $Appitem){
-                            if ($Appitem['PaymentStatus']=='1') {
-                                $weektotal += $Appitem['Cost'];
-                            }
-                        } 
-                      ?>
-                      <h5 class="fs-6 text-white mb-1">{{$weektotal}}$</h5>
+                      <h5 class="fs-6 text-white mb-1">{{$WeeklyTotal}}€</h5>
                       <h6 class="text-white fw-medium mb-0">Kar</h6>
                     </div>
                   </div>
@@ -128,7 +146,7 @@
                     </div>
                     <div id="total-profit2"></div>
                     <div class="card-body">
-                      <h5 class="fs-6 text-white mb-1">24000₺</h5>
+                      <h5 class="fs-6 text-white mb-1">{{$MountlyTotal}}€</h5>
                       <h6 class="text-white fw-medium mb-0">Ciro</h6>
                     </div>
                   </div>
@@ -140,7 +158,7 @@
                     </div>
                     <div id="coverage"></div>
                     <div class="card-body pt-2">
-                      <h5 class="fs-6 text-white mb-1">23</h5>
+                      <h5 class="fs-6 text-white mb-1">{{count($MountlyAppointments)}}</h5>
                       <h6 class="text-white fw-medium mb-0">Yeni Randevu</h6>
                     </div>
                   </div>
@@ -152,7 +170,7 @@
                     </div>
                     <div id="pending-tasks"></div>
                     <div class="card-body">
-                      <h5 class="fs-6 text-white mb-1">25</h5>
+                      <h5 class="fs-6 text-white mb-1">{{$Holds}}</h5>
                       <h6 class="text-white fw-medium mb-0">Bekleyen Randevu</h6>
                     </div>
                   </div>

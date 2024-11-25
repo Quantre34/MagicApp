@@ -47,7 +47,7 @@
                 <i class="ti ti-menu-2 fs-5"></i>
               </button>
               <form class="position-relative w-100">
-                <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Contact">
+                <input type="text" class="form-control search-chat py-2 ps-5" id="searchAppointment" placeholder="Search">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
               </form>
             </div>
@@ -103,7 +103,7 @@
                   <div class="border-end user-chat-box h-100">
                     <div class="px-4 pt-9 pb-6 d-none d-lg-block">
                       <form class="position-relative">
-                        <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search" />
+                        <input type="text" class="form-control search-chat py-2 ps-5" id="searchAppointment" placeholder="Search" />
                         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                       </form>
                     </div>
@@ -111,7 +111,7 @@
 
                       <ul class="chat-users mh-n100 ItemList" data-id="1" data-simplebar>
                         @foreach($Appointments as $Appointment)
-                        <li>
+                        <li class="Item" data-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                           <a class="px-4 py-3 bg-hover-light-black d-flex align-items-center chat-user bg-light-subtle Appointment" data-app-id="{{$Appointment['uid']}}">
                             <span class="position-relative">
                               <img src="{{$Appointment['Treatment']['Img']}}" alt="user-{{$Appointment['Id']}}" width="40" height="40" class="rounded-circle">
@@ -130,7 +130,7 @@
                       <ul class="chat-users mh-n100 hide ItemList" data-id="2" data-simplebar>
                         @foreach($Appointments as $Appointment)
                           @if($Appointment['Status']=='1')
-                            <li>
+                            <li class="Item" data-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                               <a class="px-4 py-3 bg-hover-light-black d-flex align-items-center chat-user bg-light-subtle Appointment" data-app-id="{{$Appointment['uid']}}">
                                 <span class="position-relative">
                                   <img src="{{$Appointment['Treatment']['Img']}}" alt="user-{{$Appointment['Id']}}" width="40" height="40" class="rounded-circle">
@@ -149,7 +149,7 @@
                       <ul class="chat-users mh-n100 hide ItemList" data-id="3" data-simplebar>
                        @foreach($Appointments as $Appointment)
                           @if($Appointment['Status']=='0')
-                            <li>
+                            <li class="Item" data-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                               <a class="px-4 py-3 bg-hover-light-black d-flex align-items-center chat-user bg-light-subtle Appointment" data-app-id="{{$Appointment['uid']}}">
                                 <span class="position-relative">
                                   <img src="{{$Appointment['Treatment']['Img']}}" alt="user-{{$Appointment['Id']}}" width="40" height="40" class="rounded-circle">
@@ -168,7 +168,7 @@
                       <ul class="chat-users mh-n100 hide ItemList" data-id="4" data-simplebar>
                         @foreach($Appointments as $Appointment)
                           @if($Appointment['Status']=='3')
-                            <li>
+                            <li class="Item" data-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                               <a class="px-4 py-3 bg-hover-light-black d-flex align-items-center chat-user bg-light-subtle Appointment" data-app-id="{{$Appointment['uid']}}">
                                 <span class="position-relative">
                                   <img src="{{$Appointment['Treatment']['Img']}}" alt="user-{{$Appointment['Id']}}" width="40" height="40" class="rounded-circle">
@@ -188,7 +188,7 @@
                         @foreach($Appointments as $Appointment)
                           @if($Appointment['Status']=='1')
                             @if($Appointment['PaymentStatus']=='0')
-                              <li>
+                              <li class="Item" data-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                                 <a class="px-4 py-3 bg-hover-light-black d-flex align-items-center chat-user bg-light-subtle Appointment" data-app-id="{{$Appointment['uid']}}">
                                   <span class="position-relative">
                                     <img src="{{$Appointment['Treatment']['Img']}}" alt="user-{{$Appointment['Id']}}" width="40" height="40" class="rounded-circle">
@@ -209,7 +209,7 @@
                         @foreach($Appointments as $Appointment)
                           @if($Appointment['Status']=='1')
                             @if($Appointment['PaymentStatus']=='1')
-                              <li>
+                              <li class="Item" data-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                                 <a class="px-4 py-3 bg-hover-light-black d-flex align-items-center chat-user bg-light-subtle Appointment" data-app-id="{{$Appointment['uid']}}">
                                   <span class="position-relative">
                                     <img src="{{$Appointment['Treatment']['Img']}}" alt="user-{{$Appointment['Id']}}" width="40" height="40" class="rounded-circle">
@@ -232,7 +232,7 @@
                         @foreach($Appointments as $Appointment)
                           @if($Appointment['Status']=='1')
                             @if($Appointment['PaymentStatus']=='2')
-                              <li>
+                              <li class="Item" data-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                                 <a class="px-4 py-3 bg-hover-light-black d-flex align-items-center chat-user bg-light-subtle Appointment" data-app-id="{{$Appointment['uid']}}">
                                   <span class="position-relative">
                                     <img src="{{$Appointment['Treatment']['Img']}}" alt="user-{{$Appointment['Id']}}" width="40" height="40" class="rounded-circle">
@@ -290,7 +290,7 @@
                           <div class="position-relative">
                             <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
                               @foreach($Appointments as $key=>$Appointment)
-                                  <div class="chat-list chat <?= $key==0?'active-chat' : '' ?> AppDetail" data-app-id="{{$Appointment['uid']}}">
+                                  <div class="chat-list chat <?= $key==0?'active-chat' : '' ?> AppDetail" data-app-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                                     <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between">
                                       <div class="d-flex align-items-center gap-3">
                                         <img src="{{asset('assets/upload/Default.png')}}" alt="user4" width="72" height="72" class="rounded-circle">
@@ -341,9 +341,10 @@
                                           <? 
                                               if($Appointment['Status']=='1'){
                                                   if ($Appointment['PaymentStatus']=='0') {
-                                                      echo '<div class="text-primary">Ödeme Yapılmadı</div>';
+                                                      //echo '<div class="text-primary">Ödeme Yapılmadı</div>';
+                                                      echo '<button class="btn btn-sm btn-warning">Ödeme Yap</button>';
                                                   }elseif($Appointment['PaymentStatus']=='1'){
-                                                      echo '<div class="text-primary">Ödeme Alındı</div>';
+                                                      echo '<div class="text-success">Ödeme Alındı</div>';
                                                   }else {
                                                       echo '<div class="text-primary">Ödeme İade Edildi</div>';
                                                   }
@@ -445,15 +446,38 @@
             <script type="text/javascript">
                 
               $(document).ready(function(){
+                ///
                 $(document).on('click','.ItemPointer',function(){
                       $('.ItemList').addClass('hide');
                       $('.AppDetail').fadeOut();
                       $('.ItemList[data-id='+$(this).attr('data-id')+']').removeClass('hide');
-                 });
-                 $(document).on('click','.Appointment',function(){
+                });
+                ///
+                $(document).on('click','.Appointment',function(){
                       $('.AppDetail').fadeOut();
                       $('.AppDetail[data-app-id='+$(this).attr('data-app-id')+']').fadeIn();
-                 });
+                });
+                ///
+                $(document).on('change','#searchAppointment', function(){
+                    $('.Item').fadeOut('fast');
+                    if($(this).val()==''){
+                      $('.Item').fadeIn('slow');
+                    }else {
+                      $('.Item').each((index,item)=>{
+                          if($(item).data('id') == $(this).val()){
+                              $(item).fadeIn('slow');
+                          }
+                          if($(item).data('client').toLowerCase().includes($(this).val().toLowerCase())){
+                              $(item).fadeIn('slow');
+                          }
+                      });
+                    }
+                    $('.ContainerTitle').text($(this).data('title'));
+                });
+                ///
               });
+
+
+
             </script>
         @endsection

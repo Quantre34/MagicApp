@@ -324,7 +324,6 @@ if (isset($_GET['Terminate'])) {
                           </div>
                         </li>`);
                 }
-
           }else {
                 if (resp['route']) {
                     window.location=resp['route'];

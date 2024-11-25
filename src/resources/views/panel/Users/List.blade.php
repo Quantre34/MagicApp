@@ -43,10 +43,10 @@
                 <option value="2">March 2024</option>
                 <option value="3">April 2024</option>
               </select> -->
-              <!-- <a href="/panel/{{$Type}}/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
+              <a href="/panel/{{$Type}}/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
                 Yeni Ekle
-              </a> -->
+              </a>
             </div>
           </div>
           <div class="datatables">

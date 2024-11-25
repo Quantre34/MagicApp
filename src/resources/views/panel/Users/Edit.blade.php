@@ -120,7 +120,7 @@
                     </div>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
-                      <button onclick="$('#SubmitBtn').trigger('click');">Güncelle</button>
+                      <button class="btn btn-primary" onclick="$('#SubmitBtn').trigger('click');">Güncelle</button>
                     </div>
 
             </div>

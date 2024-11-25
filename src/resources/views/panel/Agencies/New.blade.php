@@ -54,7 +54,7 @@
                   </div>
                 </div> 
                 </form>
-                <form id="form-validate" action="ajax" target="AlterAgency" method="POST" class="needs-validation" novalidate>
+                <form id="InsertAgency" action="ajax" target="InsertAgency" method="POST" class="needs-validation" novalidate>
                   
                     <input type="text" hidden required name="Logo" value="">
 
@@ -96,9 +96,9 @@
                     </div>
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">Yöneticisi</label>
-                      <select class="form-select" required name="ParentId">
+                      <select class="form-select" required name="ParentId" <?= User('Type')=='1'? 'disabled': '' ?>>
                           @foreach($Managers as $Manager)
-                              <option  value="{{$Manager['uid']}}">{{$Manager['FirstName']}} {{$Manager['LastName']}}</option>
+                              <option <?= User('uid')==$Manager['uid']? 'selected': '' ?> value="{{$Manager['uid']}}">{{$Manager['FirstName']}} {{$Manager['LastName']}}</option>
                           @endforeach                        
                       </select>
                     </div>
@@ -326,87 +326,11 @@
 
           function FileUploaded(url){
             $('#Logo').attr('src', url);
-            $('form input[name=Logo]').val(url);
+            $('#InsertAgency input[name=Logo]').val(url);
           }
 
-          function Reset(){
-            $('#CategoryForm')[0].reset();
-            $('#title').html('@Lang('ManageCategory.InsertCategory')');
-            $('#CategoryForm option').removeAttr('selected');
-            $('#CategoryForm #ResetBtn').remove();
-            $('#CategoryForm').attr('target','InsertCategory');
-            $('img[id=Logo]').attr('src', '/assets/img/Default-Package.jpg');
-            $('#CategoryForm button[type=submit]').html('@Lang('ManageCategory.InsertCategory')');
-            $('.select2-selection').css('background-color','var(--input)');///let the selects bg be...
-            $('#CategoryForm').each((e)=>{
-                console.log(e);
-                $( ".select2-selection__choice__remove" ).click();
-            });
-            $('#CategorySelect').val('');
-            $('.select2-search__field').attr('style','width: 0.75em;" aria-controls="select2-CategorySelect-results" aria-activedescendant="select2-CategorySelect-result-hgjq-1');
-          }
-          function GetCategories(){
-              $.ajax({
-                type: 'POST',
-                url: '/ajax',
-                cache: false,
-                headers: {
-                  'X-CSRF-TOKEN': @json(csrf_token())
-                },
-                data: {
-                  action: 'GetCategories'
-                },
-                success: function(data){
-                  if (data['outcome']) {
-                      $('.CategoryList').empty();
-                      Object.entries(data['data']).forEach( Item => {
-                          const [key, value] = Item;
-                          $('.CategoryList').append(`<div onclick="SetCategoryInfo('${value['Id']}')" style="border:  1px solid black; border-radius: 30px; " class="mb-4"><center><div class="col-auto"><div class="sw-5 me-3"><img src="${(value['Img']?? '/assets/img/Default-Package.jpg')}" class="img-fluid rounded-xl" alt="thumb" />
-                          </div>
-                        </div>
-                      </center><div  class="text-primary mb-1">${value['Title']}</div><div class="text-muted">${((value['Status']=='1')? '{{Lang::get('ManageCategory.Active')}}': '{{Lang::get('ManageCategory.Active')}}')}</div></div>`);
-                      });
-                  }
 
-                }
-              });
-          }
-          function SetCategoryInfo(Id){
-              $.ajax({
-                type: 'POST',
-                url: '/ajax',
-                cache: false,
-                headers: {
-                  'X-CSRF-TOKEN': @json(csrf_token())
-                },
-                data: {
-                  action: 'GetCategoryInfo',
-                  Id: Id
-                },
-                success: function(data){
-                  if (data['outcome']) {
-                    $('#title').html('@Lang('ManageCategory.UpdateCategory')');
-                    $('#CategoryForm #ResetBtn').remove();
-                      $('#CategoryForm').attr('target', 'AlterCategory');
-                      $('#CategoryForm input[name=uid]').val(data['data']['uid']);
-                      $('#CategoryForm button[type=submit]').html('@Lang('ManageCategory.UpdateCategory')');
-                      $('.select2-search__field').attr('style','width: 0.75em;" aria-controls="select2-CategorySelect-results" aria-activedescendant="select2-CategorySelect-result-hgjq-1');
-                      Object.entries(data['data']).forEach(Item => {
-                          const [key, value] = Item;
-                          $('#CategoryForm input[name='+key+']').val(value);
-                      });
-                      $('#Logo').attr('src', data['data']['Img']); 
-                      $('option').removeAttr('selected');
-                      $(`option[value=${data['data']['Status']}]`).attr('selected','selected');
-                      $('#CategorySelect').trigger('change');
-                      console.log('Status:'+data['data']['Status']);
-                      $('#CategorySelect').attr('value', data['data']['Status']);
-                      $('#CategoryFormButtons').append('<button id="ResetBtn" class="btn btn-outline-danger" onclick="Reset()">{{Lang::get('ManageCategory.Reset')}}</button>');
-                  }
-                  console.log(data);
-                }
-              });
-          }
+
           ///
         </script>      
 @endsection

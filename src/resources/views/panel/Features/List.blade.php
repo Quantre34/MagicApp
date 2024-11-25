@@ -73,7 +73,7 @@
                       @foreach($Features as $Feature)
                         <tr>
                           <td>{{$Feature['Title']}}</td>
-                          <td>{{$Feature['Parent']['Title']}}</td>
+                          <td>{{$Feature['Parent']['Title']??''}}</td>
                           <td>{{$Feature['Checked']=='1'?'Zorunlu':'Opsiyonel'}}</td>
                           <td>{{$Feature['Cost']}}</td>
                           <td>{{$Feature['Checked']=='1'?'Çarpanlı':'Tekil'}}</td>

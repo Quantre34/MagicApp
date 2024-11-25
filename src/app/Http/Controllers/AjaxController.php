@@ -205,7 +205,7 @@ class AjaxController extends Controller
                 'Category'         => htmlspecialchars(@$_POST['Category']),
                 'Treatment'        => htmlspecialchars(@$_POST['Treatment']),
                 'Date'             => htmlspecialchars(@$_POST['Date']),
-                'Package'          => htmlspecialchars(@$_POST['Package']),
+                'Package'          => htmlspecialchars(@$_POST['PackageChoice']),
                 'Gender'           => htmlspecialchars(@$_POST['Gender']),
                 'Birth'            => htmlspecialchars(@$_POST['Birth']),
                 'Height'           => htmlspecialchars(@$_POST['Height']),
@@ -215,10 +215,10 @@ class AjaxController extends Controller
                 'AlergyType'       => htmlspecialchars(@$_POST['AlergyType']),
                 'AmountToPay'      => htmlspecialchars(@$_POST['AmountToPay']),
                 'AgencyFee'        => intval($_POST['AgencyFee']),
-                // 'CommissionRate'   => intval($_POST['CommissionRate']),
+                'CommissionRate'   => intval($_POST['Commission']),
                 'CountryCode'      => htmlspecialchars(@$_POST['CountryCode']),
                 'PaymentMethod'    => htmlspecialchars(@$_POST['PaymentMethod']),
-                'Features'         => explode(',', $_POST['Features'] ?? ''),
+                'Features'         => $_POST['Features'] ?? [],
                 'Status'            => htmlspecialchars(request('Status')),
             ];
             $exceptions = [
@@ -236,7 +236,8 @@ class AjaxController extends Controller
                             'Mail'=>$data['Mail'],
                             'Cell'=>$this->CellFormatter($data['Cell']),
                             'Height'=>$data['Height'],
-                            'Weight'=>$data['Weight']
+                            'Weight'=>$data['Weight'],
+                            'Agency'=>$Agency->uid ?? NULL,
                         ]);
                         $uid = $Client->uid;
                     }else {
@@ -279,11 +280,11 @@ class AjaxController extends Controller
                     $Cost = 0;
                     $AppUid = $this->UniqueId(30);
                     $AppUid = $data['CountryCode'] .'-'. ($Agency->Id ?? '0000') .'-'. $Client->Id . '-'. substr(rand(0,1000),-3);
-                    $Package = DB::table('package')->where('Id', $data['Package'])->first();
-                    $Treatment = DB::table('treatment')->where('Id', $data['Treatment'])->first();
+                    $Package = DB::table('package')->where('uid', $data['Package'])->first();
+                    $Treatment = DB::table('treatment')->where('uid', $data['Treatment'])->first();
                     foreach($data['Features'] as $key => $Id){
                         $Feature = $this->toArray( DB::table('feature')->where('Id', $Id)->first() );
-                        $Cost = $Cost + ( ($Feature['Multiply']=='1')? (intval($Feature['Cost']) * $Treatment->EstimatedTime) : intval($Feature['Cost']) );
+                        $Cost = $Cost + ( ($Feature['Multiply']=='1')? (floatval($Feature['Cost']) * $Treatment->EstimatedTime) : floatval($Feature['Cost']) );
                     }
                     $Cost = $Cost + $Treatment->Cost + (($Treatment->Cost * $Package->Rate) / 100);
 
@@ -301,7 +302,7 @@ class AjaxController extends Controller
                         'Cost'=>$Cost,
                         'PaidAmount'=>$data['AmountToPay'],
                         'AgencyFee'=>$data['AgencyFee'],
-                        // 'CommissionRate'=>$data['CommissionRate'],
+                        'CommissionRate'=>$data['CommissionRate'],
                         'PaymentMethod'=> $data['PaymentMethod'],
                         'Status'=>$data['Status']
                     ]);
@@ -310,7 +311,7 @@ class AjaxController extends Controller
                         // $template = $this->GetFileContent('/assets/docs/NewAppointment.html');
                         // $Content = str_replace('{Message}', $Content, $template);
                         // $Content = str_replace('{uid}', $AppUid, $Content);
-                        $result = ['outcome'=>true,'AppointmentId'=>$New,'uid'=>$AppUid];
+                        $result = ['outcome'=>true,'AppointmentId'=>$New,'uid'=>$AppUid,'route'=>'javascript:BookAppointment("'.$AppUid.'");'];
                         $this->Notify('System', [$Agency->ParentId], "<a href=\"/panel/Appointments/{$AppUid}\">New Appointment is Scheduled by {$this->User['FirstName']}</a>");
                     }else {
                         $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
@@ -397,7 +398,7 @@ class AjaxController extends Controller
                             $result = $this->SendMail($User['Mail'],Lang::get('Base.WelcomeMessage'), $Content);
                         }
                         if ($Query) {
-                            $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetAgencies();'];
+                            $result = ['outcome'=>true,'route'=>'panel/agencies'];
                             $this->Notify('System', [$data['ParentId']], "<a href=\"/panel/Manage/Agencies?Agency={$data['uid']}\">{$data['Title']} is Added by {$this->User['FirstName']}</a>");
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];

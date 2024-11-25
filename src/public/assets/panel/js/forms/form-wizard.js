@@ -109,26 +109,26 @@ $("#example-vertical").steps({
 });
 
 //Custom design form example
-$(".tab-wizard").steps({
-  headerTag: "h6",
-  bodyTag: "section",
-  transitionEffect: "fade",
-  titleTemplate: '<span class="step">#index#</span> #title#',
-  labels: {
-    finish: "Book Now",
-  },
-  // onInit: function (event, currentIndex) {
-  //   $(".actions a[href='#next']").hide();
-  //   $(".actions a[href='#previous']").hide();
-  // },
-  onFinished: function (event, currentIndex) {
-    Book();
-    swal(
-      "Form Submitted!",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed."
-    );
-  },
-});
+// $(".tab-wizard").steps({
+//   headerTag: "h6",
+//   bodyTag: "section",
+//   transitionEffect: "fade",
+//   titleTemplate: '<span class="step">#index#</span> #title#',
+//   labels: {
+//     finish: "Selamlar",
+//   },
+//   // onInit: function (event, currentIndex) {
+//   //   $(".actions a[href='#next']").hide();
+//   //   $(".actions a[href='#previous']").hide();
+//   // },
+//   onFinished: function (event, currentIndex) {
+//     Book();
+//     swal(
+//       "Form Submitted!",
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed."
+//     );
+//   },
+// });
 
 var form = $(".validation-wizard").show();
 

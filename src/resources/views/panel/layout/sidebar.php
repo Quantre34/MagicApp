@@ -69,12 +69,12 @@
               </a>
             </li>
             <? if(User('Type')!='0'): ?>
-              <!-- <li class="sidebar-item">
-                <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="panel/operation" aria-expanded="false">
                   <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                   <span class="hide-menu">Operasyon Şeması</span>
                 </a>
-              </li> -->
+              </li>
 
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
@@ -217,12 +217,12 @@
                     <span class="hide-menu">Sliderlar</span>
                   </a>
                 </li>
-                <li class="sidebar-item">
+              <!--   <li class="sidebar-item">
                   <a href="/panel/website/blogs" class="sidebar-link">
                     <span class="icon-small"></span>
                     <span class="hide-menu">Blog</span>
                   </a>
-                </li>
+                </li> -->
                 <li class="sidebar-item">
                   <a href="/panel/website/media" class="sidebar-link">
                     <span class="icon-small"></span>
@@ -235,12 +235,7 @@
                     <span class="hide-menu">Doktorlar</span>
                   </a>
                 </li>
-                <li class="sidebar-item">
-                  <a href="panel/agencies/{{$this->User['Parent']}}" class="sidebar-link">
-                    <span class="icon-small"></span>
-                    <span class="hide-menu">Ayarlar</span>
-                  </a>
-                </li>
+                
 
               </ul>
             </li>
@@ -311,11 +306,11 @@
 
         <div class="sidebar-footer hide-menu">
           <!-- item-->
-          <a href="../main/page-account-settings.html" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings"><iconify-icon icon="solar:settings-linear"></iconify-icon></a>
+          <a href="panel/users/<?= User('uid') ?>" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings"><iconify-icon icon="solar:settings-linear"></iconify-icon></a>
           <!-- item-->
-          <a href="../main/app-email.html" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Email"><iconify-icon icon="solar:inbox-linear"></iconify-icon></a>
+          <a href="panel/agencies/<?= User('ParentId') ?>" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Email"><iconify-icon icon="solar:inbox-linear"></iconify-icon></a>
           <!-- item-->
-          <a href="../main/authentication-login.html" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout"><iconify-icon icon="solar:power-bold"></iconify-icon></a>
+          <a href="/logout" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout"><iconify-icon icon="solar:power-bold"></iconify-icon></a>
         </div>
       </div>
     </aside>

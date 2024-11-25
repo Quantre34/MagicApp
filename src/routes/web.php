@@ -60,7 +60,7 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/treatments/{uid}', [AdminController::class, 'EditTreatment']);
 
     Route::get('/panel/agencies', [AdminController::class, 'Agencies']);
-    Route::get('/panel/agencies/new', [AdminController::class, 'NewAgency']);
+    Route::get('/panel/agencies/new', [AdminController::class, 'InsertAgency']);
     Route::get('/panel/agencies/{uid}', [AdminController::class, 'AgencyDetail']);
     Route::get('/panel/agencies/edit/{uid}', [AdminController::class, 'EditAgency']);
 
@@ -109,6 +109,8 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/features/new', [AdminController::class, 'NewFeature']);
     Route::get('/panel/features/{uid}', [AdminController::class, 'EditFeature']);
 
+
+    Route::get('/panel/operation', [AdminController::class, 'TreeView']);
     /// old
 
     Route::get('/panel/Manage/Packages', [AdminController::class, 'ManagePackages']);

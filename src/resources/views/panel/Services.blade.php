@@ -5,8 +5,7 @@
 
     <style type="text/css">
       input[type="radio"]:checked + .treatmentcard {
-          border: 2px solid #007bff; /* Örneğin, mavi renkte bir border */
-          box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Hafif bir gölge efekti */
+            box-shadow: 0 0 10px rgb(16 185 224);      
       }
     </style>
 
@@ -56,41 +55,41 @@
                 </ul>
                 
                 
-                <div class="by-pricing border-bottom rounded-0">
+<!--                 <div class="by-pricing border-bottom rounded-0">
                   <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
                   <div class="pb-4 px-4">
                     <div class="form-check py-2 mb-0">
-                      <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios5" value="option1" checked>
+                      <input class="form-check-input p-2" type="radio" name="PriceTag" id="exampleRadios5" value="All" checked>
                       <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios5">
                         All
                       </label>
                     </div>
                     <div class="form-check py-2 mb-0">
-                      <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios6" value="option1">
+                      <input class="form-check-input p-2" type="radio" name="PriceTag" id="exampleRadios6" value="0-1000">
                       <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios6">
                         0-50
                       </label>
                     </div>
                     <div class="form-check py-2 mb-0">
-                      <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios7" value="option1">
+                      <input class="form-check-input p-2" type="radio" name="PriceTag" id="exampleRadios7" value="1000-2000">
                       <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios7">
                         50-100
                       </label>
                     </div>
                     <div class="form-check py-2 mb-0">
-                      <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios8" value="option1">
+                      <input class="form-check-input p-2" type="radio" name="PriceTag" id="exampleRadios8" value="2000-3000">
                       <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios8">
                         100-200
                       </label>
                     </div>
                     <div class="form-check py-2 mb-0">
-                      <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios9" value="option1">
+                      <input class="form-check-input p-2" type="radio" name="PriceTag" id="exampleRadios9" value="4000-5000">
                       <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios9">
                         Over 200
                       </label>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 
                 <div class="p-4">
                   <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
@@ -103,7 +102,7 @@
                   </a>
                   <h5 class="fs-5 mb-0 d-none d-lg-block ContainerTitle">Treatments</h5>
                   <form class="position-relative">
-                    <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Product">
+                    <input type="text" class="form-control search-chat py-2 ps-5" id="searchTreatment" placeholder="Search Product">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                   </form>
                 </div>
@@ -115,7 +114,7 @@
                       
                     @foreach($Category['Treatments'] as $Treatment)
                         
-                          <div class="col-sm-6 col-xxl-4 " >
+                          <div class="col-sm-6 col-xxl-4 Treatment" data-title="{{$Treatment['Title']}}" data-cost="{{$Treatment['Cost']}}" >
                             <label>
                               <input type="radio" name="Treatment" style="display: none;" value="{{$Treatment['uid']}}">
                             <div class="card overflow-hidden rounded-2 border treatmentcard">
@@ -232,9 +231,9 @@
                     </div>
                   </div>
 
-                  <div class="p-4">
+                  <!-- <div class="p-4">
                     <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -272,6 +271,35 @@
         }
         
     }
+    ///
+    $(document).on('change','#searchTreatment', function(){
+        $('.Treatment').fadeOut('fast');
+        if($(this).val()==''){
+          $('.Treatment').fadeIn('slow');
+        }else {
+          $('.Treatment').each((index,item)=>{
+              if($(item).data('title').toLowerCase().includes($(this).val().toLowerCase())){
+                  $(item).fadeIn('slow');
+              }
+          });
+        }
+        $('.ContainerTitle').text($(this).data('title'));
+    });
+    ///
+    // $(document).on('change','.PriceTag', function(){
+    //   $('.Treatment').fadeOut('fast');
+    //   if($(this).val()==''){
+    //     $('.Treatment').fadeIn('slow');
+    //   }else {
+    //     $('.Treatment').each((index,item)=>{
+    //         if($(item).data('title').toLowerCase().includes($(this).val().toLowerCase())){
+    //             $(item).fadeIn('slow');
+    //         }
+    //     });
+    //   }
+    //   $('.ContainerTitle').text($(this).data('title'));
+    // });
+    
     </script>
     @endsection
 
