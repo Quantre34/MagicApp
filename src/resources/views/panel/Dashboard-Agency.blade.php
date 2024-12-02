@@ -3,25 +3,25 @@
     <?
       $WeeklyTotal = 0;
       foreach($WeeklyAppointments as $App){
-        if ($Appitem['PaymentStatus']=='1') {
+        if ($App['PaymentStatus']=='1') {
             $WeeklyTotal += $App['Cost'];
         }
       }
       $MountlyTotal = 0;
       foreach($MountlyAppointments as $App){
-        if ($Appitem['PaymentStatus']=='1') {
+        if ($App['PaymentStatus']=='1') {
             $MountlyTotal += $App['Cost'];
         }
       }
       $Holds = 0;
       foreach($MountlyAppointments as $App){
-        if ($Appitem['Status']=='0') {
+        if ($App['Status']=='0') {
             $Holds ++;
         }
       }
       $DoneDeals = 0;
       foreach($Appointments as $App){
-        if ($Appitem['Status']=='3') {
+        if ($App['Status']=='3') {
             $DoneDeals ++;
         }
       }

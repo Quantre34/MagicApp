@@ -33,14 +33,23 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Home</a>
+                    <a class="text-muted text-decoration-none" href="/panel/">Home</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">Randevular</li>
                 </ol>
               </nav>
             </div>
 
+              @if(User('Type')=='0')
+                <div class="d-flex align-items-center justify-content-between gap-6">
+                  <a href="panel/services" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
+                    <i class="ti ti-plus fs-4"></i>
+                    Randevu Oluştur
+                  </a>
+                </div>
+              @endif
           </div>
+
           <div class="card overflow-hidden chat-application">
             <div class="d-flex align-items-center justify-content-between gap-6 m-3 d-lg-none">
               <button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas" data-bs-target="#chat-sidebar" aria-controls="chat-sidebar">
@@ -290,7 +299,7 @@
                           <div class="position-relative">
                             <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
                               @foreach($Appointments as $key=>$Appointment)
-                                  <div class="chat-list chat <?= $key==0?'active-chat' : '' ?> AppDetail" data-app-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
+                                  <div class=" chat-list chat <?= $key==0?'active-chat' : '' ?> AppDetail" data-app-id="{{$Appointment['uid']}}" data-client="{{$Appointment['Client']['FirstName']}} {{$Appointment['Client']['LastName']}}">
                                     <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between">
                                       <div class="d-flex align-items-center gap-3">
                                         <img src="{{asset('assets/upload/Default.png')}}" alt="user4" width="72" height="72" class="rounded-circle">
@@ -310,32 +319,41 @@
                                         <p class="mb-1 fs-2">Mail</p>
                                         <h6 class="fw-semibold mb-0">{{$Appointment['Client']['Mail']}}</h6>
                                       </div>
-                                      <div class="col-12 mb-9">
+                                      <div class="col-4 mb-6">
                                         <p class="mb-1 fs-2">Tedavi</p>
-                                        <h6 class="fw-semibold mb-0">Liposuction</h6>
+                                        <h6 class="fw-semibold mb-0">{{$Appointment['Treatment']['Title']}}</h6>
+                                      </div>
+                                      <div class="col-4 mb-6">
+                                        <p class="mb-1 fs-2">Tedavi Paket</p>
+                                        <h6 class="fw-semibold mb-0">{{$Appointment['Package']['Title']}}</h6>
+                                      </div>
+                                      <br>
+                                      <div class="col-4 mb-6">
+                                        <p class="mb-1 fs-2">Tedavi Fiyatı</p>
+                                        <h6 class="fw-semibold mb-0">{{$Appointment['TreatmentCost']}}€</h6>
+                                      </div>
+                                      <div class="col-4 mb-6">
+                                        <p class="mb-1 fs-2">Paket Fiyatı</p>
+                                        <h6 class="fw-semibold mb-0">{{ $Appointment['PackageCost'] }}€</h6>
                                       </div>
                                       <div class="col-4 mb-7">
-                                        <p class="mb-1 fs-2">Tedavi Fiyatı</p>
-                                        <h6 class="fw-semibold mb-0">{{$Appointment['TreatmentCost']}}$</h6>
-                                      </div>
-                                      <div class="col-8 mb-7">
                                         <p class="mb-1 fs-2">Toplam Tutar</p>
-                                        <h6 class="fw-semibold mb-0">{{$Appointment['Cost']}}$</h6>
+                                        <h6 class="fw-semibold mb-0">{{$Appointment['Cost']}}€</h6>
                                       </div>
                                       <div class="col-4 mb-7">
                                         <p class="mb-1 fs-2">Acente</p>
-                                        <h6 class="fw-semibold mb-0">Muavilla (Mücella kantaroğlu)</h6>
+                                        <h6 class="fw-semibold mb-0">{{$Appointment['Agency']['Title']}}</h6>
                                       </div>
-                                      <div class="col-4 mb-7">
+                                      <div class="col-4 mb-7 no-print">
                                         <p class="mb-1 fs-2">komisyon</p>
-                                        <h6 class="fw-semibold mb-0">{{$Appointment['CommissionRate']}}%</h6>
+                                        <h6 class="fw-semibold mb-0">{{$Appointment['CommissionRate']}}€</h6>
                                       </div>
-                                      <div class="col-4 mb-7">
+                                      <div class="col-4 mb-7 no-print">
                                         <p class="mb-1 fs-2">Ek Komisyonu</p>
                                         <h6 class="fw-semibold mb-0">{{$Appointment['AgencyFee']}}%</h6>
                                       </div>
 
-                                      <div class="col-12 mb-9">
+                                      <div class="col-4 mb-4 no-print">
                                         <p class="mb-1 fs-2">Durumu</p>
                                         <h6 class="fw-semibold mb-0">
                                           <? 
@@ -354,6 +372,12 @@
                                                   echo '<div class="text-danger">Teslim Edildi</div>';
                                               }
                                           ?>
+                                        </h6>
+                                      </div>
+                                      <div class="col-4 mb-4 no-print">
+                                        <p class="mb-1 fs-2">İşlem</p>
+                                        <h6 class="fw-semibold mb-0">
+                                          <button class="btn btn-sm btn-info print" print-id="{{$Appointment['uid']}}">Yazdır</button>
                                         </h6>
                                       </div>
                                     </div>
@@ -444,7 +468,33 @@
 
             <script src="{{asset('assets/panel/js/datatable/datatable-advanced.init.js')}}"></script>
             <script type="text/javascript">
-                
+              $(document).on('click','.print',function() {
+                  var content = $('.AppDetail[data-app-id='+$(this).attr('print-id')+']').html();    
+                  var hiddenElements = $('.AppDetail[data-app-id=' + $(this).attr('print-id') + ']').find('.no-print');
+                  hiddenElements.hide();
+                  var content = $('.AppDetail[data-app-id='+$(this).attr('print-id')+']').html();  
+                  let html = `
+                        <div class="position-relative overflow-hidden ">
+                          <div class="position-relative">
+                            <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
+                            ${content}
+                            </div>
+                          </div>
+                        </div>
+                  `;
+                  // Yeni bir pencere aç ve içeriği yerleştir
+                  var printWindow = window.open('', '', 'height=600,width=800');
+                  printWindow.document.write(`<html><head><title>Yazdır</title>
+                      <link rel="stylesheet" href="{{asset('assets/panel/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}">
+                      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+                      <link rel="stylesheet" href="{{asset('assets/panel/css/styles.css')}}" />
+                    </head><body class="bg-light-subtle">`);
+                  printWindow.document.write(html); // İçeriği yazdır
+                  printWindow.document.write('</body></html>');
+                  printWindow.document.close(); // Pencereyi kapat
+                  printWindow.print(); // Yazdırma işlemini başlat
+                  hiddenElements.show();
+              });
               $(document).ready(function(){
                 ///
                 $(document).on('click','.ItemPointer',function(){

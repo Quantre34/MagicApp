@@ -86,7 +86,7 @@
                             <div class="mb-1">
                               <label  class="form-label">Yöneticisi</label>
                               <select class="form-select" required name="ParentId">
-                                  @foreach(($User['Type'] ='1'? $Agencies : $Users ) as $Manager)
+                                  @foreach((User('Type')=='1'? $Agencies : $Users ) as $Manager)
                                       <option value="{{$Manager['uid']}}">
                                       {{ !empty($Manager['Title'])? $Manager['Title'] : (!empty($Manager['FirstName'])? $Manager['FirstName'].' '.$Manager['LastName'] : '') }}</option>
                                   @endforeach                        

@@ -179,7 +179,7 @@
                       <h6 class="text-muted">{{count($Agencies)}} toplam Acente</h6>
                       <ul class="list-icons mt-4 list-style-none">
                         @foreach($Agencies as $Agency)
-                          @if(count($Agency['Appointments']))
+                          @if(count($Agency['Appointments']??[]))
                             <li class="my-1 py-1 hstack gap-2">
                               <i class="fa fa-circle text-secondary"></i> {{$Agency['Title']}}
                             </li>
@@ -288,22 +288,18 @@
 
 
 
-
-
-
-
     var option_Sales_of_the_Month = {
 
         series: [
           @foreach($Agencies as $Agency)
-            @if(count($Agency['Appointments']))
+            @if(count($Agency['Appointments']??[]))
               <?= count($Agency['Appointments']); ?>,
             @endif
           @endforeach
         ],
         labels: ["-", 
             @foreach($Agencies as $Agency)
-              @if(count($Agency['Appointments']))
+              @if(count($Agency['Appointments']??[]))
                 '<?= $Agency['Title'] ?>',
               @endif
             @endforeach

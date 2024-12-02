@@ -1216,22 +1216,36 @@
                                         window.location = data['route'];
                                   }
                               }else {
-                                toastr.error(data['ErrorMessage'],'{{Lang::get('Base.Failed')}}',{
-                                  positionClass: 'toastr toast-bottom-right',
-                                  containerId: 'toast-bottom-right'
-                                });
                                 if (data['route']) {
                                       window.location = data['route'];
                                 }
                               }
                         }else {
-                            alertify.error(data['ErrorMessage']);
+                            toastr.error(
+                                (data['ErrorMessage']??  '{{Lang::get('Base.Failed')}}'),
+                                "{{Lang::get('Base.Fail')}}",
+                                {
+                                  positionClass: "toastr toast-bottom-right",
+                                  containerId: "toast-bottom-right",
+                                }
+                              );
                             if (data['tag']) {
                                 $('input[name='+data['tag']+'], select[name='+data['tag']+'], textarea[name='+data['tag']+']').css('border',' 1px solid red');
                             }
                         }
                         HoldOn.close();
-                      } 
+                        if (target='UploadFile') {
+                          data['data'].foreach((item,index)=>{
+                              $('.ImageContainer').append(`
+                                  <img class="Image-${item['name']}" onclick="javascript:$('.Image-${item['name']}').remove();" src="${item['url']}" style="width: 100%;max-width: 400px;" alt="${item['type']}">
+                                `);
+                              $($this).append(`
+                                  <input name="Images[]" class="Image-${item['name']}" value="${item['url']}" >
+                                `);
+                          });
+                        }
+                      }
+
                     });
                 }
             }
@@ -1331,6 +1345,21 @@ function CheckValidation(formelement) {
 function customReplace(str, start, end, newStr) {
   return str.substr(0, start) + newStr + str.substr(end);
 }
+
+
+
+
+function isAnyExist(array1, array2) {
+    if (array1 != null && array2 != null) {
+        for (let value1 of array1) {
+            if (array2.includes(value1)) {
+                return value1; // Return the matching value
+            }
+        }
+    }
+    return false;
+}
+
   </script>
 
 

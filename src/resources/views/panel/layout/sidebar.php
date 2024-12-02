@@ -71,7 +71,7 @@
             <? if(User('Type')!='0'): ?>
               <li class="sidebar-item">
                 <a class="sidebar-link" href="panel/operation" aria-expanded="false">
-                  <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
+                  <iconify-icon icon="material-symbols:family-history-outline-rounded"></iconify-icon>
                   <span class="hide-menu">Operasyon Şeması</span>
                 </a>
               </li>
@@ -94,6 +94,12 @@
                       <a href="/panel/features" class="sidebar-link">
                         <span class="icon-small"></span>
                         <span class="hide-menu">Hizmetler</span>
+                      </a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a href="/panel/clinics" class="sidebar-link">
+                        <span class="icon-small"></span>
+                        <span class="hide-menu">Klinikler</span>
                       </a>
                     </li>
                     <li class="sidebar-item">
@@ -159,7 +165,17 @@
 
             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel/services"  aria-expanded="false">
-                <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
+
+                <iconify-icon icon="material-symbols-light:add-2-rounded"></iconify-icon>
+
+                <span class="hide-menu">Randevu Oluştur</span>
+              </a>
+            </li>
+
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/panel/services/list"  aria-expanded="false">
+                <iconify-icon icon="material-symbols:event-list-outline-rounded"></iconify-icon>
                 <span class="hide-menu">Fiyat Listesi</span>
               </a>
             </li>
@@ -185,13 +201,13 @@
                 </a>
             </li>
 
-
+<!-- 
             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel/kullanim-talimatlari"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
                 <span class="hide-menu">Kullanım talimatları</span>
               </a>
-            </li>
+            </li> -->
 
             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel/articles" aria-expanded="false">
@@ -207,7 +223,7 @@
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
-                <iconify-icon icon="solar:align-left-line-duotone"></iconify-icon>
+                <iconify-icon icon="material-symbols:filter-list-rounded"></iconify-icon>
                 <span class="hide-menu">İçerikler</span>
               </a>
               <ul aria-expanded="false" class="collapse first-level">
@@ -241,7 +257,7 @@
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
-                <iconify-icon icon="solar:align-left-line-duotone"></iconify-icon>
+                <iconify-icon icon="material-symbols:mediation-rounded"></iconify-icon>
                 <span class="hide-menu">Ayarlar</span>
               </a>
               <ul aria-expanded="false" class="collapse first-level">
@@ -297,10 +313,6 @@
             </li>
           <? endif; ?>
 
-
-
-
-
           </ul>
         </nav>
 
@@ -308,7 +320,7 @@
           <!-- item-->
           <a href="panel/users/<?= User('uid') ?>" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings"><iconify-icon icon="solar:settings-linear"></iconify-icon></a>
           <!-- item-->
-          <a href="panel/agencies/<?= User('ParentId') ?>" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Email"><iconify-icon icon="solar:inbox-linear"></iconify-icon></a>
+          <a href="<?= User('Type')=='0'? 'panel/agencies/'.User('ParentId') : 'panel/consult' ?>" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= User('Type')=='0'? 'Acente' : 'Yardım Masası' ?>"><iconify-icon icon="solar:inbox-linear"></iconify-icon></a>
           <!-- item-->
           <a href="/logout" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout"><iconify-icon icon="solar:power-bold"></iconify-icon></a>
         </div>

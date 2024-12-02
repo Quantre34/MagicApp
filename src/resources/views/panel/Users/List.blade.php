@@ -82,6 +82,9 @@
                           </td>
                           <td>
                             <div class="box">
+                              <a href="javascript:RemindPass('{{$User['uid']}}')">
+                                <i class="fa-regular fa-bell"></i>
+                              </a>
                                <a href="/panel/{{$Type}}/{{$User['uid']}}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                               </a>
@@ -120,4 +123,28 @@
             <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
             <script src="{{asset('assets/panel/js/datatable/datatable-advanced.init.js')}}"></script>
+            <script type="text/javascript">
+                  function RemindPass(uid){
+                  $.ajax({
+                      type: 'POST',
+                      url: '/ajax',
+                      cache: false,
+                      headers: {
+                        'X-CSRF-TOKEN': @json(csrf_token())
+                      },
+                      data: {
+                        action: 'RemindPass',
+                        '_token': @json(csrf_token()),
+                        uid: uid
+                      },
+                      success: function(data){
+                        if (data['outcome']) {
+                            Swal.fire('Succes',data['Message'],'success');
+                        }else {
+                            Swal.fire('Failed',data['ErrorMessage'],'error');
+                        } 
+                      }
+                    });
+                }
+            </script>
         @endsection

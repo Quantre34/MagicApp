@@ -1,9 +1,9 @@
 @extends('panel.App')
 
     @section('content')
-
       <script type="text/javascript">
         window.Get = {};
+        window.Clinics = JSON.parse('<?= json_encode($Treatment['Clinics']); ?>');
       </script>
       <style type="text/css">
         
@@ -162,6 +162,7 @@
                     <input type="hidden" name="Package" >
                     <input type="hidden" name="Date" >
                     <input type="hidden" name="CountryCode" >
+                    <input type="hidden" name="Clinic" >
 
                     <h6>Date</h6>
                     <section class="payment-method text-center">
@@ -201,9 +202,19 @@
 
                           @foreach($Packages as $Package)
 
-                          <div class="col-sm-6 col-xxl-6 " >
+                          <?
+                            $Active = [];
+                            foreach($Treatment['Clinics'] as $Clinic=>$Cost){
+                                if(in_array($Clinic, json_decode($Package['Clinics'],true))){
+                                    $Active = true;
+                                    break;
+                                }
+                            }
+                          ?>
+
+                          <div class="col-sm-6 col-xxl-6" >
                             <label>
-                              <input type="radio" style="display: none;" value="{{$Package['uid']}}" data-rate="{{$Package['Rate']}}" name="PackageChoice">
+                              <input <?= !$Active? 'disabled' : '' ?> type="radio" style="display: none;" value="{{$Package['uid']}}" data-clinics="{{$Package['Clinics']}}" data-rate="{{$Package['Rate']}}" name="PackageChoice">
                             <div class="card overflow-hidden rounded-2 border treatmentcard" >
                               <div class="position-relative">
                                 <a class="hover-img d-block overflow-hidden">
@@ -411,7 +422,6 @@
                     <div class="mb-1">
                       <label for="exampleInputtext1" class="form-label">@Lang('NewAppointment.PaymentMethods')</label>
                       <select class="form-select" required name="PaymentMethod">
-                        <option  selected></option>
                         @foreach($PaymentMethods as $Method)
                           <option selected value="{{$Method['Id']}}">{{$Method['Title']}}</option>
                         @endforeach
@@ -658,10 +668,23 @@
 
         function CalculateTotal(){
                 window.Total = 0
-                window.TreatmentCost = parseInt({{$Treatment['Cost']}});
+
+                let Clinic = Object.entries(window.Clinics).reduce((lowest, current) => {
+                    return current[1] < lowest[1] ? current : lowest;
+                });
+                $('input[name=Clinic]').val(Clinic[0]);
+                window.TreatmentCost = Clinic[1] ?? parseInt({{$Treatment['Cost']}});
+                // Object.entries(window.Clinics).forEach(([key, Cost]) => {
+                //     console.log(`Key: ${key}, Value: ${Cost}`);
+                //     if (window.Package.Clinics.includes(key)) {
+                //         alert(true);
+                //     }
+                // });
+
+                //window.TreatmentCost = parseInt({{$Treatment['Cost']}});
                 window.AgencyFee = parseInt({{User('Parent')['AgencyFee']}});
 
-                window.PackageCost = (TreatmentCost * PackageRate) / 100;
+                window.PackageCost = (TreatmentCost * window.PackageRate) / 100;
                 window.AgencyCost = (TreatmentCost * AgencyFee) / 100;
 
                 let FeatureCosts = 0;
@@ -724,7 +747,7 @@
                       <p class="mb-0 fs-2">Appointment is made but payment is not done
                         <br>U can pay within 2 days
                       </p>
-                      <div class="d-sm-flex align-items-center justify-content-between my-4">
+                      <div class="d-sm-flex align-items-center justify-content-center my-4">
                         <a  class="btn btn-warning d-block mb-2 mb-sm-0">Ödemeye geç</a>
                       </div></section>`);
         }

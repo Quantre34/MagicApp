@@ -39,8 +39,10 @@ class AdminController extends Controller
             if ($this->User['Type']=='2') {
                 $Start = date('Y-m-d');
                 $End = date('Y-m-d', strtotime('-30 day'));
-                $ClinicsMatched = [];
-                $Appointments = [];
+                $Appointments = $this->toArray(DB::table('appointment')->whereBetween('AppointmentDate', [
+                        Carbon::now()->startOfMonth()->toDateTimeString(),
+                        Carbon::now()->endOfMonth()->toDateTimeString()
+                    ])->get());
                 $AllAppointments = $this->toArray(DB::table('appointment')->get());
                 $Categories = $this->toArray(DB::table('category')->where('Lang', $this->Lang)->where('Status', '1')->get());
                 $Agencies = $this->toArray(DB::table('agency')->get());
@@ -55,15 +57,10 @@ class AdminController extends Controller
                 }
                 foreach($Categories as $key => $Category){
                     $Categories[$key]['Treatments'] = $this->toArray(DB::table('treatment')->where('ParentId', $Category['Id'])->where('Lang', $this->Lang)->where('Status', '1')->get());
-                    // $Clinics = $this->toArray(DB::table('clinic')->where('Status', '1')->get());
-                    // foreach($Clinics as $Clinic){
-                    //     if (!empty($Clinic['Categories'])) {
-                    //         if (in_array($Category['Id'], json_decode($Clinic['Categories']))) {
-                    //             $Categories[$key]['Clinics'][] = $Clinic;
-                    //         }
-                    //     }
-                    // }
-                    
+                }
+                foreach($Appointments as $key => $Appointment){
+                    $Appointments[$key]['Treatment'] = $this->toArray(DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first());
+                    $Appointments[$key]['Client'] = $this->toArray(DB::table('client')->where('uid', $Appointment['ClientId'])->first());
                 }
                 $result = ['outcome'=>true,'route'=>'panel.Dashboard-Admin','data'=>[
                     'Appointments'=>$Appointments,
@@ -75,7 +72,6 @@ class AdminController extends Controller
                 $Start = date('Y-m-d');
                 $End = date('Y-m-d', strtotime('+7 day'));
                 $Appointments = [];
-                $ClinicsMatched = [];
                 $AllAppointments = [];
                 $Categories = json_decode(json_encode(DB::table('category')->where('Lang', $this->Lang)->where('Status', '1')->get()), true);
                 $Agencies = json_decode(json_encode(DB::table('agency')->where('ParentId', $this->User['uid'])->get()),true);
@@ -83,7 +79,6 @@ class AdminController extends Controller
                 if ($this->User['uid']=='RzLD3NVEm88skxZCglJdWKacjBU2rT') {
                     array_merge($this->toArray(DB::table('user')->where('ParentId', '7Y26i0bhE5aHBs1JcCDXutU932lnoj7AK3vVqGZwmpx8zQNgO1')->where('Type','1')->where('Status','1')->get()), $SubManagers);
                     array_merge($this->toArray(DB::table('user')->where('ParentId', 'mKOroqWzTbAv6U981cPfR7LXnF621G')->where('Type','1')->where('Status','1')->get()),$SubManagers);
-                    
                 }
                 foreach($SubManagers as $SubManager){
                     $Agencies = array_merge($this->toArray(DB::table('agency')->where('ParentId', $SubManager['uid'])->get()), $Agencies);
@@ -97,6 +92,7 @@ class AdminController extends Controller
                     foreach($AllAppointmentsInner as $key1 => $Appointment){
                         $AllAppointmentsInner[$key1]['Client']=(array)DB::table('client')->where('uid', $Appointment['ClientId'])->first();
                         $AllAppointments = $AllAppointmentsInner;
+                        $Appointments[] = $AllAppointmentsInner;
                     }
                     $Agencies[$key]['AllAppointments']=$AllAppointmentsInner;
                 }
@@ -168,6 +164,8 @@ $currentYear = Carbon::now()->year;
                     $Appointments[$key]['Category']=json_decode(json_encode(DB::table('category')->where('Id', $Appointment['CategoryId'])->first()), true);
                     $Appointments[$key]['Treatment']=json_decode(json_encode(DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first()), true);
                     $Appointments[$key]['Agency']=json_decode(json_encode(DB::table('agency')->where('uid', $Appointment['AgencyId'])->first()), true);
+                    $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('uid', $Appointment['PackageId'])->first());
+
                 }
                 $result = ['outcome'=>true,'route'=>'panel.Appointments.List','data'=>[
                     'Appointments'=>$Appointments
@@ -184,6 +182,7 @@ $currentYear = Carbon::now()->year;
                         // $AppointmentsInner[$key]['Clinic']=(array)DB::table('clinic')->where('uid', $Appointment['ClinicId'])->first();
                         $AppointmentsInner[$key]['Category']=(array)DB::table('category')->where('Id', $Appointment['CategoryId'])->first();
                         $AppointmentsInner[$key]['Treatment']=json_decode(json_encode(DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first()), true);
+                        $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('uid', $Appointment['PackageId'])->first());
                         $AppointmentsInner[$key]['Agency']=$Agency;
                         $Appointments = $AppointmentsInner;
                     }
@@ -200,6 +199,7 @@ $currentYear = Carbon::now()->year;
                     $Appointments[$key]['Category']=$this->toArray(DB::table('category')->where('Id', $Appointment['CategoryId'])->first());
                     $Appointments[$key]['Treatment']=$this->toArray(DB::table('treatment')->where('uid', $Appointment['TreatmentId'])->first());
                     $Appointments[$key]['Agency']=$this->toArray(DB::table('agency')->where('uid', $Appointment['AgencyId'])->first());
+                    $Appointments[$key]['Package']=$this->toArray(DB::table('package')->where('uid', $Appointment['PackageId'])->first());
                 }
                 $result = ['outcome'=>true,'route'=>'panel.Appointments.List','data'=>[
                     'Appointments'=>$Appointments
@@ -219,16 +219,7 @@ $currentYear = Carbon::now()->year;
     ///
     public function Clinics(){
         $Clinics = json_decode(json_encode(DB::table('clinic')->where('Status', '1')->get()), true);
-        foreach($Clinics as $key => $Clinic){
-            $Categories=[];
-            if (!empty($Clinic['Categories'])) {
-                foreach(json_decode($Clinic['Categories']) as $Id){
-                $Categories[$Id] =  (array)DB::table('category')->where('Id', $Id)->first();
-                }            
-            }
-        $Clinics[$key]['Categories'] = $Categories;
-        }
-        return view('panel.Clinics', ['Clinics'=>$Clinics]);
+        return view('panel.Clinics.List', ['Clinics'=>$Clinics]);
     }
     ///
     public function Clients(){
@@ -311,36 +302,56 @@ $currentYear = Carbon::now()->year;
         }
     }
     ///
-    public function ClinicDetail($Id){
-        $Id = (int)$Id;
-        $Clinic = (array)DB::table('clinic')->where('Id', $Id)->first();
-        if (!empty($Clinic)) {
-            $Categories = [];
-            $Treatments = [];
-            if (!empty($Clinic['Categories'])) {
-                foreach(json_decode($Clinic['Categories']) as $CategoryId){
-                    $Categories[] = (array)DB::table('category')->where('Id', $CategoryId)->first();
-                }
-                $Clinic['Categories'] = $Categories;
+    public function EditClinic($uid){
+        if (!empty($this->User)) {
+            $Packages = $this->toArray(DB::table('package')->where('Lang',$this->Lang)->where('Status', '1')->get());
+            $Clinic = $this->toArray(DB::table('clinic')->where('uid', $uid)->first());
+            if (!empty($Clinic)) {
+                $result = ['outcome'=>true,'route'=>'panel.Clinics.Edit','data'=>[
+                        'Clinic'=>$Clinic,
+                        'Packages'=>$Packages
+                    ]
+                ];
+            }else {
+                $result = ['outcome'=>false,'route'=>'panel.404','ErrorMessage'=>Lang::get('Base.NotFound'),'data'=>[]];
             }
-            if (!empty($Clinic['Treatments'])) {
-                foreach(json_decode($Clinic['Treatments']) as $TreatmentId){
-                    $Treatments[] = (array)DB::table('treatment')->where('Id', $TreatmentId->Id)->first();
-                }
-                $Clinic['Treatments'] = $Treatments;
-            }
-            $result = ['outcome'=>true,'route'=>'panel.Clinic-Detail','data'=>['Clinic'=>$Clinic]];
         }else {
-            $result = ['outcome'=>false,'route'=>'panel.404','ErrorMessage'=>Lang::get('Base.NotFound'),'data'=>[]];
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
         }
-        return view($result['route'], $result['data']);
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+           return redirect()->back()->with($result);
+        }
+    }
+    public function NewClinic(){
+        if (!empty($this->User)) {
+            $Packages = $this->toArray(DB::table('package')->where('Lang',$this->Lang)->where('Status', '1')->get());
+            $result = ['outcome'=>true,'route'=>'panel.Clinics.New','data'=>[
+                    'Packages'=>$Packages
+                ]
+            ];
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+           return redirect()->back()->with($result);
+        }
     }
     ///
     public function NewAppointment(){
         if (!empty($this->User)){
             if ($this->User['Type']=='0') {
-                $Treatment = $this->toArray(DB::table('treatment')->where('uid',request('Treatment'))->first());
+                $Treatment = $this->toArray(DB::table('treatment')->where('uid',request('Treatments')[0])->first());
                 if (!empty($Treatment)) {
+                    $ccies = json_decode($Treatment['Clinics'],true);;
+                    $Treatment['Clinics'] = [];
+                    foreach($ccies as $Clinic ){
+                        $dd = $this->toArray(DB::table('price')->where('Clinic',$Clinic)->where('Treatment',$Treatment['uid'])->first());
+                        $Treatment['Clinics'][$Clinic] = $dd['Price']??0;
+                    }
                     $Category = $this->toArray(DB::table('category')->where('Id',$Treatment['ParentId'])->first());
                     $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status', '1')->get());
                     $Agency = $this->toArray(DB::table('agency')->where('uid', $this->User['ParentId'])->first());
@@ -730,10 +741,17 @@ $currentYear = Carbon::now()->year;
     public function EditTreatment($uid){
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
-                $Clinics = DB::table('clinic')->where('Status','1')->get();
+                $Clinics = $this->toArray(DB::table('clinic')->where('Status','1')->get());
                 $Treatment = $this->toArray(DB::table('treatment')->where('uid',$uid)->first());
+                $ccies = json_decode($Treatment['Clinics'],true);;
+                $Treatment['Clinics'] = [];
+                foreach($ccies??[] as $Clinic ){
+                    $dd = $this->toArray(DB::table('price')->where('Clinic',$Clinic)->where('Treatment',$Treatment['uid'])->first());
+                    $Treatment['Clinics'][$Clinic] = $dd['Price']??0;
+                }
                 $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
                 $result = ['outcome'=>true,'route'=>'panel.Treatments.Edit','data'=>[
+                    'Clinics'=>$Clinics,
                     'Treatment'=>$Treatment,
                     'Categories'=>$Categories
                 ]];
@@ -753,8 +771,10 @@ $currentYear = Carbon::now()->year;
     public function NewTreatment(){
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
+                $Clinics = $this->toArray(DB::table('clinic')->where('Status','1')->get());
                 $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
                 $result = ['outcome'=>true,'route'=>'panel.Treatments.New','data'=>[
+                    'Clinics'=>$Clinics,
                     'Categories'=>$Categories
                 ]];
             }else {
@@ -1651,8 +1671,10 @@ $currentYear = Carbon::now()->year;
     ///
     public function EditPackage($uid){
         if ($this->User['Type']=='2') {
+            $Clinics = $this->toArray(DB::table('clinic')->where('Status','1')->get());
             $Package = $this->toArray(DB::table('package')->where('uid',$uid)->first());
             $result = ['outcome'=>true,'route'=>'panel.Packages.Edit','data'=>[
+                'Clinics'=>$Clinics,
                 'Package'=>$Package,
             ]]; 
         }else {
@@ -1667,8 +1689,9 @@ $currentYear = Carbon::now()->year;
     ///
     public function NewPackage(){
         if ($this->User['Type']=='2') {
+            $Clinics = $this->toArray(DB::table('clinic')->where('Status','1')->get());
             $result = ['outcome'=>true,'route'=>'panel.Packages.New','data'=>[
-                'Type'=>false
+                'Clinics'=>$Clinics
             ]]; 
         }else {
             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];
@@ -1732,7 +1755,45 @@ $currentYear = Carbon::now()->year;
             return redirect()->back()->with($result);
         }
     }
-
+    ///
+    public function ServiceList(){
+        if (!empty($this->User)) {
+            $Treatments = json_decode(json_encode(DB::table('treatment')->where('Lang',$this->Lang)->where('Status', '1')->get()), true);
+            foreach($Treatments as $key => $Treatment){
+                $Treatments[$key]['Category'] = $this->toArray(DB::table('category')->where('Id', $Treatment['ParentId'])->first());
+            }
+            $result = ['outcome'=>true,'route'=>'panel.Services.List','data'=>[
+                'Treatments'=>$Treatments
+            ]];
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
+    ///
+    public function ServiceDetail($uid){
+        if (!empty($this->User)) {
+            $Treatment = $this->toArray(DB::table('treatment')->where('uid', $uid)->first());
+            if (!empty($Treatment)) {
+                $result = ['outcome'=>true,'route'=>'panel.Services.Detail','data'=>[
+                    'Treatment'=>$Treatment
+                ]];
+            }else {
+                $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.NotFound')];
+            }
+        }else {
+            $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
+        }
+        if ($result['outcome']) {
+            return view($result['route'], $result['data']);
+        }else {
+            return redirect()->back()->with($result);
+        }
+    }
     // public function Clients(){ 
     //     if (!empty($this->User)) {
     //         $Clients = $this->toArray(DB::table('client')->get());

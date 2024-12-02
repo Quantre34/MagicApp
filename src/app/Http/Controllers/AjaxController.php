@@ -218,6 +218,7 @@ class AjaxController extends Controller
                 'CommissionRate'   => intval($_POST['Commission']),
                 'CountryCode'      => htmlspecialchars(@$_POST['CountryCode']),
                 'PaymentMethod'    => htmlspecialchars(@$_POST['PaymentMethod']),
+                'Clinic'           => htmlspecialchars(@$_POST['Clinic']),
                 'Features'         => $_POST['Features'] ?? [],
                 'Status'            => htmlspecialchars(request('Status')),
             ];
@@ -286,7 +287,8 @@ class AjaxController extends Controller
                         $Feature = $this->toArray( DB::table('feature')->where('Id', $Id)->first() );
                         $Cost = $Cost + ( ($Feature['Multiply']=='1')? (floatval($Feature['Cost']) * $Treatment->EstimatedTime) : floatval($Feature['Cost']) );
                     }
-                    $Cost = $Cost + $Treatment->Cost + (($Treatment->Cost * $Package->Rate) / 100);
+                    $data['PackageCost'] = $Cost + (($Treatment->Cost * $Package->Rate) / 100);
+                    $Cost = $Treatment->Cost + $data['PackageCost'];
 
                     $New = DB::table('appointment')->insertGetId([
                         'uid'=>$AppUid,
@@ -303,6 +305,7 @@ class AjaxController extends Controller
                         'PaidAmount'=>$data['AmountToPay'],
                         'AgencyFee'=>$data['AgencyFee'],
                         'CommissionRate'=>$data['CommissionRate'],
+                        'PackageCost'=>$data['PackageCost'],
                         'PaymentMethod'=> $data['PaymentMethod'],
                         'Status'=>$data['Status']
                     ]);
@@ -567,36 +570,27 @@ class AjaxController extends Controller
         if ($this->action=='InsertClinic') {
             if (!empty($this->User)) {
                 if ($this->User['Type']=='2') {
-                    $Treatments = $_POST['Treatment'] ?? [];
-                    $Treatment = NULL;
-                    foreach($Treatments as $key => $value){;
-                        $BaseValue = explode('-', $value);
-                        $Treatment[$key] = [
-                            'Id'=>$BaseValue[0],
-                            'Cost'=>$BaseValue[1]
-                        ];
-                    }
                     $data = [
                         'uid'=>$this->UniqueId(30),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Logo'=>htmlspecialchars($_POST['Logo']),
                         'Mail'=>htmlspecialchars($_POST['Mail']),
                         'Tell'=>$this->CellFormatter($_POST['Tell']),
-                        'Fax'=>$this->CellFormatter($_POST['Fax']),
+                        // 'Fax'=>$this->CellFormatter($_POST['Fax']),
                         'Country'=>htmlspecialchars($_POST['Country']),
                         'Province'=>htmlspecialchars($_POST['Province']),
                         'City'=>htmlspecialchars($_POST['City']),
-                        'Adress'=>htmlspecialchars($_POST['Adress']),
-                        'Rate'=>htmlspecialchars($_POST['Rate']),
-                        'Categories'=>json_encode($_POST['Category']??[]),
-                        'Treatments'=>json_encode($Treatment),
-                        'CommissionRate'=>htmlspecialchars($_POST['CommissionRate'])
+                        // 'Adress'=>htmlspecialchars($_POST['Adress']),
+                        // 'Rate'=>htmlspecialchars($_POST['Rate']),
+                        // 'Packages'=>json_encode($_POST['Packages']),
+                        'CommissionRate'=>intval($_POST['CommissionRate']),
+                        'update_at' => date('Y-m-d H:i:s')
                     ];
                     $isAnyEmpty = $this->isAnyEmpty($data);
                     if (!$isAnyEmpty) {
                         $Query = DB::table('clinic')->insert($data);
                         if ($Query) {
-                            $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetClinics();'];
+                            $result = ['outcome'=>true,'route'=>'panel/clinics'];
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
                         }
@@ -616,29 +610,19 @@ class AjaxController extends Controller
         if ($this->action=='AlterClinic') {
             if (!empty($this->User)) {
                 if ($this->User['Type']=='2') {
-                    $Treatments = $_POST['Treatment'] ?? [];
-                    $Treatment = NULL;
-                    foreach($Treatments as $key => $value){
-                        $BaseValue = explode('-', $value);
-                        $Treatment[$key] = [
-                            'Id'=>$BaseValue[0],
-                            'Cost'=>$BaseValue[1]
-                        ];
-                    }
                     $data = [
                         'uid'=>htmlspecialchars($_POST['uid']),
                         'Title'=>htmlspecialchars($_POST['Title']),
                         'Logo'=>htmlspecialchars($_POST['Logo']),
                         'Mail'=>htmlspecialchars($_POST['Mail']),
                         'Tell'=>$this->CellFormatter($_POST['Tell']),
-                        'Fax'=>$this->CellFormatter($_POST['Fax']),
+                        // 'Fax'=>$this->CellFormatter($_POST['Fax']),
                         'Country'=>htmlspecialchars($_POST['Country']),
                         'Province'=>htmlspecialchars($_POST['Province']),
                         'City'=>htmlspecialchars($_POST['City']),
-                        'Adress'=>htmlspecialchars($_POST['Adress']),
-                        'Rate'=>htmlspecialchars($_POST['Rate']),
-                        'Categories'=>json_encode($_POST['Category']??[]),
-                        'Treatments'=>json_encode($Treatment),
+                        // 'Adress'=>htmlspecialchars($_POST['Adress']),
+                        // 'Rate'=>htmlspecialchars($_POST['Rate']),
+                        // 'Packages'=>json_encode($_POST['Packages']),
                         'CommissionRate'=>intval($_POST['CommissionRate']),
                         'update_at' => date('Y-m-d H:i:s')
                     ];
@@ -646,7 +630,7 @@ class AjaxController extends Controller
                     if (!$isAnyEmpty) {
                         $Query = DB::table('clinic')->where('uid', $data['uid'])->update($data);
                         if ($Query) {
-                            $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetClinics();'];
+                            $result = ['outcome'=>true,'route'=>'panel/clinics'];
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
                         }
@@ -919,6 +903,8 @@ class AjaxController extends Controller
                         'EstimatedTime'=>intval($_POST['EstimatedTime']),
                         'ParentId'=>htmlspecialchars($_POST['Category']),
                         'Slug'=>htmlspecialchars($_POST['Slug']),
+                        'Description'=>request('Description'),
+                        'Clinics'=>json_encode($_POST['Clinics']??[]),
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status'])
                     ];
@@ -926,6 +912,17 @@ class AjaxController extends Controller
                     if (!$Check) {
                         $Query = DB::table('treatment')->insert($data);
                         if ($Query) {
+                            foreach(($_POST['Clinics']??[]) as $Clinic){
+                                DB::table('price')->updateOrInsert(
+                                    [
+                                        'Clinic' => $Clinic,
+                                        'Treatment' => $data['uid']
+                                    ],
+                                    [
+                                        'Price' => $_POST[$Clinic],
+                                    ]
+                                );
+                            }
                             $result = ['outcome'=>true,'route'=>'javascript:Reset(),GetTreatments();'];
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
@@ -969,6 +966,8 @@ class AjaxController extends Controller
                         'ParentId'=>htmlspecialchars($_POST['Category']),
                         'Slug'=>htmlspecialchars($_POST['Slug']),
                         'Lang'=>$this->Lang,
+                        'Description'=>request('Description'),
+                        'Clinics'=>json_encode($_POST['Clinics']??[]),
                         'Status'=>htmlspecialchars($_POST['Status']),
                         'update_at'=>date('Y-m-d H:i:s')
                     ];
@@ -976,6 +975,17 @@ class AjaxController extends Controller
                     if (!$Check) {
                         $Query = DB::table('treatment')->where('uid', $uid)->update($data);
                         if ($Query) {
+                            foreach(($_POST['Clinics']??[]) as $Clinic){
+                                DB::table('price')->updateOrInsert(
+                                    [
+                                        'Clinic' => $Clinic,
+                                        'Treatment' => $uid 
+                                    ],
+                                    [
+                                        'Price' => $_POST[$Clinic],
+                                    ]
+                                );
+                            }
                             $result = ['outcome'=>true,'route'=>false];
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
@@ -1035,7 +1045,6 @@ class AjaxController extends Controller
                                     if ($File->move($ImgPath, $FileName)) {
                                         $data[]=['url'=>'/assets/'.$TargetDir.'/'.$FileName,'name'=>$FileName,'type'=>$FileType,'InputName'=>$key];
                                         $callback = (!empty($_POST['callback']))? str_replace('{url}', $data[0]['url'], $_POST['callback']) : 'javascript:FileUploaded("'.$data[0]['url'].'");';
-
                                         $result = ['outcome'=>true,'data'=>$data,'Tag'=>@$_POST['Tag'],'route'=>$callback,'NoAlert'=>true];
                                     }else {
                                         $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
@@ -1053,8 +1062,81 @@ class AjaxController extends Controller
                 }else {
                     $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.SessionOut')];
                 }
+                $result = ['outcome'=>true,'data'=>$data,'Tag'=>@$_POST['Tag'],'route'=>$callback,'NoAlert'=>true];
                 return response()->json($result, 200);
         }
+if ($this->action == 'UploadMultipleFile') {
+    ini_set('post_max_size', '64M');
+    ini_set('upload_max_filesize', '64M');
+    set_time_limit(1000);
+
+    $data = [];
+    $allowedExtensions = ['jpeg', 'jpg', 'png', 'gif', 'pdf', 'docx', 'webp'];
+    $maxSizeKB = 10048; // Maksimum dosya boyutu KB cinsinden (5MB)
+
+    if (!empty($this->User)) {
+        if (request()->hasFile('files')) { // 'files' input adını kontrol edin
+            foreach (request()->file('files') as $file) {
+                if ($file->isValid()) {
+                    $FileType = strtolower($file->getClientOriginalExtension());
+                    $size = $file->getSize() / 1024; // KB cinsinden boyut
+
+                    if (in_array($FileType, $allowedExtensions)) {
+                        if ($size <= $maxSizeKB) {
+                            $TargetDir = request()->input('TargetDir', 'upload'); // Hedef dizin
+                            $FileName = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 15) . '.' . $FileType;
+                            $ImgPath = public_path('assets/' . $TargetDir);
+
+                            // Klasör var mı kontrol et, yoksa oluştur
+                            if (!file_exists($ImgPath)) {
+                                mkdir($ImgPath, 0755, true);
+                            }
+
+                            // Dosyayı taşı
+                            if ($file->move($ImgPath, $FileName)) {
+                                $data[] = [
+                                    'url' => '/assets/' . $TargetDir . '/' . $FileName,
+                                    'name' => $FileName,
+                                    'type' => $FileType,
+                                    'InputName' => $file->getClientOriginalName()
+                                ];
+                            } else {
+                                $result = ['outcome' => false, 'ErrorMessage' => __('Base.Internal-Error')];
+                            }
+                        } else {
+                            $result = ['outcome' => false, 'ErrorMessage' => __('Base.SizeLimit')];
+                        }
+                    } else {
+                        $result = ['outcome' => false, 'ErrorMessage' => __('FileTypeLimit')];
+                    }
+                } else {
+                    $result = ['outcome' => false, 'ErrorMessage' => __('Base.InvalidFile')];
+                }
+            }
+
+            if (empty($data)) {
+                $result = ['outcome' => false, 'ErrorMessage' => __('Base.NoFilesUploaded')];
+            } else {
+                $callback = (!empty($_POST['callback']))
+                    ? str_replace('{url}', $data[0]['url'], $_POST['callback'])
+                    : 'javascript:FileUploaded("' . $data[0]['url'] . '");';
+                $result = [
+                    'outcome' => true,
+                    'data' => $data,
+                    'Tag' => request()->input('Tag'),
+                    'route' => $callback,
+                    'NoAlert' => true
+                ];
+            }
+        } else {
+            $result = ['outcome' => false, 'ErrorMessage' => __('Base.NotFound')];
+        }
+    } else {
+        $result = ['outcome' => false, 'ErrorMessage' => __('Base.SessionOut')];
+    }
+    return response()->json($result, 200);
+}
+
         ///
         if ($this->action=='InsertUser') {
             if (!empty($this->User)) {
@@ -1416,6 +1498,7 @@ class AjaxController extends Controller
                         'Logo'=>htmlspecialchars($_POST['Logo']),
                         'Rate'=>intval($_POST['Rate']),
                         'Stat'=>intval($_POST['Stat']),
+                        'Clinics'=>json_encode($_POST['Clinics']),
                         'Description'=>(!empty($_POST['Description']))? htmlspecialchars($_POST['Description']) : NULL,
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status'])
@@ -1445,6 +1528,7 @@ class AjaxController extends Controller
                         'Rate'=>intval($_POST['Rate']),
                         'Stat'=>intval($_POST['Stat']),
                         'Img'=>htmlspecialchars($_POST['Img']),
+                        'Clinics'=>json_encode($_POST['Clinics']),
                         'Description'=>htmlspecialchars($_POST['Description']),
                         'Lang'=>$this->Lang,
                         'Status'=>htmlspecialchars($_POST['Status'])

@@ -93,8 +93,6 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/website/sliders/new', [AdminController::class, 'NewSlider']);
     Route::get('/panel/website/sliders/{uid}', [AdminController::class, 'EditSlider']);
 
-    Route::get('/panel/services', [AdminController::class, 'Services']);
-
     Route::get('/panel/website/doctors', [AdminController::class, 'Doctors']);
     Route::get('/panel/website/doctors/new', [AdminController::class, 'NewDoctor']);
     Route::get('/panel/website/doctors/{uid}', [AdminController::class, 'EditDoctor']);
@@ -109,8 +107,15 @@ Route::group(['prefix'=>'/','namespace'=>'panel','as'=>'panel.','middleware'=>['
     Route::get('/panel/features/new', [AdminController::class, 'NewFeature']);
     Route::get('/panel/features/{uid}', [AdminController::class, 'EditFeature']);
 
+    Route::get('/panel/clinics', [AdminController::class, 'Clinics']);
+    Route::get('/panel/clinics/new', [AdminController::class, 'NewClinic']);
+    Route::get('/panel/clinics/{uid}', [AdminController::class, 'EditClinic']);
 
     Route::get('/panel/operation', [AdminController::class, 'TreeView']);
+
+    Route::get('/panel/services', [AdminController::class, 'Services']);
+    Route::get('/panel/services/list', [AdminController::class, 'ServiceList']);
+    Route::get('/panel/services/{uid}', [AdminController::class, 'ServiceDetail']);
     /// old
 
     Route::get('/panel/Manage/Packages', [AdminController::class, 'ManagePackages']);

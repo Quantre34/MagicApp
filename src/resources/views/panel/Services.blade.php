@@ -7,6 +7,9 @@
       input[type="radio"]:checked + .treatmentcard {
             box-shadow: 0 0 10px rgb(16 185 224);      
       }
+      input[type="checkbox"]:checked + .treatmentcard {
+            box-shadow: 0 0 10px rgb(16 185 224);      
+      }
     </style>
 
 
@@ -25,12 +28,14 @@
                 </ol>
               </nav>
             </div>
+            @if(User('Type')=='0')
             <div class="d-flex align-items-center justify-content-between gap-6">
               <button onclick="SendForm()" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
                 Randevu Oluştur
               </button>
             </div>
+            @endif
           </div>
 
 
@@ -116,7 +121,7 @@
                         
                           <div class="col-sm-6 col-xxl-4 Treatment" data-title="{{$Treatment['Title']}}" data-cost="{{$Treatment['Cost']}}" >
                             <label>
-                              <input type="radio" name="Treatment" style="display: none;" value="{{$Treatment['uid']}}">
+                              <input type="radio" name="Treatments[]" style="display: none;" value="{{$Treatment['uid']}}">
                             <div class="card overflow-hidden rounded-2 border treatmentcard">
                               <div class="position-relative">
                                 <a class="hover-img d-block overflow-hidden">
