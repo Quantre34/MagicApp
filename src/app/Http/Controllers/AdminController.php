@@ -742,6 +742,7 @@ $currentYear = Carbon::now()->year;
         if (!empty($this->User)) {
             if ($this->User['Type']=='2') {
                 $Clinics = $this->toArray(DB::table('clinic')->where('Status','1')->get());
+                $Images = $this->toArray(DB::table('images')->where('Parent',$uid)->where('Status','1')->get());
                 $Treatment = $this->toArray(DB::table('treatment')->where('uid',$uid)->first());
                 $ccies = json_decode($Treatment['Clinics'],true);;
                 $Treatment['Clinics'] = [];
@@ -751,6 +752,7 @@ $currentYear = Carbon::now()->year;
                 }
                 $Categories = $this->toArray(DB::table('category')->where('Lang',$this->Lang)->where('Status','1')->get());
                 $result = ['outcome'=>true,'route'=>'panel.Treatments.Edit','data'=>[
+                    'Images'=>$Images,
                     'Clinics'=>$Clinics,
                     'Treatment'=>$Treatment,
                     'Categories'=>$Categories
@@ -1777,10 +1779,19 @@ $currentYear = Carbon::now()->year;
     ///
     public function ServiceDetail($uid){
         if (!empty($this->User)) {
+            $Images = $this->toArray(DB::table('images')->where('Parent', $uid)->get());
             $Treatment = $this->toArray(DB::table('treatment')->where('uid', $uid)->first());
+            $Treatments = $this->toArray(DB::table('treatment')->where('ParentId', $Treatment['ParentId'])->limit(4)->get());
+            $Clinics = [];
+            foreach(json_decode($Treatment['Clinics'],true) as $Clinic){
+                $Clinics[] = $this->toArray(DB::table('clinic')->where('uid',$Clinic)->first());
+            }
             if (!empty($Treatment)) {
                 $result = ['outcome'=>true,'route'=>'panel.Services.Detail','data'=>[
-                    'Treatment'=>$Treatment
+                    'Images'=>$Images,
+                    'Clinics'=>$Clinics,
+                    'Treatment'=>$Treatment,
+                    'Treatments'=>$Treatments
                 ]];
             }else {
                 $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.NotFound')];

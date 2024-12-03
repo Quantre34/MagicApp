@@ -986,6 +986,18 @@ class AjaxController extends Controller
                                     ]
                                 );
                             }
+                            foreach(($_POST['Images']??[]) as $Img){
+                                DB::table('images')->updateOrInsert(
+                                    [
+                                        'Img' => $Img,
+                                        'Parent' => $uid 
+                                    ],
+                                    [
+                                        'Img' => $Img,
+                                        'Parent' => $uid 
+                                    ]
+                                );
+                            }
                             $result = ['outcome'=>true,'route'=>false];
                         }else {
                             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.Internal-Error')];
@@ -1065,77 +1077,77 @@ class AjaxController extends Controller
                 $result = ['outcome'=>true,'data'=>$data,'Tag'=>@$_POST['Tag'],'route'=>$callback,'NoAlert'=>true];
                 return response()->json($result, 200);
         }
-if ($this->action == 'UploadMultipleFile') {
-    ini_set('post_max_size', '64M');
-    ini_set('upload_max_filesize', '64M');
-    set_time_limit(1000);
+        if ($this->action == 'UploadMultipleFile') {
+            ini_set('post_max_size', '64M');
+            ini_set('upload_max_filesize', '64M');
+            set_time_limit(1000);
 
-    $data = [];
-    $allowedExtensions = ['jpeg', 'jpg', 'png', 'gif', 'pdf', 'docx', 'webp'];
-    $maxSizeKB = 10048; // Maksimum dosya boyutu KB cinsinden (5MB)
+            $data = [];
+            $allowedExtensions = ['jpeg', 'jpg', 'png', 'gif', 'pdf', 'docx', 'webp'];
+            $maxSizeKB = 10048; // Maksimum dosya boyutu KB cinsinden (5MB)
 
-    if (!empty($this->User)) {
-        if (request()->hasFile('files')) { // 'files' input adını kontrol edin
-            foreach (request()->file('files') as $file) {
-                if ($file->isValid()) {
-                    $FileType = strtolower($file->getClientOriginalExtension());
-                    $size = $file->getSize() / 1024; // KB cinsinden boyut
+            if (!empty($this->User)) {
+                if (request()->hasFile('files')) { // 'files' input adını kontrol edin
+                    foreach (request()->file('files') as $file) {
+                        if ($file->isValid()) {
+                            $FileType = strtolower($file->getClientOriginalExtension());
+                            $size = $file->getSize() / 1024; // KB cinsinden boyut
 
-                    if (in_array($FileType, $allowedExtensions)) {
-                        if ($size <= $maxSizeKB) {
-                            $TargetDir = request()->input('TargetDir', 'upload'); // Hedef dizin
-                            $FileName = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 15) . '.' . $FileType;
-                            $ImgPath = public_path('assets/' . $TargetDir);
+                            if (in_array($FileType, $allowedExtensions)) {
+                                if ($size <= $maxSizeKB) {
+                                    $TargetDir = request()->input('TargetDir', 'upload'); // Hedef dizin
+                                    $FileName = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 15) . '.' . $FileType;
+                                    $ImgPath = public_path('assets/' . $TargetDir);
 
-                            // Klasör var mı kontrol et, yoksa oluştur
-                            if (!file_exists($ImgPath)) {
-                                mkdir($ImgPath, 0755, true);
-                            }
+                                    // Klasör var mı kontrol et, yoksa oluştur
+                                    if (!file_exists($ImgPath)) {
+                                        mkdir($ImgPath, 0755, true);
+                                    }
 
-                            // Dosyayı taşı
-                            if ($file->move($ImgPath, $FileName)) {
-                                $data[] = [
-                                    'url' => '/assets/' . $TargetDir . '/' . $FileName,
-                                    'name' => $FileName,
-                                    'type' => $FileType,
-                                    'InputName' => $file->getClientOriginalName()
-                                ];
+                                    // Dosyayı taşı
+                                    if ($file->move($ImgPath, $FileName)) {
+                                        $data[] = [
+                                            'url' => '/assets/' . $TargetDir . '/' . $FileName,
+                                            'name' => $FileName,
+                                            'type' => $FileType,
+                                            'InputName' => $file->getClientOriginalName()
+                                        ];
+                                    } else {
+                                        $result = ['outcome' => false, 'ErrorMessage' => __('Base.Internal-Error')];
+                                    }
+                                } else {
+                                    $result = ['outcome' => false, 'ErrorMessage' => __('Base.SizeLimit')];
+                                }
                             } else {
-                                $result = ['outcome' => false, 'ErrorMessage' => __('Base.Internal-Error')];
+                                $result = ['outcome' => false, 'ErrorMessage' => __('FileTypeLimit')];
                             }
                         } else {
-                            $result = ['outcome' => false, 'ErrorMessage' => __('Base.SizeLimit')];
+                            $result = ['outcome' => false, 'ErrorMessage' => __('Base.InvalidFile')];
                         }
+                    }
+
+                    if (empty($data)) {
+                        $result = ['outcome' => false, 'ErrorMessage' => __('Base.NoFilesUploaded')];
                     } else {
-                        $result = ['outcome' => false, 'ErrorMessage' => __('FileTypeLimit')];
+                        $callback = (!empty($_POST['callback']))
+                            ? str_replace('{url}', $data[0]['url'], $_POST['callback'])
+                            : 'javascript:FileUploaded("' . $data[0]['url'] . '");';
+                        $result = [
+                            'outcome' => true,
+                            'data' => $data,
+                            'Tag' => request()->input('Tag'),
+                            'route' => $callback,
+                            'NoAlert' => true
+                        ];
                     }
                 } else {
-                    $result = ['outcome' => false, 'ErrorMessage' => __('Base.InvalidFile')];
+                    $result = ['outcome' => false, 'ErrorMessage' => __('Base.NotFound')];
                 }
-            }
-
-            if (empty($data)) {
-                $result = ['outcome' => false, 'ErrorMessage' => __('Base.NoFilesUploaded')];
             } else {
-                $callback = (!empty($_POST['callback']))
-                    ? str_replace('{url}', $data[0]['url'], $_POST['callback'])
-                    : 'javascript:FileUploaded("' . $data[0]['url'] . '");';
-                $result = [
-                    'outcome' => true,
-                    'data' => $data,
-                    'Tag' => request()->input('Tag'),
-                    'route' => $callback,
-                    'NoAlert' => true
-                ];
+                $result = ['outcome' => false, 'ErrorMessage' => __('Base.SessionOut')];
             }
-        } else {
-            $result = ['outcome' => false, 'ErrorMessage' => __('Base.NotFound')];
+            return response()->json($result, 200);
         }
-    } else {
-        $result = ['outcome' => false, 'ErrorMessage' => __('Base.SessionOut')];
-    }
-    return response()->json($result, 200);
-}
 
         ///
         if ($this->action=='InsertUser') {

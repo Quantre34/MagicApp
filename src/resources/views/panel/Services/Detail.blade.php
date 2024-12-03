@@ -24,81 +24,21 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div id="sync1" class="owl-carousel owl-theme">
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s1.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s2.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s3.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s4.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s5.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s6.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s7.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s8.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s9.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s10.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s11.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s12.jpg" alt="monster-img" class="img-fluid">
-                      </div>
+
+                      @foreach($Images as $Image)
+                        <div class="item rounded overflow-hidden">
+                          <img src="{{$Image['Img']}}" alt="{{$Treatment['Title']}}" class="img-fluid">
+                        </div>
+                      @endforeach
+
                     </div>
 
                     <div id="sync2" class="owl-carousel owl-theme">
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s1.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s2.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s3.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s4.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s5.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s6.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s7.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s8.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s9.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s10.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s11.jpg" alt="monster-img" class="img-fluid">
-                      </div>
-                      <div class="item rounded overflow-hidden">
-                        <img src="assets/panel/images/products/s12.jpg" alt="monster-img" class="img-fluid">
-                      </div>
+                      @foreach($Images as $Image)
+                        <div class="item rounded overflow-hidden">
+                          <img src="{{$Image['Img']}}" alt="{{$Treatment['Title']}}" class="img-fluid">
+                        </div>
+                      @endforeach
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -141,16 +81,20 @@
                         </ul>
                         <!-- <a href="javascript:void(0)">(236 reviews)</a> -->
                       </div>
-                      <div class="d-flex align-items-center gap-8 py-7">
-                        <h6 class="mb-0 fs-4 fw-semibold">Colors:</h6>
-                        <a class="rounded-circle d-block text-bg-primary p-6" href="javascript:void(0)"></a>
-                      </div>
+                      <h6 class="mb-0 fs-4 fw-semibold">Hizmeti Veren Kliniklerimiz</h6>
+                      @foreach($Clinics as $Clinic)
+                        <div class="d-flex align-items-center gap-8 " style="padding: 5px;">
+                          <span class="mb-0 fs-4 fw-semibold">{{$Clinic['Title']}}</span>
+                          <a class="d-block p-6">
+                            <? $QrCode = new QrCode(); ?>
+                            <img style="max-width: 50px;" src="{{ $QrCode->Create('https://wa.me/905379797206?text=Merhaba', 350) }}"></a>
+                        </div>
+                      @endforeach
                       <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
                         <a href="panel/services" class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0">Randevu Oluştur</a>
                         <a href="panel/consult" class="btn d-block btn-danger px-7 py-8">Uzmana Danış</a>
                       </div>
-                      <p class="mb-0">Dispatched in 2-3 weeks</p>
-                      <a href="javascript:void(0)">Why the longer time for delivery?</a>
+                      <p class="mb-0">Tedavi Süresi : {{$Treatment['EstimatedTime']}} gün</p>
                     </div>
                   </div>
                 </div>
@@ -269,186 +213,34 @@
             <div class="related-products pt-7">
               <h4 class="mb-3 fw-semibold">Related Products</h4>
               <div class="row">
-                <div class="col-sm-6 col-xxl-3">
-                  <div class="card overflow-hidden rounded-2">
-                    <div class="position-relative">
-                      <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
-                        <img src="assets/panel/images/products/s2.jpg" class="card-img-top rounded-0" alt="monster-img">
-                      </a>
-                    </div>
-                    <div class="card-body pt-3 p-4">
-                      <h6 class="fw-semibold fs-4">Psalms Book for Growth</h6>
-                      <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$89 <span class="ms-2 fw-normal text-muted fs-3">
-                            <del>$99</del>
-                          </span>
-                        </h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
+
+
+                @foreach($Treatments as $Treatment)
+                  <div class="col-sm-6 col-xxl-3">
+                    <div class="card overflow-hidden rounded-2">
+                      <div class="position-relative">
+                        <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
+                          <img src="{{$Treatment['Img']}}" class="card-img-top rounded-0" alt="monster-img">
+                        </a>
+                      </div>
+                      <div class="card-body pt-3 p-4">
+                        <h6 class="fw-semibold fs-4">{{$Treatment['Title']}}</h6>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="fw-semibold fs-4 mb-0">{{$Treatment['Cost']+100}}€<span class="ms-2 fw-normal text-muted fs-3">
+                              <del>{{$Treatment['Cost']}}</del>
+                            </span>
+                          </h6>
+                          <ul class="list-unstyled d-flex align-items-center mb-0">
+                            <a class="fs-6 text-muted" href="panel/services/{{$Treatment['uid']}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail">
+                              <iconify-icon icon="material-symbols:model-training-outline-rounded"></iconify-icon>
                             </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                        </ul>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-sm-6 col-xxl-3">
-                  <div class="card overflow-hidden rounded-2">
-                    <div class="position-relative">
-                      <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
-                        <img src="assets/panel/images/products/s4.jpg" class="card-img-top rounded-0" alt="monster-img">
-                      </a>
-                    </div>
-                    <div class="card-body pt-3 p-4">
-                      <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-                      <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3">
-                            <del>$65</del>
-                          </span>
-                        </h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-xxl-3">
-                  <div class="card overflow-hidden rounded-2">
-                    <div class="position-relative">
-                      <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
-                        <img src="assets/panel/images/products/s5.jpg" class="card-img-top rounded-0" alt="monster-img">
-                      </a>
-                    </div>
-                    <div class="card-body pt-3 p-4">
-                      <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                      <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3">
-                            <del>$900</del>
-                          </span>
-                        </h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-xxl-3">
-                  <div class="card overflow-hidden rounded-2">
-                    <div class="position-relative">
-                      <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
-                        <img src="assets/panel/images/products/s6.jpg" class="card-img-top rounded-0" alt="monster-img">
-                      </a>
-                    </div>
-                    <div class="card-body pt-3 p-4">
-                      <h6 class="fw-semibold fs-4">Gaming Console</h6>
-                      <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$25 <span class="ms-2 fw-normal text-muted fs-3">
-                            <del>$31</del>
-                          </span>
-                        </h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a class="me-1" href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)">
-                              <i class="ti ti-star text-warning"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                @endforeach
+
               </div>
             </div>
           </div>

@@ -96,9 +96,9 @@
                   </div>
                 </div> -->
                 
-                <div class="p-4">
+               <!--  <div class="p-4">
                   <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
-                </div>
+                </div> -->
               </div>
               <div class="card-body p-4 pb-0">
                 <div class="d-flex justify-content-between align-items-center gap-6 mb-4">
@@ -140,31 +140,9 @@
                                     </span> -->
                                   </h6>
                                   <ul class="list-unstyled d-flex align-items-center mb-0">
-                                    <li>
-                                      <a class="me-1" href="javascript:void(0)">
-                                        <i class="ti ti-star text-warning"></i>
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a class="me-1" href="javascript:void(0)">
-                                        <i class="ti ti-star text-warning"></i>
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a class="me-1" href="javascript:void(0)">
-                                        <i class="ti ti-star text-warning"></i>
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a class="me-1" href="javascript:void(0)">
-                                        <i class="ti ti-star text-warning"></i>
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="javascript:void(0)">
-                                        <i class="ti ti-star text-warning"></i>
-                                      </a>
-                                    </li>
+                                    <a class="fs-6 " href="panel/services/{{$Treatment['uid']}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail">
+                                      <iconify-icon icon="material-symbols:model-training-outline-rounded"></iconify-icon>
+                                    </a>
                                   </ul>
                                 </div>
                               </div>

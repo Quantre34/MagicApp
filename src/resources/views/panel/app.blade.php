@@ -1174,7 +1174,7 @@
         $(document).ready(function(){
 
           $('form').on('submit', function(e){
-            let $this = $(this);
+            const $this = $(this);
             if ($this.attr('action')=='ajax') {
                 //loadSpinner($('*[type=submit]',this));
                 
@@ -1234,13 +1234,17 @@
                             }
                         }
                         HoldOn.close();
-                        if (target='UploadFile') {
-                          data['data'].foreach((item,index)=>{
+                        if (target=='UploadMultipleFile') {
+                          data['data'].forEach((item,index)=>{
+                              item['name'] = item['name'].replace('.','');
                               $('.ImageContainer').append(`
-                                  <img class="Image-${item['name']}" onclick="javascript:$('.Image-${item['name']}').remove();" src="${item['url']}" style="width: 100%;max-width: 400px;" alt="${item['type']}">
+                                <div class="col-4 col-sm-4 Image-${item['name']}" >
+                                  <img src="${item['url']}" style="width: 100%;max-width: 400px;" alt="${item['type']}">
+                                  <i onclick="javascript:$('.Image-${item['name']}').remove();" class=" text-danger fa fa-trash"></i>
+                                </div>
                                 `);
-                              $($this).append(`
-                                  <input name="Images[]" class="Image-${item['name']}" value="${item['url']}" >
+                              $('.ImagesInputContainer').append(`
+                                  <input type="hidden" name="Images[]" class="Image-${item['name']}" value="${item['url']}" >
                                 `);
                           });
                         }
