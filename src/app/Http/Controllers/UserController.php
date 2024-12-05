@@ -39,7 +39,7 @@ class UserController extends Controller
     }
     ///
     public function Login(){
-        return view('main.login-1', ['isMobile' => $this->isMobile()]);
+        return view('main.Login-1', ['isMobile' => $this->isMobile()]);
     }
     ///
     public function Appointment(){

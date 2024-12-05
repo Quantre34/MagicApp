@@ -5,13 +5,13 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Dashboard</h4>
+              <h4 class="fs-6 mb-0">{{ Lang::get(AdminDashboard.Panel) }}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" >Anasayfa</a>
+                    <a class="text-muted text-decoration-none" >{{ Lang::get(AdminDashboard.Home) }}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ Lang::get(AdminDashboard.Panel) }}</li>
                 </ol>
               </nav>
             </div>
@@ -34,17 +34,17 @@
               <div class="card">
                 <div class="card-body pb-0">
                   <div class="d-md-flex align-items-center">
-                    <h4 class="card-title">Toplam Kazanç</h4>
+                    <h4 class="card-title">{{ Lang::get(AdminDashboard.TotalIncome) }}</h4>
                     <div class="ms-auto">
                       <ul class="list-inline">
                         <li class="list-inline-item">
                           <h6 class="text-muted">
-                            <i class="fa fa-circle me-1 text-success"></i>Önceki Ay
+                            <i class="fa fa-circle me-1 text-success"></i>{{ Lang::get(AdminDashboard.PrevMonth) }}
                           </h6>
                         </li>
                         <li class="list-inline-item">
                           <h6 class="text-muted">
-                            <i class="fa fa-circle me-1 text-info"></i>Bu Ay
+                            <i class="fa fa-circle me-1 text-info"></i>{{ Lang::get(AdminDashboard.CurrentMonth) }}
                           </h6>
                         </li>
                       </ul>
@@ -74,7 +74,7 @@
                             echo num2k($total);
                            ?>
                          </h1>
-                        <h6 class="text-muted mb-0">Kazanç</h6>
+                        <h6 class="text-muted mb-0">{{ Lang::get(AdminDashboard.Profit) }}</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
                         <div id="new-clients"></div>
@@ -98,7 +98,7 @@
                             echo $total;
                           ?>
                         </h1>
-                        <h6 class="text-muted mb-0">Onaylı Randevu</h6>
+                        <h6 class="text-muted mb-0">{{ Lang::get(AdminDashboard.AppPaid) }}</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
                         <div id="all-projects"></div>
@@ -120,7 +120,7 @@
                             }
                             echo $total;
                           ?></h1>
-                        <h6 class="text-muted mb-0">Bekleyen Randevu</h6>
+                        <h6 class="text-muted mb-0">{{ Lang::get(AdminDashboard.AppOnHold) }}</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
                         <div id="new-items"></div>
@@ -143,7 +143,7 @@
                             }
                             echo $total;
                           ?></h1>
-                        <h6 class="text-muted mb-0">Tamamlanan</h6>
+                        <h6 class="text-muted mb-0">{{ Lang::get(AdminDashboard.AppCompleted) }}</h6>
                       </div>
                       <div class="col-6 text-end align-self-center">
                         <div id="invoices"></div>
@@ -176,7 +176,7 @@
                     <div class="col-md-5 align-self-center">
                       <h1 class="mb-0">{{$total}}<small>%</small>
                       </h1>
-                      <h6 class="text-muted">{{count($Agencies)}} toplam Acente</h6>
+                      <h6 class="text-muted">{{count($Agencies)}} {{ Lang::get(AdminDashboard.TotalAgency) }}</h6>
                       <ul class="list-icons mt-4 list-style-none">
                         @foreach($Agencies as $Agency)
                           @if(count($Agency['Appointments']??[]))
@@ -198,7 +198,7 @@
               <div class="card w-100 overflow-hidden">
                 <div class="card-body pb-8">
                   <div class="d-md-flex no-block align-items-center">
-                    <h4 class="card-title mb-0">Bu ayın randevuları</h4>
+                    <h4 class="card-title mb-0">{{ Lang::get(AdminDashboard.CurrentMonthsApps) }}</h4>
                     <!-- <div class="ms-auto">
                       <select class="form-select">
                         <option selected>November</option>
@@ -217,13 +217,13 @@
                           #Id
                         </th>
                         <th class="border-bottom fs-3">
-                          Hasta
+                          {{ Lang::get(AdminDashboard.Patient) }}
                         </th>
                         <th class="border-bottom fs-3">
-                          Tedavi
+                          {{ Lang::get(AdminDashboard.Treatments) }}
                         </th>
                         <th class="border-bottom fs-3 pe-4">
-                          Ücret
+                          {{ Lang::get(AdminDashboard.Cost) }}
                         </th>
                       </tr>
                     </thead>

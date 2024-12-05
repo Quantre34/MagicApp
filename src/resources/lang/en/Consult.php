@@ -11,7 +11,17 @@ return [
 	'Send'=>'Send',
 	'Agent'=>'Agent',
 	'Manager'=>'Manager',
-	'Admin'=>'Admin'
+	'Admin'=>'Admin',
+
+	'OpenFromList'=>'Open From List',
+	'Consultation'=>'Consultation',
+	'Media'=>'Media',
+	'Chats'=>'Chats',
+	'OpenIntoNew'=>'Open in a new Window',
+	'LogOut'=>'Log Out',
+	'NewMessages'=>'New Messages',
+
+
 ]
 
 

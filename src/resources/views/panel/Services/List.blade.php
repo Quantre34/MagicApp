@@ -44,11 +44,11 @@
                   <table class="table align-middle text-nowrap mb-0">
                     <thead>
                       <tr>
-                        <th scope="col">
+                        <!-- <th scope="col">
                           <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                           </div>
-                        </th>
+                        </th> -->
                         <th scope="col">Products</th>
                         <th scope="col">Date</th>
                         <th scope="col">Status</th>
@@ -60,11 +60,11 @@
 
                     	@foreach($Treatments as $Treatment)
 	                      <tr data-title="{{$Treatment['Title']}}" class="Treatment">
-	                        <td>
+	                        <!-- <td>
 	                          <div class="form-check mb-0">
 	                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
 	                          </div>
-	                        </td>
+	                        </td> -->
 	                        <td>
 	                          <div class="d-flex align-items-center">
 	                            <img src="{{$Treatment['Img']}}" class="rounded-circle" alt="monster-img" width="56" height="56">

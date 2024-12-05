@@ -105,9 +105,9 @@
                   <a class="btn btn-primary d-lg-none d-flex" data-bs-toggle="offcanvas" href="#filtercategory" role="button" aria-controls="filtercategory">
                     <i class="ti ti-menu-2 fs-6"></i>
                   </a>
-                  <h5 class="fs-5 mb-0 d-none d-lg-block ContainerTitle">Treatments</h5>
+                  <h5 class="fs-5 mb-0 d-none d-lg-block ContainerTitle">Tedaviler</h5>
                   <form class="position-relative">
-                    <input type="text" class="form-control search-chat py-2 ps-5" id="searchTreatment" placeholder="Search Product">
+                    <input type="text" class="form-control search-chat py-2 ps-5" id="searchTreatment" placeholder="Tedavi Ara">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                   </form>
                 </div>
@@ -161,7 +161,7 @@
               <div class="offcanvas offcanvas-start" tabindex="-1" id="filtercategory" aria-labelledby="filtercategoryLabel">
                 <div class="offcanvas-body shop-filters w-100 p-0">
                   <ul class="list-group pt-2 border-bottom rounded-0">
-                    <h6 class="my-3 mx-4 fw-semibold">Filter by Category</h6>
+                    <h6 class="my-3 mx-4 fw-semibold">Kategori Seç</h6>
 
                     <li class="list-group-item border-0 p-0 mx-4 mb-2 Category" data-id="All" data-title="Hepsi">
                       <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
@@ -177,7 +177,7 @@
                     @endforeach
                     
                   </ul>
-
+<!-- 
                   <div class="by-pricing border-bottom rounded-0">
                     <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
                     <div class="pb-4 px-4">
@@ -208,11 +208,11 @@
                       <div class="form-check py-2 mb-0">
                         <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios18" value="option1">
                         <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios18">
-                          Over 200
+                           200+
                         </label>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <!-- <div class="p-4">
                     <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>

@@ -26,7 +26,7 @@
                       <div class="position-relative">
                         <img src="assets/panel/images/profile/user-1.jpg" alt="user1" width="54" height="54" class="rounded-circle" />
                         <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                          <span class="visually-hidden">New alerts</span>
+                          <span class="visually-hidden">{{Lang::get('Consult.NewMessages')}}</span>
                         </span>
                       </div>
                       <div class="ms-3">
@@ -39,42 +39,40 @@
                         <i class="ti ti-dots-vertical"></i>
                       </a>
                       <ul class="dropdown-menu">
-                        <li>
+                        <!-- <li>
                           <a class="dropdown-item d-flex align-items-center gap-2 border-bottom" href="javascript:void(0)">
                             <span>
                               <i class="ti ti-settings fs-4"></i>
                             </span>Setting
                           </a>
-                        </li>
+                        </li> -->
                         <li>
-                          <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:void(0)">
+                          <a class="dropdown-item d-flex align-items-center gap-2" href="panel/consult" target="_blank">
                             <span>
                               <i class="ti ti-help fs-4"></i>
-                            </span>Help
-                            and feedback
+                            </span>{{Lang::get('Consult.OpenIntoNew')}}
                           </a>
                         </li>
-                        <li>
+                        <!-- <li>
                           <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:void(0)">
                             <span>
                               <i class="ti ti-layout-board-split fs-4"></i>
                             </span>Enable split View mode
                           </a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                           <a class="dropdown-item d-flex align-items-center gap-2 border-bottom" href="javascript:void(0)">
                             <span>
                               <i class="ti ti-table-shortcut fs-4"></i>
                             </span>Keyboard
                             shortcut
                           </a>
-                        </li>
+                        </li> -->
                         <li>
-                          <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:void(0)">
+                          <a class="dropdown-item d-flex align-items-center gap-2" href="Logout">
                             <span>
                               <i class="ti ti-login fs-4"></i>
-                            </span>Sign
-                            Out
+                            </span>{{Lang::get('Consult.LogOut')}}
                           </a>
                         </li>
                       </ul>
@@ -84,7 +82,7 @@
                     <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Contact" />
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                   </form>
-                  <div class="dropdown">
+                 <!--  <div class="dropdown">
                     <a class="text-muted fw-semibold d-flex align-items-center" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Recent Chats<i class="ti ti-chevron-down ms-1 fs-5"></i>
                     </a>
@@ -99,7 +97,7 @@
                         <a class="dropdown-item" href="javascript:void(0)">Hide favourites</a>
                       </li>
                     </ul>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="app-chat">
                   <ul id="ChatContainer" class="chat-users mb-0 mh-n100" data-simplebar >
@@ -110,7 +108,7 @@
                           <span class="position-relative">
                             <img src="assets/panel/images/profile/user-3.jpg" alt="user1" width="48" height="48" class="rounded-circle" />
                             <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                              <span class="visually-hidden">New alerts</span>
+                              <span class="visually-hidden">{{Lang::get('Consult.NewMessages')}}</span>
                             </span>
                           </span>
                           <div class="ms-3 d-inline-block w-75">
@@ -120,7 +118,7 @@
                             <span class="fs-3 text-truncate text-body-color d-block">{{ strip_tags( substr($Chat['Title'], 0,30))  }}.</span>
                           </div>
                         </div>
-                        <p class="fs-2 mb-0 text-muted">15 mins</p>
+                        <p class="fs-2 mb-0 text-muted">{{$Chat['create_at']}}</p>
                       </a>
                     </li>
                     @endforeach
@@ -160,7 +158,7 @@
                         <span class="text-primary">
                           <i class="ti ti-message-dots fs-10"></i>
                         </span>
-                        <h6 class="mt-2">Open chat from the list</h6>
+                        <h6 class="mt-2">{{Lang::get('Consult.OpenFromList')}}</h6>
                       </div>
                     </div>
                   </div>
@@ -170,12 +168,12 @@
                         <div class="position-relative">
                           <img src="assets/panel/images/profile/user-3.jpg" alt="user1" width="48" height="48" class="rounded-circle" />
                           <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                            <span class="visually-hidden">New alerts</span>
+                            <span class="visually-hidden">{{Lang::get('Consult.NewMessages')}}</span>
                           </span>
                         </div>
                         <div>
                           <h6 class="mb-1 name fw-semibold"></h6>
-                          <p class="mb-0 Title">Destek</p>
+                          <p class="mb-0 Title">{{Lang::get('Consult.Consultation')}}</p>
                         </div>
                       </div>
                       <ul class="list-unstyled mb-0 d-flex align-items-center">
@@ -245,7 +243,7 @@
                         <div class="custom-app-scroll mh-n100" data-simplebar>
                           <div class="p-3 d-flex align-items-center justify-content-between">
                             <h6 class="fw-semibold mb-0 text-nowrap">
-                              Media <!-- <span class="text-muted">(36)</span> -->
+                              {{Lang::get('Consult.Media')}} <!-- <span class="text-muted">(36)</span> -->
                             </h6>
                             <a class="chat-menu d-lg-none d-block text-dark fs-6 bg-hover-primary nav-icon-hover position-relative z-index-5" href="javascript:void(0)">
                               <i class="ti ti-x"></i>
@@ -271,7 +269,7 @@
               <div class="offcanvas offcanvas-start user-chat-box chat-offcanvas" tabindex="-1" id="chat-sidebar" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header">
                   <h5 class="offcanvas-title" id="offcanvasExampleLabel">
-                    Chats
+                    {{Lang::get('Consult.Chats')}}
                   </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -281,7 +279,7 @@
                       <div class="position-relative">
                         <img src="assets/panel/images/profile/user-1.jpg" alt="user1" width="54" height="54" class="rounded-circle" />
                         <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                          <span class="visually-hidden">New alerts</span>
+                          <span class="visually-hidden">{{Lang::get('Consult.NewMessages')}}</span>
                         </span>
                       </div>
                       <div class="ms-3">
@@ -294,42 +292,40 @@
                         <i class="ti ti-dots-vertical"></i>
                       </a>
                       <ul class="dropdown-menu">
-                        <li>
+                        <!-- <li>
                           <a class="dropdown-item d-flex align-items-center gap-2 border-bottom" href="javascript:void(0)">
                             <span>
                               <i class="ti ti-settings fs-4"></i>
                             </span>Setting
                           </a>
-                        </li>
+                        </li> -->
                         <li>
-                          <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:void(0)">
+                          <a class="dropdown-item d-flex align-items-center gap-2" href="panel/consult" target="_blank">
                             <span>
                               <i class="ti ti-help fs-4"></i>
-                            </span>Help
-                            and feedback
+                            </span>{{Lang::get('Consult.OpenIntoNew')}}
                           </a>
                         </li>
-                        <li>
+                        <!-- <li>
                           <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:void(0)">
                             <span>
                               <i class="ti ti-layout-board-split fs-4"></i>
                             </span>Enable split View mode
                           </a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                           <a class="dropdown-item d-flex align-items-center gap-2 border-bottom" href="javascript:void(0)">
                             <span>
                               <i class="ti ti-table-shortcut fs-4"></i>
                             </span>Keyboard
                             shortcut
                           </a>
-                        </li>
+                        </li> -->
                         <li>
-                          <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:void(0)">
+                          <a class="dropdown-item d-flex align-items-center gap-2" href="Logout">
                             <span>
                               <i class="ti ti-login fs-4"></i>
-                            </span>Sign
-                            Out
+                            </span>{{Lang::get('Consult.LogOut')}}
                           </a>
                         </li>
                       </ul>
@@ -339,7 +335,7 @@
                     <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Contact" />
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                   </form>
-                  <div class="dropdown">
+                 <!--  <div class="dropdown">
                     <a class="text-muted fw-semibold d-flex align-items-center" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Recent Chats<i class="ti ti-chevron-down ms-1 fs-5"></i>
                     </a>
@@ -354,7 +350,7 @@
                         <a class="dropdown-item" href="javascript:void(0)">Hide favourites</a>
                       </li>
                     </ul>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="app-chat">
                   <ul class="chat-users mh-n100" data-simplebar>
@@ -367,7 +363,7 @@
                           <span class="position-relative">
                             <img src="assets/panel/images/profile/user-3.jpg" alt="user1" width="48" height="48" class="rounded-circle" />
                             <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                              <span class="visually-hidden">New alerts</span>
+                              <span class="visually-hidden">{{Lang::get('Consult.NewMessages')}}</span>
                             </span>
                           </span>
                           <div class="ms-3 d-inline-block w-75">
@@ -377,7 +373,7 @@
                             <span class="fs-3 text-truncate text-body-color d-block">{{ strip_tags( substr($Chat['Title'], 0,30))  }}.</span>
                           </div>
                         </div>
-                        <p class="fs-2 mb-0 text-muted">15 mins</p>
+                        <p class="fs-2 mb-0 text-muted"> {{$Chat['create_at']}} </p>
                       </a>
                     </li>
                     @endforeach

@@ -25,5 +25,27 @@ return [
     'NoAppointmentsForTheDay' => 'No Appointments for the day!',
     'NewAppointment' => 'New Appointments',
     'Campain'=>'Campain',
+
+
+    'Panel'=>'Panel',
+    'Home'=>'Home',
+    'Panel'=>'Panel',
+    'MakeAnAppointment'=>'MakeAnAppointment',
+    'TotalPatient'=>'TotalPatient',
+    'AppsCOmpleted'=>'AppsCOmpleted',
+    'Weekly'=>'Weekly',
+    'Profit'=>'Profit',
+    'Monthly'=>'Monthly',
+    'Income'=>'Income',
+    'Appointment'=>'Appointment',
+    'NewAppointment'=>'NewAppointment',
+    'AppsOnHold'=>'AppsOnHold',
+    'CurrentMonthsApps'=>'CurrentMonthsApps',
+    'Patient'=>'Patient',
+    'Treatment'=>'Treatment',
+    'Price'=>'Price',
+    'Tasks'=>'Tasks',
+    'Today'=>'Today'
+
 ]
  ?>

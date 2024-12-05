@@ -24,7 +24,23 @@ return [
     'Clinics'=>'Clinics',
     'Treatments'=>'Treatments',
     'Active'=>'Active',
-    'OnHold'=>'OnHold'
+    'OnHold'=>'OnHold',
+
+
+    /// part 2
+    'Home'=>'Home',
+    'Panel'=>'Panel',
+    'TotalIncome'=>'TotalIncome',
+    'PrevMonth'=>'PrevMonth',
+    'CurrentMonth'=>'CurrentMonth',
+    'Profit'=>'Profit',
+    'AppPaid'=>'',
+    'AppOnHold'=>'AppOnHold',
+    'AppCompleted'=>'AppCompleted',
+    'TotalAgency'=>'TotalAgency',
+    'CurrentMonthsApps'=>'CurrentMonthsApps'
+
+
 ];
 
 

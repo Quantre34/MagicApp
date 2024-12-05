@@ -30,13 +30,13 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Dashboard</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('AgencyDashboard.Panel')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Home</a>
+                    <a class="text-muted text-decoration-none" href="../main/index.html">{{Lang::get('AgencyDashboard.Home')}}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('AgencyDashboard.Panel')}}</li>
                 </ol>
               </nav>
             </div>
@@ -49,7 +49,7 @@
               </select> -->
               <a href="/panel/appointments/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
-                Create
+                {{Lang::get('AgencyDashboard.MakeAnAppointment')}}
               </a>
             </div>
           </div>
@@ -96,8 +96,7 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="hstack justify-content-between py-3">
-                        <h5 class="mb-0 fw-medium">Toplam
-                          <br /> Hasta
+                        <h5 class="mb-0 fw-medium">{{Lang::get('AgencyDashboard.TotalPatient')}}
                         </h5>
                         <div class="hstack gap-9">
                           <i class="ti ti-heart text-warning fs-13 flex-shrink-0"></i>
@@ -112,8 +111,7 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="hstack justify-content-between py-3">
-                        <h5 class="mb-0 fw-medium">Tamamlanan
-                          <br /> İşlem
+                        <h5 class="mb-0 fw-medium">{{Lang::get('AgencyDashboard.AppsCompleted')}}
                         </h5>
                         <div class="hstack gap-9">
                           <i class="ti ti-heart text-success fs-13 flex-shrink-0"></i>
@@ -135,43 +133,43 @@
                     <div id="total-profit"></div>
                     <div class="card-body">
                       <h5 class="fs-6 text-white mb-1">{{$WeeklyTotal}}€</h5>
-                      <h6 class="text-white fw-medium mb-0">Kar</h6>
+                      <h6 class="text-white fw-medium mb-0">{{Lang::get('AgencyDashboard.Profit')}}</h6>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="card text-bg-primary">
                     <div class="card-body">
-                      <h5 class="text-white fw-normal">Aylık</h5>
+                      <h5 class="text-white fw-normal">{{Lang::get('AgencyDashboard.Monthly')}}</h5>
                     </div>
                     <div id="total-profit2"></div>
                     <div class="card-body">
                       <h5 class="fs-6 text-white mb-1">{{$MountlyTotal}}€</h5>
-                      <h6 class="text-white fw-medium mb-0">Ciro</h6>
+                      <h6 class="text-white fw-medium mb-0">{{Lang::get('AgencyDashboard.Income')}}</h6>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="card coverage-bg">
                     <div class="card-body pb-3">
-                      <h5 class="text-white fw-normal">Randevu</h5>
+                      <h5 class="text-white fw-normal">{{Lang::get('AgencyDashboard.Appointment')}}</h5>
                     </div>
                     <div id="coverage"></div>
                     <div class="card-body pt-2">
                       <h5 class="fs-6 text-white mb-1">{{count($MountlyAppointments)}}</h5>
-                      <h6 class="text-white fw-medium mb-0">Yeni Randevu</h6>
+                      <h6 class="text-white fw-medium mb-0">{{Lang::get('AgencyDashboard.NewAppointment')}}</h6>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="card text-bg-secondary">
                     <div class="card-body">
-                      <h5 class="text-white fw-normal">Bekleyen</h5>
+                      <h5 class="text-white fw-normal">{{Lang::get('AgencyDashboard.AppsOnHold')}}</h5>
                     </div>
                     <div id="pending-tasks"></div>
                     <div class="card-body">
                       <h5 class="fs-6 text-white mb-1">{{$Holds}}</h5>
-                      <h6 class="text-white fw-medium mb-0">Bekleyen Randevu</h6>
+                      <h6 class="text-white fw-medium mb-0">{{Lang::get('AgencyDashboard.AppsOnHold')}}</h6>
                     </div>
                   </div>
                 </div>
@@ -182,7 +180,7 @@
               <div class="card w-100 overflow-hidden">
                 <div class="card-body pb-8">
                   <div class="d-md-flex no-block align-items-center">
-                    <h4 class="card-title mb-0">Bu ayın randevuları</h4>
+                    <h4 class="card-title mb-0">{{Lang::get('AgencyDashboard.CurrentMonthsApps')}}</h4>
                     <!-- <div class="ms-auto">
                       <select class="form-select">
                         <option selected>November</option>
@@ -201,13 +199,13 @@
                           #Id
                         </th>
                         <th class="border-bottom fs-3">
-                          Hasta
+                          {{Lang::get('AgencyDashboard.Patient')}}
                         </th>
                         <th class="border-bottom fs-3">
-                          Tedavi
+                          {{Lang::get('AgencyDashboard.Treatment')}}
                         </th>
                         <th class="border-bottom fs-3 pe-4">
-                          Ücret
+                          {{Lang::get('AgencyDashboard.Price')}}
                         </th>
                       </tr>
                     </thead>
@@ -262,7 +260,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-7">
-                    <h4 class="card-title mb-0">Görevler</h4>
+                    <h4 class="card-title mb-0">{{Lang::get('AgencyDashboard.Tasks')}}</h4>
                     <!-- <div class="ms-auto">
                       <button class="btn btn-rounded btn-success hstack gap-1" data-bs-toggle="modal" data-bs-target="#myModal">
                         <i class="ti ti-plus fs-6"></i>
@@ -325,7 +323,7 @@
                             <h5 class="mb-0 fw-medium opacity-50 text-decoration-line-through">
                                 Hastayı ara
                             </h5>
-                            <span class="badge bg-danger-subtle text-danger rounded-pill">Today</span>
+                            <span class="badge bg-danger-subtle text-danger rounded-pill">{{Lang::get('AgencyDashboard.Today')}}</span>
                           </label>
                         </div>
                         <ul class="assignedto list-inline m-0 ps-5 ms-2 mt-1 opacity-50">
