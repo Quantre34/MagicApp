@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
-<?php $_SESSION['Locale'] = 'tr' ?>
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8" />
@@ -144,7 +143,7 @@
 <body>
   <!-- Preloader -->
   <div class="preloader">
-    <img src="{{asset('assets/icon/favicon.png')}}" alt="loader" class="lds-ripple img-fluid" />
+    <img src="{{asset('assets/img/Adsiz-tasarim.jpg')}}" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <div id="main-wrapper">
     @include('panel.layout.sidebar')

@@ -30,16 +30,16 @@ return [
     /// part 2
     'Home'=>'Home',
     'Panel'=>'Panel',
-    'TotalIncome'=>'TotalIncome',
-    'PrevMonth'=>'PrevMonth',
-    'CurrentMonth'=>'CurrentMonth',
+    'TotalIncome'=>'Total Income',
+    'PrevMonth'=>'Previous Month',
+    'CurrentMonth'=>'Current Month',
     'Profit'=>'Profit',
-    'AppPaid'=>'',
-    'AppOnHold'=>'AppOnHold',
-    'AppCompleted'=>'AppCompleted',
-    'TotalAgency'=>'TotalAgency',
-    'CurrentMonthsApps'=>'CurrentMonthsApps'
-
+    'AppPaid'=>'Appointments Paid',
+    'AppOnHold'=>'Appointment OnHold',
+    'AppCompleted'=>'Appointment Completed',
+    'TotalAgency'=>'Total Agency',
+    'CurrentMonthsApps'=>'Current Months Apps',
+    'Patient'=>'Patient'
 
 ];
 

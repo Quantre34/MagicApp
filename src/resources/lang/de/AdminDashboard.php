@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 
 return [
     'Panel' => 'Panel',
@@ -7,27 +6,37 @@ return [
     'Weekly' => 'Wöchentlich',
     'Clients' => 'Kunden',
     'Schedule' => 'Zeitplan',
-    'NoAppointments' => 'Kein Termin für 5 Tage gefunden!',
+    'NoAppointments' => 'Keine Termine für die letzten 5 Tage gefunden!',
     'Categories' => 'Kategorien',
     'AppointmentsByAgencies' => 'Termine nach Agenturen',
     'AppointmentsByStatus' => 'Termine nach Status',
     'Appointments' => 'Termine',
-    'OnholdClients' => 'In-Wartestellung Kunden',
+    'OnholdClients' => 'Kunden in Wartestellung',
     'Announcement' => 'Ankündigung',
-    'NotFound' => 'Nicht gefunden',
+    'NotFound' => 'Nicht Gefunden',
     'QuickLinks' => 'Schnellzugriffe',
-    'LabResults' => 'Laborergebnisse',
-    'ImagingResults' => 'Bildergebnisse',
+    'LabResults' => 'Labortests',
+    'ImagingResults' => 'Bildgebungsergebnisse',
     'Prescriptions' => 'Rezepte',
-    'Guides' => 'Leitfäden',
-    'AddCategories' => 'Kategorien hinzufügen',
+    'Guides' => 'Anleitungen',
+    'AddCategories' => 'Kategorien Hinzufügen',
     'Clinics' => 'Kliniken',
     'Treatments' => 'Behandlungen',
-    'OnHold'=>'In der Warteschleife',
-    'Active'=>'Aktiv'
-]
+    'Active' => 'Aktiv',
+    'OnHold' => 'In Wartestellung',
 
+    /// part 2
+    'Home' => 'Startseite',
+    'Panel' => 'Panel',
+    'TotalIncome' => 'Gesamteinkommen',
+    'PrevMonth' => 'Vormonat',
+    'CurrentMonth' => 'Aktueller Monat',
+    'Profit' => 'Gewinn',
+    'AppPaid' => 'Bezahlter Termin',
+    'AppOnHold' => 'Wartender Termin',
+    'AppCompleted' => 'Abgeschlossener Termin',
+    'TotalAgency' => 'Gesamtanzahl der Agenturen',
+    'CurrentMonthsApps' => 'Termine dieses Monats'
+];
 
 ?>
-
-

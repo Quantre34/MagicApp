@@ -199,10 +199,10 @@
                           #Id
                         </th>
                         <th class="border-bottom fs-3">
-                          {{Lang::get('AgencyDashboard.Patient')}}
+                          {{Lang::get('AgencyDashboard.Treatment')}}
                         </th>
                         <th class="border-bottom fs-3">
-                          {{Lang::get('AgencyDashboard.Treatment')}}
+                          {{Lang::get('AgencyDashboard.Status')}}
                         </th>
                         <th class="border-bottom fs-3 pe-4">
                           {{Lang::get('AgencyDashboard.Price')}}

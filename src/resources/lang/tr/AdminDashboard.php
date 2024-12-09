@@ -1,18 +1,17 @@
-<?php 
-
+<?php
 
 return [
     'Panel' => 'Panel',
     'Hello' => 'Merhaba',
     'Weekly' => 'Haftalık',
     'Clients' => 'Müşteriler',
-    'Schedule' => 'Takvim',
-    'NoAppointments' => '5 gün için randevu bulunamadı!',
+    'Schedule' => 'Program',
+    'NoAppointments' => 'Son 5 gün için randevu bulunamadı!',
     'Categories' => 'Kategoriler',
     'AppointmentsByAgencies' => 'Acentelere Göre Randevular',
     'AppointmentsByStatus' => 'Duruma Göre Randevular',
     'Appointments' => 'Randevular',
-    'OnholdClients' => 'Beklemede Olan Müşteriler',
+    'OnholdClients' => 'Beklemedeki Müşteriler',
     'Announcement' => 'Duyuru',
     'NotFound' => 'Bulunamadı',
     'QuickLinks' => 'Hızlı Bağlantılar',
@@ -20,14 +19,26 @@ return [
     'ImagingResults' => 'Görüntüleme Sonuçları',
     'Prescriptions' => 'Reçeteler',
     'Guides' => 'Kılavuzlar',
-    'AddCategories' => 'Kategoriler Ekle',
+    'AddCategories' => 'Kategorileri Ekle',
     'Clinics' => 'Klinikler',
     'Treatments' => 'Tedaviler',
-    'Active'=>'Aktif',
-    'OnHold'=>'Bekleyen'
-]
+    'Active' => 'Aktif',
+    'OnHold' => 'Beklemede',
 
+    /// part 2
+    'Home' => 'Anasayfa',
+    'Panel' => 'Panel',
+    'TotalIncome' => 'Toplam Gelir',
+    'PrevMonth' => 'Önceki Ay',
+    'CurrentMonth' => 'Bu Ay',
+    'Profit' => 'Kâr',
+    'AppPaid' => 'Ödenen Randevu',
+    'AppOnHold' => 'Bekleyen Randevu',
+    'AppCompleted' => 'Tamamlanan Randevu',
+    'TotalAgency' => 'Toplam Ajans',
+    'CurrentMonthsApps' => 'Bu Ayın Randevuları',
+    'Patient'=>'Patient'
+
+];
 
 ?>
-
-

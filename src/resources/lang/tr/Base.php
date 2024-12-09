@@ -32,7 +32,10 @@ return [
     'ConfirmDel'=>'Evet, Sil!',
     'DenyDel'=>'Hayır, İptal et!',
     'Delete'=>'Sil',
-    'Canceled'=>'İşlem iptal edildi'
+    'Canceled'=>'İşlem iptal edildi',
+    'SearchFor'=>'Ara...',
+    'MyNotifications'=>'Bildirimlerim'
+
 ];
 
 

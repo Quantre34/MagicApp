@@ -641,7 +641,7 @@
                     <div class="row align-items-center gy-3">
                         <div class="col-lg-6">
                             <div class="ratio ratio-16x9">
-                                <img src="assets/img/step-1.webp" class="cover" alt="1">
+                                <img src="assets/panel/img/step-1.png" class="cover" alt="1">
                             </div>
                         </div>
                         <div class="col-lg-6 ps-lg-5">
@@ -658,7 +658,7 @@
                     <div class="row align-items-center gy-3">
                         <div class="col-lg-6">
                             <div class="ratio ratio-16x9">
-                                <img src="assets/img/step-2.webp" class="cover" alt="2">
+                                <img src="assets/panel/img/step-2.png" class="cover" alt="2">
                             </div>
                         </div>
                         <div class="col-lg-6 ps-lg-5">
@@ -675,7 +675,7 @@
                     <div class="row align-items-center gy-3">
                         <div class="col-lg-6">
                             <div class="ratio ratio-16x9">
-                                <img src="assets/img/step-3.webp" class="cover" alt="3">
+                                <img src="assets/panel/img/step-3.png" class="cover" alt="3">
                             </div>
                         </div>
                         <div class="col-lg-6 ps-lg-5">
@@ -692,7 +692,7 @@
                     <div class="row align-items-center gy-3">
                         <div class="col-lg-6">
                             <div class="ratio ratio-16x9">
-                                <img src="assets/img/step-4.webp" class="cover" alt="4">
+                                <img src="assets/panel/img/step-4.png" class="cover" alt="4">
                             </div>
                         </div>
                         <div class="col-lg-6 ps-lg-5">
@@ -709,7 +709,7 @@
                     <div class="row align-items-center gy-3">
                         <div class="col-lg-6">
                             <div class="ratio ratio-16x9">
-                                <img src="assets/img/step-5.webp" class="cover" alt="5">
+                                <img src="assets/panel/img/step-5.png" class="cover" alt="5">
                             </div>
                         </div>
                         <div class="col-lg-6 ps-lg-5">

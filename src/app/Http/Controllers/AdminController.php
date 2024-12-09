@@ -1783,7 +1783,7 @@ $currentYear = Carbon::now()->year;
             $Treatment = $this->toArray(DB::table('treatment')->where('uid', $uid)->first());
             $Treatments = $this->toArray(DB::table('treatment')->where('ParentId', $Treatment['ParentId'])->limit(4)->get());
             $Clinics = [];
-            foreach(json_decode($Treatment['Clinics'],true) as $Clinic){
+            foreach(json_decode($Treatment['Clinics']??'[]',true) as $Clinic){
                 $Clinics[] = $this->toArray(DB::table('clinic')->where('uid',$Clinic)->first());
             }
             if (!empty($Treatment)) {

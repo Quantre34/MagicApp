@@ -48,7 +48,7 @@
         display: none;
     }
 </style>
-<div class="preloader"><img style="width: 5%!important;" src="{{asset('assets/icon/favicon.png')}}" alt="Medescare"></div>
+<div class="preloader"><img style="width: 5%!important;" src="{{asset('assets/img/Adsiz-tasarim.jpg')}}" alt="Medescare"></div>
 
 
 
@@ -86,6 +86,11 @@
                         </svg></span>
                     <div><span class="text">Email</span><a href="mailto:{{Main('Mail')}}" class="stretched-link"
                             title="email">{{Main('Mail')}}</a></div>
+                </li>
+                <li><span class="icon">
+                            <img style="width: 100%" src="{{asset('assets/img/en-flag.png')}}"/>
+                        </span>
+                    
                 </li>
             </ul>
             <div class="contact d-xxl-none d-sm-block d-none"><button class="dropdown-toggle rounded-pill"

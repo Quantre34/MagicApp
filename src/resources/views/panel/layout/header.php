@@ -24,7 +24,7 @@
                 </a>
                 <div class="dropdown-menu content-dd dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="py-3 px-4 border-bottom">
-                    <h5 class="mb-0 fs-4 fw-normal">Bildirimlerim</h5>
+                    <h5 class="mb-0 fs-4 fw-normal"><?= Lang::get('Base.MyNotifications') ?></h5>
                   </div>
                   <div class="message-body" data-simplebar>
 
@@ -570,7 +570,7 @@
                   <li class="nav-item search-box d-none d-xl-flex align-items-center">
                     <div class="nav-link">
                       <form class="app-search position-relative">
-                        <input type="text" class="form-control rounded-pill border-0 shadow-none" placeholder="Search for..." />
+                        <input type="text" class="form-control rounded-pill border-0 shadow-none" placeholder="<?= Lang::get('Base.SearchFor') ?>" />
                         <a href="javascript:void(0)" class="srh-btn">
                           <iconify-icon icon="solar:magnifer-linear" class="position-absolute top-50 end-0 translate-middle-y me-2 fs-5"></iconify-icon>
                         </a>
@@ -589,31 +589,27 @@
                   <!-- start language Dropdown -->
                   <!-- ------------------------------- -->
                   <li class="nav-item dropdown nav-icon-hover-bg dark rounded-circle">
-                    <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="assets/panel/images/flag/icon-flag-en.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                    <a class="nav-link"  id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="assets/img/<?= App::getLocale() ?>-flag.png" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                       <div class="message-body">
 
-                      <form id="LangForm" onchange="javascript:$(this).submit();" action="ajax" method="POST" target="ChangeLang" >
-                        <input type="hidden" name="Lang" >
-                      </form>
-
-                        <a href="javascript:$('input[name=Lang]').val('en');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
+                        <a href="/Lang/tr" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-en.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                            <img src="assets/img/tr-flag.png" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">TR Türkçe</p>
                         </a>
-                        <a href="javascript:$('input[name=Lang]').val('de');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
+                        <a href="/Lang/de" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-cn.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                            <img src="assets/img/de-flag.png" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">DE Germany</p>
                         </a>
-                        <a href="javascript:$('input[name=Lang]').val('en');$('#LangForm').trigger('submit');" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
+                        <a href="/Lang/en" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-fr.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                            <img src="assets/img/en-flag.png" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">EN English</p>
                         </a>
@@ -631,7 +627,7 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="drop1" aria-expanded="false">
                       <div class="d-flex align-items-center lh-base">
-                        <img src="assets/panel/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="monster-img" />
+                        <img src="assets/panel/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="Medescare" />
                       </div>
                     </a>
                     <div class="dropdown-menu content-dd dropdown-menu-end animated flipInY" aria-labelledby="drop1">
@@ -1243,31 +1239,31 @@
                   <!-- ------------------------------- -->
                   <li class="nav-item dropdown nav-icon-hover-bg rounded-circle">
                     <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="assets/panel/images/flag/icon-flag-en.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                      <img src="assets/panel/images/flag/icon-flag-en.svg" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                       <div class="message-body">
                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-en.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                            <img src="assets/panel/images/flag/icon-flag-en.svg" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">English (UK)</p>
                         </a>
                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-cn.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                            <img src="assets/panel/images/flag/icon-flag-cn.svg" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">中国人 (Chinese)</p>
                         </a>
                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-fr.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                            <img src="assets/panel/images/flag/icon-flag-fr.svg" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">français (French)</p>
                         </a>
                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
                           <div class="position-relative">
-                            <img src="assets/panel/images/flag/icon-flag-sa.svg" alt="monster-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                            <img src="assets/panel/images/flag/icon-flag-sa.svg" alt="Medescare" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                           </div>
                           <p class="mb-0 fs-3">عربي (Arabic)</p>
                         </a>
@@ -1284,7 +1280,7 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="drop1" aria-expanded="false">
                       <div class="d-flex align-items-center lh-base">
-                        <img src="assets/panel/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="monster-img" />
+                        <img src="assets/panel/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="Medescare" />
                       </div>
                     </a>
                     <div class="dropdown-menu content-dd dropdown-menu-end animated flipInY" aria-labelledby="drop1">

@@ -33,7 +33,9 @@ return [
     'ConfirmDel'=>'Ja, löschen!',
     'DenyDel'=>'Nein, Stornieren!',
     'Delete'=>'Löschen',
-    'Canceled'=>'Vorgang abgebrochen'
+    'Canceled'=>'Vorgang abgebrochen',
+    'SearchFor'=>'Search for...',
+    'MyNotifications'=>'Notifications'
 ];
 
 

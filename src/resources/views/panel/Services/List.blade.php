@@ -84,7 +84,7 @@
 	                          </div>
 	                        </td>
 	                        <td>
-	                          <h6 class="mb-0 fs-4">€{{$Treatment['Cost']}}</h6>
+	                          <h6 class="mb-0 fs-4">{{$Treatment['Cost']}}€</h6>
 	                        </td>
 	                        <td>
 	                          <a class="fs-6 text-muted" href="panel/services/{{$Treatment['uid']}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail">

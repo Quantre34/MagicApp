@@ -32,8 +32,10 @@ return [
 	'ConfirmDel'=>'Yes, Delete!',
 	'DenyDel'=>'No, Cancel!',
 	'Delete'=>'Delete',
-	'Canceled'=>'Process canceled'
-	
+	'Canceled'=>'Process canceled',
+	'SearchFor'=>'Search for...',
+    'MyNotifications'=>'Notifications'
+
 ];
 
 

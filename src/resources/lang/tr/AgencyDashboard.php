@@ -1,8 +1,6 @@
 <?php 
 
-
 return [
-
     'Panel' => 'Panel',
     'Hello' => 'Merhaba',
     'About' => 'Hakkında',
@@ -13,18 +11,38 @@ return [
     'Appointments' => 'Randevular',
     'AddNew' => 'Yeni Ekle',
     'RecentClients' => 'Son Müşteriler',
-    'OnholdClients' => 'Beklemede Müşteriler',
+    'OnholdClients' => 'Beklemedeki Müşteriler',
     'Announcement' => 'Duyuru',
     'NotFound' => 'Bulunamadı',
     'CheckUp' => 'Kontrol',
     'CommissionRate' => 'Komisyon Oranı',
-    'WeeklyProfit' => 'Haftalık Kar',
-    'MontlyProfit' => 'Aylık Kar',
+    'WeeklyProfit' => 'Haftalık Kâr',
+    'MontlyProfit' => 'Aylık Kâr',
     'WeeklyTotal' => 'Haftalık Toplam',
     'MontlyTotal' => 'Aylık Toplam',
-    'ClickTheAppointmentToSee' => 'Görüntülemek için Randevuya Tıklayın!',
-    'NoAppointmentsForTheDay!' => 'Bugün için Randevu Yok!',
+    'ClickTheAppointmentToSee' => 'Randevuyu Görmek İçin Tıklayın!',
+    'NoAppointmentsForTheDay' => 'Bugün İçin Randevu Yok!',
     'NewAppointment' => 'Yeni Randevu',
-    'Campain'=>'Kampanya',
-]
- ?>
+    'Campain' => 'Kampanya',
+
+    'Panel' => 'Panel',
+    'Home' => 'Anasayfa',
+    'MakeAnAppointment' => 'Randevu Al',
+    'TotalPatient' => 'Toplam Hasta',
+    'AppsCompleted' => 'Tamamlanan Randevular',
+    'Weekly' => 'Haftalık',
+    'Profit' => 'Kâr',
+    'Monthly' => 'Aylık',
+    'Income' => 'Gelir',
+    'Appointment' => 'Randevu',
+    'NewAppointment' => 'Yeni Randevu',
+    'AppsOnHold' => 'Bekleyen Randevular',
+    'CurrentMonthsApps' => 'Bu Ayın Randevuları',
+    'Patient' => 'Hasta',
+    'Treatment' => 'Tedavi',
+    'Price' => 'Fiyat',
+    'Tasks' => 'Görevler',
+    'Today' => 'Bugün'
+];
+
+?>

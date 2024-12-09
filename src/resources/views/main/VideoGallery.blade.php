@@ -53,14 +53,16 @@
             <div class="row g-4 g-xs-3 g-sm-4 mt-6 mt-sm-8 mb-4 mb-sm-5">
 
 
-
-                <div class="col-xs-6 col-md-4 col-xxl-3">
-                    <div class="image-item"><a href="https://www.youtube.com/watch?v=ayWciIFD-pc" data-fslightbox="gallery"
-                            class="ratio ratio-1x1 d-block"><img src="https://natural.clinic/wp-content/uploads/2023/09/Group-4444.webp"
-                                class="w-100 h-100 of-cover" alt="Para &amp; Pas Obezitet"
-                                title="Para &amp; Pas Obezitet"></a></div>
+            @foreach($Medias as $Media)
+               <div class="col-xs-6 col-md-4 col-xxl-3">
+                    <div class="image-item"><a href="{{$Media['Path']}}" data-fslightbox="gallery"
+                            class="ratio ratio-1x1 d-block"><img src="{{$Media['Img']}}"
+                                class="w-100 h-100 of-cover" alt="Medescare | Clinic"
+                                title="Medescare | Clinic"></a></div>
                 </div>
-                <div class="col-xs-6 col-md-4 col-xxl-3">
+            @endforeach
+ 
+ <!--                <div class="col-xs-6 col-md-4 col-xxl-3">
                     <div class="image-item"><a href="https://www.youtube.com/watch?v=z0488pLFLwo" data-fslightbox="gallery"
                             class="ratio ratio-1x1 d-block"><img src="https://natural.clinic/wp-content/uploads/2023/09/Group-4441.webp"
                                 class="w-100 h-100 of-cover" alt="Para &amp; Pas Obezitet"
@@ -77,7 +79,7 @@
                             class="ratio ratio-1x1 d-block"><img src="https://natural.clinic/wp-content/uploads/2023/09/Group-4443.webp"
                                 class="w-100 h-100 of-cover" alt="Para &amp; Pas Obezitet"
                                 title="Para &amp; Pas Obezitet"></a></div>
-                </div>
+                </div> -->
 
 
 

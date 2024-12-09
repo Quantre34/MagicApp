@@ -31,20 +31,20 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item d-flex align-items-center gap-2" href="/panel/users/<?= User('uid'); ?>">
                       <iconify-icon icon="solar:user-linear" class="fs-5 text-primary"></iconify-icon>
-                      Hesabım
+                      <?= Lang::get('NavBar.MyAccount') ?>
                     </a>
                     
                     <? if(User('Type')=='0'): ?>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item d-flex align-items-center gap-2" href="/panel/agencies/<?= User('Parent')['uid'] ?? '' ?>">
                         <iconify-icon icon="solar:settings-linear" class="fs-5 text-primary"></iconify-icon>
-                        Acente Ayarları
+                        <?= Lang::get('NavBar.AgencySettings') ?>
                       </a>
                     <? endif; ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item d-flex align-items-center gap-2" href="/logout">
                       <iconify-icon icon="solar:login-2-linear" class="fs-5 text-primary"></iconify-icon>
-                      Çıkış
+                      <?= Lang::get('NavBar.Logout') ?>
                     </a>                    
                   </div>
                 </div>
@@ -57,7 +57,7 @@
             <!-- ---------------------------------- -->
             <li class="nav-small-cap">
               <iconify-icon icon="solar:menu-dots-linear" class="mini-icon"></iconify-icon>
-              <span class="hide-menu"> <?= User('Type')=='2'? 'B2B Yönetimi' : 'Yönetim' ?> </span>
+              <span class="hide-menu"> <?= User('Type')=='2'?  Lang::get('NavBar.B2BManagement') : Lang::get('NavBar.Management') ?> </span>
             </li>
             <!-- ---------------------------------- -->
             <!-- Dashboard -->
@@ -65,21 +65,21 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
-                <span class="hide-menu">Anasayfa</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.Home') ?></span>
               </a>
             </li>
             <? if(User('Type')!='0'): ?>
               <li class="sidebar-item">
                 <a class="sidebar-link" href="panel/operation" aria-expanded="false">
                   <iconify-icon icon="material-symbols:family-history-outline-rounded"></iconify-icon>
-                  <span class="hide-menu">Operasyon Şeması</span>
+                  <span class="hide-menu"><?= Lang::get('NavBar.AppTree') ?></span>
                 </a>
               </li>
 
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
                   <iconify-icon icon="solar:align-left-line-duotone"></iconify-icon>
-                  <span class="hide-menu">Yönetim</span>
+                  <span class="hide-menu"><?= Lang::get('NavBar.Management') ?></span>
                 </a>
                 <ul aria-expanded="false" class="collapse first-level">
 
@@ -87,37 +87,37 @@
                     <li class="sidebar-item">
                       <a href="/panel/packages" class="sidebar-link">
                         <span class="icon-small"></span>
-                        <span class="hide-menu">Paketler</span>
+                        <span class="hide-menu"><?= Lang::get('NavBar.Packages') ?></span>
                       </a>
                     </li>
                     <li class="sidebar-item">
                       <a href="/panel/features" class="sidebar-link">
                         <span class="icon-small"></span>
-                        <span class="hide-menu">Hizmetler</span>
+                        <span class="hide-menu"><?= Lang::get('NavBar.Features') ?></span>
                       </a>
                     </li>
                     <li class="sidebar-item">
                       <a href="/panel/clinics" class="sidebar-link">
                         <span class="icon-small"></span>
-                        <span class="hide-menu">Klinikler</span>
+                        <span class="hide-menu"><?= Lang::get('NavBar.Clinics') ?></span>
                       </a>
                     </li>
                     <li class="sidebar-item">
                       <a href="/panel/categories" class="sidebar-link">
                         <span class="icon-small"></span>
-                        <span class="hide-menu">Kategoriler</span>
+                        <span class="hide-menu"><?= Lang::get('NavBar.Categories') ?></span>
                       </a>
                     </li>
                     <li class="sidebar-item">
                       <a href="/panel/treatments" class="sidebar-link">
                         <span class="icon-small"></span>
-                        <span class="hide-menu">Tedaviler</span>
+                        <span class="hide-menu"><?= Lang::get('NavBar.Treatments') ?></span>
                       </a>
                     </li>
                      <li class="sidebar-item">
                       <a href="/panel/articles" class="sidebar-link">
                         <span class="icon-small"></span>
-                        <span class="hide-menu">Makaleler</span>
+                        <span class="hide-menu"><?= Lang::get('NavBar.Articles') ?></span>
                       </a>
                     </li>
                   <? endif; ?>
@@ -125,26 +125,26 @@
                   <li class="sidebar-item">
                     <a href="/panel/agencies" class="sidebar-link">
                       <span class="icon-small"></span>
-                      <span class="hide-menu">Acenteler</span>
+                      <span class="hide-menu"><?= Lang::get('NavBar.Agencies') ?></span>
                     </a>
                   </li>
    
                  <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                       <span class="icon-small"></span>
-                      <span class="hide-menu">Kullanıcılar</span>
+                      <span class="hide-menu"><?= Lang::get('NavBar.Users') ?></span>
                     </a>
                     <ul aria-expanded="false" class="collapse two-level">
                       <li class="sidebar-item">
                         <a href="/panel/managers" class="sidebar-link">
                           <span class="icon-small"></span>
-                          <span class="hide-menu">İş ortakları</span>
+                          <span class="hide-menu"><?= Lang::get('NavBar.Managers') ?></span>
                         </a>
                       </li>
                       <li class="sidebar-item">
                         <a href="/panel/agents" class="sidebar-link">
                           <span class="icon-small"></span>
-                          <span class="hide-menu">Acente çalışanları</span>
+                          <span class="hide-menu"><?= Lang::get('NavBar.Agents') ?></span>
                         </a>
                       </li>
 
@@ -158,7 +158,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel/appointments"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
-                <span class="hide-menu">Randevular</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.Appointments') ?></span>
               </a>
             </li>
 
@@ -168,7 +168,7 @@
 
                 <iconify-icon icon="material-symbols-light:add-2-rounded"></iconify-icon>
 
-                <span class="hide-menu">Randevu Oluştur</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.MakeAnAppoiontment') ?></span>
               </a>
             </li>
 
@@ -176,7 +176,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel/services/list"  aria-expanded="false">
                 <iconify-icon icon="material-symbols:event-list-outline-rounded"></iconify-icon>
-                <span class="hide-menu">Fiyat Listesi</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.PriceList') ?></span>
               </a>
             </li>
 
@@ -184,7 +184,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel/clients"  aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
-                <span class="hide-menu">Hastalar</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.Patient') ?></span>
               </a>
             </li>
 
@@ -194,7 +194,7 @@
                   <div class="hide-menu w-100">
                     <div class="d-flex align-items-center justify-content-between w-100">
                       <span class="d-none"></span>
-                      <span>Yardım Masası</span>
+                      <span><?= Lang::get('NavBar.Consult') ?></span>
                       <span class="badge rounded-circle text-bg-info d-flex align-items-center justify-content-center rounded-pill fs-2 px-2 py-1"><?= GetMyMessages() ?></span>
                     </div>
                   </div>
@@ -209,28 +209,28 @@
               </a>
             </li> -->
 
-            <li class="sidebar-item">
+<!--             <li class="sidebar-item">
               <a class="sidebar-link" href="/panel/articles" aria-expanded="false">
                 <iconify-icon icon="solar:screencast-2-linear"></iconify-icon>
-                <span class="hide-menu">Makaleler</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.Articles') ?></span>
               </a>
-            </li>
+            </li> -->
 
              <? if(User('Type')=='2'): ?>
             <li class="nav-small-cap">
               <iconify-icon icon="solar:menu-dots-linear" class="mini-icon"></iconify-icon>
-              <span class="hide-menu">SİTE YÖNETİMİ</span>
+              <span class="hide-menu"><?= Lang::get('NavBar.WebsiteManagement') ?></span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
                 <iconify-icon icon="material-symbols:filter-list-rounded"></iconify-icon>
-                <span class="hide-menu">İçerikler</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.Contents') ?></span>
               </a>
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a href="/panel/website/sliders" class="sidebar-link">
                     <span class="icon-small"></span>
-                    <span class="hide-menu">Sliderlar</span>
+                    <span class="hide-menu"><?= Lang::get('NavBar.Sliders') ?></span>
                   </a>
                 </li>
               <!--   <li class="sidebar-item">
@@ -242,13 +242,13 @@
                 <li class="sidebar-item">
                   <a href="/panel/website/media" class="sidebar-link">
                     <span class="icon-small"></span>
-                    <span class="hide-menu">Galeri</span>
+                    <span class="hide-menu"><?= Lang::get('NavBar.Gallery') ?></span>
                   </a>
                 </li>
                 <li class="sidebar-item">
                   <a href="/panel/website/doctors" class="sidebar-link">
                     <span class="icon-small"></span>
-                    <span class="hide-menu">Doktorlar</span>
+                    <span class="hide-menu"><?= Lang::get('NavBar.Doctors') ?></span>
                   </a>
                 </li>
                 
@@ -258,19 +258,19 @@
             <li class="sidebar-item">
               <a class="sidebar-link has-arrow primary-hover-bg" href="javascript:void(0)" aria-expanded="false">
                 <iconify-icon icon="material-symbols:mediation-rounded"></iconify-icon>
-                <span class="hide-menu">Ayarlar</span>
+                <span class="hide-menu"><?= Lang::get('NavBar.Settings') ?></span>
               </a>
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a href="panel/website/settings" class="sidebar-link">
                     <span class="icon-small"></span>
-                    <span class="hide-menu">Site Bilgileri</span>
+                    <span class="hide-menu"><?= Lang::get('NavBar.WebsiteInfo') ?></span>
                   </a>
                 </li>
                 <li class="sidebar-item">
                   <a href="panel/website/contactinfo" class="sidebar-link">
                     <span class="icon-small"></span>
-                    <span class="hide-menu">İletişim Bilgileri</span>
+                    <span class="hide-menu"><?= Lang::get('NavBar.ContactInfo') ?></span>
                   </a>
                 </li>
 

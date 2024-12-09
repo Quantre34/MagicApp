@@ -32,7 +32,7 @@ return [
     'Panel'=>'Panel',
     'MakeAnAppointment'=>'MakeAnAppointment',
     'TotalPatient'=>'TotalPatient',
-    'AppsCOmpleted'=>'AppsCOmpleted',
+    'AppsCompleted'=>'AppsCOmpleted',
     'Weekly'=>'Weekly',
     'Profit'=>'Profit',
     'Monthly'=>'Monthly',

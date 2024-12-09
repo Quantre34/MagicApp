@@ -52,12 +52,18 @@
             </div>
             <div class="row g-4 g-xs-3 g-sm-4 mt-6 mt-sm-8 mb-4 mb-sm-5">
 
+
+
+            @foreach($Medias as $Media)
                 <div class="col-xs-6 col-md-4 col-xxl-3">
-                    <div class="image-item"><a href="https://natural.clinic/wp-content/uploads/2023/08/Bariatric-Operation-5.webp" data-fslightbox="gallery"
-                            class="ratio ratio-1x1 d-block"><img src="https://natural.clinic/wp-content/uploads/2023/08/Bariatric-Operation-5.webp"
+                    <div class="image-item"><a href="{{$Media['Path']}}" data-fslightbox="gallery"
+                            class="ratio ratio-1x1 d-block"><img src="{{$Media['Img']}}"
                                 class="w-100 h-100 of-cover" alt="Medescare | Clinic"
                                 title="Results"></a></div>
                 </div>
+            @endforeach
+<!-- 
+
                 <div class="col-xs-6 col-md-4 col-xxl-3">
                     <div class="image-item"><a href="https://natural.clinic/wp-content/uploads/2023/08/Bariatric-Operation-5.webp" data-fslightbox="gallery"
                             class="ratio ratio-1x1 d-block"><img src="https://natural.clinic/wp-content/uploads/2023/07/breast-surgery.png"
@@ -87,7 +93,7 @@
                             class="ratio ratio-1x1 d-block"><img src="https://natural.clinic/wp-content/uploads/2023/08/dental-implant-a7-1.webp"
                                 class="w-100 h-100 of-cover" alt="Medescare | Clinic"
                                 title="Results"></a></div>
-                </div>
+                </div> -->
 
 
             </div>

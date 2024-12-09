@@ -84,17 +84,8 @@ class UserController extends Controller
             $Categories = $this->toArray($Categories->get());
             foreach($Categories as $key => $Category){
                 $Treatments= $this->toArray(DB::table('treatment')->where('ParentId', $Category['Id'])->get());
-
-                // foreach($Treatments as $tkey => $Treatment){
-                //     DB::table('treatment')->where('Id',$Treatment['Id'])->update([
-                //         'Slug'=>$this->slugify($Treatment['Title']),
-                //         'uid'=>$this->UniqueId()
-                //     ]);
-                // }
-
                 $Categories[$key]['Treatments'] = $Treatments;
             }
-
             $result = ['outcome'=>true,'route'=>'main.Categories','data'=>[
                 'Categories'=>$Categories
             ]];
@@ -195,7 +186,7 @@ class UserController extends Controller
     ///
     public function TreatmentDetail($Slug){
         $data = $this->toArray(DB::table('treatment')->where('Slug',$Slug)->first());
-        $Blogs = $this->toArray(DB::table('blog')->where('Status','1')->get());
+        $Blogs = $this->toArray(DB::table('article')->where('Type','1')->where('Status','1')->get());
         $data['Description'] = $this->toArray(DB::table('descriptions')->where('ProductId',$data['uid'])->first());
         return view('main.TreatmentDetail',[
             'Treatment'=>$data,
@@ -204,12 +195,12 @@ class UserController extends Controller
     }
     ///
     public function Blogs(){
-        $Blogs = $this->toArray(DB::table('blog')->where('Status','1')->get());
+        $Blogs = $this->toArray(DB::table('article')->where('Type','1')->where('Status','1')->get());
         return view('main.Blogs',['Blogs'=>$Blogs]);
     }
     public function Blog($Slug){
-        $Blog = $this->toArray(DB::table('blog')->where('Slug', $Slug)->where('Status','1')->first());
-        $Blogs = $this->toArray(DB::table('blog')->where('Status','1')->where('Id','!=',$Blog['Id'])->get());
+        $Blog = $this->toArray(DB::table('article')->where('Slug', $Slug)->where('Status','1')->first());
+        $Blogs = $this->toArray(DB::table('article')->where('Type','1')->where('Status','1')->where('Id','!=',$Blog['Id'])->get());
         if(!empty($Blog)){
             $result = ['outcome'=>true,'route'=>'main.Blog','data'=>[
                 'Blog'=>$Blog,
