@@ -25,75 +25,119 @@
   <div class="preloader">
      <img src="{{asset('assets/icon/favicon.png')}}" alt="loader" class="lds-ripple img-fluid" />
   </div>
+
+
   <div id="main-wrapper" class="auth-customizer-none">
-    <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
-      <div class="position-relative z-index-5">
-        <div class="row">
-          <div class="col-xl-5 col-xxl-4">
-            <div class="authentication-login min-vh-100 bg-body row justify-content-center">
-              <div class="col-12" style="padding: 20% 50px 10px 20%;">
-                <a href="/" class="text-nowrap logo-img d-block  w-100">
-                  <img src="{{Main('Logo')}}" class="dark-logo" alt="Logo-Dark" />
-                  <img src="{{Main('AlternativeLogo')}}" class="light-logo " style="display: none;" alt="Logo-light" />
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3 auth-card">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="/" class="align-items-center d-flex justify-content-center logo-img mb-5 text-center text-nowrap w-100">
+                  <img src="{{ (str_contains(Request::url(), 'magicmedical'))? asset('assets/img/logo/magic-medical.png') : Main('Logo')}}" class="dark-logo" alt="Logo-Dark" />
+                  <!-- <img src="{{Main('AlternativeLogo')}}" class="light-logo" alt="Logo-light" /> -->
                 </a>
-              </div>
-              <div class="auth-max-width col-sm-8 col-md-6 col-xl-7 px-4">
-                <h3 class="mb-1 fs-7 fw-bolder">Medescare Panel</h3>
+                <div class="row">
+ <!--                  <div class="col-6 mb-2 mb-sm-0">
+                    <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="javascript:void(0)" role="button">
+                      <img src="../assets/images/svgs/google-icon.svg" alt="" class="img-fluid me-2" width="18" height="18">
+                      <span class="flex-shrink-0">with Google</span>
+                    </a>
+                  </div>
+                  <div class="col-6">
+                    <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="javascript:void(0)" role="button">
+                      <img src="../assets/images/svgs/facebook-icon.svg" alt="" class="img-fluid me-2" width="18" height="18">
+                      <span class="flex-shrink-0">with FB</span>
+                    </a>
+                  </div> -->
+                </div>
                 <div class="position-relative text-center my-4">
+                  <!-- <p class="mb-0 fs-4 px-3 d-inline-block bg-white text-dark z-index-5 position-relative">or sign in with</p> -->
                   <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                 </div>
-                <form method="POST" id="LoginForm" target="ajax" action="Login" class="LoginForm needs-validation"  novalidate>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" name="Mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div class="login-form">
+                  <form method="POST" id="LoginForm" target="ajax" action="Login" class="LoginForm needs-validation"  novalidate>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.Email')}}</label>
+                        <input type="email" name="Mail" class="form-control"  aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label">{{Lang::get('Login.Password')}}</label>
+                        <input type="password" name="Password" class="form-control" >
+                      </div>
+                    
+  <!--                   <div class="d-flex align-items-center justify-content-between mb-4">
+                      <div class="form-check">
+                        <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
+                        <label class="form-check-label text-dark" for="flexCheckChecked">
+                          Remeber this Device
+                        </label>
+                      </div>
+                      <a class="text-primary fw-medium" href="../main/authentication-forgot-password.html">Forgot Password ?</a>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">{{Lang::get('Login.Login')}}</button>
+                  <div class="position-relative text-center my-4">
+                    <p class="mb-0 fs-4 px-3 d-inline-block bg-white text-dark z-index-5 position-relative">or</p>
+                    <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                   </div>
-                  <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" name="Password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">{{Lang::get('Login.Send')}}</button>
-                  <div class="d-flex align-items-center justify-content-center">
-                    <a class="text-primary fw-medium ms-2" onclick="javascript:$('.LoginForm').fadeOut('fast');$('.SignUpForm').fadeIn();">Create an
-                      account</a>
-                  </div>
-                </form>
-                 <form  method="POST" id="SignUpForm" target="ajax" action="SignUp" class="SignUpForm needs-validation"  novalidate style="display: none;">
+                    <div class="d-flex align-items-center justify-content-center">
+                      <a class="text-primary fw-medium ms-2" href="javascript:$('.signup-form').fadeIn('slow');$('.login-form').fadeOut('fast');">{{Lang::get('Login.ApplyForAgency')}}</a>
+                    </div>
+                  </form>
+                </div>
+
+
+                <div class="signup-form" style="display: none;">
+                  <form method="POST" id="LoginForm" target="ajax" action="SignUp" class="LoginForm needs-validation"  novalidate>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.FullName')}}</label>
-                        <input type="email" name="FullName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="FullName" class="form-control" aria-describedby="emailHelp">
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.CompanyName')}}</label>
-                        <input type="email" name="Title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="Title" class="form-control" aria-describedby="emailHelp">
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.Email')}}</label>
-                        <input type="email" name="Mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="Mail" class="form-control" aria-describedby="emailHelp">
                       </div>
                        <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">{{Lang::get('Login.ReferenceCode')}}</label>
-                        <input type="email" name="ReferenceCode" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="ReferenceCode" class="form-control" aria-describedby="emailHelp">
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"></label>
-                        <input type="email" id="Cell" name="Cell" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" id="Cell" name="Cell" class="form-control" aria-describedby="emailHelp">
+                      </div>                    
+
+                      <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">{{Lang::get('Login.ApplyForAgency')}}</button>
+                      <div class="position-relative text-center my-4">
+                        <p class="mb-0 fs-4 px-3 d-inline-block bg-white text-dark z-index-5 position-relative">or</p>
+                        <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                       </div>
-                      <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">{{Lang::get('Login.Apply')}}</button>
+                      <div class="d-flex align-items-center justify-content-center">
+                        <a class="text-primary fw-medium ms-2" href="javascript:$('.login-form').fadeIn('slow');$('.signup-form').fadeOut('fast');">{{Lang::get('Login.Login')}}</a>
+                      </div>
                   </form>
+                </div>
+
 
               </div>
-            </div>
-          </div>
-          <div class="col-xl-7 col-xxl-8 d-none d-xl-block">
-            <div class="d-none d-xl-flex align-items-center justify-content-center h-100">
-              <img src="assets/panel/images/backgrounds/user-login.png" alt="" class="img-fluid">
             </div>
           </div>
         </div>
       </div>
+      <button class="btn btn-primary p-3 rounded-circle d-flex align-items-center justify-content-center customizer-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <i class="icon ti ti-settings fs-7"></i>
+      </button>
+
 
     </div>
   </div>
+
+
+
   <div class="dark-transparent sidebartoggler"></div>
   <!-- Import Js Files -->
   <script src="assets/panel/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
