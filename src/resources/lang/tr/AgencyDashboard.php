@@ -42,7 +42,8 @@ return [
     'Treatment' => 'Tedavi',
     'Price' => 'Fiyat',
     'Tasks' => 'Görevler',
-    'Today' => 'Bugün'
+    'Today' => 'Bugün',
+    'Operations'=>'Operations'
 ];
 
 ?>

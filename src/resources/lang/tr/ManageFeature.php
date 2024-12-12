@@ -19,7 +19,29 @@ return [
     'Order'=>'Sıra',
     'DontMultiply'=>'Katlama kapalı',
     'Multiply' => 'Katlama Açık',
-    'PerTDay' => 'Tedavi günü ile'
+    'PerTDay' => 'Tedavi günü ile',
+
+    'Features'=>'Features',
+    'New'=>'New',
+    'Title'=>'Title',
+    'Package'=>'Package',
+    'Type'=>'Type',
+    'Cost'=>'Cost',
+    'Multiply'=>'Multiply',
+    'Status'=>'Status',
+    'Mandatory'=>'Mandatory',
+    'Optional'=>'Optional',
+    'Multiply'=>'Multiply',
+    'Single'=>'Single',
+    'Active'=>'Active',
+    'Passive'=>'Passive',
+
+    'Back'=>'Back',
+    'Image'=>'Image',
+    'Yes'=>'Yes',
+    'No'=>'No',
+    'ChoosePackage'=>'ChoosePackage',
+    'Edit'=>'Edit'
 ]
 
 

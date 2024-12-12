@@ -39,7 +39,8 @@ return [
     'AppCompleted'=>'Appointment Completed',
     'TotalAgency'=>'Total Agency',
     'CurrentMonthsApps'=>'Current Months Apps',
-    'Patient'=>'Patient'
+    'Patient'=>'Patient',
+    'Operation'=>'Operation'
 
 ];
 

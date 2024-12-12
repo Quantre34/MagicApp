@@ -11,11 +11,11 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Paket Düzenle</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManagePackage.Edit')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="/panel/categories">Paketler</a>
+                    <a class="text-muted text-decoration-none" href="/panel/categories">{{Lang::get('ManagePackage.Packages')}}</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">{{$Package['Title']}}</li>
                 </ol>
@@ -24,7 +24,7 @@
             <div class="d-flex align-items-center justify-content-between gap-6">
               <a href="panel/packages" class="text-warning d-flex align-items-center ">
                 <i class="fas fa-arrow-left"></i>
-                 &nbsp Geri dön
+                 &nbsp {{Lang::get('ManagePackage.Back')}}
               </a>
             </div>
           </div>
@@ -42,7 +42,7 @@
 
                 <form id="FileUploadForm" action="ajax" method="POST" target="UploadFile" >                
                 <div class="mb-3 row">
-                  <label for="exampleInputtext1" class="form-label">Görsel</label>
+                  <label for="exampleInputtext1" class="form-label">{{Lang::get('ManagePackage.Image')}}</label>
                   <div class="col-sm-8 col-md-9 col-lg-10">
                     <center>
                       <div style="width: 100%;"  class="col-auto">
@@ -64,24 +64,24 @@
                     <input hidden type="text" class="form-control" name="uid" value="{{$Package['uid']}}" />
 
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Başlık</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManagePackage.Title')}}</label>
                       <input type="text" name="Title" required class="form-control" id="exampleInputtext1" value="{{$Package['Title']}}" >
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Paket Ücreti(%)</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManagePackage.Fee')}}(%)</label>
                       <input type="text" name="Rate" required class="form-control" id="exampleInputtext1" value="{{$Package['Rate']}}" >
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Seviye(Yıldız)</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManagePackage.Stars')}}</label>
                       <input type="text" name="Stat" required class="form-control" id="exampleInputtext1" value="{{$Package['Stat']}}" >
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Açıklama</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManagePackage.Description')}}</label>
                       <textarea class="form-control" name="Description">{{$Package['Description']}}</textarea>
                     </div>
 
                       <div class="mb-1">
-                        <label for="exampleInputtext1" class="form-label">Klinikler</label>
+                        <label for="exampleInputtext1" class="form-label">{{Lang::get('ManagePackage.Clinics')}}</label>
                         <select class="select2-with-bg form-control" name="Clinics[]" id="bg-multiple" multiple="multiple" data-bgcolor="light-info" data-bgcolor-variation="" data-text-color="white">
                           @foreach($Clinics as $Clinic)
                             <option <?= in_array($Clinic['uid'], json_decode(($Package['Clinics']??'[]'),true))? 'selected' : '' ?> value="{{$Clinic['uid']}}">{{$Clinic['Title']}}</option>
@@ -90,10 +90,10 @@
                       </div>
 
                       <div class="mb-1">
-                        <label for="exampleInputtext1" class="form-label">Durum</label>
+                        <label for="exampleInputtext1" class="form-label">{{Lang::get('ManagePackage.Status')}}</label>
                         <select class="form-select" required name="Status">
-                          <option {{$Package['Status']=='0'? 'Selected' : ''}} value="0">Pasif</option>
-                          <option  {{$Package['Status']=='1'? 'Selected' : ''}} value="1">Aktif</option>
+                          <option {{$Package['Status']=='0'? 'Selected' : ''}} value="0">{{Lang::get('ManagePackage.Passive')}}</option>
+                          <option  {{$Package['Status']=='1'? 'Selected' : ''}} value="1">{{Lang::get('ManagePackage.Active')}}</option>
                         </select>
                       </div>
                     </div>
@@ -101,7 +101,7 @@
 
                   <div class="col-12">
                     <div class="d-flex align-items-center justify-content-end mt-4 gap-6">
-                      <button id="savebtn" class="btn btn-primary">Düzenle</button>
+                      <button id="savebtn" class="btn btn-primary">{{Lang::get('ManagePackage.Edit')}}</button>
                     </div>
                   </div>
                 </div>

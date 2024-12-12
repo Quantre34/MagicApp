@@ -4,13 +4,13 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Operasyon</h4>
+              <h4 class="fs-6 mb-0">{{ Lang::get('AdminDashboard.Operation') }}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="/panel">Home</a>
+                    <a class="text-muted text-decoration-none" href="/panel">{{ Lang::get('AdminDashboard.Panel') }}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Operasyon</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('AdminDashboard.Operation')}}</li>
                 </ol>
               </nav>
             </div>
@@ -20,13 +20,13 @@
             <div class="col-lg-12 col-md-12">
               <div class="card">
                 <div class="border-bottom title-part-padding">
-                  <h4 class="card-title mb-0">Operasyon Şeması</h4>
+                  <h4 class="card-title mb-0">{{Lang::get('Base.Schema')}}</h4>
                 </div>
                 <div class="card-body">
                   <div class="myadmin-dd dd" id="nestable">
                     <ol class="dd-list">
                       <li class="dd-item" data-id="1">
-                        <div class="dd-handle">Ben</div>
+                        <div class="dd-handle">{{Lang::get('Base.Me')}}</div>
                       </li>
                       <ol class="dd-list">                        
                         @foreach($SubManagers as $Manager)

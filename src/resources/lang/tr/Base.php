@@ -34,7 +34,9 @@ return [
     'Delete'=>'Sil',
     'Canceled'=>'İşlem iptal edildi',
     'SearchFor'=>'Ara...',
-    'MyNotifications'=>'Bildirimlerim'
+    'MyNotifications'=>'Bildirimlerim',
+    'Me'=>'Me',
+    'Schema'=>'Schema'
 
 ];
 

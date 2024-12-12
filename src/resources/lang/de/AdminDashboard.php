@@ -36,7 +36,8 @@ return [
     'AppOnHold' => 'Wartender Termin',
     'AppCompleted' => 'Abgeschlossener Termin',
     'TotalAgency' => 'Gesamtanzahl der Agenturen',
-    'CurrentMonthsApps' => 'Termine dieses Monats'
+    'CurrentMonthsApps' => 'Termine dieses Monats',
+    'Operation'=>'Operation'
 ];
 
 ?>

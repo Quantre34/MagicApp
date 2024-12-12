@@ -26,13 +26,13 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Tedaviler</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManageTreatment.Treatments')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Anasayfa</a>
+                    <a class="text-muted text-decoration-none" href="/panel">{{Lang::get('ManageTreatment.Panel')}}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Tedaviler</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('ManageTreatment.Treatments')}}</li>
                 </ol>
               </nav>
             </div>
@@ -45,7 +45,7 @@
               </select> -->
               <a href="/panel/treatments/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
-                Yeni Ekle
+                {{Lang::get('ManageTreatment.New')}}
               </a>
             </div>
           </div>
@@ -59,10 +59,10 @@
                       <!-- start row -->
                         <tr>
                           <th>Id</th>
-                          <th>Name</th>
-                          <th>Slug</th>
-                          <th>Cost</th>
-                          <th>Status</th>
+                          <th>{{Lang::get('ManageTreatment.Title')}}</th>
+                          <th>{{Lang::get('ManageTreatment.Slug')}}</th>
+                          <th>{{Lang::get('ManageTreatment.Cost')}}</th>
+                          <th>{{Lang::get('ManageTreatment.Status')}}</th>
                           <th></th>
                         </tr>
                       <!-- end row -->
@@ -76,7 +76,7 @@
                           <td>{{$Treatment['Slug']}}</td>
                           <td>{{$Treatment['Cost']}}</td>
                           <td class="hidden-xs" width="150">
-                              <span class="badge  bg-<?= $Treatment['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $Treatment['Status']=='1'? 'success' : 'danger' ?>"><?= $Treatment['Status']=='1'? 'Aktif' : 'Pasif' ?></span>
+                              <span class="badge  bg-<?= $Treatment['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $Treatment['Status']=='1'? 'success' : 'danger' ?>"><?= $Treatment['Status']=='1'? Lang::get('ManageTreatment.Active') : Lang::get('ManageTreatment.Passive') ?></span>
                           </td>
                           <td>
                              <a href="/panel/treatments/{{$Treatment['uid']}}">

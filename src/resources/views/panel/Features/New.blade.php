@@ -10,20 +10,20 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Hizmet Düzenle</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManageFeature.New')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="/panel/categories">Hizmetler</a>
+                    <a class="text-muted text-decoration-none" href="/panel/categories">{{Lang::get('ManageFeature.Features')}}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">{{$Feature['Title']}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('ManageFeature.New')}}</li>
                 </ol>
               </nav>
             </div>
             <div class="d-flex align-items-center justify-content-between gap-6">
               <a href="/panel/features" class="text-warning d-flex align-items-center ">
                 <i class="fas fa-arrow-left"></i>
-                 &nbsp Geri dön
+                 &nbsp {{Lang::get('ManageFeature.Back')}}
               </a>
             </div>
           </div>
@@ -41,7 +41,7 @@
 
                 <form id="FileUploadForm" action="ajax" method="POST" target="UploadFile" >                
                 <div class="mb-3 row">
-                  <label for="exampleInputtext1" class="form-label">Görsel</label>
+                  <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.Image')}}</label>
                   <div class="col-sm-8 col-md-9 col-lg-10">
                     <center>
                       <div style="width: 100%;"  class="col-auto">
@@ -62,31 +62,31 @@
                     @csrf
                     <input type="hidden" name="Img" >
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Başlık</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.Title')}}</label>
                       <input type="text" name="Title" required class="form-control" id="exampleInputtext1">
                     </div>
 
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Başlık</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.Cost')}}</label>
                       <input type="decimal" name="Cost" required class="form-control" id="exampleInputtext1"  >
                     </div>
 
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Türü</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.Type')}}</label>
                       <select class="form-select" required name="Checked">
-                        <option value="0">Opsionel</option>
-                        <option  value="1">Zorunlu</option>
+                        <option value="0">{{Lang::get('ManageFeature.Optional')}}</option>
+                        <option  value="1">{{Lang::get('ManageFeature.Mandatory')}}</option>
                       </select>
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Çarp</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.Multiply')}}</label>
                       <select class="form-select" required name="Multiply">
-                        <option  value="0">Evet</option>
-                        <option  value="1">Hayır</option>
+                        <option  value="0">{{Lang::get('ManageFeature.No')}}</option>
+                        <option  value="1">{{Lang::get('ManageFeature.Yes')}}</option>
                       </select>
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Paket Seç</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.ChoosePackage')}}</label>
                       <select class="form-select" required name="Package">
                         @foreach($Packages as $Package)
                           <option value="{{$Package['uid']}}">{{$Package['Title']}}</option>
@@ -94,20 +94,20 @@
                       </select>
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Sıra</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.Order')}}</label>
                       <input type="number" name="Order" required class="form-control" id="exampleInputtext1"  >
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Durum</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageFeature.Status')}}</label>
                       <select class="form-select" required name="Status">
-                        <option value="0">Pasif</option>
-                        <option  value="1">Aktif</option>
+                        <option value="0">{{Lang::get('ManageFeature.Passive')}}</option>
+                        <option  value="1">{{Lang::get('ManageFeature.Active')}}</option>
                       </select>
                     </div>
 
                   <div class="col-12">
                     <div class="d-flex align-items-center justify-content-end mt-4 gap-6">
-                      <button id="savebtn" class="btn btn-primary">Düzenle</button>
+                      <button id="savebtn" class="btn btn-primary">{{Lang::get('ManageFeature.New')}}</button>
                       <!-- <button class="btn bg-danger-subtle text-danger">Cancel</button> -->
                     </div>
                   </div>

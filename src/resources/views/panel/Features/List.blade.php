@@ -26,13 +26,13 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Media</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManageFeature.Features')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Anasayfa</a>
+                    <a class="text-muted text-decoration-none" href="../main/index.html">{{Lang::get('ManageFeature.Features')}}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Media</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('ManageFeature.Features')}}</li>
                 </ol>
               </nav>
             </div>
@@ -45,7 +45,7 @@
               </select> -->
               <a href="/panel/website/media/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
-                Yeni Ekle
+                {{Lang::get('ManageFeature.New')}}
               </a>
             </div>
           </div>
@@ -58,12 +58,12 @@
                     <thead>
                       <!-- start row -->
                         <tr>
-                          <th>Başlık</th>
-                          <th>Paket</th>
-                          <th>Türü</th>
-                          <th>Ücret</th>
-                          <th>Çarp</th>
-                          <th>Durumu</th>
+                          <th>{{Lang::get('ManageFeature.Title')}}</th>
+                          <th>{{Lang::get('ManageFeature.Package')}}</th>
+                          <th>{{Lang::get('ManageFeature.Type')}}</th>
+                          <th>{{Lang::get('ManageFeature.Cost')}}</th>
+                          <th>{{Lang::get('ManageFeature.Multiply')}}</th>
+                          <th>{{Lang::get('ManageFeature.Status')}}</th>
                           <th></th>
                         </tr>
                       <!-- end row -->
@@ -74,11 +74,11 @@
                         <tr>
                           <td>{{$Feature['Title']}}</td>
                           <td>{{$Feature['Parent']['Title']??''}}</td>
-                          <td>{{$Feature['Checked']=='1'?'Zorunlu':'Opsiyonel'}}</td>
+                          <td>{{$Feature['Checked']=='1'? Lang::get('ManageFeature.Mandatory')  : Lang::get('ManageFeature.Optional') }}</td>
                           <td>{{$Feature['Cost']}}</td>
-                          <td>{{$Feature['Checked']=='1'?'Çarpanlı':'Tekil'}}</td>
+                          <td>{{$Feature['Checked']=='1'? Lang::get('ManageFeature.Multiply') : Lang::get('ManageFeature.Single') }}</td>
                           <td class="hidden-xs" width="150">
-                              <span class="badge  bg-{{ $Feature['Status']=='1'? 'success' : 'danger' }}-subtle text-{{ $Feature['Status']=='1'? 'success' : 'danger' }}">{{ $Feature['Status']=='1'? 'Aktif' : 'Pasif' }}</span>
+                              <span class="badge  bg-{{ $Feature['Status']=='1'? 'success' : 'danger' }}-subtle text-{{ $Feature['Status']=='1'? 'success' : 'danger' }}">{{ $Feature['Status']=='1'? Lang::get('ManageFeature.Active') : Lang::get('ManageFeature.Passive') }}</span>
                           </td>
                           <td>
                              <a href="/panel/features/{{$Feature['uid']}}">

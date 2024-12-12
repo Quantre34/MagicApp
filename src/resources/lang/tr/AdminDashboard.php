@@ -37,7 +37,8 @@ return [
     'AppCompleted' => 'Tamamlanan Randevu',
     'TotalAgency' => 'Toplam Ajans',
     'CurrentMonthsApps' => 'Bu Ayın Randevuları',
-    'Patient'=>'Patient'
+    'Patient'=>'Patient',
+    'Operation'=>'Operation'
 
 ];
 

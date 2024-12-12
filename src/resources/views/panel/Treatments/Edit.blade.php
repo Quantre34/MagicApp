@@ -10,11 +10,11 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Tedavi Düzenle</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManageTreatment.Edit')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="/panel/treatments">Tedaviler</a>
+                    <a class="text-muted text-decoration-none" href="/panel/treatments">{{Lang::get('ManageTreatment.Treatments')}}</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">{{$Treatment['Title']}}</li>
                 </ol>
@@ -23,7 +23,7 @@
               <div class="d-flex align-items-center justify-content-between gap-6">
               <a href="panel/treatments" class="text-warning d-flex align-items-center ">
                 <i class="fas fa-arrow-left"></i>
-                 &nbsp Geri dön
+                 &nbsp {{Lang::get('ManageTreatment.Back')}}
               </a>
             </div>
           </div>
@@ -38,7 +38,7 @@
 
                     <form id="FileUploadForm" action="ajax" method="POST" target="UploadFile" >                
                     <div class="mb-3 row">
-                      <label for="exampleInputtext1" class="form-label">Görsel</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Image')}}</label>
                       <div class="col-sm-8 col-md-9 col-lg-10">
                         <center>
                           <div style="width: 100%;"  class="col-auto">
@@ -60,23 +60,23 @@
                             <input hidden type="text" class="form-control" name="uid" value="{{$Treatment['uid']}}" />
 
                             <div class="mb-1">
-                              <label for="exampleInputtext1" class="form-label">Başlık</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Title')}}</label>
                               <input type="text" name="Title" required class="form-control" id="exampleInputtext1" value="{{$Treatment['Title']}}" >
                             </div>
                             <div class="mb-1">
-                              <label for="exampleInputtext1" class="form-label">Url Anahtarı</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Slug')}}</label>
                               <input type="text"  name="Slug" required class="form-control" id="exampleInputtext1" value="{{$Treatment['Slug']}}">
                             </div>
                              <div class="mb-1">
-                              <label for="exampleInputtext1" class="form-label">Fiyatı</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Cost')}}</label>
                               <input type="text"  name="Cost" required class="form-control" id="exampleInputtext1" value="{{$Treatment['Cost']}}">
                             </div>
                             <div class="mb-1">
-                              <label for="exampleInputtext1" class="form-label">Tedavi süresi (Gün olarak)</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.EstimatedTime')}}</label>
                               <input type="number"  name="EstimatedTime" required class="form-control" id="exampleInputtext1" value="{{$Treatment['EstimatedTime']}}">
                             </div>
                             <div class="mb-1">
-                              <label for="exampleInputtext1" class="form-label">Kategori</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Category')}}</label>
                               <select class="form-select" required name="Category">
                                   @foreach($Categories as $Category)
                                       <option value="{{$Category['Id']}}">{{$Category['Title']}}</option>
@@ -104,13 +104,13 @@
                                     <div class="row col-9 PriceItem" data-id="{{$Clinic['uid']}}">
                                       <div class="col-lg-6">
                                         <div class="mb-4">
-                                          <label for="exampleInputname2" class="form-label">Klinik</label>
+                                          <label for="exampleInputname2" class="form-label">{{Lang::get('ManageTreatment.Clinic')}}</label>
                                           <input type="text" disabled class="form-control" id="exampleInputname2" value="{{$Clinic['Title']}}">
                                         </div>
                                       </div>
                                       <div class="col-lg-3">
                                         <div class="mb-4">
-                                          <label for="exampleInputtext1" class="form-label">Fiyat</label>
+                                          <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Cost')}}</label>
                                           <div class="input-group">
                                             <input type="text" name="{{$Clinic['uid']}}" class="form-control" placeholder="--€" required value="{{$Cost}}">
                                             <span class="input-group-text px-6 PriceInfo" id="basic-addon1">
@@ -126,17 +126,17 @@
 
 
                             <div class="mb-1 row" >
-                              <label for="exampleInputtext1" class="form-label">Açıklama</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Description')}}</label>
                               <div style="width:100%;" id="editor" onfocusout="javascript: $('textarea[name=Description]').html($(this).children('.ql-editor').html());" class=" html-editor-snow html-editor sh-13 editor">
                                 {{$Treatment['Description']}}
                               </div>
                             </div>
                             <textarea hidden id="text-area" name="Description">{{$Treatment['Description']}}</textarea>
                             <div class="mb-1">
-                              <label for="exampleInputtext1" class="form-label">Durum</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Status')}}</label>
                               <select class="form-select" required name="Status">
-                                <option {{$Treatment['Status']=='0'? 'Selected' : ''}} value="0">Pasif</option>
-                                <option {{$Treatment['Status']=='1'? 'Selected' : ''}} value="1">Aktif</option>
+                                <option {{$Treatment['Status']=='0'? 'Selected' : ''}} value="0">{{Lang::get('ManageTreatment.Passive')}}</option>
+                                <option {{$Treatment['Status']=='1'? 'Selected' : ''}} value="1">{{Lang::get('ManageTreatment.Active')}}</option>
                               </select>
                             </div>
 
@@ -149,7 +149,7 @@
 
                           <div class="col-12">
                             <div class="d-flex align-items-center justify-content-end mt-4 gap-6">
-                              <button id="savebtn" class="btn btn-primary">Düzenle</button>
+                              <button id="savebtn" class="btn btn-primary">{{Lang::get('ManageTreatment.Edit')}}</button>
                             </div>
                           </div>
                     </form>
@@ -245,13 +245,13 @@
                       <div class="row col-9 PriceItem" data-id="${uid}">
                           <div class="col-lg-6">
                             <div class="mb-4">
-                              <label for="exampleInputname2" class="form-label">Klinik</label>
+                              <label for="exampleInputname2" class="form-label">{{Lang::get('ManageTreatment.Clinic')}}</label>
                               <input type="text" disabled class="form-control" id="exampleInputname2" value="${Title}">
                             </div>
                           </div>
                           <div class="col-lg-3">
                             <div class="mb-4">
-                              <label for="exampleInputtext1" class="form-label">Fiyat</label>
+                              <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageTreatment.Cost')}}</label>
                               <div class="input-group">
                                 <input type="text" name="${uid}" class="form-control" placeholder="--€" required>
                                 <span class="input-group-text px-6 PriceInfo" id="basic-addon1">
@@ -269,7 +269,7 @@
 
 
           $(document).on('click', '.PriceInfo', function(){
-              toastr.info('Her Klinik için farklı ücret girilmelidir','{{Lang::get('Base.Failed')}}',{
+              toastr.info('{{Lang::get('ManageTreatment.DifferentPer')}}','{{Lang::get('Base.Failed')}}',{
                 positionClass: 'toastr toast-bottom-right',
                 containerId: 'toast-bottom-right'
               });

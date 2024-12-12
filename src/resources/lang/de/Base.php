@@ -35,7 +35,9 @@ return [
     'Delete'=>'Löschen',
     'Canceled'=>'Vorgang abgebrochen',
     'SearchFor'=>'Search for...',
-    'MyNotifications'=>'Notifications'
+    'MyNotifications'=>'Notifications',
+    'Me'=>'Me',
+    'Schema'=>'Schema'
 ];
 
 

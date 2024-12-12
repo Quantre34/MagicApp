@@ -34,7 +34,9 @@ return [
 	'Delete'=>'Delete',
 	'Canceled'=>'Process canceled',
 	'SearchFor'=>'Search for...',
-    'MyNotifications'=>'Notifications'
+    'MyNotifications'=>'Notifications',
+    'Me'=>'Me',
+    'Schema'=>'Schema'
 
 ];
 

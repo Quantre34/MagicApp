@@ -19,7 +19,29 @@ return [
     'Order'=>'Bestellen',
     'DontMultiply'=>'Nicht multiplizieren',
     'Multiply' => 'Multiplizieren',
-    'PerTDay' => 'Mit Behandlungstag'
+    'PerTDay' => 'Mit Behandlungstag',
+
+    'Features'=>'Features',
+    'New'=>'New',
+    'Title'=>'Title',
+    'Package'=>'Package',
+    'Type'=>'Type',
+    'Cost'=>'Cost',
+    'Multiply'=>'Multiply',
+    'Status'=>'Status',
+    'Mandatory'=>'Mandatory',
+    'Optional'=>'Optional',
+    'Multiply'=>'Multiply',
+    'Single'=>'Single',
+    'Active'=>'Active',
+    'Passive'=>'Passive',
+
+    'Back'=>'Back',
+    'Image'=>'Image',
+    'Yes'=>'Yes',
+    'No'=>'No',
+    'ChoosePackage'=>'ChoosePackage',
+    'Edit'=>'Edit'
 ]
 
 

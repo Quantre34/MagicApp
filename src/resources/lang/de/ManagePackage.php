@@ -15,7 +15,24 @@ return [
     'Active' => 'Aktiv',
     'Passive' => 'Passiv',
     'Reset'=>'Klar',
-    'NotFound'=>'Paket nicht gefunden!'
+    'NotFound'=>'Paket nicht gefunden!',
+
+    'Panel'=>'Panel',
+    'Packages'=>'Packages',
+    'New'=>'New',
+    'Image'=>'Image',
+    'Name'=>'Name',
+    'Fee'=>'Fee',
+    'Status'=>'Status',
+    'Success'=>'Success',
+    'Danger'=>'Danger',
+    'Active'=>'Active',
+    'Pasive'=>'Pasive',
+
+    'Back'=>'Back',
+    'Stars'=>'Stars',
+    'Clinics'=>'Clinics',
+    'Edit'=>'Edit'
 ]
 
 ?>

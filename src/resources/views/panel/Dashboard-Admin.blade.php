@@ -214,7 +214,7 @@
                     <thead>
                       <tr>
                         <th class="border-bottom fs-3 ps-4">
-                          #Id
+                          #
                         </th>
                         <th class="border-bottom fs-3">
                           {{ Lang::get('AdminDashboard.Patient') }}

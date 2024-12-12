@@ -10,11 +10,11 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Klinik Düzenle</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManageClinic.Edit')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="/panel/categories">Klinik</a>
+                    <a class="text-muted text-decoration-none" href="/panel/categories">{{Lang::get('ManageClinic.Clinics')}}</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">{{$Clinic['Title']}}</li>
                 </ol>
@@ -23,7 +23,7 @@
             <div class="d-flex align-items-center justify-content-between gap-6">
               <a href="panel/clinics" class="text-warning d-flex align-items-center ">
                 <i class="fas fa-arrow-left"></i>
-                 &nbsp Geri dön
+                 &nbsp {{Lang::get('ManageClinic.Back')}}
               </a>
             </div>
           </div>
@@ -38,7 +38,7 @@
 
                 <form id="FileUploadForm" action="ajax" method="POST" target="UploadFile" >                
                 <div class="mb-3 row">
-                  <label for="exampleInputtext1" class="form-label">Görsel</label>
+                  <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Image')}}</label>
                   <div class="col-sm-8 col-md-9 col-lg-10">
                     <center>
                       <div style="width: 100%;"  class="col-auto">
@@ -60,31 +60,31 @@
                     <input hidden type="text" class="form-control" name="uid" value="{{$Clinic['uid']}}" />
 
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Başlık</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Title')}}</label>
                       <input type="text" name="Title" required class="form-control" id="exampleInputtext1" value="{{$Clinic['Title']}}" >
                     </div>
                      <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Mail</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Mail')}}</label>
                       <input type="text" name="Mail" required class="form-control" id="exampleInputtext1" value="{{$Clinic['Mail']}}" >
                     </div>
                      <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Telefon</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Tell')}}</label>
                       <input type="text" name="Tell" required class="form-control" id="exampleInputtext1" value="{{$Clinic['Tell']}}" >
                     </div>
                      <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Ülke</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Country')}}</label>
                       <input type="text" name="Country" required class="form-control" id="exampleInputtext1" value="{{$Clinic['Country']}}" >
                     </div>
                      <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">İl </label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Province')}} </label>
                       <input type="text" name="Province" required class="form-control" id="exampleInputtext1" value="{{$Clinic['Province']}}" >
                     </div>
                      <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">İlçe</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.City')}}</label>
                       <input type="text" name="City" required class="form-control" id="exampleInputtext1" value="{{$Clinic['City']}}" >
                     </div>
                      <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Komisyon (%)</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Commission')}} (%)</label>
                       <input type="number" name="CommissionRate" required class="form-control" id="exampleInputtext1" value="{{$Clinic['CommissionRate']}}" >
                     </div>
 <!--                     <dib class="mb-1">
@@ -96,17 +96,17 @@
                       </select>
                     </dib> -->
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Durum</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageClinic.Status')}}</label>
                       <select class="form-select" required name="Status">
-                        <option {{$Clinic['Status']=='0'? 'Selected' : ''}} value="0">Pasif</option>
-                        <option  {{$Clinic['Status']=='1'? 'Selected' : ''}} value="1">Aktif</option>
+                        <option {{$Clinic['Status']=='0'? 'Selected' : ''}} value="0">{{Lang::get('ManageClinic.Passive')}}</option>
+                        <option  {{$Clinic['Status']=='1'? 'Selected' : ''}} value="1">{{Lang::get('ManageClinic.Active')}}</option>
                       </select>
                     </div>
 
 
                   <div class="col-12">
                     <div class="d-flex align-items-center justify-content-end mt-4 gap-6">
-                      <button id="savebtn" class="btn btn-primary">Düzenle</button>
+                      <button id="savebtn" class="btn btn-primary">{{Lang::get('ManageClinic.Edit')}}</button>
                     </div>
                   </div>
                 </div>

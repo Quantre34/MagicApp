@@ -42,7 +42,8 @@ return [
     'Treatment' => 'Behandlung',
     'Price' => 'Preis',
     'Tasks' => 'Aufgaben',
-    'Today' => 'Heute'
+    'Today' => 'Heute',
+    'Operations'=>'Operations'
 ];
 
 ?>

@@ -26,13 +26,13 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Kategoriler</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManageCategory.Categories')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="../main/index.html">Anasayfa</a>
+                    <a class="text-muted text-decoration-none" href="../main/index.html">{{Lang::get('ManageCategory.Panel')}}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Kategoriler</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('ManageCategory.Categories')}}</li>
                 </ol>
               </nav>
             </div>
@@ -45,7 +45,7 @@
               </select> -->
               <a href="/panel/categories/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
-                Yeni Ekle
+                {{Lang::get('ManageCategory.New')}}
               </a>
             </div>
           </div>
@@ -58,10 +58,10 @@
                     <thead>
                       <!-- start row -->
                         <tr>
-                          <th>Image</th>
-                          <th>Name</th>
-                          <th>Slug</th>
-                          <th>Status</th>
+                          <th>{{Lang::get('ManageCategory.Image')}}</th>
+                          <th>{{Lang::get('ManageCategory.Title')}}</th>
+                          <th>{{Lang::get('ManageCategory.Slug')}}</th>
+                          <th>{{Lang::get('ManageCategory.Status')}}</th>
                           <th></th>
                         </tr>
                       <!-- end row -->
@@ -74,7 +74,7 @@
                           <td>{{$Category['Title']}}</td>
                           <td>{{$Category['Slug']}}</td>
                           <td class="hidden-xs" width="150">
-                              <span class="badge  bg-<?= $Category['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $Category['Status']=='1'? 'success' : 'danger' ?>"><?= $Category['Status']=='1'? 'Aktif' : 'Pasif' ?></span>
+                              <span class="badge  bg-<?= $Category['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $Category['Status']=='1'? 'success' : 'danger' ?>"><?= $Category['Status']=='1'? Lang::get('ManageCategory.Active') : Lang::get('ManageCategory.Active') ?></span>
                           </td>
                           <td>
                              <a href="/panel/categories/{{$Category['uid']}}">

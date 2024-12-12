@@ -26,13 +26,13 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Paketler</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManagePakcage.Packages')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" >Anasayfa</a>
+                    <a class="text-muted text-decoration-none" >{{Lang::get('AdminDashboard.Panel')}}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Paketler</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('ManagePakcage.Packages')}}</li>
                 </ol>
               </nav>
             </div>
@@ -45,7 +45,7 @@
               </select> -->
               <a href="/panel/packages/new" class="btn btn-success d-flex align-items-center gap-1 fs-3 py-2 px-9">
                 <i class="ti ti-plus fs-4"></i>
-                Yeni Ekle
+                {{Lang::get('ManagePakcage.New')}}
               </a>
             </div>
           </div>
@@ -58,10 +58,10 @@
                     <thead>
                       <!-- start row -->
                         <tr>
-                          <th>Image</th>
-                          <th>Name</th>
-                          <th>Rate</th>
-                          <th>Status</th>
+                          <th>{{Lang::get('ManagePakcage.Image')}}</th>
+                          <th>{{Lang::get('ManagePakcage.Name')}}</th>
+                          <th>{{Lang::get('ManagePakcage.Fee')}}</th>
+                          <th>{{Lang::get('ManagePakcage.Status')}}</th>
                           <th></th>
                         </tr>
                       <!-- end row -->
@@ -74,7 +74,7 @@
                           <td>{{$Package['Title']}}</td>
                           <td>{{$Package['Rate']}}</td> 
                           <td class="hidden-xs" width="150">
-                              <span class="badge  bg-<?= $Package['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $Package['Status']=='1'? 'success' : 'danger' ?>"><?= $Package['Status']=='1'? 'Aktif' : 'Pasif' ?></span>
+                              <span class="badge  bg-<?= $Package['Status']=='1'? 'success' : 'danger' ?>-subtle text-<?= $Package['Status']=='1'?  'success' : 'danger' ?>"><?= $Package['Status']=='1'?  Lang::get('ManagePakcage.Active') : Lang::get('ManagePakcage.Pasive') ?></span>
                           </td>
                           <td>
                              <a href="/panel/packages/{{$Package['uid']}}">

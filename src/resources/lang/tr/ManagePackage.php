@@ -15,7 +15,24 @@ return [
     'Active' => 'Aktif',
     'Passive' => 'Pasif',
     'Reset'=>'Sıfırla',
-    'NotFound'=>'Paket bulunamadı!'
+    'NotFound'=>'Paket bulunamadı!',
+
+    'Panel'=>'Panel',
+    'Packages'=>'Packages',
+    'New'=>'New',
+    'Image'=>'Image',
+    'Name'=>'Name',
+    'Fee'=>'Fee',
+    'Status'=>'Status',
+    'Success'=>'Success',
+    'Danger'=>'Danger',
+    'Active'=>'Active',
+    'Pasive'=>'Pasive',
+
+    'Back'=>'Back',
+    'Stars'=>'Stars',
+    'Clinics'=>'Clinics',
+    'Edit'=>'Edit'
 ]
 
 ?>

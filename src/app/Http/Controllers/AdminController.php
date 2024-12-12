@@ -1728,9 +1728,7 @@ $currentYear = Carbon::now()->year;
     public function EditFeature($uid){
         if ($this->User['Type']=='2') {
             $Packages = $this->toArray(DB::table('package')->where('Lang', $this->Lang)->get());
-            $Feature = $this->toArray(DB::table('feature')->where('uid',$uid)->first());
             $result = ['outcome'=>true,'route'=>'panel.Features.Edit','data'=>[
-                'Feature'=>$Feature,
                 'Packages'=>$Packages
             ]]; 
         }else {
@@ -1745,8 +1743,9 @@ $currentYear = Carbon::now()->year;
     ///
     public function NewFeature(){
         if ($this->User['Type']=='2') {
+            $Packages = $this->toArray(DB::table('package')->where('Lang', $this->Lang)->get());
             $result = ['outcome'=>true,'route'=>'panel.Features.New','data'=>[
-                'Type'=>false
+                'Packages'=>$Packages
             ]]; 
         }else {
             $result = ['outcome'=>false,'ErrorMessage'=>Lang::get('Base.UnauthorizedRequest')];

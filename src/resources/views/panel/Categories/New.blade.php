@@ -9,20 +9,20 @@
         <div class="container-fluid">
           <div class="d-md-flex align-items-center justify-content-between mb-7">
             <div class="mb-4 mb-md-0">
-              <h4 class="fs-6 mb-0">Kategori Düzenle</h4>
+              <h4 class="fs-6 mb-0">{{Lang::get('ManageCategory.New')}}</h4>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
-                    <a class="text-muted text-decoration-none" href="/panel/categories">Kategoiler</a>
+                    <a class="text-muted text-decoration-none" href="/panel/categories">{{Lang::get('ManageCategory.Categories')}}</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Yeni Ekle</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{Lang::get('ManageCategory.New')}}</li>
                 </ol>
               </nav>
             </div>
             <div class="d-flex align-items-center justify-content-between gap-6">
               <a class="text-warning d-flex align-items-center ">
                 <i class="fas fa-arrow-left"></i>
-                 &nbsp Geri dön
+                 &nbsp {{Lang::get('ManageCategory.Back')}}
               </a>
             </div>
           </div>
@@ -43,7 +43,7 @@
 
                 <form id="FileUploadForm" action="ajax" method="POST" target="UploadFile" >                
                 <div class="mb-3 row">
-                  <label for="exampleInputtext1" class="form-label">Görsel</label>
+                  <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageCategory.Image')}}</label>
                   <div class="col-sm-8 col-md-9 col-lg-10">
                     <center>
                       <div style="width: 100%;"  class="col-auto">
@@ -64,18 +64,18 @@
                     <input type="text" hidden required name="Img" value="">
 
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Başlık</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageCategory.Title')}}</label>
                       <input type="text" name="Title" required class="form-control" id="exampleInputtext1" value="" >
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Url Anahtarı</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageCategory.Slug')}}</label>
                       <input type="text"  name="Slug" required class="form-control" id="exampleInputtext1" value="">
                     </div>
                     <div class="mb-1">
-                      <label for="exampleInputtext1" class="form-label">Durum</label>
+                      <label for="exampleInputtext1" class="form-label">{{Lang::get('ManageCategory.Status')}}</label>
                       <select class="form-select" required name="Status">
-                        <option  value="0">Pasif</option>
-                        <option   value="1">Aktif</option>
+                        <option  value="0">{{Lang::get('ManageCategory.Passive')}}</option>
+                        <option   value="1">{{Lang::get('ManageCategory.Active')}}</option>
                       </select>
                     </div>
                   </div>
@@ -84,8 +84,7 @@
 
                   <div class="col-12">
                     <div class="d-flex align-items-center justify-content-end mt-4 gap-6">
-                      <button id="savebtn" class="btn btn-primary">Save</button>
-                      <button class="btn bg-danger-subtle text-danger">Cancel</button>
+                      <button id="savebtn" class="btn btn-primary">{{Lang::get('ManageCategory.New')}}</button>
                     </div>
                   </div>
                 </div>

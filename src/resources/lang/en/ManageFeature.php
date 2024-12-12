@@ -19,7 +19,29 @@ return [
 	'Order'=>'Order',
 	'DontMultiply'=>'Dont Multiply',
 	'Multiply' => 'Multiply',
-	'PerTDay' => 'With treatment day'
+	'PerTDay' => 'With treatment day',
+
+	'Features'=>'Features',
+	'New'=>'New',
+	'Title'=>'Title',
+	'Package'=>'Package',
+	'Type'=>'Type',
+	'Cost'=>'Cost',
+	'Multiply'=>'Multiply',
+	'Status'=>'Status',
+	'Mandatory'=>'Mandatory',
+	'Optional'=>'Optional',
+	'Multiply'=>'Multiply',
+	'Single'=>'Single',
+	'Active'=>'Active',
+	'Passive'=>'Passive',
+
+    'Back'=>'Back',
+    'Image'=>'Image',
+    'Yes'=>'Yes',
+    'No'=>'No',
+    'ChoosePackage'=>'ChoosePackage',
+    'Edit'=>'Edit'
 ]
 
 
