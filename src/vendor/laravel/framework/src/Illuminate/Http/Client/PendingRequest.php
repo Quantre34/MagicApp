@@ -10,7 +10,6 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Client\Events\ConnectionFailed;
@@ -19,11 +18,9 @@ use Illuminate\Http\Client\Events\ResponseReceived;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
-use OutOfBoundsException;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use RuntimeException;
@@ -78,7 +75,7 @@ class PendingRequest
     /**
      * The raw body for the request.
      *
-     * @var \Psr\Http\Message\StreamInterface|string
+     * @var string
      */
     protected $pendingBody;
 
@@ -219,13 +216,12 @@ class PendingRequest
      * Create a new HTTP Client instance.
      *
      * @param  \Illuminate\Http\Client\Factory|null  $factory
-     * @param  array  $middleware
      * @return void
      */
-    public function __construct(Factory $factory = null, $middleware = [])
+    public function __construct(Factory $factory = null)
     {
         $this->factory = $factory;
-        $this->middleware = new Collection($middleware);
+        $this->middleware = new Collection;
 
         $this->asJson();
 
@@ -259,7 +255,7 @@ class PendingRequest
     /**
      * Attach a raw body to the request.
      *
-     * @param  \Psr\Http\Message\StreamInterface|string  $content
+     * @param  string  $content
      * @param  string  $contentType
      * @return $this
      */
@@ -349,21 +345,6 @@ class PendingRequest
     }
 
     /**
-     * Set the given query parameters in the request URI.
-     *
-     * @param  array  $parameters
-     * @return $this
-     */
-    public function withQueryParameters(array $parameters)
-    {
-        return tap($this, function () use ($parameters) {
-            $this->options = array_merge_recursive($this->options, [
-                'query' => $parameters,
-            ]);
-        });
-    }
-
-    /**
      * Specify the request's content type.
      *
      * @param  string  $contentType
@@ -410,18 +391,6 @@ class PendingRequest
                 'headers' => $headers,
             ]);
         });
-    }
-
-    /**
-     * Add the given header to the request.
-     *
-     * @param  string  $name
-     * @param  mixed  $value
-     * @return $this
-     */
-    public function withHeader($name, $value)
-    {
-        return $this->withHeaders([$name => $value]);
     }
 
     /**
@@ -600,13 +569,13 @@ class PendingRequest
     /**
      * Specify the number of times the request should be attempted.
      *
-     * @param  array|int  $times
+     * @param  int  $times
      * @param  Closure|int  $sleepMilliseconds
      * @param  callable|null  $when
      * @param  bool  $throw
      * @return $this
      */
-    public function retry(array|int $times, Closure|int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
+    public function retry(int $times, Closure|int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
     {
         $this->tries = $times;
         $this->retryDelay = $sleepMilliseconds;
@@ -641,32 +610,6 @@ class PendingRequest
     public function withMiddleware(callable $middleware)
     {
         $this->middleware->push($middleware);
-
-        return $this;
-    }
-
-    /**
-     * Add new request middleware the client handler stack.
-     *
-     * @param  callable  $middleware
-     * @return $this
-     */
-    public function withRequestMiddleware(callable $middleware)
-    {
-        $this->middleware->push(Middleware::mapRequest($middleware));
-
-        return $this;
-    }
-
-    /**
-     * Add new response middleware the client handler stack.
-     *
-     * @param  callable  $middleware
-     * @return $this
-     */
-    public function withResponseMiddleware(callable $middleware)
-    {
-        $this->middleware->push(Middleware::mapResponse($middleware));
 
         return $this;
     }
@@ -846,7 +789,7 @@ class PendingRequest
      * Send a pool of asynchronous requests concurrently.
      *
      * @param  callable  $callback
-     * @return array<array-key, \Illuminate\Http\Client\Response>
+     * @return array
      */
     public function pool(callable $callback)
     {
@@ -891,7 +834,7 @@ class PendingRequest
 
         return retry($this->tries ?? 1, function ($attempt) use ($method, $url, $options, &$shouldRetry) {
             try {
-                return tap($this->newResponse($this->sendRequest($method, $url, $options)), function ($response) use ($attempt, &$shouldRetry) {
+                return tap(new Response($this->sendRequest($method, $url, $options)), function ($response) use ($attempt, &$shouldRetry) {
                     $this->populateResponse($response);
 
                     $this->dispatchResponseReceivedEvent($response);
@@ -911,21 +854,17 @@ class PendingRequest
                             $response->throw($this->throwCallback);
                         }
 
-                        $potentialTries = is_array($this->tries)
-                            ? count($this->tries) + 1
-                            : $this->tries;
-
-                        if ($attempt < $potentialTries && $shouldRetry) {
+                        if ($attempt < $this->tries && $shouldRetry) {
                             $response->throw();
                         }
 
-                        if ($potentialTries > 1 && $this->retryThrow) {
+                        if ($this->tries > 1 && $this->retryThrow) {
                             $response->throw();
                         }
                     }
                 });
             } catch (ConnectException $e) {
-                $this->dispatchConnectionFailedEvent(new Request($e->getRequest()));
+                $this->dispatchConnectionFailedEvent();
 
                 throw new ConnectionException($e->getMessage(), 0, $e);
             }
@@ -1007,17 +946,13 @@ class PendingRequest
     {
         return $this->promise = $this->sendRequest($method, $url, $options)
             ->then(function (MessageInterface $message) {
-                return tap($this->newResponse($message), function ($response) {
+                return tap(new Response($message), function ($response) {
                     $this->populateResponse($response);
                     $this->dispatchResponseReceivedEvent($response);
                 });
             })
-            ->otherwise(function (OutOfBoundsException|TransferException $e) {
-                if ($e instanceof ConnectException) {
-                    $this->dispatchConnectionFailedEvent(new Request($e->getRequest()));
-                }
-
-                return $e instanceof RequestException && $e->hasResponse() ? $this->populateResponse($this->newResponse($e->getResponse())) : $e;
+            ->otherwise(function (TransferException $e) {
+                return $e instanceof RequestException && $e->hasResponse() ? $this->populateResponse(new Response($e->getResponse())) : $e;
             });
     }
 
@@ -1045,12 +980,10 @@ class PendingRequest
             $this->transferStats = $transferStats;
         };
 
-        $mergedOptions = $this->normalizeRequestOptions($this->mergeOptions([
+        return $this->buildClient()->$clientMethod($method, $url, $this->mergeOptions([
             'laravel_data' => $laravelData,
             'on_stats' => $onStats,
         ], $options));
-
-        return $this->buildClient()->$clientMethod($method, $url, $mergedOptions);
     }
 
     /**
@@ -1086,25 +1019,6 @@ class PendingRequest
         }
 
         return is_array($laravelData) ? $laravelData : [];
-    }
-
-    /**
-     * Normalize the given request options.
-     *
-     * @param  array  $options
-     * @return array
-     */
-    protected function normalizeRequestOptions(array $options)
-    {
-        foreach ($options as $key => $value) {
-            $options[$key] = match (true) {
-                is_array($value) => $this->normalizeRequestOptions($value),
-                $value instanceof Stringable => $value->toString(),
-                default => $value,
-            };
-        }
-
-        return $options;
     }
 
     /**
@@ -1186,12 +1100,12 @@ class PendingRequest
     {
         return tap($handlerStack, function ($stack) {
             $stack->push($this->buildBeforeSendingHandler());
+            $stack->push($this->buildRecorderHandler());
 
             $this->middleware->each(function ($middleware) use ($stack) {
                 $stack->push($middleware);
             });
 
-            $stack->push($this->buildRecorderHandler());
             $stack->push($this->buildStubHandler());
         });
     }
@@ -1224,7 +1138,7 @@ class PendingRequest
                 return $promise->then(function ($response) use ($request, $options) {
                     $this->factory?->recordRequestResponsePair(
                         (new Request($request))->withData($options['laravel_data']),
-                        $this->newResponse($response)
+                        new Response($response)
                     );
 
                     return $response;
@@ -1330,17 +1244,6 @@ class PendingRequest
     }
 
     /**
-     * Create a new response instance using the given PSR response.
-     *
-     * @param  \Psr\Http\Message\MessageInterface  $response
-     * @return Response
-     */
-    protected function newResponse($response)
-    {
-        return new Response($response);
-    }
-
-    /**
      * Register a stub callable that will intercept requests and be able to return stub responses.
      *
      * @param  callable  $callback
@@ -1409,7 +1312,8 @@ class PendingRequest
      */
     protected function dispatchResponseReceivedEvent(Response $response)
     {
-        if (! ($dispatcher = $this->factory?->getDispatcher()) || ! $this->request) {
+        if (! ($dispatcher = $this->factory?->getDispatcher()) ||
+            ! $this->request) {
             return;
         }
 
@@ -1419,13 +1323,12 @@ class PendingRequest
     /**
      * Dispatch the ConnectionFailed event if a dispatcher is available.
      *
-     * @param  \Illuminate\Http\Client\Request  $request
      * @return void
      */
-    protected function dispatchConnectionFailedEvent(Request $request)
+    protected function dispatchConnectionFailedEvent()
     {
         if ($dispatcher = $this->factory?->getDispatcher()) {
-            $dispatcher->dispatch(new ConnectionFailed($request));
+            $dispatcher->dispatch(new ConnectionFailed($this->request));
         }
     }
 

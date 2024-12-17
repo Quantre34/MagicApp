@@ -268,10 +268,6 @@ class Route
      */
     public function getController()
     {
-        if (! $this->isControllerAction()) {
-            return null;
-        }
-
         if (! $this->controller) {
             $class = $this->getControllerClass();
 
@@ -577,13 +573,13 @@ class Route
      * Get the parent parameter of the given parameter.
      *
      * @param  string  $parameter
-     * @return string|null
+     * @return string
      */
     public function parentOfParameter($parameter)
     {
         $key = array_search($parameter, array_keys($this->parameters));
 
-        if ($key === 0 || $key === false) {
+        if ($key === 0) {
             return;
         }
 
@@ -1140,7 +1136,7 @@ class Route
     }
 
     /**
-     * Get the middleware that should be removed from the route.
+     * Get the middleware should be removed from the route.
      *
      * @return array
      */

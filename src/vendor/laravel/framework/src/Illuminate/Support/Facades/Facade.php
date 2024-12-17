@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Js;
-use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Illuminate\Support\Testing\Fakes\Fake;
 use Mockery;
@@ -18,7 +17,7 @@ abstract class Facade
     /**
      * The application instance being facaded.
      *
-     * @var \Illuminate\Contracts\Foundation\Application|null
+     * @var \Illuminate\Contracts\Foundation\Application
      */
     protected static $app;
 
@@ -47,11 +46,11 @@ abstract class Facade
         $accessor = static::getFacadeAccessor();
 
         if (static::$app->resolved($accessor) === true) {
-            $callback(static::getFacadeRoot(), static::$app);
+            $callback(static::getFacadeRoot());
         }
 
-        static::$app->afterResolving($accessor, function ($service, $app) use ($callback) {
-            $callback($service, $app);
+        static::$app->afterResolving($accessor, function ($service) use ($callback) {
+            $callback($service);
         });
     }
 
@@ -294,7 +293,6 @@ abstract class Facade
             'Log' => Log::class,
             'Mail' => Mail::class,
             'Notification' => Notification::class,
-            'Number' => Number::class,
             'Password' => Password::class,
             'Process' => Process::class,
             'Queue' => Queue::class,
@@ -317,7 +315,7 @@ abstract class Facade
     /**
      * Get the application instance behind the facade.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|null
+     * @return \Illuminate\Contracts\Foundation\Application
      */
     public static function getFacadeApplication()
     {
@@ -327,7 +325,7 @@ abstract class Facade
     /**
      * Set the application instance.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application|null  $app
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void
      */
     public static function setFacadeApplication($app)

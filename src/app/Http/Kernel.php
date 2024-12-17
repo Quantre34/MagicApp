@@ -13,8 +13,6 @@ class Kernel extends HttpKernel
      *
      * @var array<int, class-string|string>
      */
-
-
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -50,12 +48,16 @@ class Kernel extends HttpKernel
     /**
      * The application's middleware aliases.
      *
-     * Aliases may be used instead of class names to conveniently assign middleware to routes and groups.
+     * Aliases may be used to conveniently assign middleware to routes and groups.
      *
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'admin' => \App\Http\Middleware\isAdmin::class,
+        'hasTokens' => \App\Http\Middleware\hasTokens::class,
+        'hasImageTokens' => \App\Http\Middleware\hasImageTokens::class,
+        'hasWordTokens' => \App\Http\Middleware\hasWordTokens::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -65,7 +67,19 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'Admin' => \App\Http\Middleware\Admin::class,
-        'Lang' => \App\Http\Middleware\Lang::class
+    ];
+
+    /**
+     * The application's route middleware.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [
+        /**** OTHER MIDDLEWARES LOCALIZATION ****/
+        'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+        'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+        'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
     ];
 }

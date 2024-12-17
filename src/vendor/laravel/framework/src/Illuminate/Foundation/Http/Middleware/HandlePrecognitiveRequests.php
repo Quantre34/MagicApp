@@ -69,7 +69,7 @@ class HandlePrecognitiveRequests
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Http\Response  $response
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response $response
      */
     protected function appendVaryHeader($request, $response)
     {

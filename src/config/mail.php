@@ -28,30 +28,24 @@ return [
     | sending an e-mail. You will specify which one you are using for your
     | mailers below. You are free to add additional mailers as required.
     |
-    | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
+    | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2"
     |            "postmark", "log", "array", "failover"
     |
     */
 
-
-            // 'host' => (str_contains($_REQUEST['url'], 'medescare'))? env('MAIL_HOST') : 'mail.magicmedical.de',
-            // 'port' => env('MAIL_PORT', 587),
-            // 'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            // 'username' => (str_contains(Request::url(), 'medescare'))? env('MAIL_USERNAME') : 'info@magicmedical.de',
-            // 'password' => (str_contains(Request::url(), 'medescare'))? env('MAIL_PASSWORD') : 'Magic-Medical.de.123!--',
-
-
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'url' => env('MAIL_URL'),
-            'host' => (str_contains($_SERVER['HTTP_HOST'], 'medescare'))? env('MAIL_HOST') : 'mail.magicmedical.de',
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => (str_contains($_SERVER['HTTP_HOST'], 'medescare'))? env('MAIL_USERNAME') : 'info@magicmedical.de',
-            'password' => (str_contains($_SERVER['HTTP_HOST'], 'medescare'))? env('MAIL_PASSWORD') : 'Medescare.2024*',
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'auth_mode' => null,
+            'verify_peer'   => false,
+            'verify_peer_name'   => false,
         ],
 
         'ses' => [
@@ -107,8 +101,8 @@ return [
     */
 
     'from' => [
-        'address' => (str_contains($_SERVER['HTTP_HOST'], 'medescare'))? env('MAIL_FROM_ADDRESS') : 'info@magicmedical.de',
-        'name' => (str_contains($_SERVER['HTTP_HOST'], 'medescare'))? env('MAIL_FROM_NAME') : 'MagicMedical',
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
@@ -127,6 +121,14 @@ return [
 
         'paths' => [
             resource_path('views/vendor/mail'),
+        ],
+    ],
+
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
         ],
     ],
 
